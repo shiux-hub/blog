@@ -185,7 +185,7 @@ minify:
       ## 详细配置: https://github.com/imagemin/imagemin-webp#options
       options:
   postcss:
-    enable: true
+    enable: false
     ## 详细配置: https://github.com/postcss/autoprefixer#options
     ## 注意Hexo-minify仅内置了autoprefixer插件
     ## 受Hexo限制，目前无法实现自定义postcss插件
