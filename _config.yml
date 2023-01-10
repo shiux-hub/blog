@@ -1,0 +1,199 @@
+# Hexo Configuration
+## Docs: https://hexo.io/docs/configuration.html
+## Source: https://github.com/hexojs/hexo/
+
+# Site
+title: ShiuxのBlog
+subtitle: ''
+description: '个人博客'
+keywords:
+author: Shiux
+language: zh-CN
+timezone: Asia/Shanghai
+
+# URL
+## Set your site url here. For example, if you use GitHub Page, set url as 'https://username.github.io/project'
+url: https://blog.shiux.com
+permalink: /article/:title/
+permalink_defaults:
+pretty_urls:
+  trailing_index: true # Set to false to remove trailing 'index.html' from permalinks
+  trailing_html: true # Set to false to remove trailing '.html' from permalinks
+
+# Directory
+source_dir: source
+public_dir: public
+tag_dir: tags
+archive_dir: archives
+category_dir: categories
+code_dir: downloads/code
+i18n_dir: :lang
+skip_render:
+
+# Writing
+new_post_name: :title.md # File name of new posts
+default_layout: post
+titlecase: false # Transform title into titlecase
+external_link:
+  enable: true # Open external links in new tab
+  field: site # Apply to the whole site
+  exclude: ''
+filename_case: 0
+render_drafts: false
+post_asset_folder: false
+relative_link: false
+future: true
+highlight:
+  enable: true
+  line_number: true
+  auto_detect: false
+  tab_replace: ''
+  wrap: true
+  hljs: true
+prismjs:
+  enable: false
+  preprocess: true
+  line_number: true
+  tab_replace: ''
+
+# Home page setting
+# path: Root path for your blogs index page. (default = '')
+# per_page: Posts displayed per page. (0 = disable pagination)
+# order_by: Posts order. (Order by date descending by default)
+index_generator:
+  path: ''
+  per_page: 10
+  order_by: -date
+
+# Category & Tag
+default_category: uncategorized
+category_map:
+  宝塔面板: BT
+tag_map:
+  前端: FrontEnd
+  咨询: Consult
+  技巧: Skill
+  正则表达式: RegExp
+  笔记: Note
+  终端: Terminal
+  软件源: Sources
+  代码: Code
+
+# Metadata elements
+## https://developer.mozilla.org/en-US/docs/Web/HTML/Element/meta
+meta_generator: true
+
+# Date / Time format
+## Hexo uses Moment.js to parse and display date
+## You can customize the date format as defined in
+## http://momentjs.com/docs/#/displaying/format/
+date_format: YYYY-MM-DD
+time_format: HH:mm:ss
+## updated_option supports 'mtime', 'date', 'empty'
+updated_option: 'mtime'
+
+# Pagination
+## Set per_page to 0 to disable pagination
+per_page: 10
+pagination_dir: page
+
+# Include / Exclude file(s)
+## include:/exclude: options only apply to the 'source/' folder
+include:
+exclude:
+ignore:
+
+# Extensions
+## Plugins: https://hexo.io/plugins/
+## Themes: https://hexo.io/themes/
+theme: nexmoe
+
+# Deployment
+## Docs: https://hexo.io/docs/one-command-deployment
+
+jsonContent:
+  meta: false
+  pages: false
+  posts:
+    title: true 
+    date: false 
+    path: true 
+    text: true
+    raw: false
+    content: false
+    slug: false
+    updated: false
+    comments: false
+    link: false
+    permalink: false
+    excerpt: false
+    categories: false
+    tags: false
+
+markdown:
+  preset: default
+  plugins:
+    - markdown-it-emoji
+    - markdown-it-sub
+    - markdown-it-sup
+    - markdown-it-abbr
+    - markdown-it-footnote
+    - markdown-it-ins
+    - markdown-it-mark
+
+## Hexo-minify Default Config Options
+minify:
+  preview: true ## 本地预览时是否压缩
+  js:
+    enable: true
+    ## 详细配置: https://github.com/mishoo/UglifyJS
+    options:
+  css:
+    enable: true
+    ## 详细配置: https://github.com/clean-css/clean-css#compatibility-modes
+    options:
+  html:
+    enable: true
+    ## 详细配置: https://github.com/kangax/html-minifier#options-quick-reference
+    options:
+      minifyJS: true # Compressed JavaScript
+      minifyCSS: true # CSS Compressed
+      removeComments: true # Remove the comments
+      collapseWhitespace: true # Delete any extra space
+      removeAttributeQuotes: true # Delete attribute quotes
+  image:
+    enable: false
+    svg:
+      enable: true
+      ## 详细配置: https://github.com/imagemin/imagemin-svgo#imageminsvgooptionsbuffer
+      options:
+    jpg:
+      enable: true
+      ## 详细配置: https://github.com/imagemin/imagemin-jpegtran#options
+      options:
+    png:
+      enable: true
+      ## 详细配置: https://github.com/imagemin/imagemin-pngquant#options
+      options:
+        strip: true
+    gif:
+      enable: true
+      ## 详细配置: https://www.npmjs.com/package/imagemin-gifsicle#options
+      options:
+    webp:
+      enable: true
+      ## 详细配置: https://github.com/imagemin/imagemin-webp#options
+      options:
+  postcss:
+    enable: true
+    ## 详细配置: https://github.com/postcss/autoprefixer#options
+    ## 注意Hexo-minify仅内置了autoprefixer插件
+    ## 受Hexo限制，目前无法实现自定义postcss插件
+    options:
+      # JavaScript 数组写法
+      # overrideBrowserslist: ['> 1%', 'last 2 versions', 'not dead']
+      # YAML 数组写法
+      overrideBrowserslist:
+        - '> 1%' # 特殊符号需要使用'或"
+        - last 2 versions
+        - not dead
