@@ -162,7 +162,7 @@ minify:
       collapseWhitespace: true # Delete any extra space
       removeAttributeQuotes: true # Delete attribute quotes
   image:
-    enable: false
+    enable: true
     svg:
       enable: true
       ## 详细配置: https://github.com/imagemin/imagemin-svgo#imageminsvgooptionsbuffer
