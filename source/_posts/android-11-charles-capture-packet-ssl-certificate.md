@@ -1,6 +1,6 @@
 ---
 title: 使用Charles抓Android 11的包ssl证书问题
-feature: false
+reprint: false
 date: 2021-08-24 16:20:38
 categories:
   - Windows
@@ -8,10 +8,8 @@ categories:
 tags:
   - 笔记
 cover: /images/7505b78322238a0df5d8aa007d0b2734.png
-author: Fuoca
-socials:
-avatar:
-slogan:
+coverWidth:
+coverHeight:
 ---
 Android 7以后，Android不信任用户安装的证书，所以抓https时无法解码请求，对于第三方应用，需要将证书添加为系统证书，网上解决方法较多，比如使用安卓模拟器（兼容性差，很多应用闪退），使用xposed框架等，这里使用Android手机添加证书。
 
