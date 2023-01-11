@@ -3,10 +3,10 @@ title: OhMyZsh安装
 reprint: false
 date: 2021-11-07 20:59:42
 categories:
-    - MacOS
+  - MacOS
 tags:
-    - 终端
-    - 笔记
+  - 终端
+  - 笔记
 cover:
 coverWidth:
 coverHeight:

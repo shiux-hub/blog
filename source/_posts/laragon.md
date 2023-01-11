@@ -63,7 +63,7 @@ coverHeight:
 
 点击`Laragon`界面的终端按钮可以进入到一个类Unix的终端工具Cmder进行命令行操作：
 
-![](/images/def61d48a1577c3225f892405ea64c2a.png)
+![Cmder](/images/def61d48a1577c3225f892405ea64c2a.png)
 
 最后，`Laragon`界面还有一个根目录按钮，点击之后即可进入文档根目录，我的Laragon放在F盘下，所以对应的文档根目录是 `{LARAGON_ROOT}\www`。
 

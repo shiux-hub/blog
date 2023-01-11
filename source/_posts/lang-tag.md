@@ -3,12 +3,12 @@ title: HTML设置lang属性的意义
 reprint: false
 date: 2023-01-10 03:52:22
 categories:
- - Code
+  - Code
 tags:
- - HTML
- - 技巧
- - 前端
- - 代码
+  - HTML
+  - 技巧
+  - 前端
+  - 代码
 cover: /images/cover/lang-tag.jpg
 coverWidth:
 coverHeight:
