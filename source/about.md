@@ -3,7 +3,8 @@ title: 关于博主
 date: 2019-09-09 06:37:52
 comments: false
 ---
-> 站长简介
+
+## 站长简介
 
 中文名：雨辰
 
@@ -11,9 +12,7 @@ comments: false
 
 个人简介：精通网页前端开发，目前擅长CSS、HTML、开发，熟练Mootools、jQuery、Bootstrap、AJAX、javascript、Zepto、Html、CSS等前端页面技术和SEO网站优化技术，掌握Unix、Lunix等系统基本命令操作。
 
-
-
-> 网站简介
+## 网站简介
 
 前台设计：css3+html5自适应布局
 
@@ -21,6 +20,4 @@ comments: false
 
 网站内容介绍：本站主要发布一些本人学到的知识和笔记。
 
-:::tip
-&copy;如需转载，请声明出处。
-:::
+> &copy;如需转载，请声明出处。
