@@ -78,6 +78,7 @@ tag_map:
   终端: Terminal
   软件源: Sources
   代码: Code
+  群晖: DSM
 
 # Metadata elements
 ## https://developer.mozilla.org/en-US/docs/Web/HTML/Element/meta
