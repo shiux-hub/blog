@@ -29,9 +29,7 @@ help --> SSL Proxying --> Save Charles Root Certificate...
 
 ![](/images/bc2ede2fd6f39e332872caa7cad7781c.jpg)
 
-**文件命名格式（如果计算出来的hash值已经存在则编号依次+1）**
-
-`<hash>.%d`
+**文件命名格式（如果计算出来的hash值已经存在则编号依次+1）**：`<hash>.%d`
 
 ## 将导出的证书计算hash值
 
