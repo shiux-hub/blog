@@ -24,6 +24,6 @@ npm install [packageName]
 
 ### 删除包
 
-```shell
+```bash
 npm remove [packageName]
 ```

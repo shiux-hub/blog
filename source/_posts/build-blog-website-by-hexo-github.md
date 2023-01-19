@@ -101,13 +101,13 @@ GitHub是一个在线软件源代码托管服务平台，使用Git作为版本�
 
 为什么要配置这个呢？因为你提交代码肯定要拥有你的Github权限才可以，但是直接使用用户名和密码太不安全了，所以我们使用ssh key来解决本地和服务器的连接问题。
 
-```shell
+```bash
 cd ~/. ssh #检查本机已存在的ssh密钥
 ```
 
 如果提示：`No such file or directory`说明你是第一次使用git。
 
-```shell
+```bash
 ssh-keygen -t rsa -C "邮件地址"
 ```
 
@@ -119,19 +119,19 @@ ssh-keygen -t rsa -C "邮件地址"
 
 ### 测试是否成功
 
-```shell
+```bash
 ssh -T git@github.com # 注意邮箱地址不用改
 ```
 
-如果提示`Are you sure you want to continue connecting (yes/no)?`，输入yes，然后会看到：
+如果提示`Are you sure you want to continue connecting (yes/no)?`，输入`yes`，然后会看到：
 
-> _Hi shiux! You've successfully authenticated, but GitHub does not provide shell access._
+> Hi shiux! You've successfully authenticated, but GitHub does not provide shell access.
 
 看到这个信息说明SSH已配置成功！
 
 此时你还需要配置：
 
-```shell
+```bash
 git config --global user.name "shiux" // 你的Github用户名，非昵称
 git config --global user.email "xxx@qq.com" // 填写你的Github注册邮箱
 ```
@@ -155,7 +155,7 @@ git config --global user.email "xxx@qq.com" // 填写你的Github注册邮箱
 
 ### 安装
 
-```shell
+```bash
 npm install hexo-cli -g
 ```
 
@@ -163,7 +163,7 @@ npm install hexo-cli -g
 
 在电脑的某个地方新建一个名为hexo的文件夹（名字可以随便取），比如我的是`F:\Workspaces\blog`，由于这个文件夹将来就作为你存放代码的地方，所以最好不要随便放。
 
-```shell
+```bash
 cd /f/Workspaces/blog/
 hexo init # 初始化项目
 ```
@@ -172,7 +172,7 @@ hexo会自动下载一些文件到这个目录，包括node_modules，目录结�
 
 ![博客结构](https://s2.loli.net/2022/12/30/1gUti4z6akcxdmv.png)
 
-```shell
+```bash
 hexo g # 生成
 hexo s # 启动服务
 ```
@@ -195,7 +195,7 @@ hexo s # 启动服务
 
 首先下载这个主题：
 
-```shell
+```bash
 cd /f/Workspaces/blog/
 git clone https://github.com/next-theme/hexo-theme-next.git themes/next
 ```
@@ -266,7 +266,7 @@ jobs:
 
 之后使用以下命令提交代码到GitHub，之后GitHub会自动处理代码并部署到`gh-pages`分支。
 
-```shell
+```bash
 git init
 git add .
 git commit -m "Init Blog"
@@ -309,7 +309,7 @@ Github将默认分支从`master`修改为了`main`，注意分支选择。
 
 原因是还需要安装一个插件：
 
-```shell
+```bash
 npm install hexo-deployer-git --save
 ```
 
@@ -356,7 +356,7 @@ npm install hexo-deployer-git --save
 
 ### 常用hexo命令
 
-```shell
+```bash
 # 常见命令
 hexo new "postName" #新建文章
 hexo new page "pageName" #新建页面

@@ -32,7 +32,7 @@ RHEL 7 最小化安装完成后，就应该注册并启用系统红帽订阅库�
 
 你第一件要做的事情就是为你的 `CentOS` 服务器配置静态 `IP` 地址、路由以及 `DNS`。我们会使用 `ip` 命令代替 `ifconfig` 命令。当然，`ifconfig` 命令对于大部分 Linux 发行版来说还是可用的，还能从默认库安装。
 
-```shell
+```bash
 yum install net-tools # [它提供 ifconfig 工具，如果你不习惯 ip 命令，还可以使用它]
 ```
 
@@ -40,7 +40,7 @@ yum install net-tools # [它提供 ifconfig 工具，如果你不习惯 ip 命�
 
 但正如我之前说，我们会使用 ip 命令来配置静态 IP 地址。所以，确认你首先检查了当前的 IP 地址。
 
-```shell
+```bash
 ip addr show
 ```
 
@@ -50,13 +50,13 @@ ip addr show
 
 这里，我使用 `vi` 编辑器，另外你要确保你是 `root` 用户才能保存更改。
 
-```shell
+```bash
 vi /etc/sysconfig/network-scripts/ifcfg-enp0s3
 ```
 
 我们会编辑文件中的四个地方。注意下面的四个地方并保证不碰任何其它的东西。也保留双引号，在它们中间输入你的数据。
 
-```shell
+```bash
 IPADDR = "[在这里输入你的静态 IP]"
 GATEWAY = "[输入你的默认网关]"
 DNS1 = "[你的DNS 1]"
@@ -69,7 +69,7 @@ DNS2 = "[你的DNS 2]"
 
 重启网络服务并检查 IP 是否和分配的一样。如果一切都顺利，用 Ping 查看网络状态。
 
-```shell
+```bash
 service network restart
 ```
 
@@ -77,7 +77,7 @@ service network restart
 
 重启网络后，确认检查了 IP 地址和网络状态。
 
-```shell
+```bash
 ip addr show
 ping -c4 google.com
 ```
@@ -90,7 +90,7 @@ ping -c4 google.com
 
 下一步是更改 `CentOS` 服务器的主机名称。查看当前分配的主机名称。
 
-```shell
+```bash
 echo $HOSTNAME
 ```
 
@@ -98,7 +98,7 @@ echo $HOSTNAME
 
 要设置新的主机名称，我们需要编辑`/etc/hostsname`文件并用想要的名称替换旧的主机名称。
 
-```shell
+```bash
 vi /etc/hostname
 ```
 
@@ -106,7 +106,7 @@ vi /etc/hostname
 
 设置完了主机名称之后，务必注销后重新登录确认主机名称。登录后检查新的主机名称。
 
-```shell
+```bash
 echo $HOSTNAME
 ```
 
@@ -114,7 +114,7 @@ echo $HOSTNAME
 
 你也可以用 ‘hostname’ 命令查看你当前的主机名。
 
-```shell
+```bash
 hostname
 ```
 
@@ -122,7 +122,7 @@ hostname
 
 这样做除了更新安装已有的软件最新版本以及安全升级，不会安装任何新的软件。总的来说更新（update）和升级（upgrade）是相同的，除了事实上 升级 = 更新 + 更新时进行废弃处理。
 
-```shell
+```bash
 yum update && yum upgrade
 ```
 
@@ -130,7 +130,7 @@ yum update && yum upgrade
 
 > 你也可以运行下面的命令，这不会弹出软件更新的提示，你也就不需要输入 ‘y’ 接受更改。 然而，查看服务器上会发生的变化总是一个好主意，尤其是在生产中。因此使用下面的命令虽然可以为你自动更新和升级，但并不推荐。
 
-```shell
+```bash
 yum -y update && yum -y upgrade
 ```
 
@@ -138,7 +138,7 @@ yum -y update && yum -y upgrade
 
 大部分情况下，尤其是在生产环境中，我们通常用没有 GUI 的命令行安装 CentOS，在这种情况下我们必须有一个能通过终端查看网站的命令行浏览工具。为了实现这个目的，我们打算安装名为`links`的著名工具。
 
-```shell
+```bash
 yum install links`
 ```
 
@@ -148,7 +148,7 @@ yum install links`
 
 不管你因为什么原因使用服务器，大部分情况下你都需要一个 HTTP 服务器运行网站、多媒体、用户端脚本和很多其它的东西。
 
-```shell
+```bash
 yum install httpd
 ```
 
@@ -166,38 +166,38 @@ yum install httpd
 
 允许 http 服务通过防火墙(永久)。
 
-```shell
+```bash
 firewall-cmd –add-service=http
 ```
 
 允许 `3221` 号端口通过防火墙(永久)。
 
-```shell
+```bash
 firewall-cmd –permanent –add-port=3221/tcp
 ```
 
 重新加载防火墙。
 
-```shell
+```bash
 firewall-cmd –reload
 ```
 
 完成上面的所有事情之后，是时候重启 `Apache HTTP` 服务器了，然后新的端口号才能生效。
 
-```shell
+```bash
 systemctl restart httpd.service
 ```
 
 现在添加 Apache 服务到系统层使其随系统自动启动。
 
-```shell
+```bash
 systemctl start httpd.service
 systemctl enable httpd.service
 ```
 
 如下图所示，用 `links` 命令行工具验证 `Apache HTTP` 服务器。
 
-```shell
+```bash
 links 127.0.0.1`
 ```
 

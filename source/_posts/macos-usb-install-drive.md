@@ -65,31 +65,31 @@ coverHeight:
 
 **制作macOS Ventura 13启动盘：**
 
-```shell
+```bash
 sudo /Applications/Install\ macOS\ Ventura.app/Contents/Resources/createinstallmedia --volume /Volumes/你的U盘名称
 ```
 
 **制作macOS Monterey 12启动盘：**
 
-```shell
+```bash
 sudo /Applications/Install\ macOS\ Monterey.app/Contents/Resources/createinstallmedia --volume /Volumes/你的U盘名称
 ```
 
 **制作macOS Big Sur 11启动盘：**
 
-```shell
+```bash
 sudo /Applications/Install\ macOS\ Big\ Sur.app/Contents/Resources/createinstallmedia --volume /Volumes/你的U盘名称
 ```
 
 **制作macOS Catalina 10.15启动盘：**
 
-```shell
+```bash
 sudo /Applications/Install\ macOS\ Catalina.app/Contents/Resources/createinstallmedia --volume /Volumes/你的U盘名称
 ```
 
 **制作macOS High Sierra 10.13启动盘：**
 
-```shell
+```bash
 sudo /Applications/Install\ macOS\ High\ Sierra.app/Contents/Resources/createinstallmedia --volume /Volumes/你的U盘名称
 ```
 
@@ -97,19 +97,19 @@ sudo /Applications/Install\ macOS\ High\ Sierra.app/Contents/Resources/createins
 
 **制作macOS Sierra 10.12启动盘：**
 
-```shell
+```bash
 sudo /Applications/Install\ macOS\ Sierra.app/Contents/Resources/createinstallmedia --volume /Volumes/sysin --applicationpath /Applications/Install\ macOS\ Sierra.app --nointeraction
 ```
 
 **制作OS X El Capitan 10.11启动盘：**
 
-```shell
+```bash
 sudo /Applications/Install\ OS\ X\ El\ Capitan.app/Contents/Resources/createinstallmedia --volume /Volumes/sysin --applicationpath /Applications/Install\ OS\ X\ El\ Capitan.app
 ```
 
 **制作OS X Yosemite 10.10启动盘：**
 
-```shell
+```bash
 sudo /Applications/Install\ OS\ X\ Yosemite.app/Contents/Resources/createinstallmedia --volume /Volumes/sysin --applicationpath /Applications/Install\ OS\ X\ Yosemite.app --nointeraction
 ```
 
@@ -129,7 +129,7 @@ sudo /Applications/Install\ OS\ X\ Yosemite.app/Contents/Resources/createinstall
 
 如果你执行上面的命令后出现`mount of outer dmg failed`的错误提示，那么需要在终端中执行一句命令来修复权限（这里以 Monterey 为例）：
 
-```shell
+```bash
 sudo chmod 777 /Applications/Install\ macOS\ Monterey.app/Contents/Resources/createinstallmedia
 ```
 

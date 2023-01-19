@@ -23,7 +23,7 @@ coverHeight:
 
 occ有三个用于管理NextCloud中文件的命令：
 
-```shell
+```bash
 files
   files:cleanup #清楚文件缓存
   files:scan #重新扫描文件系统
@@ -32,7 +32,7 @@ files
 
 我们需要使用`files:scan`来扫描新文件。
 
-```shell
+```bash
 格式:
   files:scan [-p|--path="..."] [-q|--quiet] [-v|vv|vvv --verbose] [--all]
   [user_id1] ... [user_idN]
@@ -50,7 +50,7 @@ files
 
 ### 示例
 
-```shell
+```bash
 sudo -u www-data php occ files:scan --all #扫描所有用户的所有文件
 sudo -u www php /www/wwwroot/{site_path}/occ files:scan --all #宝塔面板
 ```
@@ -61,7 +61,7 @@ sudo -u www php /www/wwwroot/{site_path}/occ files:scan --all #宝塔面板
 
 如果不想显示扫描信息，可以在后面加上`--quiet`
 
-```shell
+```bash
 sudo -u www-data php occ files:scan --all --quiet
 sudo -u www php /www/wwwroot/{site_path}/occ files:scan --all --quiet #宝塔面板
 ```
@@ -74,7 +74,7 @@ sudo -u www php /www/wwwroot/{site_path}/occ files:scan --all --quiet #宝塔�
 
 列出所有用户：
 
-```shell
+```bash
 sudo -u www-data php occ user:list
 sudo -u www php /www/wwwroot/{site_path}/occ user:list #宝塔面板
 ```
@@ -83,7 +83,7 @@ sudo -u www php /www/wwwroot/{site_path}/occ user:list #宝塔面板
 
 为指定用户扫描文件：
 
-```shell
+```bash
 sudo -u www-data php occ files:scan {user_name}
 sudo -u www php /www/wwwroot/{site_path}/occ files:scan {user_name} #宝塔面板
 ```
@@ -92,7 +92,7 @@ sudo -u www php /www/wwwroot/{site_path}/occ files:scan {user_name} #宝塔面�
 
 当使用`--path` 选项时，该路径必须包含以下部分：
 
-```shell
+```bash
 "user_id/files/path"
 #或
 "user_id/files/mount_name"
@@ -104,7 +104,7 @@ sudo -u www php /www/wwwroot/{site_path}/occ files:scan {user_name} #宝塔面�
 
 #### 示例
 
-```shell
+```bash
 sudo -u www-data php occ files:scan --path="/{user_name}/files/Photos" #指向指定用户的Photos文件夹
 sudo -u www php /www/wwwroot/站点文件夹/occ files:scan --path="/{user_name}/files/Photos" #宝塔面板
 ```

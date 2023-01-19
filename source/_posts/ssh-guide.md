@@ -22,7 +22,7 @@ cover:
 
 确保在服务器上安装好了**openssh-server**程序，在本地主机上安装好了**openssh-client**程序。
 
-```shell
+```bash
 sudo apt install openssh-client #本地主机运行此条，实际上通常是默认安装client端程序的
 sudo apt install openssh-server #服务器运行此条命令安装
 ```
@@ -33,13 +33,13 @@ sudo apt install openssh-server #服务器运行此条命令安装
 
 一般服务器上安装ssh完成后，会自动启动ssh服务，并且默认随系统启动，如果没有，请手动启动：
 
-```shell
+```bash
 sudo /etc/init.d/ssh start #服务器启动ssh-server服务，
 ```
 
 其他命令：
 
-```shell
+```bash
 sudo /etc/init.d/ssh stop    #server停止ssh服务
 sudo /etc/init.d/ssh restart #server重启ssh服务
 ```
@@ -48,7 +48,7 @@ sudo /etc/init.d/ssh restart #server重启ssh服务
 
 在服务器终端运行以下命令：
 
-```shell
+```bash
 ifconfig #查询ip地址，在返回信息中找到自己的ip地址
 ```
 
@@ -58,7 +58,7 @@ ifconfig #查询ip地址，在返回信息中找到自己的ip地址
 
 如果没有看到IP地址，说明你没有安装指定工具：
 
-```shell
+```bash
 sudo apt install net-tools  #Ubuntu
 sudo yum install net-tools      #CentOS
 ```
@@ -72,7 +72,7 @@ sudo yum install net-tools      #CentOS
 在本地主机上运行以下命令：  
 用户端连接服务器用于登录远程桌面(以下user时远程主机的用户名)
 
-```shell
+```bash
 ssh shiux@10.170.11.147
 #或
 ssh -l shiux 10.170.11.147
@@ -90,7 +90,7 @@ ssh -X shiux@10.170.11.147
 
 如果服务器的SSH服务没有开启在22端口,那么SSH链接时则需要用`-p`指定端口（如202）:
 
-```shell
+```bash
 ssh -p 202 shiux@10.170.11.147
 #或
 ssh -l shiux -p 202 10.170.11.147
@@ -100,7 +100,7 @@ ssh -l shiux -p 202 10.170.11.147
 
 用`Ctrl+D`或者
 
-```shell
+```bash
 exit
 ```
 
@@ -110,7 +110,7 @@ exit
 
 ### 生成密钥对
 
-```shell
+```bash
 ssh-keygen -t rsa #-t表示选择类型,类型为rsa
 ```
 
@@ -118,7 +118,7 @@ ssh-keygen -t rsa #-t表示选择类型,类型为rsa
 
 ### 复制公钥至服务器
 
-```shell
+```bash
 # 登录远程服务器
 ssh shiux@10.170.11.147 
 

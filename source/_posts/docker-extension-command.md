@@ -17,37 +17,37 @@ coverHeight:
 
 - 删除所有未被 tag 标记和未被容器使用的镜像
 
-```shell
+```bash
 docker image prune
 ```
 
 - 删除所有未被容器使用的镜像
 
-```shell
+```bash
 docker image prune -a
 ```
 
 - 删除所有停止运行的容器
 
-```shell
+```bash
 docker container prune
 ```
 
 - 删除所有未被挂载的卷
 
-```shell
+```bash
 docker volume prune
 ```
 
 - 删除所有网络
 
-```shell
+```bash
 docker network prune
 ```
 
 - 删除 docker 所有资源
 
-```shell
+```bash
 docker system prune
 ```
 
@@ -55,7 +55,7 @@ docker system prune
 
 ### 导出命令
 
-```shell
+```bash
 #!/bin/bash
 docker save $(docker images --format '{{.Repository}}:{{.Tag}}') -o [filename].tar
 ```
@@ -64,14 +64,14 @@ docker save $(docker images --format '{{.Repository}}:{{.Tag}}') -o [filename].t
 
 ### 导入命令
 
-```shell
+```bash
 #!/bin/bash
 docker load -i [filename].tar
 ```
 
 ### 查看有哪些镜像
 
-```shell
+```bash
 #!/bin/bash
 IMAGES=$(docker images --format '{{.Repository}}:{{.Tag}}')
 

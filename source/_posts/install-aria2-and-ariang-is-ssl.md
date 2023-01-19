@@ -16,7 +16,7 @@ coverHeight:
 
 首先你安装得有一台安装了CENTOS7的KVM架构的vps，安装宝塔完毕。 首先安装ARIA2，这个我们直接用某大佬的一键脚本吧：
 
-```shell
+```bash
 wget -N –no-check-certificate https://raw.githubusercontent.com/ToyoDAdoubiBackup/doubi/master/aria2.sh && chmod +x aria2.sh && bash aria2.sh
 ```
 
@@ -32,13 +32,13 @@ wget -N –no-check-certificate https://raw.githubusercontent.com/ToyoDAdoubiBac
 
 现在问题来了，你用你创建好的[download.shiux.com](https://download.shiux.com)在浏览器里访问，填写我们前面安装aria2的NPC密码后依然显示未连接。原因？就是因为我们需要更改`ARIA2`的配置文件。
 
-```shell
+```bash
 vi /root/.aria2/aria2.conf
 ```
 
 找到，没有可以自行添加到配置文件。
 
-```shell
+```bash
 #是否启用RPC服务的SSL/TLS加密
 #rpc-secure=true
 #申请的域名crt证书文件路径，自行修改
@@ -49,27 +49,27 @@ vi /root/.aria2/aria2.conf
 
 首先把上述三行的注释去掉，开启`HTTPS`访问支持，关键是下面两个证书文件路径，哪里找，其实你的站点配置信息里面有，如果你的宝塔安装的是`nginx`，在你的站点`nginx`配置文件中包含路径。进入宝塔后台，站点设置里面找到`nginx`配置： 找到：
 
-```shell
+```bash
 ssl_certificate /www/server/panel/vhost/cert/aria2.zhanghaitao.com/fullchain.pem;
 ssl\_certificate\_key /www/server/panel/vhost/cert/aria2.zhanghaitao.com/privkey.pem
 ```
 
 先别急，你如果直接填写这两个文件地址不会成功，我在这里耽误了3个小时才折腾完毕，记得谢我，评论区见。需要把`privkey.pem`用openssl转换一下，进入这个目录：
 
-```shell
+```bash
 cd /www/server/panel/vhost/cert/download.shiux.com/
 openssl rsa -in privkey.pem -out privkey.key
 ```
 
 转换完成后，你得到了`privkey.key`这个文件：
 
-```shell
+```bash
 vi /root/.aria2/aria2.conf
 ```
 
 编辑为：
 
-```shell
+```bash
 # 启用加密后 RPC 服务需要使用 https 或者 wss 协议连接
 rpc-secure=true
 # 在 RPC 服务中启用 SSL/TLS 加密时的证书文件(.pem/.crt)
@@ -80,7 +80,7 @@ rpc-private-key=/www/server/panel/vhost/cert/aria2.shiux.com/privkey.key
 
 重新启动`ARIA2`
 
-```shell
+```bash
 service aria2 restart
 ```
 

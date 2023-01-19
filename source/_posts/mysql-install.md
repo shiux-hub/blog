@@ -54,27 +54,27 @@ MacOS安装MySQL的方法主要分为两种。分别是：
 
 1. Homebrew安装macOS下的Homebrew就相当于CentOS下的yum或者是Ubuntu下的apt-get
 
-   ```shell
+   ```bash
    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
    ```
 
 2. Homebrew安装与启动MySQL服务
    * 安装mysql
 
-   ```shell
+   ```bash
    brew install mysql
    ```
 
    * 配置并启动MySQL服务
 
-   ```shell
+   ```bash
    brew tap homebrew/services
    brew services start mysql
    ```
 
 3. 修改root密码
 
-   ```shell
+   ```bash
    mysqladmin -u root password 'yourpassword'
    ```
 
@@ -82,7 +82,7 @@ MacOS安装MySQL的方法主要分为两种。分别是：
 
    * 查看MySQL版本
 
-   ```shell
+   ```bash
    #查看MySQL版本
    mysql -V
 
@@ -92,7 +92,7 @@ MacOS安装MySQL的方法主要分为两种。分别是：
 
    * MySQL shell测试
 
-   ```shell
+   ```bash
    #进入MySQL shell
    mysql -u root -p
 

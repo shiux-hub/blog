@@ -22,19 +22,19 @@ coverHeight:
 
 [**blueutil**](https://github.com/toy/blueutil) 是 macOS 平台的控制蓝牙的命令行工具，可以检查蓝牙状态，以及开启/关闭等操作。通过 Homebrew 安装十分方便：
 
-```shell
+```bash
 brew install blueutil
 ```
 
 关闭蓝牙：
 
-```shell
+```bash
 blueutil -p 0
 ```
 
 开启蓝牙：
 
-```shell
+```bash
 blueutil -p 1
 ```
 
@@ -44,19 +44,19 @@ blueutil -p 1
 
 [**SleepWatcher**](https://formulae.brew.sh/formula/sleepwatcher)可以监测Mac的休眠唤醒以及空闲状态，并执行用户自指定的命令。通过Homebrew获得：
 
-```shell
+```bash
 brew install sleepwatcher
 ```
 
 系统自启动 **SleepWatcher** 后台进程，过程需要 Administrator 密码开启权限：
 
-```shell
+```bash
 brew services start sleepwatcher ==> Successfully started **SleepWatcher** (label: homebrew.mxcl.sleepwatcher) 
 ```
 
 执行完毕可以检查后台进程是否添加成功：
 
-```shell
+```bash
 brew services list Name              Status  User  Plist sleepwatcher      started Cotes /Users/cotes/Library/LaunchAgents/homebrew.mxcl.sleepwatcher.plist $ ps aux | grep sleepwatcher Cotes             3067   0.0  0.0  4317336   4552   ??  S     7:39PM   0:01.79 /usr/local/sbin/sleepwatcher -V -s ~/.sleep -w ~/.wakeup 
 ```
 
@@ -64,7 +64,7 @@ brew services list Name              Status  User  Plist sleepwatcher      start
 
 指定合盖（休眠）执行蓝牙关闭：
 
-```shell
+```bash
 echo "$(which blueutil) -p 0" >> ~/.sleep 
 ```
 
@@ -72,13 +72,13 @@ echo "$(which blueutil) -p 0" >> ~/.sleep
 
 接着，添加开盖（唤醒）自动开启蓝牙，并且自动连上蓝牙设备：
 
-```shell
+```bash
 echo "$(which blueutil) -p 1 && $(which blueutil) --connect ID" >> ~/.wakeup 
 ```
 
 把上述`ID`更换为目标蓝牙设备的MAC地址。在蓝牙外设与MacOS保持连接的状态下，可通过以下命令查询：
 
-```shell
+```bash
 blueutil --paired address: 4e-21-f2-b1-a5-67, not connected, not favourite, paired, name: "Headphone", recent access date: 2020-03-23 21:25:48 +0000 
 ```
 
@@ -86,7 +86,7 @@ blueutil --paired address: 4e-21-f2-b1-a5-67, not connected, not favourite, pair
 
 最后，为命令文件添加执行权：
 
-```shell
+```bash
 chmod +x ~/.sleep ~/.wakeup 
 ```
 

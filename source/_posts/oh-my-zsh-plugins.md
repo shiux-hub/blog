@@ -103,7 +103,7 @@ source ~/.zshrc
 
 如果感觉 → 补全不方便，还可以自定义补全的快捷键，比如我设置的逗号补全
 
-```shell
+```bash
 bindkey ',' autosuggest-accept
 ```
 

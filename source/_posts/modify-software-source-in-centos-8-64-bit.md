@@ -16,7 +16,7 @@ coverHeight:
 
 ## 备份，以免出错后可以恢复
 
-```shell
+```bash
 mv /etc/yum.repos.d/CentOS-Base.repo /etc/yum.repos.d/CentOS-Base.repo.backup
 ```
 
@@ -26,7 +26,7 @@ mv /etc/yum.repos.d/CentOS-Base.repo /etc/yum.repos.d/CentOS-Base.repo.backup
 
 - wget
 
-```shell
+```bash
 # CentOS 5
 wget -O /etc/yum.repos.d/CentOS-Base.repo http://mirrors.aliyun.com/repo/Centos-5.repo
 # CentOS 6
@@ -39,7 +39,7 @@ wget -O /etc/yum.repos.d/CentOS-Base.repo http://mirrors.aliyun.com/repo/Centos-
 
 - curl
 
-```shell
+```bash
 # CentOS 5
 curl -o /etc/yum.repos.d/CentOS-Base.repo http://mirrors.aliyun.com/repo/Centos-5.repo
 # CentOS 6
@@ -52,7 +52,7 @@ curl -o /etc/yum.repos.d/CentOS-Base.repo http://mirrors.aliyun.com/repo/Centos-
 
 ### USTC
 
-```shell
+```bash
 # CentOS7
 sudo sed -e 's|^mirrorlist=|#mirrorlist=|g' \
          -e 's|^#baseurl=http://mirror.centos.org/centos|baseurl=https://mirrors.ustc.edu.cn/centos|g' \
@@ -71,7 +71,7 @@ sudo sed -e 's|^mirrorlist=|#mirrorlist=|g' \
 
 ## 运行以下命令生成缓存
 
-```shell
+```bash
 yum clean all
 yum makecache
 ```

@@ -20,26 +20,26 @@ coverHeight:
 
 我们先看一下，这些安装包占了多大空间吧。按快捷键ctrl+alt+t打开终端，输入命令
 
-```shell
+```bash
 du –h /var/cache/apt/archives
 ```
 
 回车之后，我们就可以看到安装包所占用的空间咯。
 那我们就来删除这些软件包吧。若你生性小心谨慎，那就只删除那些你已经将其卸载掉的软件的软件。删除你已经卸载掉的软件包的命令为
 
-```shell
+```bash
 sudo apt autoclean
 ```
 
 若你想清理出更多的空间，而且网速又比较快的话，那你大可以把电脑上存储的安装包全部卸载咯，命令为
 
-```shell
+```bash
 sudo apt clean
 ```
 
 还有一类软件包，我们每个人都应该删除，那就是你已经卸载了，但是一些只有它依赖而别的软件包都不需要的软件包还留在你的系统里。说简单点就是，类似于你在windows系统中卸载软件时残留在系统里的垃圾咯。卸载这些孤立包的命令为
 
-```shell
+```bash
 sudo apt autoremove
 ```
 
@@ -51,13 +51,13 @@ sudo apt autoremove
 uname –r，然后看其显示的内核版本是多少。看准了自己使用的内核后，你就可以放心大胆的删除那些不用的老内核。
 打开终端，敲入命令
 
-```shell
+```bash
 dpkg --get-selections | grep linux
 ```
 
 然后将不用的内核文件image、头文件headers删除掉就可以咯。在终端中输入命令
 
-```shell
+```bash
 sudo apt purge 内核文件名 头文件名
 ```
 
@@ -73,7 +73,7 @@ sudo apt purge 内核文件名 头文件名
 
 在我们使用系统的过程中，有时候需要把不用的软件给卸载掉。若你无需再次安装该软件，可以把软件的配置文件也清理掉，此时在卸载软件的时候，尽可能使用
 
-```shell
+```bash
 sudo apt purge xxxxx（xxxx为要卸载的软件名）
 ```
 

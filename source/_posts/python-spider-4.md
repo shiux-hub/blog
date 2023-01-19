@@ -18,7 +18,7 @@ requests是基于上篇的urllib编写的，采用的是Apache2 Licensed开源�
 
 默认安装好python之后，是没有安装requests模块的，需要单独通过pip安装
 
-```shell
+```bash
 pip install -U requests
 ```
 
