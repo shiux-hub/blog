@@ -14,9 +14,9 @@ coverHeight:
 
 搞了一台飞利浦的2K显示屏，本来以为只要外接显示屏的分辨率够了就可以获得Retina的细腻效果。但事与愿违，后来查询后发现苹果的Retina效果是外接显示器不可能达到那样的细腻，但外接显示器只要分辨率够，可以通过软件渲染得来Retina效果，这就是HiDPI技术。
 
-> **HiDPI本质上是用软件的方式实现单位面积内的高密度像素**。用四个像素点来表现一个像素，因此能够更加清晰细腻。
+> HiDPI本质上是用软件的方式实现单位面积内的高密度像素。用四个像素点来表现一个像素，因此能够更加清晰细腻。
 >
-> **高PPI(硬件) + HiDPI渲染(软件) = 更细腻的显示效果(retina)**
+> 高PPI(硬件) + HiDPI渲染(软件) = 更细腻的显示效果(retina)
 
 ![Retina原理](https://blog.haitianhome.com/wp-content/uploads/2020/07/unnamed-file.jpg)
 
@@ -75,9 +75,8 @@ ioreg -l | grep "DisplayProductID"
 
 找到两个脚本，大家都可以试一下，我是使用国人制作的one-key-hidpi开启成功的。
 
-[Enable-HiDPI-OSX](https://github.com/syscl/Enable-HiDPI-OSX)
-
-[one-key-hidpi](https://github.com/xzhih/one-key-hidpi/blob/master/README-zh.md)
+- [Enable-HiDPI-OSX](https://github.com/syscl/Enable-HiDPI-OSX)
+- [one-key-hidpi](https://github.com/xzhih/one-key-hidpi/blob/master/README-zh.md)
 
 看介绍one-key-hidpi的作者还是参考的Enable-HiDPI-OSX，但是我使用Enable-HiDPI-OSX却没有成功。
 
@@ -119,7 +118,7 @@ chmod +x ~/onekeyhidpi.sh
 2. 在屏幕左上方的工具栏找到实用工具（左数第3个），打开终端，输入：`csrutil enable`
 3. 重启mac
 
-## 使用 RDM 设置分辨率
+## 使用RDM设置分辨率
 
 RDM全称为Retina Display Manage，下载安装即可：<http://avi.alkalay.net/software/RDM/>
 
