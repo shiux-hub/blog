@@ -7,6 +7,10 @@
   box-shadow: none;
 }
 
+code {
+  font-family: Consolas, Monaco, monospace !important;
+}
+
 /*
 Atom One Dark by Daniel Gamage
 Original One Dark Syntax theme from https://github.com/atom/one-dark-syntax

@@ -20,7 +20,7 @@ coverHeight:
 
 ## CLI 关闭蓝牙
 
-[**blueutil**](https://github.com/toy/blueutil) 是 macOS 平台的控制蓝牙的命令行工具，可以检查蓝牙状态，以及开启/关闭等操作。通过 Homebrew 安装十分方便：
+[blueutil](https://github.com/toy/blueutil)是macOS平台的控制蓝牙的命令行工具，可以检查蓝牙状态，以及开启/关闭等操作。通过Homebrew安装十分方便：
 
 ```bash
 brew install blueutil
@@ -42,7 +42,7 @@ blueutil -p 1
 
 ## 监测休眠及唤醒
 
-[**SleepWatcher**](https://formulae.brew.sh/formula/sleepwatcher)可以监测Mac的休眠唤醒以及空闲状态，并执行用户自指定的命令。通过Homebrew获得：
+[SleepWatcher](https://formulae.brew.sh/formula/sleepwatcher)可以监测Mac的休眠唤醒以及空闲状态，并执行用户自指定的命令。通过Homebrew获得：
 
 ```bash
 brew install sleepwatcher
@@ -56,11 +56,12 @@ brew services start sleepwatcher ==> Successfully started **SleepWatcher** (labe
 
 执行完毕可以检查后台进程是否添加成功：
 
-```bash
-brew services list Name              Status  User  Plist sleepwatcher      started Cotes /Users/cotes/Library/LaunchAgents/homebrew.mxcl.sleepwatcher.plist $ ps aux | grep sleepwatcher Cotes             3067   0.0  0.0  4317336   4552   ??  S     7:39PM   0:01.79 /usr/local/sbin/sleepwatcher -V -s ~/.sleep -w ~/.wakeup 
+```shell
+$ brew services list
+Name              Status  User  Plist sleepwatcher      started Cotes /Users/cotes/Library/LaunchAgents/homebrew.mxcl.sleepwatcher.plist $ ps aux | grep sleepwatcher Cotes             3067   0.0  0.0  4317336   4552   ??  S     7:39PM   0:01.79 /usr/local/sbin/sleepwatcher -V -s ~/.sleep -w ~/.wakeup 
 ```
 
-从输出看到 **SleepWatcher** 已经成功进驻后台进程列表。`-s` 的参数指定监测的休眠指令存放于`~/.sleep`，`-w`指定监测的唤醒指令存放于 `~/.wakeup`，接下来把蓝牙开关的命令加入这两个文件即可。
+从输出看到**SleepWatcher**已经成功进驻后台进程列表。`-s`的参数指定监测的休眠指令存放于`~/.sleep`，`-w`指定监测的唤醒指令存放于`~/.wakeup`，接下来把蓝牙开关的命令加入这两个文件即可。
 
 指定合盖（休眠）执行蓝牙关闭：
 
@@ -73,13 +74,14 @@ echo "$(which blueutil) -p 0" >> ~/.sleep
 接着，添加开盖（唤醒）自动开启蓝牙，并且自动连上蓝牙设备：
 
 ```bash
-echo "$(which blueutil) -p 1 && $(which blueutil) --connect ID" >> ~/.wakeup 
+echo "$(which blueutil) -p 1 && $(which blueutil) --connect [ID]" >> ~/.wakeup 
 ```
 
 把上述`ID`更换为目标蓝牙设备的MAC地址。在蓝牙外设与MacOS保持连接的状态下，可通过以下命令查询：
 
-```bash
-blueutil --paired address: 4e-21-f2-b1-a5-67, not connected, not favourite, paired, name: "Headphone", recent access date: 2020-03-23 21:25:48 +0000 
+```shell
+$ blueutil --paired
+address: 4e-21-f2-b1-a5-67, not connected, not favourite, paired, name: "Headphone", recent access date: 2020-03-23 21:25:48 +0000 
 ```
 
 输出日志的`address`部分就是设备的 MAC 地址。
