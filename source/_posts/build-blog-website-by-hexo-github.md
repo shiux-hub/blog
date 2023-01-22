@@ -1,5 +1,5 @@
 ---
-title: 在本地搭建Hexo博客框架并部署到Github
+title: 在本地搭建Hexo博客框架并部署到GitHub
 reprint: false
 tags:
   - Git
@@ -33,12 +33,12 @@ GitHub是一个在线软件源代码托管服务平台，使用Git作为版本�
 
 ## 前言
 
-使用`Github Pages`服务搭建博客的好处有：
+使用`GitHub Pages`服务搭建博客的好处有：
 
 1. 全是静态文件，访问速度快；
 2. 免费方便，不用花一分钱就可以搭建一个自由的个人博客，不需要服务器不需要后台；
-3. 可以随意绑定自己的域名，不仔细看的话根本看不出来你的网站是基于`Github`的；
-4. 数据绝对安全，基于`Github`的版本管理，想恢复到哪个历史版本都行；
+3. 可以随意绑定自己的域名，不仔细看的话根本看不出来你的网站是基于`GitHub`的；
+4. 数据绝对安全，基于`GitHub`的版本管理，想恢复到哪个历史版本都行；
 5. 博客内容可以轻松打包、转移、发布到其它平台；
 6. 等等；
 
@@ -46,7 +46,7 @@ GitHub是一个在线软件源代码托管服务平台，使用Git作为版本�
 
 在开始一切之前，你必须已经：
 
-- 有一个`Github`账号，没有的话去注册一个；
+- 有一个`GitHub`账号，没有的话去注册一个；
 - 安装了`node.js`、`npm`，并了解相关基础知识；
 - 安装了`git for windows`（或者其它git客户端）
 
@@ -59,17 +59,17 @@ GitHub是一个在线软件源代码托管服务平台，使用Git作为版本�
 
 > 版本不同内容可能有删改，请酌情使用。
 
-## 搭建Github博客
+## 搭建GitHub博客
 
 ### 创建仓库
 
-~~新建一个名为`[username].github.io`的仓库，比如说，如果你的Github用户名是test，那么你就新建`test.github.io`的仓库（必须是你的用户名，其它名称无效），将来你的网站访问地址就是`https://test.github.io`了，是不是很方便？~~
+~~新建一个名为`[username].github.io`的仓库，比如说，如果你的GitHub用户名是test，那么你就新建`test.github.io`的仓库（必须是你的用户名，其它名称无效），将来你的网站访问地址就是`https://test.github.io`了，是不是很方便？~~
 
-新版Github将Pages功能分割了出来，现在不需要像`[username].github.com`这样设置仓库名了。
+新版GitHub将Pages功能分割了出来，现在不需要像`[username].github.com`这样设置仓库名了。
 
 ![新建仓库](https://i.loli.net/2020/07/24/IipTgvmKF6yrR1c.png)
 
-~~由此可见，每一个Github账户最多只能创建一个这样可以直接使用域名访问的仓库。~~
+~~由此可见，每一个GitHub账户最多只能创建一个这样可以直接使用域名访问的仓库。~~
 
 几个注意的地方：
 
@@ -99,7 +99,7 @@ GitHub是一个在线软件源代码托管服务平台，使用Git作为版本�
 
 ## 配置SSH key
 
-为什么要配置这个呢？因为你提交代码肯定要拥有你的Github权限才可以，但是直接使用用户名和密码太不安全了，所以我们使用ssh key来解决本地和服务器的连接问题。
+为什么要配置这个呢？因为你提交代码肯定要拥有你的GitHub权限才可以，但是直接使用用户名和密码太不安全了，所以我们使用ssh key来解决本地和服务器的连接问题。
 
 ```bash
 cd ~/. ssh #检查本机已存在的ssh密钥
@@ -111,7 +111,7 @@ cd ~/. ssh #检查本机已存在的ssh密钥
 ssh-keygen -t rsa -C "邮件地址"
 ```
 
-然后连续3次回车，最终会生成一个文件在用户目录下，打开用户目录，找到`.ssh\id_rsa.pub`文件，记事本打开并复制里面的内容，打开你的Github主页，进入个人设置 -> SSH and GPG keys -> New SSH key：
+然后连续3次回车，最终会生成一个文件在用户目录下，打开用户目录，找到`.ssh\id_rsa.pub`文件，记事本打开并复制里面的内容，打开你的GitHub主页，进入个人设置 -> SSH and GPG keys -> New SSH key：
 
 ![SHH key](https://i.loli.net/2020/02/14/tnmoY5iSaWBX2kJ.png)
 
@@ -132,8 +132,8 @@ ssh -T git@github.com # 注意邮箱地址不用改
 此时你还需要配置：
 
 ```bash
-git config --global user.name "shiux" // 你的Github用户名，非昵称
-git config --global user.email "xxx@qq.com" // 填写你的Github注册邮箱
+git config --global user.name "shiux" // 你的GitHub用户名，非昵称
+git config --global user.email "xxx@qq.com" // 填写你的GitHub注册邮箱
 ```
 
 如果没有配置git的话
@@ -142,7 +142,7 @@ git config --global user.email "xxx@qq.com" // 填写你的Github注册邮箱
 
 ### 原理
 
-由于Github Pages存放的都是静态文件，博客存放的不只是文章内容，还有文章列表、分类、标签、翻页等动态内容，假如每次写完一篇文章都要手动更新博文目录和相关链接信息，相信谁都会疯掉，所以hexo所做的就是将这些md文件都放在本地，每次写完文章后调用写好的命令来批量完成相关页面的生成，然后再将有改动的页面提交到Github。
+由于GitHub Pages存放的都是静态文件，博客存放的不只是文章内容，还有文章列表、分类、标签、翻页等动态内容，假如每次写完一篇文章都要手动更新博文目录和相关链接信息，相信谁都会疯掉，所以hexo所做的就是将这些md文件都放在本地，每次写完文章后调用写好的命令来批量完成相关页面的生成，然后再将有改动的页面提交到GitHub。
 
 ### 注意事项
 
@@ -177,7 +177,7 @@ hexo g # 生成
 hexo s # 启动服务
 ```
 
-执行以上命令之后，hexo就会在public文件夹生成相关html文件，这些文件将来都是要提交到Github去的：
+执行以上命令之后，hexo就会在public文件夹生成相关html文件，这些文件将来都是要提交到GitHub去的：
 
 ![生成文件](https://s2.loli.net/2022/12/30/oZQNBI5h2UCm7fr.png)
 
@@ -204,9 +204,9 @@ git clone https://github.com/next-theme/hexo-theme-next.git themes/next
 
 ### 部署之前
 
-> 在上传代码到Github之前，一定要记得先把你以前所有代码下载下来（虽然Github有版本管理，但备份一下总是好的），因为从hexo提交代码时会把你以前的所有代码都删掉。
+> 在上传代码到GitHub之前，一定要记得先把你以前所有代码下载下来（虽然GitHub有版本管理，但备份一下总是好的），因为从hexo提交代码时会把你以前的所有代码都删掉。
 
-### 部署到Github
+### 部署到GitHub
 
 目前有两种方式进行部署。
 
@@ -301,11 +301,11 @@ deploy:
   branch: main
 ```
 
-Github将默认分支从`master`修改为了`main`，注意分支选择。
+GitHub将默认分支从`master`修改为了`main`，注意分支选择。
 
 后面一种写法是hexo2.x的写法，现在已经不行了，无论是哪种写法，此时直接执行`hexo d`的话一般会报如下错误：
 
-> Deployer not found: Github 或者 Deployer not found: git
+> Deployer not found: GitHub 或者 Deployer not found: git
 
 原因是还需要安装一个插件：
 
@@ -334,7 +334,7 @@ npm install hexo-deployer-git --save
 
 ![域名配置](https://i.loli.net/2020/02/15/oCH6dlQSvz9y3On.png)
 
-然后到你的`Github`项目根目录新建一个名为`CNAME`的文件（无后缀），里面填写你的域名，加不加`www`看你自己喜好，因为经测试：
+然后到你的`GitHub`项目根目录新建一个名为`CNAME`的文件（无后缀），里面填写你的域名，加不加`www`看你自己喜好，因为经测试：
 
 - 如果你填写的是没有`www`的，比如`shiux.com`，那么无论是访问`https://www.shiux.com`还是`https://shiux.com`，都会自动跳转到`https://shiux.com`
 - 如果你填写的是带`www`的，比如`www.shiux.com`，那么无论是访问`https://www.shiux.com`还是`https://shiux.com`，都会自动跳转到`https://www.shiux.com`

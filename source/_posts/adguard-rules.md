@@ -51,22 +51,22 @@ EasyPrivacy 是隐私保护，不被跟踪。
 
 1. ad-pc.txt：[推荐桌面端] 合并自乘风视频广告过滤规则、Easylist、EasylistChina、EasyPrivacy、CJX’sAnnoyance，以及补充的一些规则。
 **jsdelivr** - <https://cdn.jsdelivr.net/gh/o0HalfLife0o/list@master/ad-pc.txt>
-**Github** - <https://raw.githubusercontent.com/o0HalfLife0o/list/master/ad-pc.txt>
+**GitHub** - <https://raw.githubusercontent.com/o0HalfLife0o/list/master/ad-pc.txt>
 2. ad-mo.txt：合并自 Easylist、EasylistChina、EasyPrivacy、CJX’sAnnoyance。
 **jsdelivr** - <https://cdn.jsdelivr.net/gh/o0HalfLife0o/list@master/ad-mo.txt>
-**Github** - <https://raw.githubusercontent.com/o0HalfLife0o/list/master/ad-mo.txt>
+**GitHub** - <https://raw.githubusercontent.com/o0HalfLife0o/list/master/ad-mo.txt>
 3. ad.txt：[推荐移动端] 合并自乘风视频广告过滤规则、EasylistChina、EasylistLite、CJX’sAnnoyance，以及补充的一些规则。
 **jsdelivr** - <https://cdn.jsdelivr.net/gh/o0HalfLife0o/list@master/ad.txt>
-**Github** - <https://raw.githubusercontent.com/o0HalfLife0o/list/master/ad.txt>
+**GitHub** - <https://raw.githubusercontent.com/o0HalfLife0o/list/master/ad.txt>
 4. ad2.txt：合并自乘风视频广告过滤规则、EasylistChina、EasylistLite、CJX’sAnnoyance。
 **jsdelivr** - <https://cdn.jsdelivr.net/gh/o0HalfLife0o/list@master/ad2.txt>
-**Github** - <https://raw.githubusercontent.com/o0HalfLife0o/list/master/ad2.txt>
+**GitHub** - <https://raw.githubusercontent.com/o0HalfLife0o/list/master/ad2.txt>
 5. ad3.txt：合并自乘风视频广告过滤规则、EasylistChina、EasylistLite、CJX’sAnnoyance、EasyPrivacy。
 **jsdelivr** - <https://cdn.jsdelivr.net/gh/o0HalfLife0o/list@master/ad3.txt>
-**Github** - <https://raw.githubusercontent.com/o0HalfLife0o/list/master/ad3.txt>
+**GitHub** - <https://raw.githubusercontent.com/o0HalfLife0o/list/master/ad3.txt>
 6. ad-edentw.txt：合并自 Adblock Warning Removal List、ABP filters、anti-adblock-killer-filters。
 **jsdelivr** - <https://cdn.jsdelivr.net/gh/o0HalfLife0o/list@master/ad-edentw.txt>
-**Github** - <https://raw.githubusercontent.com/o0HalfLife0o/list/master/ad-edentw.txt>
+**GitHub** - <https://raw.githubusercontent.com/o0HalfLife0o/list/master/ad-edentw.txt>
 
 ### anti-AD
 

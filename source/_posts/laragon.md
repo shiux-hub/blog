@@ -25,7 +25,7 @@ coverHeight:
 
 ## 安装
 
-**Github** - <https://github.com/leokhoa/laragon/releases>
+**GitHub** - <https://github.com/leokhoa/laragon/releases>
 
 咱们在GitHub下载便携版，也就是后缀带`portable`的zip文件
 
