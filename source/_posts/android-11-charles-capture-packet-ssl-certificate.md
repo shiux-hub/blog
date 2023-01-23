@@ -48,4 +48,3 @@ openssl x509 -inform DER -subject_hash_old -in filename.cer
 ```bash
 openssl x509 -inform PEM -subject_hash_old -in filename.pem
 ```
-

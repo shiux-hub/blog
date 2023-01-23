@@ -18,7 +18,8 @@ coverHeight:
 
 **Feather Icons** - <https://feathericons.com/>
 
-类型: SVG图标的数量: 240许可: MIT
+- 类型: SVG
+- 图标的数量: 240许可: MIT
 
 ![Feather Icons](/images/64585fc950355ff7ba38cfff81b79ff0.png)
 
@@ -26,7 +27,9 @@ Feather是最流行的开源图标集之一。所有的图标都设计在一个2
 
 **Linea** - <https://github.com/linea-io/Linea-Iconset>
 
-类型: SVG, PNG, Icon font图标的数量: 730+许可: CCBY
+- 类型: SVG, PNG, IconFont
+- 图标的数量: 730+
+- 许可: CCBY
 
 ![Linea](/images/e6658eefbfc5a1b36e8907bbd812be65.jpg)
 
@@ -34,7 +37,9 @@ Linea提供了大量精美的现代图标，其特点是外观清晰、轮廓分
 
 **Octicons** - <https://octicons.github.com/>
 
-类型: SVG图标的数量: 170+许可: GitHub
+- 类型: SVG
+- 图标的数量: 170+
+- 许可: GitHub
 
 ![Octicons](/images/745e280908b41138390b5a3e91ad32bc.png)
 
@@ -42,7 +47,9 @@ Octicons是GitHub可扩展的手工SVG图标集。它包括GitHub和编程相关
 
 **Glyph** - <https://glyphicons.com/>
 
-类型: SVG图标的数量: 800许可: CC BY-SA 4.0
+- 类型: SVG
+- 图标的数量: 800
+- 许可: CC BY-SA 4.0
 
 ![Glyph](/images/cd9bd2ed166767c5a3fb11a36114f9dd.jpg)
 
@@ -56,7 +63,9 @@ Octicons是GitHub可扩展的手工SVG图标集。它包括GitHub和编程相关
 
 **Ionicons** - <https://ionicons.com/>
 
-类型: Icon Font图标的数量: 260+许可: MIT
+- 类型: Icon Font
+- 图标的数量: 260+
+- 许可: MIT
 
 ![Ionicons](/images/91c6d9c5288ead95f49e8d8e39846e60.jpg)
 
@@ -64,7 +73,9 @@ Ionic Framework为后面的团队设置了一个非常漂亮的图标。提供�
 
 **Material Icons** - <https://material.io/>
 
-类型: Icon Font图标的数量: 900+ 许可: Apache
+- 类型: Icon Font
+- 图标的数量: 900+
+- 许可: Apache
 
 ![Material Icons](/images/c13f3753b81648f2d646565679d9e5a7.jpg)
 
@@ -72,7 +83,9 @@ Google的Material Design语言的官方图标和Android中的所有图标。它�
 
 **Icono** - <https://saeedalipoor.github.io/icono/>
 
-类型: CSS Icons图标的数量: 130许可: MIT
+- 类型: CSS Icons
+- 图标的数量: 130
+- 许可: MIT
 
 ![Icono](/images/3cb0266de696a2e51fa25b1b3c416902.jpg)
 
