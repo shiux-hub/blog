@@ -12,6 +12,23 @@ coverWidth:
 coverHeight:
 ---
 
+OhMyZsh是一个令人愉快、开源、社区驱动的框架，用于管理你的Zsh配置。它捆绑了数千个有用的功能，助手，插件，主题，和一些让你惊艳的东西…
+
+**官网** - <https://ohmyz.sh/>
+
+## 安装
+
+```bash
+# curl安装
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+# wget安装
+sh -c "$(wget https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh -O -)"
+```
+
+**官网教程** - <https://ohmyz.sh/#install>
+
+## 插件推荐
+
 ### git
 
 默认开启
