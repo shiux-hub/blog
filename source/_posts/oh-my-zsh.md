@@ -1,5 +1,5 @@
 ---
-title: OhMyZsh插件推荐
+title: OhMyZSH使用指北
 reprint: false
 date: 2021-11-07 20:56:31
 categories:
