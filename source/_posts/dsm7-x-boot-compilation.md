@@ -39,23 +39,23 @@ coverHeight:
 
 到[GitHub](https://github.com/fbelavenuto/arpl/releases)把编译引导需要用的文件下载到电脑上（不是在NAS这台机器）。截止2022年8月13日，github上最新的版本是v1.0-beta11a（如果将来作者更新，可以下载最新的版本），我下载的img文件，这个格式是通用的，物理机可以用，虚拟机也可以用。
 
-![GitHub项目下载](https://s2.loli.net/2023/01/17/h53IYwBvDuTxjFr.png)
+![GitHub项目下载](https://s2.loli.net/2023/02/02/WhTU4Rdiom3CjXG.png)
 
 下载后的文件名是arpl-1.0-beta11a.img.zip，这个是一个压缩包。
 
-![下载](https://wp.gxnas.com/wp-content/uploads/2022/08/1660322162-2.jpg)
+![下载](https://s2.loli.net/2023/02/02/rJey59ciMQBEqfg.png)
 
 利用电脑的解压软件，把arpl-1.0-beta11a.img.zip解压出来，得到另外一个文件arpl.img。
 
-![解压](https://wp.gxnas.com/wp-content/uploads/2022/08/1660322169-3.jpg)
+![解压](https://s2.loli.net/2023/02/02/ZpjXkTNarelgiHB.png)
 
 删除arpl-1.0-beta11a.img.zip，只留下arpl.img即可。
 
-![删除多余文件](https://wp.gxnas.com/wp-content/uploads/2022/08/1660322169-4.jpg)
+![删除多余文件](https://s2.loli.net/2023/02/02/f61uGVJSyPYqE7s.png)
 
-如果你是用物理机安装的，可以使用rufus写盘工具把arpl.img刷到U盘。如果是PVE虚拟机安装群晖的，可以上传arpl.img到PVE，用qm importdisk命令转换成群晖虚拟机的虚拟引导文件。如果是用ESXI或者VMware安装的群晖虚拟机，可以使用StarWind V2V Image Converter工具来转换格式。我是用ESXI虚拟机安装的，所以把arpl.img转成了arpl.vmdk和arpl-flat.vmdk。
+如果你是用物理机安装的，可以使用rufus写盘工具把arpl.img刷到U盘。如果是PVE虚拟机安装群晖的，可以上传arpl.img到PVE，用`qm importdisk`命令转换成群晖虚拟机的虚拟引导文件。如果是用ESXI或者VMware安装的群晖虚拟机，可以使用StarWind V2V Image Converter工具来转换格式。我是用ESXI虚拟机安装的，所以把arpl.img转成了arpl.vmdk和arpl-flat.vmdk。
 
-![img](https://wp.gxnas.com/wp-content/uploads/2022/08/1660322169-5.jpg)
+![转换img文件](https://s2.loli.net/2023/02/02/Sovxpl79Ve1fUGH.png)
 
 把arpl.vmdk和arpl-flat.vmdk两个文件上传到ESXI，设置为群晖虚拟机的引导。
 
