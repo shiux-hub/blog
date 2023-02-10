@@ -35,12 +35,12 @@ Gridea最早叫Hve Notes，开发者为了更易读和好记，重新命名为Gr
 
 第一次使用它需要你进行应用的初始化配置，才能让他和GitHub Pages连接，配置很简单，可以参考下面的方法进行配置：
 
-- 域名：GitHub Pages 对应的域名（例如：`https://shiux.github.io`或`https://shiux.com`）
+- 域名：GitHub Pages对应的域名（例如：`https://shiux.github.io`或`https://shiux.com`）
 - 仓库：你的静态文件存放的仓库（例如：`blog`）
 - 分支：你的GitHub Pages对应的分支（例如：main）
 - 用户名：仓库所属用户的用户名（通常就是你的GitHub账号的昵称）
-- 邮箱：Git 推送时使用的邮箱（通常就是你的GitHub账号的邮箱）
-- Token: Git 推送时需要的 Token用来向GitHub提交构建后的文件[GitHub personal access tokens](https://github.com/settings/tokens)
+- 邮箱：Git推送时使用的邮箱（通常就是你的GitHub账号的邮箱）
+- Token: Git推送时需要的Token用来向GitHub提交构建后的文件[GitHub personal access tokens](https://github.com/settings/tokens)
 - CNAME: 可通过这个选项配置你自己的域名（例如：`shiux.com`）
 
 ![基本配置](https://s2.loli.net/2023/01/11/f7hubsAe4lmt8Dz.png)
@@ -50,22 +50,23 @@ Gridea最早叫Hve Notes，开发者为了更易读和好记，重新命名为Gr
 注册个域名，国内的域名需要备案等操作。
 你可以在下方网站注册域名:
 
-GoDaddy: [https://hk.godaddy.com/](https://hk.godaddy.com/)
-Hostinger: [https://www.hostinger.com.hk/](https://www.hostinger.com.hk/)
+**GoDaddy** - <https://hk.godaddy.com/>
+**Hostinger** - <https://www.hostinger.com.hk/>
 
 ### 添加解析记录
 
-1. 添加 A记录（主机地址）
-注意记录类型为`A`，主机记录为`@`，解析线路选择默认，记录值为你项目所部署到Coding Pages的IP地址，可以通过ping得到。如我的Coding仓库为`wj2k5q.coding-pages.com`，则打开`cmd`（`win` + `R`，然后再输入`cmd`），输入`ping wj2k5q.coding-pages.com`，结果如下图所示：
-![G2oov9.png](https://s1.ax1x.com/2020/04/08/G2oov9.png)
-取出其中的124.156.205.241作为记录值即可。
-2. 添加 CNAME（别名）
-主机`www`
-指向`wj2k5q.coding-pages.com`
-3. 在 Coding 静态网站 设置中进行自定义域名绑定
-打开 Coding 静态网站部署，进入设置页面，为网站绑定自己的域名。添加刚才解析的两条记录，如下图所示：
-![G2oHD1.png](https://s1.ax1x.com/2020/04/08/G2oHD1.png)
-为了安全，记得开启强制 https
+1. 添加CNAME（别名）
+   主机`blog`
+   指向`<user>.github.io`或`<organization>.github.io`
+   > Navigate to your DNS provider and create a CNAME record that points your subdomain to the default domain for your site. For example, if you want to use the subdomain `www.example.com` for your user site, create a CNAME record that points `www.example.com` to \<user>.github.io. If you want to use the subdomain `another.example.com` for your organization site, create a CNAME record that points `another.example.com` to \<organization>.github.io. The CNAME record should always point to \<user>.github.io or \<organization>.github.io, excluding the repository name. For more information about how to create the correct record, see your DNS provider's documentation. For more information about the default domain for your site, see "About GitHub Pages."
+
+2. 在GitHub Pages设置中进行自定义域名绑定
+   打开GitHub Pages，进入设置页面，为网站绑定自己的域名。添加刚才解析的记录，如下图所示：
+   ![设置Pages](https://s1.ax1x.com/2023/02/10/pSfy5ad.png)
+   为了安全，记得开启强制`Enforce HTTPS`
+   ![开启HTTPS](https://s2.loli.net/2023/02/10/36v7tnT4jFsGhef.png)
+
+**官网教程** - <https://docs.github.com/en/pages/configuring-a-custom-domain-for-your-github-pages-site/managing-a-custom-domain-for-your-github-pages-site#configuring-a-subdomain>
 
 ## 下载安装 Gridea
 
@@ -75,9 +76,9 @@ Hostinger: [https://www.hostinger.com.hk/](https://www.hostinger.com.hk/)
 
 1. 设置代码本地目录
 点击此处设置
-![G2ovCD.png](https://s1.ax1x.com/2020/04/08/G2ovCD.png)
-![G2ozgH.png](https://s1.ax1x.com/2020/04/08/G2ozgH.png)
+![打开设置](https://s1.ax1x.com/2020/04/08/G2ovCD.png)
+![设置目录](https://s1.ax1x.com/2020/04/08/G2ozgH.png)
 2. 设置远程服务
 点击"远程", 然后选择 "Coding Pages"
-按页面提示填写**保存**后, 点击**监测远程链接**
-![G2TVPS.png](https://s1.ax1x.com/2020/04/08/G2TVPS.png)
+按页面提示填写**保存**后, 点击**检测远程链接**
+![设置远程](https://s1.ax1x.com/2020/04/08/G2TVPS.png)
