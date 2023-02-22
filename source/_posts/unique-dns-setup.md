@@ -1,13 +1,13 @@
 ---
 title: 独特的DNS配置
 reprint: true
+categories:
+  - NetWork
 tags:
   - DNS
   - IP
   - MacOS
   - 技巧
-categories:
-  - NetWork
 date: 2020-02-23 19:22:04
 cover: https://s1.ax1x.com/2023/02/17/pSbzwGV.png
 coverWidth:
