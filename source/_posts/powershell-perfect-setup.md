@@ -529,10 +529,15 @@ Set-PSReadLineKeyHandler -Key UpArrow -Function HistorySearchBackward
 # 设置向下键为前向搜索历史纪录
 Set-PSReadLineKeyHandler -Key DownArrow -Function HistorySearchForward
 #-------------------------------  Set Hot-keys END    -------------------------------
-
 ```
 
-好了，非常完美。:yum:
+**OhMyPosh主题预览** - <https://ohmyposh.dev/docs/themes>
+
+国内网络可能访问不了。
+
+---
+
+好了，Perfect。:yum:
 
 ## 结束语
 
