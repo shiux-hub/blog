@@ -1,10 +1,14 @@
 ---
-title: PowerShell完美配置
+title: Powershell完美配置
 reprint: false
 date: 2023-02-22 16:32:30
 categories:
+  - Windows
 tags:
   - 技巧
+  - Powershell
+  - 终端
+  - 笔记
 cover:
 coverWidth:
 coverHeight:
