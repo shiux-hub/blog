@@ -70,7 +70,7 @@ sql_app
 
 `__init__.py`只是一个空文件，但它告诉`Python`其中`sql_app`的所有模块（Python 文件）都是一个包。
 
-## 数据库配置database.py
+## 数据库配置`database.py`
 
 ```python
 # 1、导入 SQLAlchemy 部件
@@ -97,7 +97,7 @@ SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 Base = declarative_base()
 ```
 
-## 创建数据库模型models.py
+## 创建数据库模型`models.py`
 
 用`Base`类来创建`SQLAlchemy`模型
 
@@ -152,7 +152,7 @@ items = relationship("Item", back_populates="owner")
 * 当您访问`my_user.items`时，`SQLAlchemy`实际上会从`items`表中的获取一批记录并在此处填充进去。
 * 同样，当访问`Item`中的属性`owner`时，它将包含表中的`UserSQLAlchemy`模型`users`。使用`owner_id`属性/列及其外键来了解要从`users`表中获取哪条记录。
 
-## 创建Pydantic模型schemas.py
+## 创建Pydantic模型`schemas.py`
 
 现在让我们查看一下文件`sql_app/schemas.py`。
 
@@ -231,7 +231,7 @@ name: str
 
 请牢记这一点，这样您在使用`:`还是`=`时就不会感到困惑。
 
-## CRUD工具crud.py
+## CRUD工具`crud.py`
 
 从`sqlalchemy.orm`中导入`Session`，这将允许您声明`db`参数的类型，并在您的函数中进行更好的类型检查和完成。
 
@@ -279,7 +279,7 @@ def create_user_item(db: Session, item: schemas.ItemCreate, user_id: int):
     return db_item
 ```
 
-## 主FastAPI应用程序main.py
+## 主FastAPI应用程序`main.py`
 
 ```python
 from typing import List
