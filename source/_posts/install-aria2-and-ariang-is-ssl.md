@@ -1,5 +1,5 @@
 ---
-title: CENTOS8宝塔下安装aria2和AriaNg添加HTTPS访问支持
+title: CentOS8宝塔下安装aria2和AriaNg添加HTTPS访问支持
 reprint: false
 tags:
   - APP
@@ -14,7 +14,7 @@ coverWidth:
 coverHeight:
 ---
 
-首先你安装得有一台安装了CENTOS7的KVM架构的vps，安装宝塔完毕。 首先安装ARIA2，这个我们直接用某大佬的一键脚本吧：
+首先你安装得有一台安装了CentOS8的KVM架构的vps，安装宝塔完毕。 首先安装Aria2，这个我们直接用某大佬的一键脚本吧：
 
 ```bash
 wget -N –no-check-certificate https://raw.githubusercontent.com/ToyoDAdoubiBackup/doubi/master/aria2.sh && chmod +x aria2.sh && bash aria2.sh
@@ -30,7 +30,7 @@ wget -N –no-check-certificate https://raw.githubusercontent.com/ToyoDAdoubiBac
 
 下载完成后，宝塔后台就可以解压缩，解压缩到根目录。
 
-现在问题来了，你用你创建好的[download.shiux.com](https://download.shiux.com)在浏览器里访问，填写我们前面安装aria2的NPC密码后依然显示未连接。原因？就是因为我们需要更改`ARIA2`的配置文件。
+现在问题来了，你用你创建好的[download.shiux.com](https://download.shiux.com)在浏览器里访问，填写我们前面安装aria2的NPC密码后依然显示未连接。原因？就是因为我们需要更改`Aria2`的配置文件。
 
 ```bash
 vi /root/.aria2/aria2.conf
@@ -78,7 +78,7 @@ rpc-certificate=/www/server/panel/vhost/cert/aria2.shiux.com/fullchain.pem
 rpc-private-key=/www/server/panel/vhost/cert/aria2.shiux.com/privkey.key
 ```
 
-重新启动`ARIA2`
+重新启动`Aria2`
 
 ```bash
 service aria2 restart
