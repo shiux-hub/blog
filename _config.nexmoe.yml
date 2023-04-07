@@ -1,6 +1,6 @@
 avatar: /logo.svg # 网站 Logo
 background: # 既是博客的背景，又是文章默认头图
-  path: https://api.ixiaowai.cn/api/api.php
+  path: https://api.btstu.cn/sjbz/api.php?lx=dongman&format=images
   width: 1440
   height: 960
 favicon:
