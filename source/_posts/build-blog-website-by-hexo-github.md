@@ -25,6 +25,8 @@ Hexo 是一个快速、简单且强大的部落格框架。能够使用`Markdown
 **官网** - <http://hexo.io>
 **GitHub** - <https://github.com/hexojs/hexo>
 
+<!--more-->
+
 ### 什么是GitHub？
 
 GitHub是一个在线软件源代码托管服务平台，使用Git作为版本控制软件，由开发者Chris Wanstrath、P. J. Hyett和汤姆·普雷斯顿·沃纳使用Ruby on Rails编写而成。在2018年，GitHub被微软公司收购。（维基百科）
@@ -389,7 +391,8 @@ hexo d -g #生成并上传
 
 当然你也可以直接自己新建md文件，用这个命令的好处是帮我们自动生成了时间。 一般完整格式如下：
 
-```yaml
+```markdown
+---
 title: postName # 文章页面上的显示名称，一般是中文
 date: 2013-12-02 15:30:16 # 文章生成时间，一般不改，当然也可以任意修改
 categories: 默认分类 # 分类
@@ -398,17 +401,28 @@ tags: # 文章标签，可空，多标签请用格式，注意:后面有个空�
   - tag2
   - tag3
 description: 附加一段文章摘要，字数最好在140字以内，会出现在meta的description里面
+---
+以下是正文
 ```
 
-以下是正文
+那么`hexo new page 'postName'`命令和`hexo new 'postName'`有什么区别呢？
 
-那么`hexo new page 'postName'`命令和`hexo new 'postName'`有什么区别呢？ `hexo new page 'my-second-blog'` 最终部署时生成：`hexo\public\my-second-blog\index.html`，但是它不会作为文章出现在博文目录。
+`hexo new page 'my-second-blog'`最终部署时生成：`hexo\public\my-second-blog\index.html`，但是它不会作为文章出现在博文目录。
 
 #### 写博客工具
 
-那么用什么工具写博客呢？这个我还没去找，以前自己使用editor.md简单弄了个，大家有好用的hexo写博客工具可以推荐个。
+具体用什么还是看个人喜好，我用vscode非常方便。只需要下载两个插件：
+
+- Markdown All in One
+- Markdown Preview Github Styling
+
+在vscode里写完可以直接看到md生成的效果
 
 #### 如何让博文列表不显示全部内容
+
+默认情况下，生成的博文目录会显示全部的文章内容，如何设置文章摘要的长度呢？
+
+答案是在合适的位置加上`<!--more-->`即可，例如：
 
 ```markdown
 ## 简介
@@ -420,4 +434,15 @@ Hexo 是一个快速、简单且强大的部落格框架。能够使用`Markdown
 **官网** - <http://hexo.io>
 **GitHub** - <https://github.com/hexojs/hexo>
 
+<!--more-->
+
+### 什么是GitHub？
+
+GitHub是一个在线软件源代码托管服务平台，使用Git作为版本控制软件，由开发者Chris Wanstrath、P. J. Hyett和汤姆·普雷斯顿·沃纳使用Ruby on Rails编写而成。在2018年，GitHub被微软公司收购。（维基百科）
+
+**官网** - <https://github.com>
 ```
+
+最终效果：
+
+![显示部分内容效果](https://s2.loli.net/2023/06/30/XCszqgTRY2WZPwa.png)

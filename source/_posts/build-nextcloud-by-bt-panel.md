@@ -15,7 +15,9 @@ coverWidth:
 coverHeight:
 ---
 
-> NextCloud是一款自由 (开源) 的类Dropbox软件，由ownCloud分支演化形成。它使用PHP和JavaScript编写，支持多种数据库系统，比如 `MySQL/MariaDB`、`PostgreSQL`、`OracleDatabase`和 `SQLite`。它可以使你的桌面系统和云服务器中的文件保持同步，NextCloud为Windows、[Linux](https://www.linuxprobe.com/)、Mac、安卓以及苹果手机都提供了客户端支持。
+## 简介
+
+NextCloud是一款自由 (开源) 的类Dropbox软件，由ownCloud分支演化形成。它使用PHP和JavaScript编写，支持多种数据库系统，比如`MySQL/MariaDB`、`PostgreSQL`、`OracleDatabase`和`SQLite`。它可以使你的桌面系统和云服务器中的文件保持同步，NextCloud为Windows、[Linux](https://www.linuxprobe.com/)、Mac、Android以及IOS都提供了客户端支持。
 
 NextCloud并非只是Dropbox的克隆，它还提供了很多附加特性，如日历、联系人、计划任务以及流媒体`Ampache`。 在这篇文章中，我将向你展示如何在`宝塔面板`服务器中安装和配置最新版本的`NextCloud 18.1`。我会通过`Nginx`和`PHP7-FPM`来运行`NextCloud`，同时使用`MariaDB`做为数据库系统。
 

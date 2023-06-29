@@ -62,3 +62,48 @@ DOM（Document Object Model，文件物件模型），在W3C DOM标准3下，网
 今天向大家介绍的DNS广告过滤软件是AdGuard团队开发的AdGuard Home。
 
 AdGuard Home是AdGuard开源的一个私人DNS服务端，只需在网关部署，即可实现全局域网的广告拦截与隐私反追踪。在DNS解析的过程中，匹配规则库内的Url进行拦截，同时在客户端中，还可以通过自定义过滤规则实现网页DOM的拦截。
+
+## 如何安装AdGuard Home？
+
+基于Golang编写的AdGuard Home，[官方支持](https://adguard.com/zh_cn/adguard-home/overview.html)运行在Linux 32位 / 64位 / ARM（v6 / v7）/ MIPS、FreeBSD、Windows、macOS、Docker内，以及由第三方开发者维护的[Home Assistant拓展](https://github.com/hassio-addons/addon-adguard-home)和[Arch Linux](https://aur.archlinux.org/packages/adguardhome)。
+
+下文将介绍如何NAS（系统：Debian 12）以及Windows电脑（系统：Windows 11|10）上安装与配置AdGuard Home，其它设备请查看[AdGuard Home - Wiki](https://github.com/AdguardTeam/AdGuardHome/wiki)中的介绍或网友们的教程。局域网中的DNS服务器推荐运行在软路由、NAS或树莓派等长期保持开机的设备上，避免因设备关闭导致DNS无法正常解析。
+
+本人不推荐在普通路由器上运行AdGuard Home、Pi-Hole等工具，路由器的性能对AdGuard Home的运行效率有着较大影响。根据本人测试，Pi-Hole空载需占用15MB内存（不含缓存），AdGuard Home空载需占用20MB内存（不含缓存），AdGuard Home带机13台、过滤规则74000+条时占用700MB内存（含缓存）。
+
+AdGuard Home支持以二进制文件、Docker容器两种方式安装、运行，可以根据个人喜好选择合适的方式安装。如果运行设备的系统涉及到重要业务的运行，如NAS文件存储、Web服务器等，推荐使用Docker安装，不易受到业务应用的影响。
+
+> - 以下教程需要一定的计算机操作基础、路由器使用基础与服务器使用基础
+> - 下文的需要使用的信息如下所示，不同用户的设置有所差异，请自行更改
+>   - NAS 局域网 IP：10.2.168.100
+>   - AdGuard Home 后台地址：<http://10.2.168.100:3000>
+>   - 私人 AdGuard Home DNS 地址：10.2.168.100:53
+
+### 下载、安装AdGuard Home
+
+前往[AdGuard Home官网](https://adguard.com/zh_cn/adguard-home/overview.html)下载安装包。
+
+#### Windows 系统
+
+使用浏览器 / 下载工具下载：<https://static.adguard.com/adguardhome/edge/AdGuardHome_windows_amd64.zip>
+
+解压压缩包得到 `AdGuardHome.exe`文件。
+
+![解压文件](https://s2.loli.net/2023/06/29/VRf2yphtxSZrj8A.png)
+
+将`AdGuardHome.exe`移动到任意文件夹中。
+
+以管理员身份打开命令提示符，执行以下命令
+
+```bash
+cd "C:\Program Files\AdGuard_Home"
+.\AdGuardHome.exe --service install
+```
+
+![执行命令](https://s2.loli.net/2023/06/30/YOUmWA3jlxntbRq.png)
+
+当提示`AdGuard Home is successfully installed and will automatically start on boot.`即表示AdGuard Home在当前系统上安装成功。在命令行中会显示管理后台的地址与端口，默认为`http://IP:3000`。
+
+#### Linux 系统
+
+Linux用户需使用root用户登入SSH，并执行对应系统版本的命令。
