@@ -68,8 +68,6 @@ sudo service ssh restart #重启服务
 sudo service ssh status  #查看服务状态，绿色即代表启动成功
 ```
 
-
-
 ![重启ssh服务](https://s2.loli.net/2023/06/30/hLqp4B7vsl2Xm8t.png)
 
 ### 查询服务器的ip地址

@@ -477,28 +477,28 @@ docker-compose up -d
   cd $mypath
   if [ $# -ge 1 ]
   then
-      case $1 in 
-      	"restart"
-      		docker-compose restart
-      	;;
-      	"reload")
-      		docker-compose down && docker-compose up -d
-      	;;
-  		"stop")
-      		docker-compose down
-      	;;
-  		"start")
-      		docker-compose up -d
-      	;;
-      	"psql")
-      		docker-compose exec db $*
-      	;;
-      	*)
-      		docker-compose run --rm web bin/tootctl $*
-      	;;
-  	esac
+    case $1 in 
+      "restart"
+        docker-compose restart
+      ;;
+      "reload")
+        docker-compose down && docker-compose up -d
+      ;;
+      "stop")
+        docker-compose down
+      ;;
+      "start")
+        docker-compose up -d
+      ;;
+      "psql")
+        docker-compose exec db $*
+      ;;
+      *)
+        docker-compose run --rm web bin/tootctl $*
+      ;;
+    esac
   else
-  	echo "please use tootctl help for help"
+    echo "please use tootctl help for help"
   fi
   cd $lpwd
   ```
