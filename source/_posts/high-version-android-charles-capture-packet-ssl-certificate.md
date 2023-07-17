@@ -40,6 +40,12 @@ openssl x509 -inform DER -subject_hash_old -in <filename>.cer # .cer格式证书
 openssl x509 -inform PEM -subject_hash_old -in <filename>.pem # .pem格式证书
 ```
 
+![计算hash值](https://s2.loli.net/2023/07/17/8yIXkaq3BswlNcJ.png)
+
+上图输出的hash为`0cc1f4c0`
+
+因此将.pem证书重命名为`0cc1f4c0.0`
+
 ## 导入到手机
 
 使用任何传输工具（比如微信、QQ等）将证书文件传输到手机。
