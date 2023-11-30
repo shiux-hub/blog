@@ -6,4 +6,6 @@ node_modules/
 public/
 .deploy*/
 .idea/
+.ssh/
+*.sh
 _multiconfig.yml
