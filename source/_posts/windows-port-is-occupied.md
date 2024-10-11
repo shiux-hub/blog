@@ -116,3 +116,17 @@ netstat -aon | findstr "3306"
    重启电脑后，再运行命令`netsh int ipv4 show dynamic tcp`查看动态端口范围，发现确实已经修改为了`49152-65535`。现在只有这个范围内的端口可能会被保留了，基本不会影响日常使用。
 
    ![查看保留的端口范围](https://s2.loli.net/2023/11/30/nKVxeBiwQtsOCJp.jpg)
+
+## IDEA无法启动
+
+有时候，打开了IDEA，但是IDEA一直处于加载状态，始终进不去。
+
+其实如果查看报错的日志的话，会看到与端口相关的报错提示，比如`bindException`关键词，这也和windows保留端口有关系，这时候可以按照以下步骤操作
+
+```bash
+$ net stop winnat
+Windows NAT Driver 服务已成功停止。
+$ net start winnat
+```
+
+重启NAT服务，这时候重新打开IDEA，就可以正常启动了。
