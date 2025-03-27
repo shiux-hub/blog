@@ -2,11 +2,18 @@
   "extends": "@vue/tsconfig/tsconfig.dom.json",
   "compilerOptions": {
     "tsBuildInfoFile": "./node_modules/.tmp/tsconfig.app.tsbuildinfo",
+    "baseUrl": ".",
     "paths": {
-      "@/*": ["./src/*"],
-      "@root/*": ["./*"]
-    }
+      "@/*": [".vitepress/theme/*"]
+    },
+    "types": [
+      "vitepress"
+    ]
   },
-  "include": [".vitepress/**/*"],
-  "exclude": ["src/**/__test__/*"]
+  "include": [
+    ".vitepress/**/*.ts",
+    ".vitepress/**/*.vue",
+    ".vitepress/**/*.d.ts",
+    "**/*.md"
+  ]
 }

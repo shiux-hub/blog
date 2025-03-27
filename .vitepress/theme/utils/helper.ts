@@ -71,9 +71,9 @@ export function smoothScrolling(target = 0) {
  * 如果时间戳表示的时间为7天之后但在当年，则返回 '月/日'
  * 如果时间戳表示的时间在当年之前，则返回 '年/月/日'
  * @param {number} timestamp - 时间戳（以毫秒为单位）
- * @return {string} 返回日期格式的字符串
+ * @return 返回日期格式的字符串
  */
-export function formatTimestamp(timestamp) {
+export function formatTimestamp(timestamp: number) {
   const now = new Date()
   // 获取今天0点
   const today = new Date(now.getFullYear(), now.getMonth(), now.getDate())
@@ -85,7 +85,7 @@ export function formatTimestamp(timestamp) {
     return '1天前'
   }
   else {
-    const difference = Math.floor((today - targetDate) / (1000 * 60 * 60 * 24))
+    const difference = Math.floor((+today - +targetDate) / (1000 * 60 * 60 * 24))
     if (difference <= 0) {
       return '今日内'
     }
@@ -109,11 +109,11 @@ export function formatTimestamp(timestamp) {
 /**
  * 计算给定日期与当前日期相差的天数
  * @param {string} dateStr - 要计算差值的日期，为字符串形式
- * @returns {number} 天数差值
+ * @returns 天数差值
  */
-export function daysFromNow(dateStr) {
-  const currentDate = new Date()
-  const inputDate = new Date(dateStr)
+export function daysFromNow(dateStr: string) {
+  const currentDate = +new Date()
+  const inputDate = +new Date(dateStr)
   const timeDiff = currentDate - inputDate
   const dayDiff = Math.floor(timeDiff / (1000 * 60 * 60 * 24))
   return dayDiff
@@ -122,7 +122,7 @@ export function daysFromNow(dateStr) {
 /**
  * 随机前往一篇文章
  * @param {object} postData - 文章数据
- * @returns {number} 天数差值
+ * @returns 天数差值
  */
 let lastIndex = -1
 export function shufflePost(postData) {
@@ -144,7 +144,7 @@ export function shufflePost(postData) {
  * 复制文本到剪贴板
  * @param {string} data 要复制到剪贴板的文本
  */
-export async function copyText(data) {
+export async function copyText(data: string) {
   if (navigator.clipboard) {
     try {
       await navigator.clipboard.writeText(data)
@@ -179,7 +179,7 @@ export async function copyText(data) {
  * 图片 URL 复制到剪贴板
  * @param {string} imageURL 要复制到剪贴板的图片的URL
  */
-export async function copyImage(imageURL) {
+export async function copyImage(imageURL: string) {
   if (!navigator.clipboard) {
     console.error('浏览器不支持 Clipboard API')
     return
@@ -205,7 +205,7 @@ export async function copyImage(imageURL) {
  * 下载图片
  * @param {string} imageUrl 要下载的图片的URL地址
  */
-export function downloadImage(imageUrl) {
+export function downloadImage(imageUrl: string) {
   try {
     // 获取当前日期并转换为字符串形式，作为文件名
     const date = new Date()
@@ -228,7 +228,7 @@ export function downloadImage(imageUrl) {
 
 /**
  * 获取根据当前时间的问候语
- * @returns {string} 当前时间对应的问候语
+ * @returns 当前时间对应的问候语
  */
 export function getGreetings() {
   const hour = new Date().getHours()
@@ -261,7 +261,7 @@ export function getGreetings() {
 }
 
 // 打乱数组 - Fisher-Yates 洗牌算法
-export function shuffleArray(array) {
+export function shuffleArray(array: unknown[]) {
   for (let i = array.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));
     // 解构赋值进行元素互换

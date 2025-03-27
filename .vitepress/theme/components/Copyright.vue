@@ -1,11 +1,9 @@
 <script lang="ts" setup>
 import { formatTimestamp } from '@/utils/helper'
 
-withDefaults(defineProps<{
+defineProps<{
   postData?: object
-}>(), {
-  postData: {},
-})
+}>()
 const { theme } = useData()
 const route = useRoute()
 </script>

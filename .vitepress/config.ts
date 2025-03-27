@@ -93,7 +93,6 @@ export default withPwa(
       resolve: {
         // 配置路径别名
         alias: {
-
           '@': path.resolve(__dirname, './theme'),
         },
       },
