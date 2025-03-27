@@ -1,11 +1,12 @@
-<script setup>
+<script lang="ts" setup>
+import type { ThemeConfig } from '@/types/theme'
 import { mainStore } from '@/store'
 import { copyImage, copyText, downloadImage, shufflePost, smoothScrolling } from '@/utils/helper'
 import { storeToRefs } from 'pinia'
 
 const router = useRouter()
 const store = mainStore()
-const { theme } = useData()
+const { theme } = useData<ThemeConfig>()
 const { useRightMenu, themeType, playerShow, playerVolume, playState, playerData }
   = storeToRefs(store)
 
@@ -14,15 +15,15 @@ const rightMenuX = ref(0)
 const rightMenuY = ref(0)
 const clickedType = ref('normal')
 const clickedTypeData = ref(null)
-const rightMenuRef = ref(null)
+const rightMenuRef = ref<HTMLElement | null>(null)
 const rightMenuShow = ref(false)
 
 // 快速评论
 const commentCopyShow = ref(false)
-const commentCopyData = ref(null)
+const commentCopyData = ref<boolean | null>(null)
 
 // 开启右键菜单
-function openRightMenu(e) {
+function openRightMenu(e: MouseEvent) {
   // 检测是否可开启
   if (e.ctrlKey || !useRightMenu.value)
     return true
@@ -35,6 +36,8 @@ function openRightMenu(e) {
   nextTick().then(() => {
     // 处理菜单位置
     const calculateMenuPosition = () => {
+      if (!rightMenuRef.value)
+        return
       // 获取菜单的宽度和高度
       const menuWidth = rightMenuRef.value?.offsetWidth
       const menuHeight = rightMenuRef.value?.offsetHeight
@@ -69,7 +72,7 @@ function openRightMenu(e) {
 }
 
 // 关闭右键菜单
-function closeRightMenu(e) {
+function closeRightMenu(e: MouseEvent) {
   e?.preventDefault()
   rightMenuShow.value = false
   rightMenuX.value = 0
@@ -85,7 +88,7 @@ function checkClickType(target) {
     return false
   // 写入内容
   clickedTypeData.value
-    = window.getSelection().toString().length > 0 ? window.getSelection().toString() : target
+    = window.getSelection()?.toString().length > 0 ? window.getSelection().toString() : target
   switch (target.tagName) {
     case 'A':
       // 链接类型
@@ -101,7 +104,7 @@ function checkClickType(target) {
       clickedType.value = 'input'
       break
     default:
-      if (window.getSelection().toString().length > 0) {
+      if (window.getSelection()?.toString().length > 0) {
         // 已选中的文本
         clickedType.value = 'text'
       }

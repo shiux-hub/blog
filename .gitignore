@@ -19,16 +19,10 @@ test.html
 .vitepress/cache
 .vitepress/components.d.ts
 .vitepress/auto-imports.d.ts
-themeConfig.mjs
-!.vitepress/theme/assets/themeConfig.mjs
-
-posts/*
-!posts/2024/1010.md
+themeConfig
+!.vitepress/theme/assets/themeConfig
 
 # Editor directories and files
-.vscode/*
-.vscode
-!.vscode/extensions.json
 .idea
 *.suo
 *.ntvs*

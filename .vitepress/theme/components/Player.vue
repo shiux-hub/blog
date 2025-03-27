@@ -1,12 +1,13 @@
 <!-- 全局播放器 -->
-<script setup>
+<script lang="ts" setup>
+import type { ThemeConfig } from '@/types/theme'
 import { getMusicList } from '@/api'
 import { mainStore } from '@/store'
 import { storeToRefs } from 'pinia'
 import 'aplayer/dist/APlayer.min.css'
 
 const store = mainStore()
-const { theme } = useData()
+const { theme } = useData<ThemeConfig>()
 const { enable, url, id, server, type } = theme.value.music
 const { playerShow, playerVolume, playState, playerData } = storeToRefs(store)
 
@@ -21,7 +22,7 @@ async function getMusicListData() {
     console.log(musicList)
     initAPlayer(musicList?.length ? musicList : [])
   }
-  catch (error) {
+  catch {
     $message.error('获取播放列表失败，请重试')
     initAPlayer([])
   }
@@ -73,8 +74,8 @@ function getMusicData() {
       return false
     const songInfo = playerDom.value.querySelector('.aplayer-info')
     // 歌曲信息
-    const songName = songInfo.querySelector('.aplayer-title').innerText
-    const songArtist = songInfo.querySelector('.aplayer-author').innerText.replace(' - ', '')
+    const songName = songInfo.querySelector('.aplayer-title').textContent
+    const songArtist = songInfo.querySelector('.aplayer-author').textContent.replace(' - ', '')
     console.log(songName, songArtist)
     // 更新信息
     playerData.value = {

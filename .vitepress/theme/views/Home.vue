@@ -1,5 +1,5 @@
 <!-- 首页 -->
-<script setup>
+<script lang="ts" setup>
 import { mainStore } from '@/store'
 
 const props = defineProps({

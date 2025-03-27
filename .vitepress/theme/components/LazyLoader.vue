@@ -1,28 +1,23 @@
 <!-- 懒加载 -->
-<script setup>
-const props = defineProps({
+<script lang="ts" setup>
+withDefaults(defineProps<{
   // 兼容友链朋友圈
-  useFriendsLink: {
-    type: [Boolean, String],
-    default: false,
-  },
-  width: {
-    type: String,
-    default: '100%',
-  },
-  height: {
-    type: String,
-    default: '100%',
-  },
+  useFriendsLink?: boolean | string
+  width?: string
+  height?: string
+}>(), {
+  useFriendsLink: false,
+  width: '100%',
+  height: '100%',
 })
 
 // IntersectionObserver
-let observer = null
+let observer: IntersectionObserver | null = null
 
 // 是否加载
 const load = ref(false)
 // 加载元素
-const box = ref(null)
+const box = ref<Element | null>(null)
 
 // 初始化 IntersectionObserver
 function initLazyIntersectionObserver(fn) {
@@ -38,7 +33,7 @@ onMounted(() => {
     if (entry.isIntersecting) {
       // 当内容可见
       load.value = true
-      observer.unobserve(box.value)
+      observer?.unobserve(box.value)
       observer = null
     }
   })
@@ -60,15 +55,14 @@ onBeforeUnmount(() => observer && observer.unobserve(box.value))
 
 <style lang="scss" scoped>
 .loading {
-  background: linear-gradient(
-    90deg,
-    var(--main-card-border) 25%,
-    var(--main-card-background) 37%,
-    var(--main-card-border) 63%
-  );
+  background: linear-gradient(90deg,
+      var(--main-card-border) 25%,
+      var(--main-card-background) 37%,
+      var(--main-card-border) 63%);
   background-size: 400% 100%;
   animation: skeleton-loading 1.4s ease infinite;
 }
+
 .hidden {
   display: none;
 }

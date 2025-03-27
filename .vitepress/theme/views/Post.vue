@@ -1,10 +1,11 @@
 <!-- 文章页面 -->
-<script setup>
+<script lang="ts" setup>
+import type { ThemeConfig } from '@/types/theme'
 import { generateId } from '@/utils/commonTools'
 import { formatTimestamp } from '@/utils/helper'
 import initFancybox from '@/utils/initFancybox'
 
-const { page, theme, frontmatter } = useData()
+const { page, theme, frontmatter } = useData<ThemeConfig>()
 
 // 评论元素
 const commentRef = ref(null)

@@ -6,9 +6,7 @@
     "paths": {
       "@/*": [".vitepress/theme/*"]
     },
-    "types": [
-      "vitepress"
-    ]
+    "types": ["vitepress"]
   },
   "include": [
     ".vitepress/**/*.ts",

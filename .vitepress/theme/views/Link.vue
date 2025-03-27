@@ -1,6 +1,6 @@
 <!-- 友情链接 -->
-<script setup>
-import linkData from '@/assets/linkData.mjs'
+<script lang="ts" setup>
+import linkData from '@/assets/linkData'
 import { smoothScrolling } from '@/utils/helper'
 
 // 全部友链
@@ -71,15 +71,18 @@ function randomJump() {
 <style lang="scss" scoped>
 .link {
   margin-bottom: 4rem;
+
   .banner-page {
     // min-height: 440px;
     min-height: auto;
+
     .menu {
       display: flex;
       flex-direction: row;
       justify-content: flex-end;
       align-items: flex-start;
       margin-bottom: auto;
+
       .menu-item {
         display: flex;
         justify-content: center;
@@ -92,39 +95,48 @@ function randomJump() {
         box-shadow: 0 8px 16px -4px var(--main-border-shadow);
         transition: all 0.3s;
         cursor: pointer;
+
         .iconfont {
           font-size: 18px;
           margin-right: 8px;
           transition: color 0.3s;
         }
+
         &.random {
           color: var(--main-color);
+
           .iconfont {
             color: var(--main-color);
           }
         }
+
         &.add {
           color: var(--main-card-second-background);
           background-color: var(--main-font-color);
+
           .iconfont {
             font-size: 22px;
             margin-right: 6px;
             color: var(--main-card-second-background);
           }
         }
+
         &:last-child {
           margin-left: 20px;
         }
+
         &:hover {
           color: #fff;
           background-color: var(--main-color);
           box-shadow: 0 8px 16px -4px var(--main-color-bg);
+
           .iconfont {
             color: #fff;
           }
         }
       }
     }
+
     .link-group {
       position: absolute;
       left: 0;
@@ -133,11 +145,14 @@ function randomJump() {
       flex-direction: row;
       flex-wrap: nowrap;
       overflow: hidden;
+
       .link-group-item {
         display: flex;
         flex-direction: column;
+
         .link-logo {
           margin-right: 1.2rem;
+
           .link-logo-img {
             width: 120px;
             height: 120px;
@@ -145,6 +160,7 @@ function randomJump() {
             border-radius: 50%;
             overflow: hidden;
           }
+
           &:nth-of-type(2n) {
             margin-top: 1.2rem;
             transform: translate(-60px);
@@ -152,8 +168,10 @@ function randomJump() {
         }
       }
     }
+
     @media (max-width: 800px) {
       min-height: auto;
+
       .menu,
       .link-group {
         display: none;

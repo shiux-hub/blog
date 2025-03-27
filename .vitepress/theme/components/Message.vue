@@ -1,5 +1,5 @@
 <!-- 全局消息 -->
-<script setup>
+<script lang="ts" setup>
 // 消息数据
 const messageType = ref('info')
 const messageShow = ref(false)
@@ -7,7 +7,7 @@ const messageClose = ref(false)
 const messageContent = ref(null)
 const messageAlways = ref(false)
 const messageDuration = ref(0)
-const messageTimeOut = ref(null)
+const messageTimeOut = ref<NodeJS.Timeout | null>(null)
 
 // 消息处理
 function showMessage(text, type = 'info', options = {}, func = null) {
@@ -73,10 +73,8 @@ onMounted(() => {
   <Teleport to="body">
     <Transition name="fadeDown" mode="out-in">
       <div
-        v-if="messageShow"
-        class="message" :class="[messageType, { always: messageAlways }]"
-        :style="{ '--duration': `${messageDuration}ms` }"
-        @click="closeMessage"
+        v-if="messageShow" class="message" :class="[messageType, { always: messageAlways }]"
+        :style="{ '--duration': `${messageDuration}ms` }" @click="closeMessage"
       >
         <div class="message-content">
           <span class="text">{{ messageContent || "默认消息内容" }}</span>
@@ -103,15 +101,18 @@ onMounted(() => {
   width: 100vw;
   background-color: var(--main-color);
   z-index: 3000;
+
   .message-content {
     display: flex;
     flex-direction: row;
     align-items: center;
     font-size: 18px;
     font-weight: bold;
+
     .text {
       color: var(--main-card-background);
     }
+
     .close {
       display: flex;
       justify-content: center;
@@ -121,32 +122,40 @@ onMounted(() => {
       border-radius: 50%;
       transition: background-color 0.3s;
       cursor: pointer;
+
       .iconfont {
         font-size: 14px;
         color: var(--main-card-background);
         opacity: 0.6;
         transition: opacity 0.3s;
       }
+
       &:hover {
         background-color: var(--main-color-white);
+
         .iconfont {
           opacity: 1;
         }
       }
     }
   }
+
   &.success {
     background-color: var(--main-success-color);
   }
+
   &.warning {
     background-color: var(--main-warning-color);
   }
+
   &.error {
     background-color: var(--main-error-color);
   }
+
   &.info {
     background-color: var(--main-info-color);
   }
+
   &::after {
     content: "";
     position: absolute;
@@ -159,6 +168,7 @@ onMounted(() => {
     transition: width 0.3s;
     animation: loading-width var(--duration) linear forwards;
   }
+
   &.always {
     &::after {
       width: 100%;

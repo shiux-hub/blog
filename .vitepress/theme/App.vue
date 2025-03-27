@@ -1,4 +1,4 @@
-<script setup>
+<script lang="ts" setup>
 import { mainStore } from '@/store'
 import { calculateScroll, specialDayGray } from '@/utils/helper'
 import { storeToRefs } from 'pinia'
@@ -10,7 +10,7 @@ const { loadingStatus, footerIsShow, themeValue, themeType, backgroundType, font
   = storeToRefs(store)
 
 // 右键菜单
-const rightMenuRef = ref(null)
+const rightMenuRef = ref<HTMLElement | null>(null)
 
 // 判断是否为文章页面
 const isPostPage = computed(() => {
@@ -19,7 +19,7 @@ const isPostPage = computed(() => {
 })
 
 // 开启右键菜单
-function openRightMenu(e) {
+function openRightMenu(e: MouseEvent) {
   rightMenuRef.value?.openRightMenu(e)
 }
 

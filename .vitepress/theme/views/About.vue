@@ -1,7 +1,8 @@
-<script setup>
+<script lang="ts" setup>
+import type { ThemeConfig } from '@/types/theme'
 import { getStatistics } from '@/api'
 
-const { theme } = useData()
+const { theme } = useData<ThemeConfig>()
 
 // 技能数据
 const skillsData = [
@@ -114,12 +115,8 @@ onMounted(() => {
         <span class="title2">开启创造力</span>
         <div class="skills-list">
           <a
-            v-for="(item, index) in skillsData"
-            :key="index"
-            :style="{ '--color': item.color }"
-            :href="item.link"
-            class="skills-item"
-            target="_blank"
+            v-for="(item, index) in skillsData" :key="index" :style="{ '--color': item.color }" :href="item.link"
+            class="skills-item" target="_blank"
           >
             <div class="skills-logo">
               <i :class="`iconfont icon-${item.icon}`" />
@@ -138,11 +135,7 @@ onMounted(() => {
           <span class="list-item" style="--color: #357ef5">ZZRVTC · 计算机应用技术</span>
           <span class="list-item" style="--color: #eb372a">FE · 前端开发工程师</span>
         </div>
-        <img
-          class="career-img"
-          src="https://pic.efefee.cn/uploads/2024/02/22/65d71db18bcf9.png"
-          alt="career"
-        >
+        <img class="career-img" src="https://pic.efefee.cn/uploads/2024/02/22/65d71db18bcf9.png" alt="career">
       </div>
     </div>
     <div class="about-content" style="grid-template-columns: 3fr 2fr">
@@ -159,11 +152,7 @@ onMounted(() => {
             物流师
           </a>
         </span>
-        <img
-          src="https://pic.efefee.cn/uploads/2024/02/22/65d6bc7ae72ae.png"
-          alt="male"
-          class="male"
-        >
+        <img src="https://pic.efefee.cn/uploads/2024/02/22/65d6bc7ae72ae.png" alt="male" class="male">
       </div>
       <!-- 座右铭 -->
       <div class="about-item">
@@ -174,8 +163,7 @@ onMounted(() => {
     </div>
     <div class="about-content" style="grid-template-columns: 1fr 1fr">
       <div
-        class="about-item like image"
-        style="
+        class="about-item like image" style="
           --color: #0c0e20;
           background-image: url(https://pic.efefee.cn/uploads/2024/02/27/65dd812567723.webp);
         "
@@ -189,8 +177,7 @@ onMounted(() => {
         </div>
       </div>
       <div
-        class="about-item like image"
-        style="
+        class="about-item like image" style="
           --color: #7b3c25;
           background-image: url(https://pic.efefee.cn/uploads/2024/02/27/65dd836099d16.webp);
         "
@@ -207,8 +194,7 @@ onMounted(() => {
     <div class="about-content" style="grid-template-columns: 2fr 3fr">
       <!-- 数据 -->
       <div
-        class="about-item static image"
-        style="
+        class="about-item static image" style="
           --color: #0f1114;
           background-image: url(https://pic.efefee.cn/uploads/2024/04/15/661c8fbf226d3.webp);
         "
@@ -275,11 +261,13 @@ onMounted(() => {
     text-align: center;
     border: none;
   }
+
   .about-content {
     display: grid;
     grid-template-columns: auto auto;
     gap: 20px;
     margin-bottom: 20px;
+
     .about-item {
       position: relative;
       display: flex;
@@ -291,35 +279,42 @@ onMounted(() => {
       border: 1px solid var(--main-card-border);
       box-shadow: 0 8px 12px -4px var(--main-border-shadow);
       overflow: hidden;
+
       .tip {
         font-size: 14px;
         opacity: 0.8;
         margin-bottom: 12px;
       }
+
       .title1 {
         font-size: 36px;
         font-weight: bold;
         opacity: 0.6;
       }
+
       .title2 {
         font-size: 36px;
         font-weight: bold;
         margin-right: 4rem;
       }
+
       .text {
         font-size: 18px;
         margin: 0.6rem 0;
       }
+
       &.child {
         background-color: transparent;
         border: none;
         box-shadow: none;
         padding: 0;
         gap: 20px;
+
         .about-item {
           height: 100%;
         }
       }
+
       &.hello {
         justify-content: center;
         padding: 2rem;
@@ -327,13 +322,16 @@ onMounted(() => {
         background-image: linear-gradient(120deg, #5b27ff 0%, #00d4ff 100%);
         background-size: 200% 200%;
         animation: gradientFlow 6s ease infinite;
+
         .title2 {
           line-height: 2;
         }
       }
+
       &.pursuit {
         .title2 {
           line-height: 1.2;
+
           &:last-child {
             display: inline-block;
             background-size: 100% 100%;
@@ -345,20 +343,25 @@ onMounted(() => {
           }
         }
       }
+
       &.character {
         min-height: 220px;
         cursor: pointer;
+
         .more {
           margin-top: auto;
           font-size: 14px;
           color: var(--main-color-gray);
+
           a {
             color: var(--main-color-gray);
+
             &:hover {
               color: var(--color);
             }
           }
         }
+
         .male {
           position: absolute;
           top: 20px;
@@ -367,22 +370,26 @@ onMounted(() => {
           width: auto;
           transition: transform 0.5s;
           transform-origin: top center;
+
           @media (max-width: 768px) {
             height: 80%;
           }
         }
+
         &:hover {
           .male {
             transform: scale(1.2);
           }
         }
       }
+
       &.skills {
         .skills-list {
           margin-top: 12px;
           display: flex;
           flex-direction: row;
           flex-wrap: wrap;
+
           .skills-item {
             display: flex;
             align-items: center;
@@ -395,6 +402,7 @@ onMounted(() => {
             box-shadow: 0 8px 12px -4px var(--main-border-shadow);
             transition: background-color 0.3s;
             cursor: pointer;
+
             .skills-logo {
               display: flex;
               align-items: center;
@@ -404,35 +412,42 @@ onMounted(() => {
               margin-right: 8px;
               border-radius: 50%;
               background-color: var(--color);
+
               .iconfont {
                 color: #fff;
               }
             }
+
             .skills-name {
               font-weight: bold;
               transition: color 0.3s;
             }
+
             &:hover {
               background-color: var(--main-card-background);
             }
           }
         }
       }
+
       &.career {
         .title2 {
           letter-spacing: 0.2rem;
           font-size: 40px;
         }
+
         .list {
           margin-top: 12px;
           display: flex;
           flex-direction: column;
+
           .list-item {
             display: flex;
             flex-direction: row;
             align-items: center;
             margin-bottom: 12px;
             color: var(--main-font-second-color);
+
             &::before {
               content: "";
               display: block;
@@ -444,38 +459,47 @@ onMounted(() => {
             }
           }
         }
+
         .career-img {
           position: absolute;
           bottom: -10px;
           left: 0;
           width: 100%;
+
           @media (max-width: 768px) {
             position: static;
           }
         }
       }
+
       &.game {
         min-height: 300px;
+
         @media (max-width: 768px) {
           min-height: 240px;
         }
       }
+
       &.like {
         min-height: 400px;
+
         @media (max-width: 768px) {
           min-height: 300px;
         }
       }
+
       &.image {
         background-position: center;
         background-size: cover;
         background-repeat: no-repeat;
+
         .image-content {
           flex-grow: 1;
           display: flex;
           flex-direction: column;
           z-index: 2;
           color: #fff;
+
           .image-desc {
             width: 100%;
             display: flex;
@@ -483,12 +507,15 @@ onMounted(() => {
             align-items: center;
             justify-content: space-between;
             margin-top: auto;
+
             &.opacity {
               font-size: 14px;
               color: #eee;
               opacity: 0.8;
+
               a {
                 color: #eee;
+
                 &:hover {
                   color: var(--main-color);
                 }
@@ -496,6 +523,7 @@ onMounted(() => {
             }
           }
         }
+
         &::after {
           content: "";
           position: absolute;
@@ -507,19 +535,23 @@ onMounted(() => {
           z-index: 0;
         }
       }
+
       &.static {
         .static-data {
           display: grid;
           gap: 12px;
           grid-template-columns: 1fr 1fr;
           margin: 20px 0;
+
           .static-item {
             display: flex;
             flex-direction: column;
+
             .static-name {
               font-size: 15px;
               opacity: 0.8;
             }
+
             .static-num {
               font-size: 34px;
               font-weight: bold;
@@ -527,15 +559,18 @@ onMounted(() => {
           }
         }
       }
+
       &.map {
         min-height: 170px;
         background-size: 100%;
         transition: background 1.5s ease-in-out;
         cursor: pointer;
+
         @media (max-width: 768px) {
           background-size: cover;
           pointer-events: none;
         }
+
         .position {
           display: block;
           position: absolute;
@@ -548,28 +583,34 @@ onMounted(() => {
           font-size: 20px;
           transition: bottom 1s;
         }
+
         &:hover {
           background-size: 120%;
           background-position-x: 0;
           background-position-y: 36%;
+
           .position {
             bottom: -80px;
           }
         }
       }
+
       &.info {
         flex-direction: row;
         align-items: center;
         justify-content: flex-start;
+
         .info-item {
           display: flex;
           flex-direction: column;
           margin-right: 32px;
+
           .info-name {
             font-size: 14px;
             margin-bottom: 8px;
             color: var(--main-font-second-color);
           }
+
           .info-num {
             font-size: 34px;
             font-weight: bold;
@@ -578,9 +619,11 @@ onMounted(() => {
         }
       }
     }
+
     &:last-child {
       margin-bottom: 0;
     }
+
     @media (max-width: 768px) {
       display: flex;
       flex-direction: column;

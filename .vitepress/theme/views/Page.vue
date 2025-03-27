@@ -1,6 +1,8 @@
 <!-- 普通页面 -->
-<script setup>
-const { frontmatter } = useData()
+<script lang="ts" setup>
+import type { ThemeConfig } from '@/types/theme'
+
+const { frontmatter } = useData<ThemeConfig>()
 </script>
 
 <template>

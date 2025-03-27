@@ -1,17 +1,17 @@
 <!-- AI 摘要（假） -->
-<script setup>
+<script lang="ts" setup>
 const { frontmatter } = useData()
 const router = useRouter()
 
 // 摘要数据
 const loading = ref(true)
-const waitTimeOut = ref(null)
+const waitTimeOut = ref<NodeJS.Timeout | null>(null)
 const abstractData = ref('')
 const showIndex = ref(0)
 const showType = ref(false)
 
 // 输出摘要
-function typeWriter(text = null) {
+function typeWriter(text?: string) {
   try {
     const data = text || frontmatter.value.articleGPT
     if (!data)
@@ -71,7 +71,8 @@ onMounted(() => {
 })
 
 onBeforeUnmount(() => {
-  clearTimeout(waitTimeOut.value)
+  if (waitTimeOut.value)
+    clearTimeout(waitTimeOut.value)
 })
 </script>
 

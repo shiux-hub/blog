@@ -1,4 +1,4 @@
-<script setup>
+<script lang="ts" setup>
 const { theme } = useData()
 const router = useRouter()
 </script>

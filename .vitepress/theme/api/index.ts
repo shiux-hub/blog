@@ -49,12 +49,13 @@ export async function getSiteInfo(url) {
 
 /**
  * Meting
- * @param {id} string - 歌曲ID
- * @param {server} string - 服务器
- * @param {type} string - 类型
- * @returns {Promise<object>} - 音乐详情
+ * @param url - 音乐地址
+ * @param id - 歌曲ID
+ * @param server - 服务器
+ * @param type - 类型
+ * @returns 音乐详情
  */
-export async function getMusicList(url, id, server = 'netease', type = 'playlist') {
+export async function getMusicList(url: string, id: number, server: string = 'netease', type = 'playlist') {
   const result = await fetch(`${url}?server=${server}&type=${type}&id=${id}`)
   const list = await result.json()
   return list.map((song) => {
@@ -69,7 +70,7 @@ export async function getMusicList(url, id, server = 'netease', type = 'playlist
 /**
  * 站点统计数据
  */
-export async function getStatistics(key) {
+export async function getStatistics(key: string) {
   const result = await fetch(`https://v6-widget.51.la/v6/${key}/quote.js`)
   const title = [
     '最近活跃',
@@ -81,16 +82,16 @@ export async function getStatistics(key) {
     '总访问量',
   ]
   const data = await result.text()
-  let num = data.match(/(<\/span><span>).*?(\/span><\/p>)/g)
-  num = num.map((el) => {
-    const val = el.replace(/(<\/span><span>)/g, '')
-    return val.replace(/(<\/span><\/p>)/g, '')
+  const num = data.match(/(<\/span><span>).*?(\/span><\/p>)/g)
+    ?.map((el) => {
+      const val = el.replace(/(<\/span><span>)/g, '')
+      return val.replace(/(<\/span><\/p>)/g, '')
+    })
+  const statistics: Record<string, string> = {}
+  num?.forEach((el, index) => {
+    if (index === num.length - 1)
+      return
+    statistics[title[index]] = el
   })
-  const statistics = {}
-  for (let i = 0; i < num.length; i++) {
-    if (i === num.length - 1)
-      continue
-    statistics[title[i]] = num[i]
-  }
   return statistics
 }

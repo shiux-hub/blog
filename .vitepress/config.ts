@@ -1,28 +1,31 @@
+import type { ThemeConfig } from '@/types/theme'
 import path from 'node:path'
 import { withPwa } from '@vite-pwa/vitepress'
 import AutoImport from 'unplugin-auto-import/vite'
 import Components from 'unplugin-vue-components/vite'
-import { defineConfig } from 'vitepress'
-import { getThemeConfig } from './init.mjs'
-import { jumpRedirect } from './theme/utils/commonTools.mjs'
-import { createRssFile } from './theme/utils/generateRSS.mjs'
+import { defineConfigWithTheme } from 'vitepress'
+import { getThemeConfig } from './init'
+import { jumpRedirect } from './theme/utils/commonTools'
+import { createRssFile } from './theme/utils/generateRSS'
 import {
   getAllArchives,
   getAllCategories,
   getAllPosts,
   getAllType,
-} from './theme/utils/getPostData.mjs'
-import markdownConfig from './theme/utils/markdownConfig.mjs'
+} from './theme/utils/getPostData'
+import markdownConfig from './theme/utils/markdownConfig'
 
 // 获取全局数据
+// eslint-disable-next-line antfu/no-top-level-await
 const postData = await getAllPosts()
 
 // 获取主题配置
+// eslint-disable-next-line antfu/no-top-level-await
 const themeConfig = await getThemeConfig()
 
 // https://vitepress.dev/reference/site-config
 export default withPwa(
-  defineConfig({
+  defineConfigWithTheme<ThemeConfig>({
     title: themeConfig.siteMeta.title,
     description: themeConfig.siteMeta.description,
     lang: themeConfig.siteMeta.lang,

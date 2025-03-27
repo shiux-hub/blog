@@ -1,13 +1,14 @@
 <!-- 打赏按钮 -->
-<script setup>
-const props = defineProps({
-  showJump: {
-    type: Boolean,
-    default: true,
-  },
+<script lang="ts" setup>
+import type { ThemeConfig } from '@/types/theme'
+
+withDefaults(defineProps<{
+  showJump?: boolean
+}>(), {
+  showJump: true,
 })
 const router = useRouter()
-const { theme } = useData()
+const { theme } = useData<ThemeConfig>()
 const { rewardData } = theme.value
 
 // 赞赏显示

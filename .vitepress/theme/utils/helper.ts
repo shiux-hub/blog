@@ -1,5 +1,5 @@
 import { mainStore } from '@/store'
-import { throttle } from 'lodash-es'
+import { throttle } from 'radashi'
 
 /**
  * 计算滚动高度和滚动百分比

@@ -1,12 +1,13 @@
 <!-- 侧边栏 - 欢迎 -->
-<script setup>
+<script lang="ts" setup>
+import type { ThemeConfig } from '@/types/theme'
 import { getGreetings } from '@/utils/helper'
 
-const { site, theme } = useData()
+const { theme } = useData<ThemeConfig>()
 
 // 问候数据
 const helloClick = ref(0)
-const helloTimeOut = ref(null)
+const helloTimeOut = ref<NodeJS.Timeout | null>(null)
 const helloText = ref(getGreetings())
 
 // 恢复问候语
@@ -19,7 +20,8 @@ function resetHello() {
 
 // 更改问候语
 function changeHello() {
-  clearTimeout(helloTimeOut.value)
+  if (helloTimeOut.value)
+    clearTimeout(helloTimeOut.value)
   helloClick.value++
   if (helloClick.value === 1) {
     helloText.value = '点这里干什么？'
@@ -61,7 +63,8 @@ onMounted(() => {
 })
 
 onBeforeUnmount(() => {
-  clearTimeout(helloTimeOut.value)
+  if (helloTimeOut.value)
+    clearTimeout(helloTimeOut.value)
 })
 </script>
 

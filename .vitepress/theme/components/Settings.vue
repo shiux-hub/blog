@@ -1,5 +1,5 @@
 <!-- 全局设置 -->
-<script setup>
+<script lang="ts" setup>
 import { mainStore } from '@/store'
 import { storeToRefs } from 'pinia'
 

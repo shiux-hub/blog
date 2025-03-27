@@ -1,6 +1,6 @@
-<script setup>
+<script lang="ts" setup>
 import { mainStore } from '@/store'
-import { throttle } from 'lodash-es'
+import { throttle } from 'radashi'
 
 const route = useRoute()
 const store = mainStore()

@@ -1,6 +1,8 @@
 <!-- 参考资料 -->
-<script setup>
-const { frontmatter } = useData()
+<script lang="ts" setup>
+import type { ThemeConfig } from '@/types/theme'
+
+const { frontmatter } = useData<ThemeConfig>()
 
 // 参考资料
 const references = frontmatter.value?.references

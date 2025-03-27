@@ -1,11 +1,12 @@
-<script setup>
+<script lang="ts" setup>
+import type { TimeDifferenceRecord } from '@/utils/timeTools'
 import { getDaysUntil, getTimeRemaining } from '@/utils/timeTools'
 
 const { theme } = useData()
 
 // 倒计时数据
-const remainData = ref(null)
-const remainInterval = ref(null)
+const remainData = ref<TimeDifferenceRecord | null>(null)
+const remainInterval = ref<NodeJS.Timeout | null>(null)
 
 // 获取倒计时数据
 function getRemainData() {
@@ -20,7 +21,8 @@ onMounted(() => {
 })
 
 onBeforeUnmount(() => {
-  clearInterval(remainInterval.value)
+  if (remainInterval.value)
+    clearInterval(remainInterval.value)
 })
 </script>
 

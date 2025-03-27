@@ -1,14 +1,14 @@
-<script setup>
+<script lang="ts" setup>
 // 指针数据
 const hourRotate = ref(315)
 const minuteRotate = ref(45)
 const secondRotate = ref(180)
-const pointerInterval = ref(null)
+const pointerInterval = ref<NodeJS.Timeout | null>(null)
 
 // 计算指针旋转角度
 function updatePointer() {
   // 计算角度
-  const calculateRotation = (time, total) => {
+  const calculateRotation = (time: number, total: number) => {
     return (time / total) * 360
   }
   // 更改样式
@@ -31,7 +31,8 @@ onMounted(() => {
 })
 
 onBeforeUnmount(() => {
-  clearInterval(pointerInterval.value)
+  if (pointerInterval.value)
+    clearInterval(pointerInterval.value)
 })
 </script>
 

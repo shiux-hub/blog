@@ -1,11 +1,9 @@
 <!-- 分类 -->
-<script setup>
-defineProps({
-  // 页面类型
-  type: {
-    type: String,
-    default: 'categories',
-  },
+<script lang="ts" setup>
+withDefaults(defineProps<{
+  type?: 'categories' | 'tags' // 页面类型：categories 分类，tags 标签
+}>(), {
+  type: 'categories',
 })
 const { theme } = useData()
 </script>

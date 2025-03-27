@@ -1,6 +1,8 @@
 <!-- 侧边栏 - 标签 -->
-<script setup>
-const { theme } = useData()
+<script lang="ts" setup>
+import type { ThemeConfig } from '@/types/theme'
+
+const { theme } = useData<ThemeConfig>()
 </script>
 
 <template>

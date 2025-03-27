@@ -1,5 +1,5 @@
 <!-- 侧边栏 - 站点数据 -->
-<script setup>
+<script lang="ts" setup>
 import { loadScript } from '@/utils/commonTools'
 import { daysFromNow } from '@/utils/helper'
 

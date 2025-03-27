@@ -1,5 +1,5 @@
 <!-- 分页 -->
-<script setup>
+<script lang="ts" setup>
 // 分页数据
 const props = defineProps({
   // 总数
@@ -32,7 +32,7 @@ const props = defineProps({
 const router = useRouter()
 
 // 快速跳转数据
-const jumpInput = ref(null)
+const jumpInput = ref<number | null>(null)
 const inputFocus = ref(false)
 
 // 页数数据
@@ -91,7 +91,7 @@ function validateInput() {
 }
 
 // 跳转页面
-function jumpPage(url, page) {
+function jumpPage(url: string, page: number | string) {
   // 使用参数跳转
   if (props.useParams) {
     if (page === 1) {
