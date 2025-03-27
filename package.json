@@ -1,38 +1,68 @@
 {
-  "name": "blog",
-  "version": "0.0.0",
-  "private": true,
-  "scripts": {
-    "build": "hexo generate",
-    "clean": "hexo clean",
-    "deploy": "hexo deploy",
-    "server": "hexo server"
+  "name": "vitepress-theme-curve",
+  "productName": "vitepress-theme-curve",
+  "type": "module",
+  "version": "1.0.1",
+  "description": "A Simple VitePress Theme",
+  "author": "imsyy",
+  "home": "https://imsyy.top",
+  "github": "https://github.com/imsyy/vitepress-theme-curve",
+  "blog": "https://blog.imsyy.top",
+  "license": "MIT License",
+  "repository": "github:imsyy/vitepress-theme-curve",
+  "license-file": "LICENSE",
+  "engines": {
+    "node": ">=20",
+    "npm": ">=10"
   },
-  "hexo": {
-    "version": "7.3.0"
+  "scripts": {
+    "lint": "eslint . --fix",
+    "dev": "vitepress dev --host",
+    "build": "vitepress build",
+    "preview": "vitepress preview",
+    "deploy:vercel": "vercel deploy"
   },
   "dependencies": {
-    "hexo": "^7.3.0",
-    "hexo-generator-archive": "^2.0.0",
-    "hexo-generator-category": "^2.0.0",
-    "hexo-generator-index": "^4.0.0",
-    "hexo-generator-json-content": "^4.2.3",
-    "hexo-generator-tag": "^2.0.0",
-    "hexo-minify": "v1.8.1",
-    "hexo-renderer-ejs": "^2.0.0",
-    "hexo-renderer-inferno": "^1.0.2",
-    "hexo-renderer-markdown-it": "^7.1.1",
-    "hexo-renderer-stylus": "^3.0.1",
-    "hexo-server": "^3.0.0",
-    "hexo-theme-nexmoe": "^4.2.2",
-    "hexo-wordcount": "^6.0.1",
-    "markdown-it-abbr": "^2.0.0",
-    "markdown-it-emoji": "^3.0.0",
-    "markdown-it-footnote": "^4.0.0",
-    "markdown-it-ins": "^4.0.0",
-    "markdown-it-mark": "^4.0.0",
-    "markdown-it-sub": "^2.0.0",
-    "markdown-it-sup": "^2.0.0",
-    "markdown-it-task-lists": "^2.1.1"
+    "@types/node": "^22.13.14",
+    "@vite-pwa/vitepress": "^0.5.3",
+    "@vueuse/core": "^13.0.0",
+    "algoliasearch": "^5.23.0",
+    "aplayer": "^1.10.1",
+    "dayjs": "^1.11.13",
+    "instantsearch.js": "^4.78.1",
+    "lodash-es": "^4.17.21",
+    "pinia": "^3.0.1",
+    "pinia-plugin-persistedstate": "^4.2.0",
+    "vue": "^3.5.13",
+    "vue-instantsearch": "^4.20.6",
+    "vue-slider-component": "4.1.0-beta.7"
+  },
+  "devDependencies": {
+    "@antfu/eslint-config": "^4.11.0",
+    "@vue/tsconfig": "^0.7.0",
+    "cheerio": "1.0.0",
+    "eslint": "^9.23.0",
+    "feed": "^4.2.2",
+    "fs-extra": "^11.3.0",
+    "globby": "^14.1.0",
+    "gray-matter": "^4.0.3",
+    "markdown-it-attrs": "^4.3.1",
+    "markdown-it-container": "^4.0.0",
+    "markdown-it-mathjax3": "^4.3.2",
+    "sass": "^1.86.0",
+    "terser": "^5.39.0",
+    "typescript": "^5.8.2",
+    "unplugin-auto-import": "^19.1.2",
+    "unplugin-vue-components": "^28.4.1",
+    "vercel": "^41.4.1",
+    "vitepress": "^1.6.3",
+    "vitepress-plugin-tabs": "^0.6.0"
+  },
+  "pnpm": {
+    "onlyBuiltDependencies": [
+      "@parcel/watcher",
+      "esbuild",
+      "vue-demi"
+    ]
   }
 }
