@@ -1,4 +1,4 @@
-<script setup>
+<script lang="ts" setup>
 import { getHitokoto } from '@/api'
 import { mainStore } from '@/store'
 
@@ -50,7 +50,7 @@ async function getHitokotoData() {
     hitokotoData.value = { hitokoto, from, from_who }
   }
   catch (error) {
-    $message.error('一言获取失败')
+    window.$message.error('一言获取失败')
     console.error('一言获取失败：', error)
   }
 }
@@ -166,6 +166,7 @@ onBeforeUnmount(() => {
       overflow: hidden;
       text-overflow: ellipsis;
       display: -webkit-box;
+      line-clamp: 2;
       -webkit-line-clamp: 2;
       -webkit-box-orient: vertical;
     }

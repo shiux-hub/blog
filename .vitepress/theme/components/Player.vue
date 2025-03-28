@@ -23,7 +23,7 @@ async function getMusicListData() {
     initAPlayer(musicList?.length ? musicList : [])
   }
   catch {
-    $message.error('获取播放列表失败，请重试')
+    window.$message.error('获取播放列表失败，请重试')
     initAPlayer([])
   }
 }

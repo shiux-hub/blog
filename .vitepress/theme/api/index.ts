@@ -1,3 +1,5 @@
+import type { SiteInfo } from '@/types/site'
+
 /**
  * 获取一言
  * @param {string} [rule] - 文章的排序规则，可以是 "created" 或 "updated"
@@ -11,10 +13,9 @@ export async function getHitokoto() {
 /**
  * 获取给定网址的站点图标和描述
  * @param {string} url - 站点 URL
- * @returns {Promise<{iconUrl: string, description: string}>}
  */
-export async function getSiteInfo(url) {
-  const details = {
+export async function getSiteInfo(url: string) {
+  const details: SiteInfo = {
     iconUrl: null,
     title: null,
     description: null,
@@ -31,15 +32,16 @@ export async function getSiteInfo(url) {
     // 获取 icon
     const iconLink
       = doc.querySelector('link[rel=\'shortcut icon\']') || doc.querySelector('link[rel=\'icon\']')
-    if (iconLink) {
-      details.iconUrl = new URL(iconLink.getAttribute('href'), url).href
+    const iconLinkHref = iconLink?.getAttribute('href')
+    if (iconLinkHref) {
+      details.iconUrl = new URL(iconLinkHref, url).href
     }
     else {
       details.iconUrl = new URL('/favicon.ico', url).href
     }
     // 获取描述
     const metaDescription = doc.querySelector('meta[name=\'description\']')
-    details.description = metaDescription ? metaDescription.content : '暂无站点描述'
+    details.description = metaDescription ? metaDescription.textContent : '暂无站点描述'
   }
   catch (error) {
     console.error('获取站点信息失败：', error)

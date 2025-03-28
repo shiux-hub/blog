@@ -1,35 +1,26 @@
-<script setup>
-const props = defineProps({
-  value: {
-    type: Number,
-    default: 0.7,
-  },
-  min: {
-    type: Number,
-    default: 0,
-  },
-  max: {
-    type: Number,
-    default: 1,
-  },
-  interval: {
-    type: Number,
-    default: 0.01,
-  },
-})
+<script lang="ts" setup>
+const {
+  value = 0.7,
+  min = 0,
+  max = 1,
+  interval = 0.01,
+} = defineProps<{
+  value?: number
+  min?: number
+  max?: number
+  interval?: number
+}>()
 
-const emits = defineEmits(['update'])
+defineEmits<{
+  update: [value: number]
+}>()
 
 const VueSlider = defineAsyncComponent(() => import('vue-slider-component'))
 
-const sliderValue = ref(props.value)
-
-function handleChange(newValue) {
-  emits('update', newValue)
-}
+const sliderValue = ref(value)
 
 watch(
-  () => props.value,
+  () => value,
   val => (sliderValue.value = val),
 )
 </script>
@@ -43,7 +34,7 @@ watch(
       :interval="interval"
       tooltip="none"
       class="slider"
-      @change="handleChange"
+      @change="$emit('update', $event)"
     />
   </ClientOnly>
 </template>

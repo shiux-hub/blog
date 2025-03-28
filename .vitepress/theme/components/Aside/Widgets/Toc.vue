@@ -49,6 +49,10 @@ function generateDirData() {
 
 // 高亮对应目录项
 const activeTocItem = throttle(
+  {
+    trailing: false,
+    interval: 100,
+  },
   () => {
     if (!tocData.value)
       return false
@@ -68,8 +72,6 @@ const activeTocItem = throttle(
       }
     }
   },
-  100,
-  { leading: true, trailing: false },
 )
 
 // 滚动标题至指定位置

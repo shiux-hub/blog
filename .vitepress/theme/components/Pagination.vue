@@ -1,5 +1,7 @@
 <!-- 分页 -->
 <script lang="ts" setup>
+import { Icon } from '@iconify/vue'
+
 // 分页数据
 const props = defineProps({
   // 总数
@@ -144,7 +146,7 @@ onMounted(() => {
         )
       "
     >
-      <i class="iconfont icon-page-right" />
+    <Icon icon="mingcute:right-fill" />
       <span class="page-text">上页</span>
     </div>
     <div class="page-number">
@@ -167,7 +169,7 @@ onMounted(() => {
           @input="validateInput"
           @keydown.enter="fastJump"
         >
-        <i class="iconfont icon-arrow-right" :class="[{ click: jumpInput }]" @click.stop="fastJump" />
+        <Icon icon="mingcute:arrows-right-line"  :class="[{ click: jumpInput }]" @click.stop="fastJump" />
       </div>
     </div>
     <div
@@ -176,7 +178,7 @@ onMounted(() => {
       @click="jumpPage(`${routePath}/page/${currentPage + 1}`, currentPage + 1)"
     >
       <span class="page-text">下页</span>
-      <i class="iconfont icon-page-right" />
+      <Icon icon="mingcute:right-fill" />
     </div>
   </div>
 </template>
@@ -213,7 +215,7 @@ onMounted(() => {
       position: absolute;
       width: 80px;
       left: 0;
-      .iconfont {
+      svg {
         transform: rotate(180deg);
         transition:
           color 0.3s,
@@ -231,7 +233,7 @@ onMounted(() => {
     &.next {
       left: auto;
       right: 0;
-      .iconfont {
+      svg {
         transform: rotate(0);
       }
       .page-text {
@@ -242,7 +244,7 @@ onMounted(() => {
     &:hover {
       border-color: var(--main-color);
       box-shadow: 0 8px 16px -4px var(--main-color-bg);
-      .iconfont {
+      svg {
         color: var(--main-color);
       }
       &.prev,
@@ -299,7 +301,7 @@ onMounted(() => {
         box-shadow: 0 8px 16px -4px var(--main-border-shadow);
         transition: all 0.3s;
       }
-      .iconfont {
+      svg {
         position: absolute;
         display: flex;
         align-items: center;
@@ -327,7 +329,7 @@ onMounted(() => {
           border-color: var(--main-color);
           box-shadow: 0 8px 16px -4px var(--main-color-bg);
         }
-        .iconfont {
+        svg {
           opacity: 0.2;
           pointer-events: none;
           &.click {

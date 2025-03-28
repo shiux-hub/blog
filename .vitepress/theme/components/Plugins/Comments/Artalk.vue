@@ -1,4 +1,4 @@
-<script setup>
+<script lang="ts" setup>
 import { jumpRedirect } from '@/utils/commonTools'
 import initComments from '@/utils/initComments'
 
@@ -15,7 +15,7 @@ const { comment } = theme.value
 
 // 评论数据
 const artalk = ref(null)
-const commentRef = ref(null)
+const commentRef = useTemplateRef('commentRef')
 
 // 初始化 Artalk
 async function initArtalk() {
@@ -63,8 +63,10 @@ function fillComments(data) {
   // 获取输入框
   const commentInput = commentDom.querySelector('textarea')
   // 写入内容
-  commentInput.value = `${data}\n\n`
-  commentInput.focus()
+  if (commentInput) {
+    commentInput.value = `${data}\n\n`
+    commentInput.focus()
+  }
 }
 
 // 监听页面切换

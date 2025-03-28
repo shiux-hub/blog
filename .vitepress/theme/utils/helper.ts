@@ -1,10 +1,11 @@
 import { mainStore } from '@/store'
-import { throttle } from 'radashi'
+import { isNumber, isString, isUndefined, throttle } from 'radashi'
 
 /**
  * 计算滚动高度和滚动百分比
  */
 export const calculateScroll = throttle(
+  {interval: 300},
   () => {
     try {
       if (typeof window === 'undefined' || typeof document === 'undefined')
@@ -26,19 +27,17 @@ export const calculateScroll = throttle(
       console.error('计算滚动时出现错误：', error)
     }
   },
-  300,
-  true,
 )
 
 /**
  * 平滑滚动至目标高度或元素
- * @param {number|HTMLElement} target - 目标高度或元素
+ * @param target - 目标高度或元素
  */
-export function smoothScrolling(target = 0) {
+export function smoothScrolling(target: HTMLElement | string | number = 0) {
   try {
-    if (typeof window === 'undefined')
+    if (isUndefined(window))
       return false
-    if (typeof target === 'number') {
+    if (isNumber(target)) {
       // 滚动至指定高度
       window.scrollTo({ top: target, behavior: 'smooth' })
     }
@@ -47,7 +46,7 @@ export function smoothScrolling(target = 0) {
       const top = target.getBoundingClientRect().top - 80
       window.scrollTo({ top, behavior: 'smooth' })
     }
-    else if (typeof target === 'string' && target.startsWith('#')) {
+    else if (isString(target) && target.startsWith('#')) {
       // 滚动至 ID
       const element = document.querySelector(target)
       if (element) {
@@ -148,11 +147,11 @@ export async function copyText(data: string) {
   if (navigator.clipboard) {
     try {
       await navigator.clipboard.writeText(data)
-      $message.success('复制成功，在转载时请标注本文地址')
+      window.$message.success('复制成功，在转载时请标注本文地址')
     }
     catch (error) {
       console.error('复制出错：', error)
-      $message.error('复制出现错误，请重试')
+      window.$message.error('复制出现错误，请重试')
     }
   }
   else {
@@ -163,11 +162,11 @@ export async function copyText(data: string) {
     textArea.select()
     try {
       document.execCommand('copy')
-      $message.success('复制成功，在转载时请标注本文地址')
+      window.$message.success('复制成功，在转载时请标注本文地址')
     }
     catch (err) {
       console.error('复制出错：', err)
-      $message.error('复制出现错误，请重试')
+      window.$message.error('复制出现错误，请重试')
     }
     finally {
       document.body.removeChild(textArea)
@@ -193,11 +192,11 @@ export async function copyImage(imageURL: string) {
       }),
     ])
     console.log('图片已复制到剪贴板')
-    $message.success('图片已复制到剪贴板')
+    window.$message.success('图片已复制到剪贴板')
   }
   catch (error) {
     console.error('复制图片出错：', error)
-    $message.error('复制图片错误，请重试')
+    window.$message.error('复制图片错误，请重试')
   }
 }
 
@@ -222,7 +221,7 @@ export function downloadImage(imageUrl: string) {
   }
   catch (error) {
     console.error('下载图片出错：', error)
-    $message.error('下载图片错误，请重试')
+    window.$message.error('下载图片错误，请重试')
   }
 }
 
@@ -288,8 +287,8 @@ export function specialDayGray() {
   const specialDay = specialDays.find(day => day.date === currentDate)
   if (specialDay) {
     document.documentElement.classList.add('gray')
-    if (typeof $message !== 'undefined') {
-      $message.info(`今天是${specialDay.name}，特此默哀`, {
+    if (typeof window.$message !== 'undefined') {
+      window.$message.info(`今天是${specialDay.name}，特此默哀`, {
         duration: 8000,
         close: true,
       })

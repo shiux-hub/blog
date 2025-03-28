@@ -112,14 +112,16 @@ onBeforeUnmount(() => {
     line-height: 1;
     min-height: 32px;
     .copyright {
+      display: flex;
+      align-items: center;
       .icp {
-        .iconfont {
+        svg {
           font-size: 20px;
           opacity: 0.6;
         }
       }
       .upyun {
-        .iconfont {
+        svg {
           font-size: 20px;
           font-weight: normal;
         }
@@ -139,13 +141,12 @@ onBeforeUnmount(() => {
       }
       .rss {
         margin-right: 4px;
-        .iconfont {
-          font-weight: normal;
+        svg {
           margin-right: 6px;
         }
       }
       .cc {
-        .iconfont {
+        svg {
           margin: 0 2px;
           font-weight: normal;
         }
@@ -167,7 +168,7 @@ onBeforeUnmount(() => {
         color 0.3s,
         background-color 0.3s;
       cursor: pointer;
-      .iconfont {
+      svg {
         font-size: 22px;
         margin-right: 4px;
         transition: color 0.3s;
@@ -175,7 +176,7 @@ onBeforeUnmount(() => {
       &:hover {
         color: var(--main-color);
         background-color: var(--main-color-bg);
-        .iconfont {
+        svg {
           color: var(--main-color);
         }
       }
@@ -189,7 +190,7 @@ onBeforeUnmount(() => {
     @media (max-width: 420px) {
       .copyright {
         .icp {
-          .iconfont {
+          svg {
             display: none;
           }
         }

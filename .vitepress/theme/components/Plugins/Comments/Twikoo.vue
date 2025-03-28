@@ -1,21 +1,19 @@
-<script setup>
+<script lang="ts" setup>
 import { jumpRedirect } from '@/utils/commonTools'
 import initComments from '@/utils/initComments'
 
-const props = defineProps({
-  // 填充评论区
-  fill: {
-    type: [Boolean, String],
-    default: false,
-  },
-})
+const {
+  fill = false,
+} = defineProps<{
+  fill?: boolean | string
+}>()
 
 const { theme } = useData()
 const { comment } = theme.value
 
 // 评论数据
 const twikoo = ref(null)
-const commentRef = ref(null)
+const commentRef = useTemplateRef('commentRef')
 
 // 初始化 Twikoo
 async function initTwikoo() {
@@ -27,8 +25,8 @@ async function initTwikoo() {
       envId: comment.twikoo.envId,
       onCommentLoaded: () => {
         console.log('评论已加载完毕')
-        if (props.fill)
-          fillComments(props.fill)
+        if (fill)
+          fillComments(fill)
         jumpRedirect(null, theme.value, true)
       },
     })
@@ -48,9 +46,11 @@ function fillComments(data) {
     return false
   // 获取输入框
   const commentInput = commentDom.querySelector('textarea')
-  // 写入内容
-  commentInput.value = `${data}\n\n`
-  commentInput.focus()
+  if (commentInput) {
+    // 写入内容
+    commentInput.value = `${data}\n\n`
+    commentInput.focus()
+  }
 }
 
 onMounted(() => {

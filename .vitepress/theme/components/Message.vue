@@ -1,21 +1,28 @@
 <!-- 全局消息 -->
 <script lang="ts" setup>
+import type { Message } from '@/types/site'
+
 // 消息数据
 const messageType = ref('info')
 const messageShow = ref(false)
 const messageClose = ref(false)
-const messageContent = ref(null)
+const messageContent = ref<string | null>(null)
 const messageAlways = ref(false)
 const messageDuration = ref(0)
 const messageTimeOut = ref<NodeJS.Timeout | null>(null)
 
 // 消息处理
-function showMessage(text, type = 'info', options = {}, func = null) {
+function showMessage(text: string, type = 'info', options: {
+  close?: boolean
+  always?: boolean
+  duration?: number
+} = {}, func?: (...props: any) => void) {
   // 解构配置
   const { close = false, always = false, duration = 3000 } = options
   // 先隐藏
   messageShow.value = false
-  clearTimeout(messageTimeOut.value)
+  if (messageTimeOut.value)
+    clearTimeout(messageTimeOut.value)
   // 显示弹窗
   nextTick().then(() => {
     // 更改默认配置
@@ -38,7 +45,7 @@ function showMessage(text, type = 'info', options = {}, func = null) {
 }
 
 // 弹出消息
-const message = {
+const message: Message = {
   // 信息
   info: (text, options, func) => {
     showMessage(text, 'info', options, func)
@@ -60,12 +67,13 @@ const message = {
 // 关闭消息
 function closeMessage() {
   messageShow.value = false
-  clearTimeout(messageTimeOut.value)
+  if (messageTimeOut.value)
+    clearTimeout(messageTimeOut.value)
 }
 
 onMounted(() => {
   // 挂载全局
-  window.$message = message
+  window.window.$message = message
 })
 </script>
 

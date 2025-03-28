@@ -1,0 +1,31 @@
+export interface MainState {
+  themeType: 'auto' | 'light' | 'dark'
+  themeValue: 'light' | 'dark'
+  bannerType: string
+  loadingStatus: boolean
+  scrollData: {
+    height: number
+    percentage: number
+    direction: 'up' | 'down'
+  }
+  footerIsShow: boolean
+  controlShow: boolean
+  searchShow: boolean
+  showSeetings: boolean
+  playState: boolean
+  playerShow: boolean
+  playerVolume: number
+  playerData: {
+    name: string
+    artist: string
+  }
+  mobileMenuShow: boolean
+  useRightMenu: boolean
+  backgroundBlur: boolean
+  fontFamily: string
+  fontSize: number
+  infoPosition: string
+  lastScrollY: number
+  backgroundType: string
+  backgroundUrl: string
+}

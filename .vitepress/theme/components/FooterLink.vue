@@ -38,7 +38,7 @@ const socialLinkData = computed(() => {
       >
         <Icon :icon style="width: 1.25rem; height: 1.25rem" />
       </a>
-      <div class="logo" title="返回顶部" @click="smoothScrolling">
+      <div class="logo" title="返回顶部" @click="smoothScrolling()">
         <img :src="siteMeta.author.cover" alt="author" class="author">
       </div>
       <a

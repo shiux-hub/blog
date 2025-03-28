@@ -49,7 +49,7 @@ function getCover({ cover: itemCover }) {
 }
 
 // 前往文章
-function toPost(path) {
+function toPost(path: string) {
   // 记录滚动位置
   if (typeof window !== 'undefined') {
     const scrollY = window.scrollY
@@ -76,12 +76,12 @@ function toPost(path) {
       <div class="post-content">
         <div v-if="!simple && item?.categories" class="post-category">
           <span v-for="cat in item?.categories" :key="cat" class="cat-name">
-            <i class="iconfont icon-folder" />
+            <Icon icon="mingcute:classify-2-fill" />
             {{ cat }}
           </span>
           <!-- 置顶 -->
           <span v-if="item?.top" class="top">
-            <i class="iconfont icon-align-top" />
+            <Icon icon="mingcute:align-arrow-up-fill" />
             置顶
           </span>
         </div>
@@ -97,7 +97,7 @@ function toPost(path) {
               class="tags-name"
               @click.stop="router.go(`/pages/tags/${tags}`)"
             >
-              <i class="iconfont icon-hashtag" />
+            <Icon icon="mingcute:hashtag-fill" />
               {{ tags }}
             </span>
           </div>
@@ -152,18 +152,16 @@ function toPost(path) {
           display: flex;
           flex-direction: row;
           align-items: center;
-          .iconfont {
+          svg {
             opacity: 0.8;
             margin-right: 6px;
-            color: var(--main-font-second-color);
           }
         }
         .top {
           margin-left: 12px;
           color: var(--main-color);
-          .iconfont {
+          svg {
             opacity: 0.8;
-            color: var(--main-color);
           }
         }
       }
@@ -176,6 +174,7 @@ function toPost(path) {
         display: -webkit-box;
         overflow: hidden;
         word-break: break-all;
+        line-clamp: 2;
         -webkit-box-orient: vertical;
         -webkit-line-clamp: 2;
       }
@@ -187,6 +186,7 @@ function toPost(path) {
         display: -webkit-box;
         overflow: hidden;
         word-break: break-all;
+        line-clamp: 2;
         -webkit-box-orient: vertical;
         -webkit-line-clamp: 2;
       }
@@ -216,17 +216,13 @@ function toPost(path) {
             margin-right: 12px;
             white-space: nowrap;
             transition: color 0.3s;
-            .iconfont {
-              font-weight: normal;
+            svg {
               opacity: 0.6;
               margin-right: 4px;
               transition: color 0.3s;
             }
             &:hover {
               color: var(--main-color);
-              .iconfont {
-                color: var(--main-color);
-              }
             }
           }
           @media (max-width: 768px) {

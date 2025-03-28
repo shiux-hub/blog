@@ -15,8 +15,8 @@ const { useRightMenu, themeType, playerShow, playerVolume, playState, playerData
 const rightMenuX = ref(0)
 const rightMenuY = ref(0)
 const clickedType = ref('normal')
-const clickedTypeData = ref(null)
-const rightMenuRef = ref<HTMLElement | null>(null)
+const clickedTypeData = ref('')
+const rightMenuRef = useTemplateRef('rightMenuRef')
 const rightMenuShow = ref(false)
 
 // 快速评论
@@ -160,7 +160,7 @@ async function rightMenuFunc(type) {
     }
   }
   catch (error) {
-    $message.error('右键菜单发生错误，请重试')
+    window.$message.error('右键菜单发生错误，请重试')
     console.error('右键菜单出错：', error)
   }
 }
@@ -244,16 +244,16 @@ defineExpose({ openRightMenu })
         >
           <div class="tools">
             <div class="btn" title="后退" @click="rightMenuFunc('back')">
-              <i class="iconfont icon-left" />
+              <Icon icon="mingcute:arrow-left-fill" />
             </div>
             <div class="btn" title="前进" @click="rightMenuFunc('forward')">
-              <i class="iconfont icon-right" />
+              <Icon icon="mingcute:arrow-right-fill" />
             </div>
             <div class="btn" title="刷新" @click="rightMenuFunc('reload')">
-              <i class="iconfont icon-refresh" />
+              <Icon icon="mingcute:refresh-1-fill" />
             </div>
-            <div class="btn" title="返回顶部" @click="smoothScrolling">
-              <i class="iconfont icon-arrow-up" />
+            <div class="btn" title="返回顶部" @click="smoothScrolling()">
+              <Icon icon="mingcute:arrow-up-fill" />
             </div>
           </div>
           <div class="all-menu">
@@ -262,7 +262,7 @@ defineExpose({ openRightMenu })
               class="btn"
               @click="router.go(shufflePost(theme.postData))"
             >
-              <i class="iconfont icon-shuffle" />
+              <Icon icon="mingcute:shuffle-2-fill" />
               <span class="name">随便逛逛</span>
             </div>
             <div
@@ -270,16 +270,16 @@ defineExpose({ openRightMenu })
               class="btn"
               @click="router.go('/pages/categories')"
             >
-              <i class="iconfont icon-folder" />
+              <Icon icon="mingcute:classify-2-fill" />
               <span class="name">全部分类</span>
             </div>
             <div v-if="clickedType === 'normal'" class="btn" @click="router.go('/pages/tags')">
-              <i class="iconfont icon-hashtag" />
+              <Icon icon="mingcute:hashtag-fill" />
               <span class="name">全部标签</span>
             </div>
             <!-- 链接类型 -->
             <div v-if="clickedType === 'link'" class="btn" @click="rightMenuFunc('open-link')">
-              <i class="iconfont icon-window" />
+              <Icon icon="mingcute:external-link-fill" />
               <span class="name">新标签页打开</span>
             </div>
             <div
@@ -289,7 +289,7 @@ defineExpose({ openRightMenu })
                 copyText(clickedTypeData?.getAttribute('original-href') || clickedTypeData?.href)
               "
             >
-              <i class="iconfont icon-link" />
+              <Icon icon="mingcute:link-2-fill" />
               <span class="name">复制链接地址</span>
             </div>
             <!-- 图片类型 -->
@@ -298,7 +298,7 @@ defineExpose({ openRightMenu })
               class="btn"
               @click="copyImage(clickedTypeData?.src)"
             >
-              <i class="iconfont icon-image-copy" />
+              <Icon icon="mingcute:photo-album-fill" />
               <span class="name">复制此图片</span>
             </div>
             <div
@@ -306,7 +306,7 @@ defineExpose({ openRightMenu })
               class="btn"
               @click="downloadImage(clickedTypeData?.src)"
             >
-              <i class="iconfont icon-download" />
+              <Icon icon="mingcute:file-download-fill" />
               <span class="name">下载此图片</span>
             </div>
             <!-- 输入框 -->
@@ -315,7 +315,7 @@ defineExpose({ openRightMenu })
               class="btn"
               @click="rightMenuFunc('input-paste')"
             >
-              <i class="iconfont icon-paste" />
+              <Icon icon="mingcute:paste-fill" />
               <span class="name">粘贴文本</span>
             </div>
             <!-- 选中文本 -->
@@ -325,7 +325,7 @@ defineExpose({ openRightMenu })
               class="btn right-menu-link"
               target="_blank"
             >
-              <i class="iconfont icon-link" />
+              <Icon icon="mingcute:external-link-fill" />
               <span class="name">在新标签页打开</span>
             </a>
             <a
@@ -334,7 +334,7 @@ defineExpose({ openRightMenu })
               class="btn right-menu-link"
               target="_blank"
             >
-              <i class="iconfont icon-baidu" />
+              <Icon icon="ri:baidu-fill" />
               <span class="name">使用百度搜索</span>
             </a>
             <a
@@ -343,7 +343,7 @@ defineExpose({ openRightMenu })
               class="btn right-menu-link"
               target="_blank"
             >
-              <i class="iconfont icon-bing" />
+              <Icon icon="mdi:microsoft-bing" />
               <span class="name">使用必应搜索</span>
             </a>
             <div
@@ -351,7 +351,7 @@ defineExpose({ openRightMenu })
               class="btn"
               @click="copyText(clickedTypeData)"
             >
-              <Icon icon="mingcute:copy-fill" width="16" height="16" />
+              <Icon icon="mingcute:copy-fill" />
               <span class="name">复制选中文本</span>
             </div>
             <div
@@ -359,7 +359,7 @@ defineExpose({ openRightMenu })
               class="btn"
               @click="commentCopy(clickedTypeData)"
             >
-              <i class="iconfont icon-chat" />
+              <Icon icon="mingcute:chat-1-fill" />
               <span class="name">评论选中内容</span>
             </div>
           </div>
@@ -367,29 +367,35 @@ defineExpose({ openRightMenu })
           <div class="all-menu general">
             <!-- 版权协议 -->
             <div class="btn" @click="router.go('/pages/cc')">
-              <i class="iconfont icon-accessible" />
+              <Icon icon="tabler:accessible-filled" />
               <span class="name">版权协议</span>
             </div>
             <!-- 隐私政策 -->
             <div class="btn" @click="router.go('/pages/privacy')">
-              <i class="iconfont icon-privacy" />
+              <Icon icon="mingcute:safety-certificate-fill" />
               <span class="name">隐私政策</span>
             </div>
           </div>
           <div class="all-menu general">
             <!-- 复制地址 -->
             <div class="btn" @click="rightMenuFunc('copy-link')">
-              <Icon icon="mingcute:copy-fill" width="16" height="16" />
+              <Icon icon="mingcute:copy-fill" />
               <span class="name">复制本页地址</span>
             </div>
             <!-- 明暗模式 -->
             <div class="btn" @click.stop="store.changeThemeType">
-              <i
-                :class="`iconfont icon-${themeType === 'auto' ? 'dark' : themeType === 'dark' ? 'light' : 'auto'}`"
+              <Icon
+                :icon="
+                  themeType === 'auto'
+                    ? 'mingcute:history-anticlockwise-fill'
+                    : themeType === 'dark'
+                      ? 'mingcute:moon-fill'
+                      : 'mingcute:sun-fill'
+                "
               />
               <span class="name">
                 {{
-                  themeType === "auto" ? "深色模式" : themeType === "dark" ? "浅色模式" : "跟随系统"
+                  themeType === "auto" ? "跟随系统" : themeType === "dark" ? "深色模式" : "浅色模式"
                 }}
               </span>
             </div>
@@ -401,28 +407,29 @@ defineExpose({ openRightMenu })
               <span class="artist">{{ playerData.artist }}</span>
             </div>
             <div class="volume" @click.stop>
-              <i
-                class="iconfont icon-volume-down"
+              <Icon
+                icon="material-symbols:volume-down-rounded"
                 @click="playerVolume = Math.max(0, playerVolume - 0.1)"
               />
+
               <Slider :value="playerVolume" @update="(val) => (playerVolume = val)" />
-              <i
-                class="iconfont icon-volume-up"
+              <Icon
+                icon="material-symbols:volume-up-rounded"
                 @click="playerVolume = Math.min(1, playerVolume + 0.1)"
               />
             </div>
             <div class="control" @click.stop>
               <div class="btn" title="上一曲" @click="playerControl('prev')">
-                <i class="iconfont icon-prev" />
+                <Icon icon="material-symbols:skip-previous-rounded" />
               </div>
               <div v-if="playState" class="btn" title="暂停" @click="playerControl('toggle')">
-                <i class="iconfont icon-pause" />
+                <Icon icon="material-symbols:pause-rounded" />
               </div>
               <div v-else class="btn" title="播放" @click="playerControl('toggle')">
-                <i class="iconfont icon-play" />
+                <Icon icon="material-symbols:play-arrow-rounded" />
               </div>
               <div class="btn" title="下一曲" @click="playerControl('next')">
-                <i class="iconfont icon-next" />
+                <Icon icon="material-symbols:skip-next-rounded" />
               </div>
             </div>
           </div>
@@ -481,8 +488,9 @@ defineExpose({ openRightMenu })
       .btn {
         justify-content: flex-start;
         margin-bottom: 6px;
-        .iconfont {
-          font-size: 20px;
+        svg {
+          width: 20px;
+          height: 20px;
         }
         &:last-child {
           margin-bottom: 0;
@@ -520,9 +528,10 @@ defineExpose({ openRightMenu })
         padding: 0 6px;
         margin-top: 1rem;
         width: 100%;
-        .iconfont {
+        svg {
           color: var(--main-font-second-color);
-          font-size: 20px;
+          width: 20px;
+          height: 20px;
           transition: color 0.3s;
           cursor: pointer;
           &:first-child {
@@ -545,8 +554,9 @@ defineExpose({ openRightMenu })
         .btn {
           padding: 6px;
           margin-bottom: 0;
-          .iconfont {
-            font-size: 26px;
+          svg {
+            width: 26px;
+            height: 26px;
           }
         }
       }
@@ -560,8 +570,9 @@ defineExpose({ openRightMenu })
       transition:
         color 0.3s,
         background-color 0.3s;
-      .iconfont {
-        font-size: 20px;
+      svg {
+        width: 20px;
+        height: 20px;
         transition: color 0.3s;
       }
       .name {
@@ -570,7 +581,7 @@ defineExpose({ openRightMenu })
       &:hover {
         color: var(--main-card-background);
         background-color: var(--main-color);
-        .iconfont {
+        svg {
           color: var(--main-card-background);
         }
       }

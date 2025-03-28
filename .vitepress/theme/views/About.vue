@@ -1,6 +1,7 @@
 <script lang="ts" setup>
 import type { ThemeConfig } from '@/types/theme'
 import { getStatistics } from '@/api'
+import { Icon } from '@iconify/vue/dist/iconify.js'
 
 const { theme } = useData<ThemeConfig>()
 
@@ -9,67 +10,67 @@ const skillsData = [
   {
     name: 'JavaScript',
     color: '#f1e05abd',
-    icon: 'javascript',
+    icon: 'ri:javascript-fill',
     link: 'https://developer.mozilla.org/zh-CN/docs/Web/JavaScript',
   },
   {
     name: 'HTML5',
     color: '#e34f26',
-    icon: 'html5',
+    icon: 'ri:html5-fill',
     link: 'https://developer.mozilla.org/zh-CN/docs/Web/HTML',
   },
   {
     name: 'CSS3',
     color: '#563d7c',
-    icon: 'css3',
+    icon: 'ri:css3-fill',
     link: 'https://developer.mozilla.org/zh-CN/docs/Web/CSS',
   },
   {
     name: 'Vue',
     color: '#41b883',
-    icon: 'vue',
+    icon: 'ri:vuejs-fill',
     link: 'https://cn.vuejs.org/',
   },
   {
     name: 'React',
     color: '#149ECA',
-    icon: 'react',
+    icon: 'mingcute:react-fill',
     link: 'https://zh-hans.reactjs.org/',
   },
   {
     name: 'Node.js',
     color: '#026E00',
-    icon: 'nodejs',
+    icon: 'nonicons:node-16',
     link: 'https://nodejs.org/',
   },
   {
     name: 'Python',
     color: '#3776AB',
-    icon: 'python',
+    icon: 'fa6-brands:python',
     link: 'https://www.python.org/',
   },
   {
     name: 'Docker',
     color: '#2496f2',
-    icon: 'docker',
+    icon: 'fa6-brands:docker',
     link: 'https://www.docker.com/',
   },
   {
     name: 'Git',
     color: '#F05032',
-    icon: 'git',
+    icon: 'fa6-brands:git-alt',
     link: 'https://git-scm.com/',
   },
   {
     name: 'Photoshop',
     color: '#31A8FF',
-    icon: 'photoshop',
+    icon: 'iconoir:adobe-photoshop-solid',
     link: 'https://www.adobe.com/cn/lead/creativecloud/business.html',
   },
   {
     name: 'ChatGPT',
     color: '#4AA181',
-    icon: 'chatgpt',
+    icon: 'hugeicons:chat-gpt',
     link: 'https://chat.openai.com/',
   },
 ]
@@ -119,7 +120,7 @@ onMounted(() => {
             class="skills-item" target="_blank"
           >
             <div class="skills-logo">
-              <i :class="`iconfont icon-${item.icon}`" />
+              <Icon :icon="item.icon" />
             </div>
             <span class="skills-name">{{ item.name }}</span>
           </a>
@@ -413,7 +414,9 @@ onMounted(() => {
               border-radius: 50%;
               background-color: var(--color);
 
-              .iconfont {
+              svg {
+                width: 1rem;
+                height: 1rem;
                 color: #fff;
               }
             }

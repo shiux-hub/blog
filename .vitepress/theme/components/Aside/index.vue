@@ -1,10 +1,8 @@
-<script setup>
-const props = defineProps({
-  // 显示目录
-  showToc: {
-    type: Boolean,
-    default: false,
-  },
+<script lang="ts" setup>
+withDefaults(defineProps<{
+  showToc?: boolean
+}>(), {
+  showToc: false,
 })
 const { theme } = useData()
 </script>

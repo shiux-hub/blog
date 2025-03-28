@@ -10,7 +10,7 @@ const { loadingStatus, footerIsShow, themeValue, themeType, backgroundType, font
   = storeToRefs(store)
 
 // 右键菜单
-const rightMenuRef = ref<HTMLElement | null>(null)
+const rightMenuRef = useTemplateRef('rightMenuRef')
 
 // 判断是否为文章页面
 const isPostPage = computed(() => {
@@ -25,21 +25,17 @@ function openRightMenu(e: MouseEvent) {
 
 // 复制时触发
 function copyTip() {
-  const copiedText = window.getSelection().toString()
+  const copiedText = window.getSelection()?.toString()
   // 检查文本内容是否不为空
-  if (copiedText.trim().length > 0 && typeof $message !== 'undefined') {
-    $message.success('复制成功，在转载时请标注本文地址')
+  if (copiedText && copiedText.trim().length > 0 && typeof window.$message !== 'undefined') {
+    window.$message.success('复制成功，在转载时请标注本文地址')
   }
 }
 
 // 更改正确主题类别
 function changeSiteThemeType() {
   // 主题 class
-  const themeClasses = {
-    dark: 'dark',
-    light: 'light',
-    auto: 'auto',
-  }
+  const themeClasses = ['dark','light','auto'] as const
   // 必要数据
   const htmlElement = document.documentElement
   console.log('当前模式：', themeType.value)
@@ -51,13 +47,13 @@ function changeSiteThemeType() {
   if (themeType.value === 'auto') {
     // 根据当前操作系统颜色方案更改明暗主题
     const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches
-    const autoThemeClass = systemPrefersDark ? themeClasses.dark : themeClasses.light
+    const autoThemeClass: 'dark' | 'light' = systemPrefersDark ? 'dark' : 'light'
     htmlElement.classList.add(autoThemeClass)
     themeValue.value = autoThemeClass
   }
-  else if (themeClasses[themeType.value]) {
-    htmlElement.classList.add(themeClasses[themeType.value])
-    themeValue.value = themeClasses[themeType.value]
+  else {
+    htmlElement.classList.add(themeType.value)
+    themeValue.value = themeType.value
   }
   if (backgroundType.value === 'image') {
     htmlElement.classList.add('image')

@@ -1,13 +1,14 @@
 <!-- 分类导航条 -->
-<script setup>
-const props = defineProps({
+<script lang="ts" setup>
+import type { ThemeConfig } from '@/types/theme'
+
+withDefaults(defineProps<{
   // 显示类别
-  type: {
-    type: String,
-    default: 'categories',
-  },
+  type?: string
+}>(), {
+  type: 'categories',
 })
-const { theme, params } = useData()
+const { theme, params } = useData<ThemeConfig>()
 // 获取当前路由路径
 const currentTypeName = computed(() => {
   return params.value?.name || null
@@ -35,7 +36,7 @@ const currentTypeName = computed(() => {
       </a>
     </div>
     <a href="/pages/categories" class="more-type">
-      <i class="iconfont icon-arrow-right" />
+      <Icon icon="mingcute:arrows-right-line" />
       更多
     </a>
   </div>
@@ -56,7 +57,7 @@ const currentTypeName = computed(() => {
       </a>
     </div>
     <a href="/pages/tags" class="more-type">
-      <i class="iconfont icon-arrow-right" />
+      <Icon icon="mingcute:arrows-right-line" />
       更多
     </a>
   </div>
@@ -129,14 +130,13 @@ const currentTypeName = computed(() => {
     white-space: nowrap;
     margin-right: 4px;
     margin-left: 8px;
-    .iconfont {
-      font-size: 0.9375rem;
+    svg {
+      width: 0.9375rem;
+      height: 0.9375rem;
       margin-right: 8px;
     }
     &:hover {
-      .iconfont {
-        color: var(--main-color);
-      }
+      color: var(--main-color);
     }
   }
 }

@@ -1,6 +1,10 @@
-import type { ThemeConfig } from '@/types/theme'
+import type { ThemeConfig } from './.vitepress/theme/types/theme'
 
-export const themeConfig: ThemeConfig = {
+type DeepPartial<T> = {
+  [P in keyof T]?: T[P] extends object ? DeepPartial<T[P]> : T[P]
+}
+
+export const themeConfig: DeepPartial<ThemeConfig> = {
   // 站点信息
   siteMeta: {
     // 站点标题
@@ -236,33 +240,6 @@ export const themeConfig: ThemeConfig = {
   },
   // 页脚信息
   footer: {
-    // 社交链接（请确保为偶数个）
-    social: [
-      {
-        icon: 'email',
-        link: 'mailto:one@imsyy.top',
-      },
-      {
-        icon: 'github',
-        link: 'https://www.github.com/imsyy/',
-      },
-      {
-        icon: 'telegram',
-        link: 'https://t.me/bottom_user',
-      },
-      {
-        icon: 'bilibili',
-        link: 'https://space.bilibili.com/98544142',
-      },
-      {
-        icon: 'qq',
-        link: 'https://res.abeim.cn/api/qq/?qq=1539250352',
-      },
-      {
-        icon: 'twitter-x',
-        link: 'https://twitter.com/iimmsyy',
-      },
-    ],
     // sitemap
     sitemap: [
       {

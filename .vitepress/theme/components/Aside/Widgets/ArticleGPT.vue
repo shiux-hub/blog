@@ -31,7 +31,7 @@ function typeWriter(text?: string) {
   catch (error) {
     loading.value = false
     abstractData.value = '摘要生成失败'
-    $message.error('摘要生成失败，请重试')
+    window.$message.error('摘要生成失败，请重试')
     console.error('摘要生成失败：', error)
   }
 }

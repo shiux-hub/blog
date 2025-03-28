@@ -1,10 +1,12 @@
 <script lang="ts" setup>
+import type { PostDataItem } from '@/types/post'
+import type { ThemeConfig } from '@/types/theme'
 import { formatTimestamp } from '@/utils/helper'
 
 defineProps<{
-  postData?: object
+  postData?: PostDataItem
 }>()
-const { theme } = useData()
+const { theme } = useData<ThemeConfig>()
 const route = useRoute()
 </script>
 
@@ -21,13 +23,13 @@ const route = useRoute()
         <span class="tip">作者</span>
         <span class="name">{{ theme.siteMeta.author.name }}</span>
       </div>
-      <div class="meta-item">
+      <div v-if="postData?.date" class="meta-item">
         <span class="tip">发布于</span>
-        <span class="name">{{ formatTimestamp(postData?.date) }}</span>
+        <span class="name">{{ formatTimestamp(postData.date) }}</span>
       </div>
-      <div class="meta-item">
+      <div v-if="postData?.lastModified" class="meta-item">
         <span class="tip">更新于</span>
-        <span class="name">{{ formatTimestamp(postData?.lastModified) }}</span>
+        <span class="name">{{ formatTimestamp(postData.lastModified) }}</span>
       </div>
       <div class="meta-item cc">
         <span class="tip">许可协议</span>

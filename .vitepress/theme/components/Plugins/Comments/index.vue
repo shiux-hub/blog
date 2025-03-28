@@ -1,15 +1,14 @@
 <!-- 评论 -->
-<script setup>
-const props = defineProps({
+<script lang="ts" setup>
+withDefaults(defineProps<{
   // 填充评论区
-  fill: {
-    type: [Boolean, String],
-    default: false,
-  },
+  fill?: boolean | string
+}>(), {
+  fill: false,
 })
 const { theme } = useData()
 const router = useRouter()
-const mainCommentRef = ref(null)
+const mainCommentRef = useTemplateRef('mainCommentRef')
 
 // 滚动至评论
 function scrollToComments() {

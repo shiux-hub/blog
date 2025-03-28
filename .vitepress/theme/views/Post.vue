@@ -8,7 +8,7 @@ import initFancybox from '@/utils/initFancybox'
 const { page, theme, frontmatter } = useData<ThemeConfig>()
 
 // 评论元素
-const commentRef = ref(null)
+const commentRef = useTemplateRef('commentRef')
 
 // 获取对应文章数据
 const postMetaData = computed(() => {

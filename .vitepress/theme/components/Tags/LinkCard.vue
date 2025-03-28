@@ -1,5 +1,6 @@
 <!-- 链接卡片 -->
-<script setup>
+<script lang="ts" setup>
+import type { SiteInfo } from '@/types/site'
 import { getSiteInfo } from '@/api'
 
 const props = defineProps({
@@ -26,7 +27,7 @@ const props = defineProps({
 })
 
 // 站点数据
-const siteInfo = ref(null)
+const siteInfo = ref<SiteInfo | null>(null)
 
 // 是否为站内链接
 const isOutLink = computed(() => {
@@ -55,7 +56,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <a :href="url" :target="isOutLink ? '_blank' : null" class="link-card s-card hover">
+  <a :href="url" :target="isOutLink ? '_blank' : undefined" class="link-card s-card hover">
     <span v-if="isOutLink" class="link-tip">引用站外地址，请注意甄别链接安全性</span>
     <div class="link-data">
       <div class="link-icon">

@@ -1,20 +1,23 @@
-<script setup>
-defineProps({
+<script lang="ts" setup>
+withDefaults(defineProps<{
   // 列表数据
   listData: {
-    type: [Array, String],
-    default: () => [],
-  },
+    typeName: string
+    typeDesc: string
+    typeList: {
+      name: string
+      desc: string
+      url: string
+      avatar?: string
+      ico?: string
+    }[]
+  }[] | string
   // 显示数量
-  showCount: {
-    type: Boolean,
-    default: true,
-  },
-  // 友链朋友圈
-  useFriendsLink: {
-    type: Boolean,
-    default: false,
-  },
+  showCount?: boolean
+  useFriendsLink?: boolean
+}>(), {
+  showCount: true,
+  useFriendsLink: false,
 })
 </script>
 
@@ -48,7 +51,7 @@ defineProps({
                   :src="link.avatar || link.ico"
                   class="cover-img" :class="[{ 'cf-friends-avatar': useFriendsLink }]"
                   :alt="link?.name || 'cover'"
-                  @load="(e) => e.target.classList.add('loaded')"
+                  @load="(e) => (e.target as HTMLImageElement)?.classList?.add('loaded')"
                 >
               </LazyLoader>
             </div>

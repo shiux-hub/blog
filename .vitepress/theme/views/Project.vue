@@ -37,7 +37,7 @@ import Banner from '@/components/Banner.vue'
       transition:
         color 0.3s,
         background-color 0.3s;
-      .iconfont {
+      svg {
         margin-right: 8px;
         transition: color 0.3s;
       }

@@ -13,7 +13,7 @@ function randomJump() {
   try {
     const friendList = allLinkData.value
     const randomList = friendList[Math.floor(Math.random() * friendList.length)]
-    $message.warning(
+    window.$message.warning(
       `您即将前往 ${randomList?.name}，请注意链接是否安全`,
       {
         close: true,
@@ -27,7 +27,7 @@ function randomJump() {
   }
   catch (error) {
     console.error('友链随机访问时出错：', error)
-    $message.error('友链随机访问时出错，请重试')
+    window.$message.error('友链随机访问时出错，请重试')
   }
 }
 </script>

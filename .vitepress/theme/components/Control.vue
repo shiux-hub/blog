@@ -1,10 +1,10 @@
 <!-- 中控台 -->
-<script setup>
+<script lang="ts" setup>
 import { mainStore } from '@/store'
 
 const store = mainStore()
 
-const closeControlRef = ref(null)
+const closeControlRef = useTemplateRef('closeControlRef')
 
 // 更正关闭按钮位置
 function changeCloseStyle() {
@@ -22,7 +22,7 @@ function changeCloseStyle() {
 // 右键菜单开关
 function rightMenuSwitch() {
   store.useRightMenu = !store.useRightMenu
-  $message.info(`${store.useRightMenu ? '已开启' : '已关闭'}自定义右键菜单`)
+  window.$message.info(`${store.useRightMenu ? '已开启' : '已关闭'}自定义右键菜单`)
 }
 </script>
 
@@ -32,7 +32,7 @@ function rightMenuSwitch() {
       <div v-if="store.controlShow" class="control" @click="store.changeShowStatus('controlShow')">
         <!-- 关闭按钮 -->
         <div ref="closeControlRef" class="close-control">
-          <i class="iconfont icon-close" />
+          <Icon icon="mingcute:close-fill" />
         </div>
         <!-- 背景遮罩 -->
         <div class="control-mask" />
@@ -41,28 +41,36 @@ function rightMenuSwitch() {
           <!-- 功能菜单 -->
           <div class="menu">
             <div class="menu-item open" title="显示模式切换" @click.stop="store.changeThemeType">
-              <i :class="`iconfont icon-${store.themeType}`" />
+              <Icon
+                :icon="
+                  store.themeType === 'auto'
+                    ? 'mingcute:history-anticlockwise-fill'
+                    : store.themeType === 'dark'
+                      ? 'mingcute:moon-fill'
+                      : 'mingcute:sun-fill'
+                "
+              />
             </div>
             <div
               class="menu-item" :class="[{ open: store.useRightMenu }]"
               title="右键菜单开关"
               @click.stop="rightMenuSwitch"
             >
-              <i class="iconfont icon-list" />
+              <Icon icon="majesticons:list-box" />
             </div>
             <div
               class="menu-item" :class="[{ open: store.playerShow }]"
               title="播放器开关"
               @click.stop="store.playerShow = !store.playerShow"
             >
-              <i class="iconfont icon-music" />
+              <Icon icon="mingcute:music-2-fill" />
             </div>
             <div
               class="menu-item" :class="[{ open: store.backgroundBlur }]"
               title="背景模糊开关"
               @click.stop="store.changeShowStatus('backgroundBlur')"
             >
-              <i class="iconfont icon-blur" />
+              <Icon icon="mdi:blur" />
             </div>
           </div>
         </div>
@@ -96,8 +104,9 @@ function rightMenuSwitch() {
       opacity 0.3s;
     border-radius: 50%;
     cursor: pointer;
-    .iconfont {
-      font-size: 18px;
+    svg {
+      width: 18px;
+      height: 18px;
       line-height: 1;
       transition:
         color 0.3s,
@@ -105,7 +114,7 @@ function rightMenuSwitch() {
     }
     &:hover {
       background-color: var(--main-color);
-      .iconfont {
+      svg {
         color: var(--main-card-background);
       }
     }
@@ -140,16 +149,15 @@ function rightMenuSwitch() {
           transform 0.3s,
           background-color 0.3s;
         cursor: pointer;
-        .iconfont {
-          font-size: 24px;
+        svg {
+          width: 24px;
+          height: 24px;
           color: var(--main-font-color);
           transition: color 0.3s;
         }
         &.open {
           background-color: var(--main-color);
-          .iconfont {
-            color: #fff;
-          }
+          color: #fff;
         }
         &:hover {
           transform: scale(1.05);
