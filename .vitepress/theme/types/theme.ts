@@ -44,6 +44,9 @@ export interface ThemeConfig {
   }
   footer: {
     social: Array<{
+      /**
+       * 使用 https://icon-sets.iconify.design/
+       */
       icon: string
       link: string
     }>

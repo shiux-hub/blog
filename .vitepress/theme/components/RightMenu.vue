@@ -2,6 +2,7 @@
 import type { ThemeConfig } from '@/types/theme'
 import { mainStore } from '@/store'
 import { copyImage, copyText, downloadImage, shufflePost, smoothScrolling } from '@/utils/helper'
+import { Icon } from '@iconify/vue'
 import { storeToRefs } from 'pinia'
 
 const router = useRouter()
@@ -350,7 +351,7 @@ defineExpose({ openRightMenu })
               class="btn"
               @click="copyText(clickedTypeData)"
             >
-              <i class="iconfont icon-copy" />
+              <Icon icon="mingcute:copy-fill" width="16" height="16" />
               <span class="name">复制选中文本</span>
             </div>
             <div
@@ -378,7 +379,7 @@ defineExpose({ openRightMenu })
           <div class="all-menu general">
             <!-- 复制地址 -->
             <div class="btn" @click="rightMenuFunc('copy-link')">
-              <i class="iconfont icon-copy" />
+              <Icon icon="mingcute:copy-fill" width="16" height="16" />
               <span class="name">复制本页地址</span>
             </div>
             <!-- 明暗模式 -->

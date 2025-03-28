@@ -22,7 +22,7 @@ export const themeConfig: ThemeConfig = {
     },
   },
   // 备案信息
-  icp: '萌ICP备114514号',
+  icp: '',
   // 建站日期
   since: '2020-07-28',
   // 每页文章数据
@@ -239,27 +239,27 @@ export const themeConfig: ThemeConfig = {
     // 社交链接（请确保为偶数个）
     social: [
       {
-        icon: 'mdi:email-outline',
+        icon: 'email',
         link: 'mailto:one@imsyy.top',
       },
       {
-        icon: 'ri:github-line',
+        icon: 'github',
         link: 'https://www.github.com/imsyy/',
       },
       {
-        icon: 'ri:telegram-2-line',
+        icon: 'telegram',
         link: 'https://t.me/bottom_user',
       },
       {
-        icon: 'ri:bilibili-line',
+        icon: 'bilibili',
         link: 'https://space.bilibili.com/98544142',
       },
       {
-        icon: 'ri:qq-line',
+        icon: 'qq',
         link: 'https://res.abeim.cn/api/qq/?qq=1539250352',
       },
       {
-        icon: 'ri:twitter-x-line',
+        icon: 'twitter-x',
         link: 'https://twitter.com/iimmsyy',
       },
     ],

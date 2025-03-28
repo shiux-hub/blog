@@ -1,15 +1,16 @@
 <!-- 页脚 - 链接 -->
-<script setup>
+<script lang="ts" setup>
+import type { ThemeConfig } from '@/types/theme'
 import { smoothScrolling } from '@/utils/helper'
+import { Icon } from '@iconify/vue'
 
-const props = defineProps({
+withDefaults(defineProps<{
   // 显示底栏
-  showBar: {
-    type: Boolean,
-    default: true,
-  },
+  showBar?: boolean
+}>(), {
+  showBar: true,
 })
-const { theme, site } = useData()
+const { theme, site } = useData<ThemeConfig>()
 const { footer, siteMeta } = theme.value
 // 社交链接数据
 const socialLinkData = computed(() => {
@@ -29,25 +30,25 @@ const socialLinkData = computed(() => {
     </div>
     <div class="footer-social">
       <a
-        v-for="(item, index) in socialLinkData.first"
+        v-for="({ link, icon }, index) in socialLinkData.first"
         :key="index"
-        :href="item.link"
+        :href="link"
         target="_blank"
         class="social-link"
       >
-        <i :class="`iconfont icon-${item.icon}`" />
+        <Icon :icon style="width: 1.25rem; height: 1.25rem" />
       </a>
       <div class="logo" title="返回顶部" @click="smoothScrolling">
         <img :src="siteMeta.author.cover" alt="author" class="author">
       </div>
       <a
-        v-for="(item, index) in socialLinkData.second"
+        v-for="({ link, icon }, index) in socialLinkData.second"
         :key="index"
-        :href="item.link"
+        :href="link"
         target="_blank"
         class="social-link"
       >
-        <i :class="`iconfont icon-${item.icon}`" />
+        <Icon :icon width="20" height="20" />
       </a>
     </div>
     <div class="footer-sitemap">
@@ -58,7 +59,7 @@ const socialLinkData = computed(() => {
             v-for="(link, linkIndex) in item.items"
             :key="linkIndex"
             :href="link.link"
-            :target="link.newTab ? '_blank' : null"
+            :target="link.newTab ? '_blank' : undefined"
             class="link-text"
           >
             {{ link.text }}
@@ -126,23 +127,24 @@ const socialLinkData = computed(() => {
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    margin-top: 2rem;
+    margin-top: 3rem;
+    margin-bottom: 1rem;
+    gap: 2rem 52px;
+
     .social-link {
       display: flex;
       justify-content: center;
       align-items: center;
       width: 32px;
       height: 32px;
-      margin: 1rem 26px;
       border-radius: 50%;
+      contain: layout paint;
       background-color: var(--main-font-color);
       transition:
         transform 0.3s,
         background-color 0.3s;
-      .iconfont {
-        font-size: 20px;
-        color: var(--main-card-background);
-      }
+      font-size: 20px;
+      color: var(--main-card-background);
       &:hover {
         transform: scale(1.15);
         background-color: var(--main-color);
