@@ -5,7 +5,7 @@ import { isNumber, isString, isUndefined, throttle } from 'radashi'
  * 计算滚动高度和滚动百分比
  */
 export const calculateScroll = throttle(
-  {interval: 300},
+  { interval: 300, trailing: true },
   () => {
     try {
       if (typeof window === 'undefined' || typeof document === 'undefined')

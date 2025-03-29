@@ -1,6 +1,7 @@
 <!-- 全局消息 -->
 <script lang="ts" setup>
 import type { Message } from '@/types/site'
+import { Icon } from '@iconify/vue'
 
 // 消息数据
 const messageType = ref('info')
@@ -87,7 +88,7 @@ onMounted(() => {
         <div class="message-content">
           <span class="text">{{ messageContent || "默认消息内容" }}</span>
           <span v-if="messageClose" class="close">
-            <i class="iconfont icon-close" />
+            <Icon icon="mingcute:close-fill" />
           </span>
         </div>
       </div>
@@ -131,8 +132,8 @@ onMounted(() => {
       transition: background-color 0.3s;
       cursor: pointer;
 
-      .iconfont {
-        font-size: 14px;
+      svg {
+        @apply size-3.5;
         color: var(--main-card-background);
         opacity: 0.6;
         transition: opacity 0.3s;
@@ -141,7 +142,7 @@ onMounted(() => {
       &:hover {
         background-color: var(--main-color-white);
 
-        .iconfont {
+        svg {
           opacity: 1;
         }
       }

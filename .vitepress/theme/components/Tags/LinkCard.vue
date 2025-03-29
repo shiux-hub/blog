@@ -2,6 +2,7 @@
 <script lang="ts" setup>
 import type { SiteInfo } from '@/types/site'
 import { getSiteInfo } from '@/api'
+import { Icon } from '@iconify/vue'
 
 const props = defineProps({
   // 地址
@@ -68,7 +69,7 @@ onMounted(() => {
           alt="link-img"
           @error="siteInfo.iconUrl = null"
         >
-        <i v-else class="iconfont icon-link" />
+        <Icon icon="mingcute:link-2-fill" />
       </div>
       <div class="link-desc">
         <!-- 标题 -->
@@ -78,7 +79,7 @@ onMounted(() => {
         <span v-if="desc" class="link-description">{{ desc }}</span>
         <span v-else class="link-description">{{ siteInfo?.description || "暂无站点描述" }}</span>
       </div>
-      <i class="link-go iconfont icon-up" />
+      <Icon icon="mingcute:up-fill" />
     </div>
   </a>
 </template>
@@ -115,14 +116,9 @@ onMounted(() => {
         width: 100%;
         height: 100%;
       }
-      .iconfont {
-        display: flex;
-        width: 100%;
-        height: 100%;
-        align-items: center;
-        justify-content: center;
-        font-size: 30px;
-        font-weight: bold;
+      svg {
+        width: 30px;
+        height: 30px;
         background-color: var(--main-card-border);
       }
     }

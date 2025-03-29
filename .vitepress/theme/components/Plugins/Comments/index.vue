@@ -1,5 +1,7 @@
 <!-- 评论 -->
 <script lang="ts" setup>
+import { Icon } from '@iconify/vue'
+
 withDefaults(defineProps<{
   // 填充评论区
   fill?: boolean | string
@@ -32,7 +34,7 @@ defineExpose({ scrollToComments })
   >
     <div v-if="!fill" class="title">
       <span class="name">
-        <i class="iconfont icon-chat" />
+        <Icon icon="mingcute:comment-fill" />
         评论
       </span>
       <span class="tool" @click="router.go('/pages/privacy')"> 隐私政策 </span>
@@ -59,8 +61,9 @@ defineExpose({ scrollToComments })
       align-items: center;
       font-size: 24px;
       font-weight: bold;
-      .iconfont {
-        font-size: 26px;
+      svg {
+        width: 26px;
+        height: 26px;
         font-weight: normal;
         margin-right: 8px;
       }

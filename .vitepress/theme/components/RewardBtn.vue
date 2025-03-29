@@ -1,6 +1,7 @@
 <!-- 打赏按钮 -->
 <script lang="ts" setup>
 import type { ThemeConfig } from '@/types/theme'
+import { Icon } from '@iconify/vue'
 
 withDefaults(defineProps<{
   showJump?: boolean
@@ -24,7 +25,7 @@ function toRewardList() {
 <template>
   <div v-if="rewardData.enable" class="reward">
     <div class="reward-btn" @click="rewardShow = true">
-      <i class="iconfont icon-reward" />
+      <Icon icon="mingcute:certificate-fill" />
       <span class="text">赞赏博主</span>
     </div>
     <!-- 设置面板 -->
@@ -42,14 +43,14 @@ function toRewardList() {
           <a v-if="rewardData?.wechat" :href="rewardData.wechat" class="qr-img" target="_blank">
             <img v-if="rewardData?.wechat" :src="rewardData.wechat" alt="微信">
             <span class="tip">
-              <i class="iconfont icon-wechat-pay" />
+              <Icon icon="mingcute:wechat-pay-fill" />
               微信
             </span>
           </a>
           <a v-if="rewardData?.alipay" :href="rewardData.alipay" class="qr-img" target="_blank">
             <img v-if="rewardData?.alipay" :src="rewardData.alipay" alt="支付宝">
             <span class="tip">
-              <i class="iconfont icon-alipay" />
+              <Icon icon="mingcute:alipay-fill" />
               支付宝
             </span>
           </a>
@@ -85,9 +86,7 @@ function toRewardList() {
     color: #fff;
     background-color: var(--main-color-red);
     transition: box-shadow 0.5s;
-    .iconfont {
-      color: #fff;
-      font-weight: normal;
+    svg {
       margin-right: 6px;
     }
     &:hover {
@@ -123,13 +122,14 @@ function toRewardList() {
         flex-direction: row;
         align-items: center;
         margin-top: 0.8rem;
-        .iconfont {
+        svg {
           margin-right: 6px;
-          font-size: 18px;
+          width: 18px;
+          height: 18px;
         }
       }
       &:hover {
-        .iconfont {
+        svg {
           color: var(--main-color);
         }
       }

@@ -2,6 +2,7 @@
 <script lang="ts" setup>
 import { loadScript } from '@/utils/commonTools'
 import { daysFromNow } from '@/utils/helper'
+import { Icon } from '@iconify/vue'
 
 const { theme } = useData()
 
@@ -16,34 +17,34 @@ onMounted(() => {
 <template>
   <div class="site-data s-card">
     <div class="title">
-      <i class="iconfont icon-chart" />
+      <Icon icon="mingcute:chart-line-fill" />
       <span class="title-name">站点数据</span>
     </div>
     <div class="all-data">
       <div class="data-item">
         <span class="name">
-          <i class="iconfont icon-article" />
+          <Icon icon="mingcute:paper-2-fill" />
           文章总数
         </span>
         <span class="num">{{ theme.postData?.length || 0 }} 篇</span>
       </div>
       <div class="data-item">
         <span class="name">
-          <i class="iconfont icon-date" />
+          <Icon icon="mingcute:calendar-2-fill" />
           建站天数
         </span>
         <span class="num">{{ daysFromNow(theme.since) }} 天</span>
       </div>
       <div class="data-item">
         <span class="name">
-          <i class="iconfont icon-visibility" />
+          <Icon icon="mingcute:eye-2-fill" />
           总访问量
         </span>
         <span id="busuanzi_value_site_pv" class="num">0</span>
       </div>
       <div class="data-item">
         <span class="name">
-          <i class="iconfont icon-account" />
+          <Icon icon="mingcute:user-follow-fill" />
           总访客数
         </span>
         <span id="busuanzi_value_site_uv" class="num">0</span>
@@ -65,10 +66,11 @@ onMounted(() => {
         display: flex;
         flex-direction: row;
         align-items: center;
-        .iconfont {
+        svg {
           margin-right: 8px;
           opacity: 0.6;
-          font-size: 18px;
+          width: 18px;
+          height: 18px;
         }
       }
       .num {

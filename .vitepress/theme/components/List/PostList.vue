@@ -2,6 +2,7 @@
 <script lang="ts" setup>
 import { mainStore } from '@/store'
 import { formatTimestamp } from '@/utils/helper'
+import { Icon } from '@iconify/vue'
 
 withDefaults(defineProps<{
   // 列表数据
@@ -97,7 +98,7 @@ function toPost(path: string) {
               class="tags-name"
               @click.stop="router.go(`/pages/tags/${tags}`)"
             >
-            <Icon icon="mingcute:hashtag-fill" />
+              <Icon icon="mingcute:hashtag-fill" />
               {{ tags }}
             </span>
           </div>

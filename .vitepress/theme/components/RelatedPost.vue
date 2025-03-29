@@ -3,6 +3,7 @@
 import type { ThemeConfig } from '@/types/theme'
 import { generateId } from '@/utils/commonTools'
 import { shufflePost } from '@/utils/helper'
+import { Icon } from '@iconify/vue'
 
 const router = useRouter()
 const { theme, page, frontmatter } = useData<ThemeConfig>()
@@ -43,7 +44,7 @@ onMounted(() => {
   <div v-if="relatedData" class="related-post">
     <div class="title">
       <span class="name">
-        <i class="iconfont icon-star" />
+        <Icon icon="mingcute:ai-fill" />
         相关推荐
       </span>
       <span class="shuffle" @click="router.go(shufflePost(theme.postData))"> 随便逛逛 </span>
@@ -69,9 +70,9 @@ onMounted(() => {
       align-items: center;
       font-size: 24px;
       font-weight: bold;
-      .iconfont {
-        font-size: 26px;
-        font-weight: normal;
+      svg {
+        width: 26px;
+        height: 26px;
         margin-right: 8px;
       }
     }

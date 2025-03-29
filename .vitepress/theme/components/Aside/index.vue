@@ -34,7 +34,7 @@ const { theme } = useData()
       display: flex;
       align-items: center;
       opacity: 0.75;
-      .iconfont {
+      svg {
         opacity: 0.6;
         margin-right: 6px;
       }

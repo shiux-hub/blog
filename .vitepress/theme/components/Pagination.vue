@@ -146,7 +146,7 @@ onMounted(() => {
         )
       "
     >
-    <Icon icon="mingcute:right-fill" />
+      <Icon icon="mingcute:right-fill" />
       <span class="page-text">上页</span>
     </div>
     <div class="page-number">
@@ -154,7 +154,7 @@ onMounted(() => {
         v-for="(item, index) in pageNumber"
         :key="index"
         :class="[item === '...' ? 'point' : 'page-item', { choose: item === currentPage }]"
-        @click="jumpPage(item === 1 ? `${routePath}` : `${routePath}/page/${item}`, item)"
+        @click="item !== '...' && jumpPage(item === 1 ? routePath : `${routePath}/page/${item}`, item)"
       >
         <span class="page-num">{{ item }}</span>
       </div>
@@ -169,7 +169,7 @@ onMounted(() => {
           @input="validateInput"
           @keydown.enter="fastJump"
         >
-        <Icon icon="mingcute:arrows-right-line"  :class="[{ click: jumpInput }]" @click.stop="fastJump" />
+        <Icon icon="mingcute:arrows-right-line" :class="[{ click: jumpInput }]" @click.stop="fastJump" />
       </div>
     </div>
     <div

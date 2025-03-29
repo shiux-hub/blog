@@ -1,6 +1,7 @@
 <!-- 全局设置 -->
 <script lang="ts" setup>
 import { mainStore } from '@/store'
+import { Icon } from '@iconify/vue'
 import { storeToRefs } from 'pinia'
 
 const store = mainStore()
@@ -11,7 +12,7 @@ const { themeType, fontFamily, fontSize, infoPosition, backgroundType, backgroun
 <template>
   <div class="settings">
     <div class="set-btn s-card" @click="store.changeShowStatus('showSeetings')">
-      <i class="iconfont icon-style" />
+      <Icon icon="mingcute:palette-2-fill" class="size-5.5 shrink-0" />
       <span class="set-text">个性化配置</span>
     </div>
     <!-- 设置面板 -->
@@ -137,8 +138,7 @@ const { themeType, fontFamily, fontSize, infoPosition, backgroundType, backgroun
     padding: 0;
     border-radius: 25px;
     box-shadow: 0 6px 10px -4px var(--main-dark-shadow);
-    .iconfont {
-      font-size: 22px;
+    svg {
       margin-left: 10px;
       transition: color 0.3s;
     }
@@ -157,9 +157,6 @@ const { themeType, fontFamily, fontSize, infoPosition, backgroundType, backgroun
       color: var(--main-card-background);
       border-color: var(--main-color);
       background-color: var(--main-color);
-      .iconfont {
-        color: var(--main-card-background);
-      }
       .set-text {
         opacity: 1;
       }

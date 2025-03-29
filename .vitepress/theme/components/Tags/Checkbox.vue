@@ -1,5 +1,7 @@
 <script lang="ts" setup>
-const model = defineModel()
+import { Icon } from '@iconify/vue'
+
+const model = defineModel<boolean>()
 
 // 点击切换
 function checkboxClick() {
@@ -9,7 +11,15 @@ function checkboxClick() {
 
 <template>
   <div class="checkbox" @click="checkboxClick">
-    <div class="checkbox-box" :class="[{ check: model }]" />
+    <div
+      class="checkbox-box group"
+      :class="{ check: model }"
+    >
+      <Icon
+        icon="mingcute:check-fill"
+        class="absolute size-3 text-card-background opacity-0 scale-0 transition-[opacity,scale] group-hover:opacity-100 group-hover:scale-100"
+      />
+    </div>
     <div class="checkbox-label">
       <slot />
     </div>
@@ -36,22 +46,9 @@ function checkboxClick() {
     transition:
       border 0.3s,
       background-color 0.3s;
-    &::after {
-      content: "\e04e";
-      position: absolute;
-      font-family: "iconfont";
-      font-size: 12px;
-      color: var(--main-card-background);
-      font-weight: bold;
-      opacity: 0;
-      transform: scale(0);
-      transition:
-        opacity 0.3s,
-        transform 0.3s;
-    }
     &.check {
       background-color: var(--main-color);
-      &::after {
+      svg {
         opacity: 1;
         transform: scale(1);
       }

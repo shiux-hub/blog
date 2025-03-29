@@ -1,5 +1,6 @@
 <script setup>
 import { mainStore } from '@/store'
+import { Icon } from '@iconify/vue'
 
 const store = mainStore()
 const router = useRouter()
@@ -28,7 +29,7 @@ function pageJump(url) {
           <div v-show="store.mobileMenuShow" class="menu-content s-card">
             <!-- 关闭按钮 -->
             <div class="close-control" @click="store.changeShowStatus('mobileMenuShow')">
-              <i class="iconfont icon-close" />
+              <Icon icon="mingcute:close-fill" />
             </div>
             <!-- 菜单 -->
             <div class="menu-list">
@@ -36,13 +37,13 @@ function pageJump(url) {
                 <span class="link-title"> {{ item.text }}</span>
                 <div v-if="item.items" class="link-child">
                   <div
-                    v-for="(child, childIndex) in item.items"
+                    v-for="({ link, icon, text }, childIndex) in item.items"
                     :key="childIndex"
                     class="link-child-btn"
-                    @click="pageJump(child.link)"
+                    @click="pageJump(link)"
                   >
-                    <i v-if="child.icon" :class="`iconfont icon-${child.icon}`" />
-                    <span class="name">{{ child.text }}</span>
+                    <Icon v-if="icon" :icon />
+                    <span class="name">{{ text }}</span>
                   </div>
                 </div>
               </div>
@@ -112,8 +113,9 @@ function pageJump(url) {
         opacity 0.3s;
       border-radius: 50%;
       cursor: pointer;
-      .iconfont {
-        font-size: 18px;
+      svg {
+        width: 18px;
+        height: 18px;
         line-height: 1;
         color: var(--main-font-second-color);
         transition:
@@ -122,7 +124,7 @@ function pageJump(url) {
       }
       &:hover {
         background-color: var(--main-color);
-        .iconfont {
+        svg {
           color: var(--main-card-background);
         }
       }
@@ -156,7 +158,7 @@ function pageJump(url) {
           border: 1px solid var(--main-card-border);
           box-shadow: 0 8px 16px -4px var(--main-border-shadow);
           font-size: 15px;
-          .iconfont {
+          svg {
             margin-right: 6px;
             opacity: 0.6;
           }

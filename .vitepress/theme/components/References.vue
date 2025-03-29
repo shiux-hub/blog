@@ -1,6 +1,7 @@
 <!-- 参考资料 -->
 <script lang="ts" setup>
 import type { ThemeConfig } from '@/types/theme'
+import { Icon } from '@iconify/vue'
 
 const { frontmatter } = useData<ThemeConfig>()
 
@@ -11,7 +12,7 @@ const references = frontmatter.value?.references
 <template>
   <div v-if="references" class="references s-card">
     <div class="title">
-      <i class="iconfont icon-quote" />
+      <Icon icon="mingcute:quote-left-fill" />
       <span class="title-text">参考资料</span>
     </div>
     <ul class="list">
@@ -41,9 +42,10 @@ const references = frontmatter.value?.references
     color: var(--main-font-second-color);
     font-size: 15px;
     margin-bottom: 0.8rem;
-    .iconfont {
+    svg {
       margin-right: 4px;
-      font-size: 18px;
+      width: 18px;
+      height: 18px;
       color: var(--main-font-second-color);
       opacity: 0.6;
     }

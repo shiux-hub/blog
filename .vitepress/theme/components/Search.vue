@@ -89,7 +89,7 @@ onBeforeUnmount(() => {
               </div>
             </div>
             <div v-else class="no-result">
-              <i class="iconfont icon-search-empty" />
+              <Icon icon="material-symbols:search-off" />
               <span class="text">搜索结果为空</span>
             </div>
           </Transition>
@@ -102,7 +102,7 @@ onBeforeUnmount(() => {
             <span v-if="hasSearchValue" class="text"> 本次用时 {{ processingTimeMS }} 毫秒 </span>
           </div>
           <a class="power" href="https://www.algolia.com/" target="_blank">
-            <i class="iconfont icon-algolia" />
+            <Icon icon="tabler:brand-algolia" />
             <span class="name">Algolia</span>
           </a>
         </template>
@@ -154,8 +154,9 @@ onBeforeUnmount(() => {
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      .iconfont {
-        font-size: 40px;
+      svg {
+        width: 40px;
+        height: 40px;
         margin-bottom: 12px;
       }
       .text {
@@ -265,9 +266,10 @@ onBeforeUnmount(() => {
       transition:
         color 0.3s,
         opacity 0.3s;
-      .iconfont {
+      svg {
         margin-right: 4px;
-        font-size: 20px;
+        width: 20px;
+        height: 20px;
         transition: color 0.3s;
       }
       .name {
@@ -276,9 +278,6 @@ onBeforeUnmount(() => {
       &:hover {
         opacity: 1;
         color: var(--main-color);
-        .iconfont {
-          color: var(--main-color);
-        }
       }
     }
     @media (max-width: 512px) {

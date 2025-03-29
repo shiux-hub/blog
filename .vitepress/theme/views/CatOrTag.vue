@@ -1,5 +1,7 @@
 <!-- 分类 -->
 <script lang="ts" setup>
+import { Icon } from '@iconify/vue'
+
 withDefaults(defineProps<{
   type?: 'categories' | 'tags' // 页面类型：categories 分类，tags 标签
 }>(), {
@@ -28,7 +30,7 @@ const { theme } = useData()
         :href="`/pages/categories/${key}`"
         class="type-item s-card"
       >
-        <i class="iconfont icon-folder" />
+        <Icon icon="mingcute:classify-2-fill" />
         <span class="name">{{ key }}</span>
         <span class="num">{{ item.count }}</span>
       </a>
@@ -40,7 +42,7 @@ const { theme } = useData()
         :href="`/pages/tags/${key}`"
         class="type-item s-card"
       >
-        <i class="iconfont icon-hashtag" />
+        <Icon icon="mingcute:hashtag-fill" />
         <span class="name">{{ key }}</span>
         <span class="num">{{ item.count }}</span>
       </a>
@@ -83,9 +85,10 @@ const { theme } = useData()
         font-weight: bold;
         transition: color 0.3s;
       }
-      .iconfont {
+      svg {
         margin-right: 8px;
-        font-size: 1.25rem;
+        width: 1.25rem;
+        height: 1.25rem;
         opacity: 0.6;
         transition: color 0.3s;
       }
@@ -104,7 +107,7 @@ const { theme } = useData()
         transform: scale(1.05);
         background-color: var(--main-color);
         .name,
-        .iconfont {
+        svg {
           color: var(--main-card-background);
         }
       }

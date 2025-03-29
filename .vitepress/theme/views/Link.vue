@@ -2,6 +2,7 @@
 <script lang="ts" setup>
 import linkData from '@/assets/linkData'
 import { smoothScrolling } from '@/utils/helper'
+import { Icon } from '@iconify/vue'
 
 // 全部友链
 const allLinkData = computed(() => {
@@ -39,11 +40,11 @@ function randomJump() {
       <template #header-slot>
         <div class="menu">
           <div class="menu-item random" @click="randomJump">
-            <i class="iconfont icon-shuffle" />
+            <Icon icon="mingcute:shuffle-2-fill" />
             <span class="name">随机访问</span>
           </div>
           <div class="menu-item add" @click="smoothScrolling('#友情链接申请')">
-            <i class="iconfont icon-right-round" />
+            <Icon icon="mingcute:arrow-right-circle-fill" />
             <span class="name">申请友链</span>
           </div>
         </div>
@@ -96,28 +97,25 @@ function randomJump() {
         transition: all 0.3s;
         cursor: pointer;
 
-        .iconfont {
-          font-size: 18px;
+        svg {
+          width: 18px;
+          height: 18px;
           margin-right: 8px;
           transition: color 0.3s;
         }
 
         &.random {
           color: var(--main-color);
-
-          .iconfont {
-            color: var(--main-color);
-          }
         }
 
         &.add {
           color: var(--main-card-second-background);
           background-color: var(--main-font-color);
 
-          .iconfont {
-            font-size: 22px;
+          svg {
+            width: 22px;
+            height: 22px;
             margin-right: 6px;
-            color: var(--main-card-second-background);
           }
         }
 
@@ -129,10 +127,6 @@ function randomJump() {
           color: #fff;
           background-color: var(--main-color);
           box-shadow: 0 8px 16px -4px var(--main-color-bg);
-
-          .iconfont {
-            color: #fff;
-          }
         }
       }
     }

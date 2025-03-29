@@ -1,5 +1,6 @@
-<script setup>
+<script lang="ts" setup>
 import Banner from '@/components/Banner.vue'
+import { Icon } from '@iconify/vue'
 </script>
 
 <template>
@@ -13,7 +14,7 @@ import Banner from '@/components/Banner.vue'
     >
       <template #footer-slot>
         <a class="to-github" href="https://github.com/imsyy/" target="_blank">
-          <i class="iconfont icon-github" />
+          <Icon icon="ri:github-line" />
           <span>前往 Github</span>
         </a>
       </template>
@@ -44,9 +45,6 @@ import Banner from '@/components/Banner.vue'
       &:hover {
         color: var(--main-card-background);
         background-color: var(--main-color);
-        .iconfont {
-          color: var(--main-card-background) !important;
-        }
       }
     }
   }

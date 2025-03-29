@@ -8,11 +8,13 @@ import { themeConfig } from './theme/assets/themeConfig'
 export async function getThemeConfig() {
   try {
     // 配置文件绝对路径
-    const configPath = path.resolve(__dirname, '../themeConfig')
+    const configPath = path.resolve(__dirname, '../themeConfig.ts')
+
     if (existsSync(configPath)) {
       // 文件存在时进行动态导入
-      const userConfig = await import('../themeConfig'!)
-      return Object.assign(themeConfig, userConfig?.themeConfig || {})
+      const userConfig = await import('../themeConfig')
+
+      return Object.assign(themeConfig, userConfig.themeConfig || {})
     }
     else {
       // 文件不存在时返回默认配置

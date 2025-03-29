@@ -1,6 +1,7 @@
 <!-- 中控台 -->
 <script lang="ts" setup>
 import { mainStore } from '@/store'
+import { Icon } from '@iconify/vue'
 
 const store = mainStore()
 

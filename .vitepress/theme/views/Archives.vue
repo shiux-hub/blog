@@ -1,4 +1,6 @@
 <script lang="ts" setup>
+import { Icon } from '@iconify/vue'
+
 const { theme } = useData()
 const router = useRouter()
 </script>
@@ -29,7 +31,7 @@ const router = useRouter()
                 :href="`/pages/tags/${tags}`"
                 class="type-item"
               >
-                <i class="iconfont icon-hashtag" />
+                <Icon icon="mingcute:hashtag-fill" />
                 <span class="name">{{ tags }}</span>
               </a>
             </div>
@@ -105,13 +107,13 @@ const router = useRouter()
               .name {
                 transition: color 0.3s;
               }
-              .iconfont {
+              svg {
                 margin-right: 2px;
                 transition: color 0.3s;
               }
               &:hover {
                 .name,
-                .iconfont {
+                svg {
                   color: var(--main-color);
                 }
               }

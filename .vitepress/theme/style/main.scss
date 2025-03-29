@@ -60,9 +60,6 @@ html {
   &.lxgw {
     --main-font-family: "LXGW WenKai Screen", sans-serif;
   }
-  .iconfont {
-    font-size: 1rem;
-  }
   button {
     font-family: var(--main-font-family);
   }
@@ -146,7 +143,7 @@ a {
   text-decoration: none;
   color: var(--main-font-color);
   transition: all 0.3s;
-  .iconfont {
+  svg {
     transition: all 0.3s;
   }
   &:hover {

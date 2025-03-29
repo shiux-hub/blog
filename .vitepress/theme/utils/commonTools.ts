@@ -1,11 +1,13 @@
+import type { ThemeConfig } from '@/types/theme'
+import { Buffer } from 'node:buffer'
+import process from 'node:process'
 import { load } from 'cheerio'
 
 /**
  * 从文件名生成数字 ID
- * @param {string} fileName - 文件名
- * @returns {number} - 生成的数字ID
+ * @param fileName - 文件名
  */
-export function generateId(fileName) {
+export function generateId(fileName: string) {
   // 将文件名转换为哈希值
   let hash = 0
   for (let i = 0; i < fileName.length; i++) {
@@ -18,10 +20,13 @@ export function generateId(fileName) {
 
 /**
  * 动态加载脚本
- * @param {string} src - 脚本 URL
- * @param {object} option - 配置
+ * @param src - 脚本 URL
  */
-export function loadScript(src: string, option = {}) {
+export function loadScript(src: string, option: {
+  async?: boolean
+  reload?: boolean
+  callback?: (error: Event | string | null, script?: HTMLScriptElement | Element | null) => void
+} = {}) {
   if (typeof document === 'undefined' || !src)
     return false
   // 获取配置
@@ -29,7 +34,7 @@ export function loadScript(src: string, option = {}) {
   // 检查是否已经加载过此脚本
   const existingScript = document.querySelector(`script[src="${src}"]`)
   if (existingScript) {
-    console.log('已有重复脚本')
+    console.warn('已有重复脚本')
     if (!reload) {
       callback && callback(null, existingScript)
       return false
@@ -56,10 +61,12 @@ export function loadScript(src: string, option = {}) {
 
 /**
  * 动态加载样式表
- * @param {string} href - 样式表 URL
- * @param {object} option - 配置
+ * @param href - 样式表 URL
  */
-export function loadCSS(href, option = {}) {
+export function loadCSS(href: string, option: {
+  reload?: boolean
+  callback?: (error: Event | string | null, link?: HTMLLinkElement | Element | null) => void
+} = {}) {
   if (typeof document === 'undefined' || !href)
     return false
   // 获取配置
@@ -67,7 +74,7 @@ export function loadCSS(href, option = {}) {
   // 检查是否已经加载过此样式表
   const existingLink = document.querySelector(`link[href="${href}"]`)
   if (existingLink) {
-    console.log('已有重复样式')
+    console.warn('已有重复样式')
     if (!reload) {
       callback && callback(null, existingLink)
       return false
@@ -94,17 +101,18 @@ export function loadCSS(href, option = {}) {
 
 /**
  * 跳转中转页
- * @param {string} html - 页面内容
- * @param {boolean} isDom - 是否为 DOM 对象
+ * @param html - 页面内容
+ * @param themeConfig - 主题配置
+ * @param isDom - 是否为 DOM 对象
  */
-export function jumpRedirect(html, themeConfig, isDom = false) {
+export function jumpRedirect(html: string, themeConfig: ThemeConfig, isDom = false) {
   try {
     // 是否为开发环境
     const isDev = process.env.NODE_ENV === 'development'
     if (isDev)
       return false
     // 是否启用
-    if (!themeConfig.jumpRedirect.enable)
+    if (!themeConfig.jumpRedirect?.enable)
       return html
     // 中转页地址
     const redirectPage = '/redirect'

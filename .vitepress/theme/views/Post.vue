@@ -4,6 +4,7 @@ import type { ThemeConfig } from '@/types/theme'
 import { generateId } from '@/utils/commonTools'
 import { formatTimestamp } from '@/utils/helper'
 import initFancybox from '@/utils/initFancybox'
+import { Icon } from '@iconify/vue'
 
 const { page, theme, frontmatter } = useData<ThemeConfig>()
 
@@ -32,7 +33,7 @@ onMounted(() => {
             :href="`/pages/categories/${item}`"
             class="cat-item"
           >
-            <i class="iconfont icon-folder" />
+            <Icon icon="mingcute:classify-2-fill" />
             <span class="name">{{ item }}</span>
           </a>
         </div>
@@ -43,7 +44,7 @@ onMounted(() => {
             :href="`/pages/tags/${item}`"
             class="tag-item"
           >
-            <i class="iconfont icon-hashtag" />
+            <Icon icon="mingcute:hashtag-fill" />
             <span class="name">{{ item }}</span>
           </a>
         </div>
@@ -53,21 +54,21 @@ onMounted(() => {
       </h1>
       <div class="other-meta">
         <span class="meta date">
-          <i class="iconfont icon-date" />
+          <Icon icon="mingcute:calendar-2-line" />
           {{ formatTimestamp(postMetaData.date) }}
         </span>
         <span class="update meta">
-          <i class="iconfont icon-time" />
+          <Icon icon="mingcute:time-fill" />
           {{ formatTimestamp(page?.lastUpdated || postMetaData.lastModified) }}
         </span>
         <!-- 热度 -->
         <span class="hot meta">
-          <i class="iconfont icon-fire" />
+          <Icon icon="mingcute:fire-fill" />
           <span id="twikoo_visitors" class="artalk-pv-count">0</span>
         </span>
         <!-- 评论数 -->
         <span class="chat meta hover" @click="commentRef?.scrollToComments">
-          <i class="iconfont icon-chat" />
+          <Icon icon="mingcute:chat-1-fill" />
           <span id="twikoo_comments" class="artalk-comment-count">0</span>
         </span>
       </div>
@@ -95,7 +96,7 @@ onMounted(() => {
               :href="`/pages/tags/${item}`"
               class="tag-item"
             >
-              <i class="iconfont icon-hashtag" />
+              <Icon icon="mingcute:hashtag-fill" />
               <span class="name">{{ item }}</span>
             </a>
           </div>
@@ -104,7 +105,7 @@ onMounted(() => {
             class="report"
             target="_blank"
           >
-            <i class="iconfont icon-report" />
+            <Icon icon="mingcute:report-line" />
             反馈与投诉
           </a>
         </div>
@@ -148,15 +149,12 @@ onMounted(() => {
           border-radius: 8px;
           background-color: var(--main-mask-Inverse-background);
           opacity: 0.8;
-          .iconfont {
+          svg {
             margin-right: 6px;
           }
           &:hover {
             color: var(--main-color);
             background-color: var(--main-color-bg);
-            .iconfont {
-              color: var(--main-color);
-            }
           }
         }
       }
@@ -173,17 +171,13 @@ onMounted(() => {
           font-weight: bold;
           border-radius: 8px;
           opacity: 0.8;
-          .iconfont {
+          svg {
             margin-right: 4px;
             opacity: 0.6;
-            font-weight: normal;
           }
           &:hover {
             color: var(--main-color);
             background-color: var(--main-color-bg);
-            .iconfont {
-              color: var(--main-color);
-            }
           }
         }
       }
@@ -206,17 +200,16 @@ onMounted(() => {
         font-size: 14px;
         border-radius: 8px;
         opacity: 0.8;
-        .iconfont {
+        svg {
           margin-right: 6px;
           transition: color 0.3s;
         }
         &.date {
           padding-left: 0;
         }
-        &.hot {
-          .iconfont {
-            font-size: 18px;
-          }
+        &.hot svg {
+          width: 18px;
+          height: 18px;
         }
         &.hover {
           transition:
@@ -226,9 +219,6 @@ onMounted(() => {
           &:hover {
             color: var(--main-color);
             background-color: var(--main-color-bg);
-            .iconfont {
-              color: var(--main-color);
-            }
           }
         }
       }
@@ -278,7 +268,7 @@ onMounted(() => {
             border-radius: 8px;
             background-color: var(--main-card-border);
             margin-right: 12px;
-            .iconfont {
+            svg {
               margin-right: 4px;
               opacity: 0.6;
               font-weight: normal;
@@ -286,9 +276,6 @@ onMounted(() => {
             &:hover {
               color: var(--main-color);
               background-color: var(--main-color-bg);
-              .iconfont {
-                color: var(--main-color);
-              }
             }
           }
         }
@@ -301,15 +288,12 @@ onMounted(() => {
           font-weight: bold;
           border-radius: 8px;
           background-color: var(--main-card-border);
-          .iconfont {
+          svg {
             margin-right: 6px;
           }
           &:hover {
             color: #efefef;
             background-color: var(--main-error-color);
-            .iconfont {
-              color: #efefef;
-            }
           }
         }
       }
@@ -326,6 +310,10 @@ onMounted(() => {
         display: none;
       }
     }
+  }
+  svg {
+    width: 1rem;
+    height: 1rem;
   }
   @media (max-width: 768px) {
     .post-meta {

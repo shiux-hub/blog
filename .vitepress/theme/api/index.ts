@@ -1,12 +1,12 @@
+import type { Hitokoto } from '@/types/hitokoto'
 import type { SiteInfo } from '@/types/site'
 
 /**
  * 获取一言
- * @param {string} [rule] - 文章的排序规则，可以是 "created" 或 "updated"
  */
 export async function getHitokoto() {
   const result = await fetch('https://v1.hitokoto.cn')
-  const hitokoto = await result.json()
+  const hitokoto: Hitokoto = await result.json()
   return hitokoto
 }
 

@@ -1,44 +1,40 @@
 <!-- 弹窗组件 -->
-<script setup>
-const props = defineProps({
+<script lang="ts" setup>
+import { Icon } from '@iconify/vue'
+
+const props = withDefaults(defineProps<{
   // 是否显示
-  show: {
-    type: Boolean,
-    default: false,
-  },
+  show?: boolean
   // 标题
-  title: {
-    type: String,
-    default: '',
-  },
+  title?: string
   // 标题图标
-  titleIcon: {
-    type: String,
-    default: '',
-  },
+  titleIcon?: string
   // 是否显示关闭按钮
-  showClose: {
-    type: Boolean,
-    default: true,
-  },
+  showClose?: boolean
   // 最大宽度
-  maxWidth: {
-    type: [Number, String],
-    default: 800,
-  },
+  maxWidth?: number | string
   // 最大高度
-  maxHeight: {
-    type: Number,
-    default: 80,
-  },
+  maxHeight?: number
+}>(), {
+  show: false,
+  title: '',
+  titleIcon: '',
+  showClose: true,
+  maxWidth: 800,
+  maxHeight: 80,
 })
 
 // 发射事件
-const emit = defineEmits(['mask-click', 'modal-close'])
+const emit = defineEmits<{
+  // 遮罩层点击事件
+  maskClick: []
+  // 关闭事件
+  modalClose: []
+}>()
 
 // 遮罩层事件
-const maskClick = () => emit('mask-click')
-const modalClose = () => emit('modal-close')
+const maskClick = () => emit('maskClick')
+const modalClose = () => emit('modalClose')
 
 // 监听开启
 watch(
@@ -64,11 +60,11 @@ watch(
           <!-- 标题 -->
           <div v-if="title" class="title">
             <div class="title-left">
-              <i v-if="titleIcon" :class="`iconfont icon-${titleIcon}`" />
+              <Icon v-if="titleIcon" :icon="titleIcon" />
               <span class="title-text">{{ title }}</span>
             </div>
             <!-- 关闭按钮 -->
-            <i v-if="showClose" class="iconfont icon-close close" @click="modalClose" />
+            <Icon v-if="showClose" icon="mingcute:close-fill" class="close" @click="modalClose" />
           </div>
           <!-- 弹窗内容 -->
           <div class="modal-content" :style="{ '--height': `${maxHeight}vh` }">
@@ -118,8 +114,9 @@ watch(
       border-bottom: 1px solid var(--main-card-border);
       .title-left {
         width: 100%;
-        .iconfont {
-          font-size: 1.25rem;
+        svg {
+          width: 1.25rem;
+          height: 1.25rem;
           margin-right: 8px;
         }
       }
@@ -127,7 +124,8 @@ watch(
         position: absolute;
         right: 20px;
         margin-right: 0;
-        font-size: 1rem;
+        width: 1rem;
+        height: 1rem;
         border-radius: 8px;
         padding: 8px;
         transition: background-color 0.3s;

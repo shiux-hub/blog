@@ -1,6 +1,8 @@
 <script lang="ts" setup>
+import type { Hitokoto } from '@/types/hitokoto'
 import { getHitokoto } from '@/api'
 import { mainStore } from '@/store'
+import { Icon } from '@iconify/vue'
 
 const props = defineProps({
   // 类型
@@ -36,18 +38,17 @@ const props = defineProps({
 })
 const store = mainStore()
 const { theme } = useData()
-const hitokotoData = ref(null)
-const hitokotoTimeOut = ref(null)
+const hitokotoData = ref<Hitokoto | null>(null)
+let hitokotoTimeOut: number | null = null
 
 // banner
-const bannerType = ref(null)
+const bannerType = ref<string | null>(null)
 
 // 获取一言数据
 async function getHitokotoData() {
   try {
     const result = await getHitokoto()
-    const { hitokoto, from, from_who } = result
-    hitokotoData.value = { hitokoto, from, from_who }
+    hitokotoData.value = result
   }
   catch (error) {
     window.$message.error('一言获取失败')
@@ -75,7 +76,7 @@ watch(
 
 onMounted(() => {
   if (props.type === 'text') {
-    hitokotoTimeOut.value = setTimeout(() => {
+    hitokotoTimeOut = setTimeout(() => {
       getHitokotoData()
     }, 2000)
   }
@@ -84,12 +85,13 @@ onMounted(() => {
 })
 
 onBeforeUnmount(() => {
-  clearTimeout(hitokotoTimeOut.value)
+  if (hitokotoTimeOut)
+    clearTimeout(hitokotoTimeOut)
 })
 </script>
 
 <template>
-  <div v-if="type === 'text'" id="main-banner" class="banner" :class="[bannerType]">
+  <div v-if="type === 'text'" id="main-banner" class="banner" :class="bannerType">
     <h1 class="title">
       你好，欢迎来到{{ theme.siteMeta.title }}
     </h1>
@@ -100,15 +102,19 @@ onBeforeUnmount(() => {
         </span>
       </Transition>
     </div>
-    <Transition name="fade" mode="out-in">
-      <i v-if="height === 'full'" class="iconfont icon-up" @click="scrollToHome" />
+    <Transition v-if="height === 'full'" name="fade" mode="out-in">
+      <Icon
+        v-if="height === 'full'"
+        icon="mingcute:arrow-up-fill"
+        @click="scrollToHome"
+      />
     </Transition>
   </div>
   <div
     v-else-if="type === 'page'"
     class="banner-page s-card" :class="[{ image }]"
     :style="{
-      backgroundImage: image ? `url(${image})` : null,
+      backgroundImage: image ? `url(${image})` : '',
     }"
   >
     <div class="top">
@@ -248,7 +254,7 @@ onBeforeUnmount(() => {
       .footer-left {
         color: #fff;
       }
-      :deep(.iconfont) {
+      :deep(svg) {
         color: #fff !important;
       }
     }

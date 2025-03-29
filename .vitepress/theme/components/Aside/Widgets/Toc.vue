@@ -1,5 +1,6 @@
 <script lang="ts" setup>
 import { mainStore } from '@/store'
+import { Icon } from '@iconify/vue'
 import { throttle } from 'radashi'
 
 const route = useRoute()
@@ -49,10 +50,7 @@ function generateDirData() {
 
 // 高亮对应目录项
 const activeTocItem = throttle(
-  {
-    trailing: false,
-    interval: 100,
-  },
+  { interval: 100 },
   () => {
     if (!tocData.value)
       return false
@@ -138,7 +136,7 @@ onBeforeUnmount(() => {
   <!-- 目录 -->
   <div v-if="tocData && tocData?.length" class="toc s-card">
     <div class="toc-title">
-      <i class="iconfont icon-toc" />
+      <Icon icon="mingcute:menu-fill" />
       <span class="name">目录</span>
     </div>
     <div id="toc-all" class="toc-list" :style="{ '--height': `${activeTocHeight}px` }">
@@ -169,7 +167,7 @@ onBeforeUnmount(() => {
     align-items: center;
     padding: 18px;
     height: 58px;
-    .iconfont {
+    svg {
       margin-right: 8px;
       font-weight: bold;
       opacity: 0.6;

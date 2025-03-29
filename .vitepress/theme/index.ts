@@ -13,6 +13,7 @@ import { h } from 'vue'
 // InstantSearch
 import InstantSearch from 'vue-instantsearch/vue3/es'
 // 全局样式
+import '@/style/main.css'
 import '@/style/main.scss'
 
 // pinia

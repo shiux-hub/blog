@@ -35,7 +35,7 @@ function copyTip() {
 // 更改正确主题类别
 function changeSiteThemeType() {
   // 主题 class
-  const themeClasses = ['dark','light','auto'] as const
+  const themeClasses = ['dark', 'light', 'auto'] as const
   // 必要数据
   const htmlElement = document.documentElement
   console.log('当前模式：', themeType.value)

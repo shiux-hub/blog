@@ -1,6 +1,7 @@
 <!-- 分类导航条 -->
 <script lang="ts" setup>
 import type { ThemeConfig } from '@/types/theme'
+import { Icon } from '@iconify/vue'
 
 withDefaults(defineProps<{
   // 显示类别

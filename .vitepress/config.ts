@@ -1,8 +1,10 @@
 import type { ThemeConfig } from '@/types/theme'
 import path from 'node:path'
+import tailwindcss from '@tailwindcss/vite'
 import { withPwa } from '@vite-pwa/vitepress'
-import AutoImport from 'unplugin-auto-import/vite'
-import Components from 'unplugin-vue-components/vite'
+import autoImport from 'unplugin-auto-import/vite'
+import components from 'unplugin-vue-components/vite'
+import vueDevTools from 'vite-plugin-vue-devtools'
 import { defineConfigWithTheme } from 'vitepress'
 import { getThemeConfig } from './init'
 import { jumpRedirect } from './theme/utils/commonTools'
@@ -82,16 +84,18 @@ export default withPwa(
     // vite
     vite: {
       plugins: [
-        AutoImport({
+        tailwindcss() as any,
+        autoImport({
           imports: ['vue', 'vitepress'],
           dts: '.vitepress/auto-imports.d.ts',
         }),
-        Components({
+        components({
           dirs: ['.vitepress/theme/components', '.vitepress/theme/views'],
           extensions: ['vue', 'md'],
           include: [/\.vue$/, /\.vue\?vue/, /\.md$/],
           dts: '.vitepress/components.d.ts',
         }),
+        vueDevTools(),
       ],
       resolve: {
         // 配置路径别名
@@ -142,20 +146,6 @@ export default withPwa(
             handler: 'CacheFirst',
             options: {
               cacheName: 'image-cache',
-            },
-          },
-          {
-            urlPattern: /^https:\/\/cdn2\.codesign\.qq\.com\/.*/i,
-            handler: 'CacheFirst',
-            options: {
-              cacheName: 'iconfont-cache',
-              expiration: {
-                maxEntries: 10,
-                maxAgeSeconds: 60 * 60 * 24 * 2,
-              },
-              cacheableResponse: {
-                statuses: [0, 200],
-              },
             },
           },
         ],

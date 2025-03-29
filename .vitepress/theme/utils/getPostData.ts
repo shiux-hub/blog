@@ -116,7 +116,7 @@ export function getAllType(postData: PostDataItem[]) {
   postData.map((item) => {
     // 检查是否有 tags 属性
     if (!item.tags || item.tags.length === 0)
-      return
+      return null
     // 处理标签
     if (typeof item.tags === 'string') {
       // 以逗号分隔

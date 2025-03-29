@@ -1,6 +1,7 @@
 <script setup>
 import { mainStore } from '@/store'
 import { shufflePost, smoothScrolling } from '@/utils/helper'
+import { Icon } from '@iconify/vue'
 import { storeToRefs } from 'pinia'
 
 const router = useRouter()
@@ -16,7 +17,7 @@ const { site, theme, frontmatter, page } = useData()
         <!-- 导航栏左侧 -->
         <div class="left-nav">
           <div class="more-menu nav-btn" title="更多内容">
-            <i class="iconfont icon-menu" />
+            <Icon icon="mingcute:classify-3-fill" />
             <div class="more-card s-card">
               <div v-for="(item, index) in theme.navMore" :key="index" class="more-item">
                 <span class="more-name">{{ item.name }}</span>
@@ -35,8 +36,14 @@ const { site, theme, frontmatter, page } = useData()
               </div>
             </div>
           </div>
-          <div class="site-name" @click="router.go('/')">
+          <div class="site-name group active:scale-95" @click="router.go('/')">
             {{ site.title }}
+            <div class="absolute rounded-3xl flex items-center justify-center opacity-0 transition-opacity duration-300 group-hover:opacity-100 inset-0 size-full text-card-background bg-foreground">
+              <Icon
+                icon="mingcute:home-4-fill"
+                class="size-5.5"
+              />
+            </div>
           </div>
         </div>
         <!-- 导航栏菜单 -->
@@ -46,13 +53,13 @@ const { site, theme, frontmatter, page } = useData()
               <span class="link-btn"> {{ item.text }}</span>
               <div v-if="item.items" class="link-child">
                 <span
-                  v-for="(child, childIndex) in item.items"
+                  v-for="({ link, icon, text }, childIndex) in item.items"
                   :key="childIndex"
                   class="link-child-btn"
-                  @click="router.go(child.link)"
+                  @click="router.go(link)"
                 >
-                  <i v-if="child.icon" :class="`iconfont icon-${child.icon}`" />
-                  {{ child.text }}
+                  <Icon v-if="icon" :icon />
+                  {{ text }}
                 </span>
               </div>
             </div>
@@ -69,7 +76,7 @@ const { site, theme, frontmatter, page } = useData()
             href="https://www.travellings.cn/go.html"
             target="_blank"
           >
-            <i class="iconfont icon-subway" />
+            <Icon icon="mingcute:airplane-fill" />
           </a>
           <!-- 随机文章 -->
           <div
@@ -77,7 +84,7 @@ const { site, theme, frontmatter, page } = useData()
             title="随机前往一篇文章"
             @click="router.go(shufflePost(theme.postData))"
           >
-            <i class="iconfont icon-shuffle" />
+            <Icon icon="mingcute:shuffle-2-fill" />
           </div>
           <!-- 搜索 -->
           <div
@@ -86,7 +93,7 @@ const { site, theme, frontmatter, page } = useData()
             title="全站搜索"
             @click="store.changeShowStatus('searchShow')"
           >
-            <i class="iconfont icon-search" />
+            <Icon icon="mingcute:search-line" />
           </div>
           <!-- 中控台 -->
           <div
@@ -95,13 +102,13 @@ const { site, theme, frontmatter, page } = useData()
             title="打开中控台"
             @click="store.changeShowStatus('controlShow')"
           >
-            <i class="iconfont icon-dashboard" />
+            <Icon icon="mingcute:dashboard-4-fill" />
           </div>
           <!-- 返回顶部 -->
           <div
-            class="to-top menu-btn" :class="[
-              { hidden: scrollData.height === 0, long: scrollData.percentage > 90 },
-            ]"
+            class="to-top menu-btn" :class="{
+              hidden: scrollData.height === 0, long: scrollData.percentage > 90,
+            }"
             title="返回顶部"
             @click="smoothScrolling"
           >
@@ -111,7 +118,7 @@ const { site, theme, frontmatter, page } = useData()
                   {{ scrollData.percentage <= 90 ? scrollData.percentage : "返回顶部" }}
                 </span>
               </Transition>
-              <i class="iconfont icon-up" />
+              <Icon icon="mingcute:arrow-up-fill" />
             </div>
           </div>
           <!-- 移动端菜单 -->
@@ -120,7 +127,7 @@ const { site, theme, frontmatter, page } = useData()
             title="打开菜单"
             @click="store.changeShowStatus('mobileMenuShow')"
           >
-            <i class="iconfont icon-toc" />
+            <Icon icon="mingcute:menu-fill" />
           </div>
         </div>
       </div>
@@ -289,34 +296,6 @@ const { site, theme, frontmatter, page } = useData()
         text-overflow: ellipsis;
         transition: transform 0.3s;
         cursor: pointer;
-        &::after {
-          content: "\e032";
-          font-family: "iconfont";
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          position: absolute;
-          top: 0;
-          left: 0;
-          width: 100%;
-          height: 100%;
-          color: var(--main-card-background);
-          background-color: var(--main-color);
-          font-size: 22px;
-          border-radius: 25px;
-          opacity: 0;
-          transition: opacity 0.3s;
-        }
-        @media (min-width: 768px) {
-          &:hover {
-            &::after {
-              opacity: 1;
-            }
-          }
-          &:active {
-            transform: scale(0.95);
-          }
-        }
       }
     }
     .nav-center {
@@ -403,9 +382,10 @@ const { site, theme, frontmatter, page } = useData()
                 padding 0.3s,
                 background-color 0.3s,
                 box-shadow 0.3s;
-              .iconfont {
+              svg {
                 margin-right: 8px;
-                font-size: 20px;
+                width: 1.25rem;
+                height: 1.25rem;
                 transition: color 0.3s;
               }
               &:hover {
@@ -413,9 +393,6 @@ const { site, theme, frontmatter, page } = useData()
                 background-color: var(--main-color);
                 box-shadow: 0 8px 12px -3px var(--main-color-bg);
                 padding: 0.6rem 1rem;
-                .iconfont {
-                  color: var(--main-card-background);
-                }
               }
             }
           }
@@ -633,8 +610,9 @@ const { site, theme, frontmatter, page } = useData()
     transition: background-color 0.3s;
     border-radius: 50%;
     cursor: pointer;
-    .iconfont {
-      font-size: 20px;
+    svg {
+      width: 1.25rem;
+      height: 1.25rem;
       line-height: 1;
       transition:
         color 0.3s,
@@ -642,7 +620,7 @@ const { site, theme, frontmatter, page } = useData()
     }
     &:hover {
       background-color: var(--main-color);
-      .iconfont {
+      svg {
         color: var(--main-card-background);
       }
     }

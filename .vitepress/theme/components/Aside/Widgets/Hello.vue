@@ -2,6 +2,7 @@
 <script lang="ts" setup>
 import type { ThemeConfig } from '@/types/theme'
 import { getGreetings } from '@/utils/helper'
+import { Icon } from '@iconify/vue'
 
 const { theme } = useData<ThemeConfig>()
 
@@ -84,10 +85,10 @@ onBeforeUnmount(() => {
       </div>
       <div class="link">
         <a href="https://github.com/imsyy/" target="_blank" class="social-link">
-          <i class="iconfont icon-github" />
+          <Icon icon="ri:github-line" />
         </a>
         <a href="mailto:one@imsyy.top" target="_blank" class="social-link">
-          <i class="iconfont icon-email" />
+          <Icon icon="mdi:email-outline" />
         </a>
       </div>
     </div>
@@ -183,8 +184,9 @@ onBeforeUnmount(() => {
         margin-left: 12px;
         background-color: var(--main-color-opacity);
         border-radius: 50%;
-        .iconfont {
-          font-size: 22px;
+        svg {
+          width: 22px;
+          height: 22px;
           color: var(--main-card-background);
         }
         &:first-child {
@@ -193,7 +195,7 @@ onBeforeUnmount(() => {
         &:hover {
           transform: scale(1.1);
           background-color: var(--main-card-background);
-          .iconfont {
+          svg {
             color: var(--main-font-color);
           }
         }

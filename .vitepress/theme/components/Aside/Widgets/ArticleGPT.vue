@@ -1,5 +1,7 @@
 <!-- AI 摘要（假） -->
 <script lang="ts" setup>
+import { Icon } from '@iconify/vue'
+
 const { frontmatter } = useData()
 const router = useRouter()
 
@@ -80,9 +82,9 @@ onBeforeUnmount(() => {
   <div v-if="frontmatter.articleGPT" class="article-gpt s-card">
     <div class="title">
       <span class="name" @click="router.go('/posts/2024/0218')">
-        <i class="iconfont icon-robot" />
+        <Icon class="icon-robot" icon="mingcute:openai-fill" />
         文章摘要
-        <i class="iconfont icon-up" />
+        <Icon class="icon-up" icon="mingcute:up-fill" />
       </span>
       <span class="logo" :class="[{ loading }]" @click="showOther"> FakeGPT </span>
     </div>

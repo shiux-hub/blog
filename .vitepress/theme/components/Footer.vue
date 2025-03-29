@@ -1,5 +1,6 @@
 <script setup>
 import { mainStore } from '@/store'
+import { Icon } from '@iconify/vue'
 import { storeToRefs } from 'pinia'
 
 const store = mainStore()
@@ -47,16 +48,8 @@ onBeforeUnmount(() => {
           {{ theme.siteMeta.author.name }}
         </a>
         <a class="icp link" href="https://beian.miit.gov.cn/" target="_blank">
-          <i class="iconfont icon-safe" />
+          <Icon icon="mingcute:safety-certificate-line" />
           {{ theme.icp }}
-        </a>
-        <a
-          class="upyun link"
-          href="https://www.upyun.com/?utm_source=lianmeng&utm_medium=referral"
-          target="_blank"
-        >
-          <i class="iconfont icon-upyun" />
-          又拍云
         </a>
       </div>
       <div class="meta">
@@ -68,7 +61,7 @@ onBeforeUnmount(() => {
           <span class="name">主题</span>
         </a>
         <a class="rss link" href="https://blog.imsyy.top/rss.xml" target="_blank">
-          <i class="iconfont icon-rss" />
+          <Icon icon="mingcute:rss-2-fill" />
           <span class="name">订阅</span>
         </a>
         <a
@@ -76,10 +69,10 @@ onBeforeUnmount(() => {
           href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh-hans"
           target="_blank"
         >
-          <i class="iconfont icon-line" />
-          <i class="iconfont icon-by-line" />
-          <i class="iconfont icon-nc-line" />
-          <i class="iconfont icon-nd-line" />
+          <Icon icon="ri:creative-commons-line" />
+          <Icon icon="ri:creative-commons-by-line" />
+          <Icon icon="ri:creative-commons-nc-line" />
+          <Icon icon="ri:creative-commons-sa-line" />
         </a>
       </div>
     </div>
@@ -116,14 +109,9 @@ onBeforeUnmount(() => {
       align-items: center;
       .icp {
         svg {
-          font-size: 20px;
+          width: 1.25rem;
+          height: 1.25rem;
           opacity: 0.6;
-        }
-      }
-      .upyun {
-        svg {
-          font-size: 20px;
-          font-weight: normal;
         }
       }
     }
@@ -169,16 +157,14 @@ onBeforeUnmount(() => {
         background-color 0.3s;
       cursor: pointer;
       svg {
-        font-size: 22px;
+        width: 22px;
+        height: 22px;
         margin-right: 4px;
         transition: color 0.3s;
       }
       &:hover {
         color: var(--main-color);
         background-color: var(--main-color-bg);
-        svg {
-          color: var(--main-color);
-        }
       }
     }
     @media (max-width: 768px) {

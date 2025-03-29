@@ -6,12 +6,13 @@
     "paths": {
       "@/*": [".vitepress/theme/*"]
     },
-    "types": ["vitepress"]
+    "types": ["vitepress", "vite/client"]
   },
   "include": [
     ".vitepress/**/*.ts",
     ".vitepress/**/*.vue",
     ".vitepress/**/*.d.ts",
     "**/*.md"
-  ]
+  ],
+  "exclude": ["node_modules"]
 }

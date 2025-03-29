@@ -77,12 +77,12 @@ escape('黄山') // 返回 %u9EC4%u5C71
 |       escape       |      unescape      |
 
 ```javascript
-let res = encodeURI("黄山"); // %E9%BB%84%E5%B1%B1
-decodeURI(res); // 返回 黄山
+let res = encodeURI('黄山') // %E9%BB%84%E5%B1%B1
+decodeURI(res) // 返回 黄山
 
-let res = encodeURIComponent("黄山"); // %E9%BB%84%E5%B1%B1
-decodeURI(res); // 返回 黄山
+res = encodeURIComponent('黄山') // %E9%BB%84%E5%B1%B1
+decodeURI(res) // 返回 黄山
 
-let res = escape("黄山"); // %u9EC4%u5C71
-unescape(res); // 返回 黄山
+res = escape('黄山') // %u9EC4%u5C71
+unescape(res) // 返回 黄山
 ```

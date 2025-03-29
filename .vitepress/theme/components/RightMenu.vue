@@ -359,7 +359,7 @@ defineExpose({ openRightMenu })
               class="btn"
               @click="commentCopy(clickedTypeData)"
             >
-              <Icon icon="mingcute:chat-1-fill" />
+              <Icon icon="mingcute:comment-fill" />
               <span class="name">评论选中内容</span>
             </div>
           </div>

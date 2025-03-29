@@ -2,6 +2,7 @@
 import type { PostDataItem } from '@/types/post'
 import type { ThemeConfig } from '@/types/theme'
 import { formatTimestamp } from '@/utils/helper'
+import { Icon } from '@iconify/vue'
 
 defineProps<{
   postData?: PostDataItem
@@ -11,7 +12,11 @@ const route = useRoute()
 </script>
 
 <template>
-  <div class="copyright s-card">
+  <div class="copyright relative s-card">
+    <Icon
+      icon="mingcute:copyright-line"
+      class="absolute -top-16 -right-16 opacity-10 size-64 rotate-[334deg]"
+    />
     <div class="title">
       <span class="post-name">{{ postData?.title || "未命名文章" }}</span>
       <a :href="theme.siteMeta.site + route.path" class="post-link" target="_blank">
@@ -95,16 +100,6 @@ const route = useRoute()
   }
   .meta-tip {
     opacity: 0.4;
-  }
-  &::after {
-    content: "\e021";
-    position: absolute;
-    top: -4rem;
-    right: -4rem;
-    font-family: "iconfont";
-    opacity: 0.1;
-    font-size: 16rem;
-    transform: rotate(334deg);
   }
   @media (max-width: 768px) {
     .post-meta {

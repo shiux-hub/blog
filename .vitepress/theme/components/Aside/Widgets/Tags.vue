@@ -1,6 +1,7 @@
 <!-- 侧边栏 - 标签 -->
 <script lang="ts" setup>
 import type { ThemeConfig } from '@/types/theme'
+import { Icon } from '@iconify/vue'
 
 const { theme } = useData<ThemeConfig>()
 </script>
@@ -8,7 +9,7 @@ const { theme } = useData<ThemeConfig>()
 <template>
   <div class="tags-cloud s-card">
     <div class="title">
-      <i class="iconfont icon-hashtag" />
+      <Icon icon="mingcute:hashtag-fill" />
       <span class="title-name">热门标签</span>
     </div>
     <div class="all-tags">

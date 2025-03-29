@@ -78,15 +78,6 @@ export const themeConfig: ThemeConfig = {
           href: 'https://mirrors.sustech.edu.cn/cdnjs/ajax/libs/lxgw-wenkai-screen-webfont/1.7.0/style.css',
         },
       ],
-      // iconfont
-      [
-        'link',
-        {
-          crossorigin: 'anonymous',
-          rel: 'stylesheet',
-          href: 'https://cdn2.codesign.qq.com/icons/g5ZpEgx3z4VO6j2/latest/iconfont.css',
-        },
-      ],
       // Embed code
       ['link', { rel: 'preconnect', href: 'https://use.sevencdn.com' }],
       ['link', { rel: 'preconnect', href: 'https://fonts.gstatic.com', crossorigin: '' }],
@@ -114,32 +105,31 @@ export const themeConfig: ThemeConfig = {
     {
       text: '文库',
       items: [
-        { text: '文章列表', link: '/pages/archives', icon: 'article' },
-        { text: '全部分类', link: '/pages/categories', icon: 'folder' },
-        { text: '全部标签', link: '/pages/tags', icon: 'hashtag' },
+        { text: '文章列表', link: '/pages/archives', icon: 'mingcute:follow-fill' },
+        { text: '全部分类', link: '/pages/categories', icon: 'mingcute:classify-2-fill' },
+        { text: '全部标签', link: '/pages/tags', icon: 'mingcute:hashtag-fill' },
       ],
     },
     {
       text: '专栏',
       items: [
-        { text: '技术分享', link: '/pages/categories/技术分享', icon: 'technical' },
-        { text: '我的项目', link: '/pages/project', icon: 'code' },
-        { text: '效率工具', link: '/pages/tools', icon: 'tools' },
+        { text: '我的项目', link: '/pages/project', icon: 'mingcute:code-fill' },
+        { text: '效率工具', link: '/pages/tools', icon: 'mingcute:tool-fill' },
       ],
     },
     {
       text: '友链',
       items: [
-        { text: '友链鱼塘', link: '/pages/friends', icon: 'fish' },
-        { text: '友情链接', link: '/pages/link', icon: 'people' },
+        { text: '友链鱼塘', link: '/pages/friends', icon: 'mdi:fishbowl' },
+        { text: '友情链接', link: '/pages/link', icon: 'mdi:people' },
       ],
     },
     {
       text: '我的',
       items: [
-        { text: '畅所欲言', link: '/pages/message', icon: 'chat' },
-        { text: '致谢名单', link: '/pages/thanks', icon: 'reward' },
-        { text: '关于本站', link: '/pages/about', icon: 'contacts' },
+        { text: '畅所欲言', link: '/pages/message', icon: 'mingcute:comment-fill' },
+        { text: '致谢名单', link: '/pages/thanks', icon: 'mingcute:certificate-fill' },
+        { text: '关于本站', link: '/pages/about', icon: 'mingcute:user-2-fill' },
       ],
     },
   ],

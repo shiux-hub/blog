@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import type { ThemeConfig } from '@/types/theme'
 import { getStatistics } from '@/api'
-import { Icon } from '@iconify/vue/dist/iconify.js'
+import { Icon } from '@iconify/vue'
 
 const { theme } = useData<ThemeConfig>()
 
@@ -76,7 +76,7 @@ const skillsData = [
 ]
 
 // 站点统计数据
-const statisticsData = ref(null)
+const statisticsData = ref<Record<string, string> | null>(null)
 
 // 获取站点统计数据
 async function getStatisticsData() {
