@@ -1,5 +1,6 @@
 <!-- 首页 -->
 <script lang="ts" setup>
+import { useData } from '@/composables/data'
 import { mainStore } from '@/store'
 
 const props = defineProps({

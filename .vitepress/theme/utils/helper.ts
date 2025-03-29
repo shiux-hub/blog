@@ -1,17 +1,17 @@
 import { mainStore } from '@/store'
-import { isNumber, isString, isUndefined, throttle } from 'radashi'
+import { isNumber, isString, isUndefined, random, shuffle, throttle } from 'radashi'
 
 /**
  * 计算滚动高度和滚动百分比
  */
 export const calculateScroll = throttle(
-  { interval: 300, trailing: true },
+  { interval: 300 },
   () => {
     try {
       if (typeof window === 'undefined' || typeof document === 'undefined')
         return false
       const store = mainStore()
-      const scrollY = window.scrollY || window.pageYOffset
+      const scrollY = window.scrollY || window.scrollY
       const totalHeight = document.documentElement.scrollHeight - window.innerHeight
       const scrollPercentage = ((scrollY / totalHeight) * 100).toFixed(0)
       // 判断滚动方向
@@ -120,21 +120,19 @@ export function daysFromNow(dateStr: string) {
 
 /**
  * 随机前往一篇文章
- * @param {object} postData - 文章数据
- * @returns 天数差值
+ * @param postData - 文章数据
  */
 let lastIndex = -1
 export function shufflePost(postData) {
   let randomIndex
   do {
     // 随机生成一个索引值
-    randomIndex = Math.floor(Math.random() * postData.length)
+    randomIndex = random(0, postData.length)
   } while (randomIndex === lastIndex && postData.length > 1)
   // 更新上一次的索引值
   lastIndex = randomIndex
   // 随机文章
   const randomPost = postData[randomIndex]
-  console.log(randomPost)
   // 跳转到随机文章
   return randomPost.regularPath
 }
@@ -191,7 +189,6 @@ export async function copyImage(imageURL: string) {
         [blob.type]: blob,
       }),
     ])
-    console.log('图片已复制到剪贴板')
     window.$message.success('图片已复制到剪贴板')
   }
   catch (error) {

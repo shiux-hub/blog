@@ -1,9 +1,9 @@
 <!-- 参考资料 -->
 <script lang="ts" setup>
-import type { ThemeConfig } from '@/types/theme'
+import { useData } from '@/composables/data'
 import { Icon } from '@iconify/vue'
 
-const { frontmatter } = useData<ThemeConfig>()
+const { frontmatter } = useData()
 
 // 参考资料
 const references = frontmatter.value?.references

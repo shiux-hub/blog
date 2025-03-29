@@ -1,5 +1,4 @@
 import type { ThemeConfig } from '@/types/theme'
-import { Buffer } from 'node:buffer'
 import process from 'node:process'
 import { load } from 'cheerio'
 

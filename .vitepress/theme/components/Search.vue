@@ -1,13 +1,13 @@
 <!-- 全局搜索 -->
 <script lang="ts" setup>
-import type { ThemeConfig } from '@/types/theme'
+import { useData } from '@/composables/data'
 import { mainStore } from '@/store'
 import { liteClient } from 'algoliasearch/lite'
 
 const store = mainStore()
 const router = useRouter()
 
-const { theme } = useData<ThemeConfig>()
+const { theme } = useData()
 const { appId, apiKey } = theme.value.search
 
 const searchClient = liteClient(appId, apiKey)

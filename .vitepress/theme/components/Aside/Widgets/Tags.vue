@@ -1,9 +1,9 @@
 <!-- 侧边栏 - 标签 -->
 <script lang="ts" setup>
-import type { ThemeConfig } from '@/types/theme'
+import { useData } from '@/composables/data'
 import { Icon } from '@iconify/vue'
 
-const { theme } = useData<ThemeConfig>()
+const { theme } = useData()
 </script>
 
 <template>

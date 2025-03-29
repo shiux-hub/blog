@@ -1,5 +1,6 @@
 <script lang="ts" setup>
 import type { TimeDifferenceRecord } from '@/utils/timeTools'
+import { useData } from '@/composables/data'
 import { getDaysUntil, getTimeRemaining } from '@/utils/timeTools'
 
 const { theme } = useData()

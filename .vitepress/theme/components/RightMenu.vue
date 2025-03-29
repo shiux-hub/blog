@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import type { ThemeConfig } from '@/types/theme'
+import { useData } from '@/composables/data'
 import { mainStore } from '@/store'
 import { copyImage, copyText, downloadImage, shufflePost, smoothScrolling } from '@/utils/helper'
 import { Icon } from '@iconify/vue'
@@ -7,7 +7,7 @@ import { storeToRefs } from 'pinia'
 
 const router = useRouter()
 const store = mainStore()
-const { theme } = useData<ThemeConfig>()
+const { theme } = useData()
 const { useRightMenu, themeType, playerShow, playerVolume, playState, playerData }
   = storeToRefs(store)
 

@@ -1,6 +1,7 @@
 <script lang="ts" setup>
 import type { Hitokoto } from '@/types/hitokoto'
 import { getHitokoto } from '@/api'
+import { useData } from '@/composables/data'
 import { mainStore } from '@/store'
 import { Icon } from '@iconify/vue'
 

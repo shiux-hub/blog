@@ -1,4 +1,5 @@
 <script lang="ts" setup>
+import { useData } from '@/composables/data'
 import { Icon } from '@iconify/vue'
 
 const { theme } = useData()

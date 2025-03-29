@@ -1,13 +1,13 @@
 <script lang="ts" setup>
 import type { PostDataItem } from '@/types/post'
-import type { ThemeConfig } from '@/types/theme'
+import { useData } from '@/composables/data'
 import { formatTimestamp } from '@/utils/helper'
 import { Icon } from '@iconify/vue'
 
 defineProps<{
   postData?: PostDataItem
 }>()
-const { theme } = useData<ThemeConfig>()
+const { theme } = useData()
 const route = useRoute()
 </script>
 

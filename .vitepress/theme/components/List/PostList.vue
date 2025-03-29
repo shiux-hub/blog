@@ -1,5 +1,6 @@
 <!-- 文章列表 -->
 <script lang="ts" setup>
+import { useData } from '@/composables/data'
 import { mainStore } from '@/store'
 import { formatTimestamp } from '@/utils/helper'
 import { Icon } from '@iconify/vue'

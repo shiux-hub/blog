@@ -1,6 +1,6 @@
 <!-- 打赏按钮 -->
 <script lang="ts" setup>
-import type { ThemeConfig } from '@/types/theme'
+import { useData } from '@/composables/data'
 import { Icon } from '@iconify/vue'
 
 withDefaults(defineProps<{
@@ -9,7 +9,7 @@ withDefaults(defineProps<{
   showJump: true,
 })
 const router = useRouter()
-const { theme } = useData<ThemeConfig>()
+const { theme } = useData()
 const { rewardData } = theme.value
 
 // 赞赏显示

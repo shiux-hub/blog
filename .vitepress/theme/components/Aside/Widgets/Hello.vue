@@ -1,10 +1,10 @@
 <!-- 侧边栏 - 欢迎 -->
 <script lang="ts" setup>
-import type { ThemeConfig } from '@/types/theme'
+import { useData } from '@/composables/data'
 import { getGreetings } from '@/utils/helper'
 import { Icon } from '@iconify/vue'
 
-const { theme } = useData<ThemeConfig>()
+const { theme } = useData()
 
 // 问候数据
 const helloClick = ref(0)

@@ -1,5 +1,6 @@
 <!-- AI 摘要（假） -->
 <script lang="ts" setup>
+import { useData } from '@/composables/data'
 import { Icon } from '@iconify/vue'
 
 const { frontmatter } = useData()

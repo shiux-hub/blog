@@ -1,4 +1,5 @@
 <script setup>
+import { useData } from '@/composables/data'
 import { mainStore } from '@/store'
 import { shufflePost, smoothScrolling } from '@/utils/helper'
 import { Icon } from '@iconify/vue'

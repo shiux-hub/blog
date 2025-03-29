@@ -1,13 +1,13 @@
 <!-- 全局播放器 -->
 <script lang="ts" setup>
-import type { ThemeConfig } from '@/types/theme'
 import { getMusicList } from '@/api'
+import { useData } from '@/composables/data'
 import { mainStore } from '@/store'
 import { storeToRefs } from 'pinia'
 import 'aplayer/dist/APlayer.min.css'
 
 const store = mainStore()
-const { theme } = useData<ThemeConfig>()
+const { theme } = useData()
 const { enable, url, id, server, type } = theme.value.music
 const { playerShow, playerVolume, playState, playerData } = storeToRefs(store)
 

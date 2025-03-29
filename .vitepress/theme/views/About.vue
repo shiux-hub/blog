@@ -1,9 +1,9 @@
 <script lang="ts" setup>
-import type { ThemeConfig } from '@/types/theme'
 import { getStatistics } from '@/api'
+import { useData } from '@/composables/data'
 import { Icon } from '@iconify/vue'
 
-const { theme } = useData<ThemeConfig>()
+const { theme } = useData()
 
 // 技能数据
 const skillsData = [

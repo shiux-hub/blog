@@ -1,4 +1,5 @@
 <script setup>
+import { useData } from '@/composables/data'
 import { mainStore } from '@/store'
 import { Icon } from '@iconify/vue'
 import { storeToRefs } from 'pinia'

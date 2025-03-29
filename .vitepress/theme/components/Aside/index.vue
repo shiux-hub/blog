@@ -1,4 +1,6 @@
 <script lang="ts" setup>
+import { useData } from '@/composables/data'
+
 withDefaults(defineProps<{
   showToc?: boolean
 }>(), {

@@ -3,7 +3,7 @@ aside: false
 padding: false
 ---
 
-<script setup>
+<script lang="ts" setup>
 import { onMounted } from "vue";
 import { useData } from "vitepress"
 import Home from "@/views/Home.vue"

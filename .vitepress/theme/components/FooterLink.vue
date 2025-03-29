@@ -1,6 +1,6 @@
 <!-- 页脚 - 链接 -->
 <script lang="ts" setup>
-import type { ThemeConfig } from '@/types/theme'
+import { useData } from '@/composables/data'
 import { smoothScrolling } from '@/utils/helper'
 import { Icon } from '@iconify/vue'
 
@@ -10,7 +10,7 @@ withDefaults(defineProps<{
 }>(), {
   showBar: true,
 })
-const { theme, site } = useData<ThemeConfig>()
+const { theme, site } = useData()
 const { footer, siteMeta } = theme.value
 // 社交链接数据
 const socialLinkData = computed(() => {

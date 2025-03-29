@@ -1,4 +1,5 @@
 <script lang="ts" setup>
+import { useData } from '@/composables/data'
 import { mainStore } from '@/store'
 import { calculateScroll, specialDayGray } from '@/utils/helper'
 import { storeToRefs } from 'pinia'

@@ -1,6 +1,6 @@
 <!-- 分类导航条 -->
 <script lang="ts" setup>
-import type { ThemeConfig } from '@/types/theme'
+import { useData } from '@/composables/data'
 import { Icon } from '@iconify/vue'
 
 withDefaults(defineProps<{
@@ -9,7 +9,7 @@ withDefaults(defineProps<{
 }>(), {
   type: 'categories',
 })
-const { theme, params } = useData<ThemeConfig>()
+const { theme, params } = useData()
 // 获取当前路由路径
 const currentTypeName = computed(() => {
   return params.value?.name || null

@@ -1,12 +1,12 @@
 <!-- 文章页面 -->
 <script lang="ts" setup>
-import type { ThemeConfig } from '@/types/theme'
+import { useData } from '@/composables/data'
 import { generateId } from '@/utils/commonTools'
 import { formatTimestamp } from '@/utils/helper'
 import initFancybox from '@/utils/initFancybox'
 import { Icon } from '@iconify/vue'
 
-const { page, theme, frontmatter } = useData<ThemeConfig>()
+const { page, theme, frontmatter } = useData()
 
 // 评论元素
 const commentRef = useTemplateRef('commentRef')

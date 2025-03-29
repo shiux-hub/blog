@@ -1,12 +1,12 @@
 <!-- 相关文章 -->
 <script lang="ts" setup>
-import type { ThemeConfig } from '@/types/theme'
+import { useData } from '@/composables/data'
 import { generateId } from '@/utils/commonTools'
 import { shufflePost } from '@/utils/helper'
 import { Icon } from '@iconify/vue'
 
 const router = useRouter()
-const { theme, page, frontmatter } = useData<ThemeConfig>()
+const { theme, page, frontmatter } = useData()
 
 // 文章信息
 const relatedData = ref(null)
