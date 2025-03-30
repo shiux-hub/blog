@@ -39,7 +39,6 @@ const Theme = {
         allowHTML: true,
         arrow: false,
         animateFill: true,
-        trigger: 'click',
       },
     })
     app.component('LazyLoader', LazyLoader)

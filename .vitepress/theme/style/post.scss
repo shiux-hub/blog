@@ -236,15 +236,15 @@
         justify-content: center;
         background-color: transparent;
         border: none;
-        font-family: "iconfont";
         font-size: 20px;
         font-style: normal;
         z-index: 1;
         color: var(--main-font-color);
         cursor: pointer;
 
-        &::after {
-          content: "\e01c";
+        svg {
+          width: 20px;
+          height: 20px;
           transition: color 0.3s;
         }
 
@@ -270,9 +270,8 @@
         }
 
         &:hover {
-
           &::before,
-          &::after {
+          svg {
             color: var(--main-color);
           }
         }
