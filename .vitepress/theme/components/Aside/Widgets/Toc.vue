@@ -6,10 +6,16 @@ import { throttle } from 'radashi'
 const route = useRoute()
 const store = mainStore()
 
-const tocData = ref(null)
-const postDom = ref(null)
-const activeHeader = ref(null)
+const tocData = ref<TocItem[]>()
+const postDom = ref<HTMLElement | null>(null)
+const activeHeader = ref<string>()
 const activeTocHeight = ref(0)
+
+interface TocItem {
+  id: string
+  type: string
+  text?: string
+}
 
 // 获取所有目录数据
 function getAllTitle() {
@@ -19,7 +25,7 @@ function getAllTitle() {
       return false
     // 所有标题
     const headers = Array.from(postDom.value.querySelectorAll('h2, h3')).filter(
-      header => header.parentElement.tagName.toLowerCase() === 'div',
+      header => header.parentElement?.tagName.toLowerCase() === 'div',
     )
     return headers
   }
@@ -35,9 +41,9 @@ function generateDirData() {
   if (!headers)
     return false
   // 构造目录数据
-  const nestedData = []
+  const nestedData: TocItem[] = []
   headers.forEach((header) => {
-    const headerObj = {
+    const headerObj: TocItem = {
       id: header.id,
       type: header.tagName,
       text: header.textContent?.replace(/\u200B/g, '').trim(),
@@ -73,7 +79,7 @@ const activeTocItem = throttle(
 )
 
 // 滚动标题至指定位置
-function scrollToHeader(id) {
+function scrollToHeader(id: string) {
   try {
     const headerDom = document.getElementById(id)
     if (!headerDom || !postDom.value)

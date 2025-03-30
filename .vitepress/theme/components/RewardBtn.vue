@@ -30,11 +30,7 @@ function toRewardList() {
     </div>
     <!-- 设置面板 -->
     <Modal
-      :show="rewardShow"
-      :max-width="430"
-      title="赞赏博主"
-      title-icon="reward"
-      @mask-click="rewardShow = false"
+      :show="rewardShow" :max-width="430" title-icon="reward" @mask-click="rewardShow = false"
       @modal-close="rewardShow = false"
     >
       <div class="reward-card">
@@ -75,6 +71,7 @@ function toRewardList() {
   margin: 1rem auto;
   user-select: none;
   cursor: pointer;
+
   .reward-btn {
     display: flex;
     flex-direction: row;
@@ -86,14 +83,17 @@ function toRewardList() {
     color: #fff;
     background-color: var(--main-color-red);
     transition: box-shadow 0.5s;
+
     svg {
       margin-right: 6px;
     }
+
     &:hover {
       box-shadow: 0 0 40px 6px #ff384270;
     }
   }
 }
+
 .reward-card {
   .thank {
     display: inline-flex;
@@ -103,31 +103,37 @@ function toRewardList() {
     color: var(--main-color);
     font-weight: bold;
   }
+
   .qr {
     display: grid;
     gap: 1rem;
     grid-template-columns: 1fr 1fr;
+
     .qr-img {
       display: flex;
       flex-direction: column;
       align-items: center;
+
       img {
         width: 100%;
         height: auto;
         border-radius: 16px;
         overflow: hidden;
       }
+
       .tip {
         display: flex;
         flex-direction: row;
         align-items: center;
         margin-top: 0.8rem;
+
         svg {
           margin-right: 6px;
           width: 18px;
           height: 18px;
         }
       }
+
       &:hover {
         svg {
           color: var(--main-color);
@@ -135,23 +141,27 @@ function toRewardList() {
       }
     }
   }
+
   .all-list {
     margin-top: 20px;
     display: flex;
     align-items: center;
     flex-direction: column;
     background-color: var(--main-card-second-background);
+
     .title {
       font-size: 18px;
       font-weight: bold;
       margin-bottom: 8px;
       transition: color 0.3s;
     }
+
     .tip {
       text-align: center;
       font-size: 12px;
       opacity: 0.6;
     }
+
     &:hover {
       .title {
         color: var(--main-color);

@@ -26,9 +26,7 @@ const { theme } = useData()
     </div>
     <div v-if="type === 'categories'" class="type-lists">
       <a
-        v-for="(item, key, index) in theme.categoriesData"
-        :key="index"
-        :href="`/pages/categories/${key}`"
+        v-for="(item, key, index) in theme.categoriesData" :key="index" :href="`/pages/categories/${key}`"
         class="type-item s-card"
       >
         <Icon icon="mingcute:classify-2-fill" />
@@ -38,9 +36,7 @@ const { theme } = useData()
     </div>
     <div v-else class="type-lists">
       <a
-        v-for="(item, key, index) in theme.tagsData"
-        :key="index"
-        :href="`/pages/tags/${key}`"
+        v-for="(item, key, index) in theme.tagsData" :key="index" :href="`/pages/tags/${key}`"
         class="type-item s-card"
       >
         <Icon icon="mingcute:hashtag-fill" />
@@ -54,21 +50,25 @@ const { theme } = useData()
 <style lang="scss" scoped>
 .cat-or-tag {
   min-height: 400px;
+
   .title {
     width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
+
     .title-name {
       font-size: 1.875rem;
       margin-bottom: 0;
     }
+
     .title-num {
       margin-top: 20px;
       font-size: 1.125rem;
       opacity: 0.6;
     }
   }
+
   .type-lists {
     padding: 2rem 0 3rem;
     display: flex;
@@ -76,16 +76,19 @@ const { theme } = useData()
     justify-content: center;
     flex-direction: row;
     align-items: center;
+
     .type-item {
       font-size: 1.25rem;
       display: flex;
       flex-direction: row;
       align-items: center;
       margin: 0.5em;
+
       .name {
         font-weight: bold;
         transition: color 0.3s;
       }
+
       svg {
         margin-right: 8px;
         width: 1.25rem;
@@ -93,6 +96,7 @@ const { theme } = useData()
         opacity: 0.6;
         transition: color 0.3s;
       }
+
       .num {
         display: flex;
         align-items: center;
@@ -104,9 +108,11 @@ const { theme } = useData()
         border-radius: 8px;
         background-color: var(--main-card-border);
       }
+
       &:hover {
         transform: scale(1.05);
         background-color: var(--main-color);
+
         .name,
         svg {
           color: var(--main-card-background);

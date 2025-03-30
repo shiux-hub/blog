@@ -104,7 +104,7 @@ export function loadCSS(href: string, option: {
  * @param themeConfig - 主题配置
  * @param isDom - 是否为 DOM 对象
  */
-export function jumpRedirect(html: string, themeConfig: ThemeConfig, isDom = false) {
+export function jumpRedirect(html: string | null, themeConfig: ThemeConfig, isDom = false) {
   try {
     // 是否为开发环境
     const isDev = process.env.NODE_ENV === 'development'
@@ -146,6 +146,8 @@ export function jumpRedirect(html: string, themeConfig: ThemeConfig, isDom = fal
       })
     }
     else {
+      if (!html)
+        return
       const $ = load(html)
       // 替换符合条件的标签
       $('a[target=\'_blank\']').each((_, el) => {

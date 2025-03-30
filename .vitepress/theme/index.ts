@@ -5,13 +5,14 @@ import RootApp from '@/App.vue'
 import LazyLoader from '@/components/LazyLoader.vue'
 import { routeChange } from '@/utils/initTools'
 import { createPinia } from 'pinia'
-
 import piniaPluginPersistedstate from 'pinia-plugin-persistedstate'
-import { enhanceAppWithTabs } from 'vitepress-plugin-tabs/client'
-import { h } from 'vue'
 
+import { enhanceAppWithTabs } from 'vitepress-plugin-tabs/client'
 // InstantSearch
 import InstantSearch from 'vue-instantsearch/vue3/es'
+
+import VueTippy from 'vue-tippy'
+
 // 全局样式
 import '@/style/main.css'
 import '@/style/main.scss'
@@ -33,6 +34,14 @@ const Theme = {
     // 挂载
     app.use(pinia)
     app.use(InstantSearch)
+    app.use(VueTippy, {
+      defaultProps: {
+        allowHTML: true,
+        arrow: false,
+        animateFill: true,
+        trigger: 'click',
+      },
+    })
     app.component('LazyLoader', LazyLoader)
     // 插件
     enhanceAppWithTabs(app)

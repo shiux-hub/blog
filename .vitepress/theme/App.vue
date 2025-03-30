@@ -6,7 +6,7 @@ import { storeToRefs } from 'pinia'
 
 const route = useRoute()
 const store = mainStore()
-const { frontmatter, page, theme } = useData()
+const { frontmatter, page } = useData()
 const { loadingStatus, footerIsShow, themeValue, themeType, backgroundType, fontFamily, fontSize }
   = storeToRefs(store)
 
@@ -39,6 +39,7 @@ function changeSiteThemeType() {
   const themeClasses = ['dark', 'light', 'auto'] as const
   // 必要数据
   const htmlElement = document.documentElement
+
   console.log('当前模式：', themeType.value)
   // 清除所有 class
   Object.values(themeClasses).forEach((themeClass) => {
@@ -88,13 +89,14 @@ watch(
 )
 
 onMounted(() => {
-  console.log(frontmatter.value, page.value, theme.value)
   // 全站置灰
   specialDayGray()
   // 更改主题类别
   changeSiteThemeType()
   // 切换系统字体样式
   changeSiteFont()
+  // 挂载时执行
+  calculateScroll()
   // 滚动监听
   window.addEventListener('scroll', calculateScroll)
   // 右键监听
@@ -121,7 +123,7 @@ onBeforeUnmount(() => {
   <!-- 导航栏 -->
   <Nav />
   <!-- 主内容 -->
-  <main class="mian-layout" :class="[{ 'loading': loadingStatus, 'is-post': isPostPage }]">
+  <main class="main-layout" :class="[{ 'loading': loadingStatus, 'is-post': isPostPage }]">
     <!-- 404 -->
     <NotFound v-if="page.isNotFound" />
     <!-- 首页 -->
@@ -154,7 +156,7 @@ onBeforeUnmount(() => {
 </template>
 
 <style lang="scss" scoped>
-.mian-layout {
+.main-layout {
   width: 100%;
   max-width: 1400px;
   margin: 0 auto;
@@ -163,16 +165,20 @@ onBeforeUnmount(() => {
   animation: show 0.5s forwards;
   animation-duration: 0.5s;
   display: block;
+
   &.loading {
     display: none;
   }
+
   @media (max-width: 768px) {
     padding: 1rem 1.5rem;
+
     &.is-post {
       padding: 0;
     }
   }
 }
+
 .left-menu {
   position: fixed;
   left: 20px;
@@ -181,6 +187,7 @@ onBeforeUnmount(() => {
   transition:
     opacity 0.3s,
     transform 0.3s;
+
   &.hidden {
     opacity: 0;
     transform: translateY(100px);

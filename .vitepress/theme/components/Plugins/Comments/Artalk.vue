@@ -113,7 +113,7 @@ onUnmounted(() => {
 }
 .atk-layer-wrap {
   .atk-layer-mask {
-    background: var(--main-mask-background) !important;
+    background: var(--color-mask-background-deep) !important;
   }
 }
 </style>

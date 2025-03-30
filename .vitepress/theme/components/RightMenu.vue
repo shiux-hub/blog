@@ -15,13 +15,13 @@ const { useRightMenu, themeType, playerShow, playerVolume, playState, playerData
 const rightMenuX = ref(0)
 const rightMenuY = ref(0)
 const clickedType = ref('normal')
-const clickedTypeData = ref('')
+const clickedTypeData = ref<string | null>('')
 const rightMenuRef = useTemplateRef('rightMenuRef')
 const rightMenuShow = ref(false)
 
 // 快速评论
 const commentCopyShow = ref(false)
-const commentCopyData = ref<boolean | null>(null)
+const commentCopyData = ref<boolean | string>()
 
 // 开启右键菜单
 function openRightMenu(e: MouseEvent) {
@@ -84,12 +84,12 @@ function closeRightMenu(e: MouseEvent) {
 }
 
 // 判断点击元素类型
-function checkClickType(target) {
+function checkClickType(target: EventTarget) {
   if (!target?.tagName)
     return false
   // 写入内容
   clickedTypeData.value
-    = window.getSelection()?.toString().length > 0 ? window.getSelection().toString() : target
+    = window.getSelection()?.toString().length ? window.getSelection()?.toString() : target
   switch (target.tagName) {
     case 'A':
       // 链接类型
@@ -105,7 +105,7 @@ function checkClickType(target) {
       clickedType.value = 'input'
       break
     default:
-      if (window.getSelection()?.toString().length > 0) {
+      if (window.getSelection()?.toString().length) {
         // 已选中的文本
         clickedType.value = 'text'
       }
@@ -227,49 +227,33 @@ defineExpose({ openRightMenu })
   <Teleport to="body">
     <!-- 右键菜单 -->
     <Transition name="fade" mode="out-in">
-      <div
-        v-if="rightMenuShow"
-        class="right-menu"
-        @click="rightMenuShow = false"
-        @contextmenu.stop="closeRightMenu"
-      >
+      <div v-if="rightMenuShow" class="right-menu" @click="rightMenuShow = false" @contextmenu.stop="closeRightMenu">
         <div
-          ref="rightMenuRef"
-          :style="{
+          ref="rightMenuRef" :style="{
             left: `${rightMenuX}px`,
             top: `${rightMenuY}px`,
-          }"
-          class="menu-content s-card hover"
-          @contextmenu.stop="closeRightMenu"
+          }" class="menu-content s-card hover" @contextmenu.stop="closeRightMenu"
         >
           <div class="tools">
-            <div class="btn" title="后退" @click="rightMenuFunc('back')">
+            <div v-tippy class="btn" title="后退" @click="rightMenuFunc('back')">
               <Icon icon="mingcute:arrow-left-fill" />
             </div>
-            <div class="btn" title="前进" @click="rightMenuFunc('forward')">
+            <div v-tippy class="btn" title="前进" @click="rightMenuFunc('forward')">
               <Icon icon="mingcute:arrow-right-fill" />
             </div>
-            <div class="btn" title="刷新" @click="rightMenuFunc('reload')">
+            <div v-tippy class="btn" title="刷新" @click="rightMenuFunc('reload')">
               <Icon icon="mingcute:refresh-1-fill" />
             </div>
-            <div class="btn" title="返回顶部" @click="smoothScrolling()">
+            <div v-tippy class="btn" title="返回顶部" @click="smoothScrolling()">
               <Icon icon="mingcute:arrow-up-fill" />
             </div>
           </div>
           <div class="all-menu">
-            <div
-              v-if="clickedType === 'normal'"
-              class="btn"
-              @click="router.go(shufflePost(theme.postData))"
-            >
+            <div v-if="clickedType === 'normal'" class="btn" @click="router.go(shufflePost(theme.postData))">
               <Icon icon="mingcute:shuffle-2-fill" />
               <span class="name">随便逛逛</span>
             </div>
-            <div
-              v-if="clickedType === 'normal'"
-              class="btn"
-              @click="router.go('/pages/categories')"
-            >
+            <div v-if="clickedType === 'normal'" class="btn" @click="router.go('/pages/categories')">
               <Icon icon="mingcute:classify-2-fill" />
               <span class="name">全部分类</span>
             </div>
@@ -283,9 +267,7 @@ defineExpose({ openRightMenu })
               <span class="name">新标签页打开</span>
             </div>
             <div
-              v-if="clickedType === 'link'"
-              class="btn"
-              @click="
+              v-if="clickedType === 'link'" class="btn" @click="
                 copyText(clickedTypeData?.getAttribute('original-href') || clickedTypeData?.href)
               "
             >
@@ -293,26 +275,17 @@ defineExpose({ openRightMenu })
               <span class="name">复制链接地址</span>
             </div>
             <!-- 图片类型 -->
-            <div
-              v-if="clickedType === 'image'"
-              class="btn"
-              @click="copyImage(clickedTypeData?.src)"
-            >
+            <div v-if="clickedType === 'image'" class="btn" @click="copyImage(clickedTypeData?.src)">
               <Icon icon="mingcute:photo-album-fill" />
               <span class="name">复制此图片</span>
             </div>
-            <div
-              v-if="clickedType === 'image'"
-              class="btn"
-              @click="downloadImage(clickedTypeData?.src)"
-            >
+            <div v-if="clickedType === 'image'" class="btn" @click="downloadImage(clickedTypeData?.src)">
               <Icon icon="mingcute:file-download-fill" />
               <span class="name">下载此图片</span>
             </div>
             <!-- 输入框 -->
             <div
-              v-if="clickedType === 'input' && typeof clickedTypeData.value === 'string'"
-              class="btn"
+              v-if="clickedType === 'input' && typeof clickedTypeData.value === 'string'" class="btn"
               @click="rightMenuFunc('input-paste')"
             >
               <Icon icon="mingcute:paste-fill" />
@@ -321,17 +294,14 @@ defineExpose({ openRightMenu })
             <!-- 选中文本 -->
             <a
               v-if="(clickedType === 'text' || clickedType === 'input') && isLink(clickedTypeData)"
-              :href="`${isLink(clickedTypeData)}`"
-              class="btn right-menu-link"
-              target="_blank"
+              :href="`${isLink(clickedTypeData)}`" class="btn right-menu-link" target="_blank"
             >
               <Icon icon="mingcute:external-link-fill" />
               <span class="name">在新标签页打开</span>
             </a>
             <a
               v-if="clickedType === 'text' || clickedType === 'input'"
-              :href="`https://www.baidu.com/s?wd=${encodeURIComponent(clickedTypeData)}`"
-              class="btn right-menu-link"
+              :href="`https://www.baidu.com/s?wd=${encodeURIComponent(clickedTypeData)}`" class="btn right-menu-link"
               target="_blank"
             >
               <Icon icon="ri:baidu-fill" />
@@ -339,24 +309,21 @@ defineExpose({ openRightMenu })
             </a>
             <a
               v-if="clickedType === 'text' || clickedType === 'input'"
-              :href="`https://cn.bing.com/search?q=${encodeURIComponent(clickedTypeData)}`"
-              class="btn right-menu-link"
+              :href="`https://cn.bing.com/search?q=${encodeURIComponent(clickedTypeData)}`" class="btn right-menu-link"
               target="_blank"
             >
               <Icon icon="mdi:microsoft-bing" />
               <span class="name">使用必应搜索</span>
             </a>
             <div
-              v-if="clickedType === 'text' || clickedType === 'input'"
-              class="btn"
+              v-if="clickedType === 'text' || clickedType === 'input'" class="btn"
               @click="copyText(clickedTypeData)"
             >
               <Icon icon="mingcute:copy-fill" />
               <span class="name">复制选中文本</span>
             </div>
             <div
-              v-if="clickedType === 'text' && !commentCopyShow && theme.comment.type === 'artalk'"
-              class="btn"
+              v-if="clickedType === 'text' && !commentCopyShow && theme.comment.type === 'artalk'" class="btn"
               @click="commentCopy(clickedTypeData)"
             >
               <Icon icon="mingcute:comment-fill" />
@@ -385,12 +352,11 @@ defineExpose({ openRightMenu })
             <!-- 明暗模式 -->
             <div class="btn" @click.stop="store.changeThemeType">
               <Icon
-                :icon="
-                  themeType === 'auto'
-                    ? 'mingcute:history-anticlockwise-fill'
-                    : themeType === 'dark'
-                      ? 'mingcute:moon-fill'
-                      : 'mingcute:sun-fill'
+                :icon="themeType === 'auto'
+                  ? 'mingcute:history-anticlockwise-fill'
+                  : themeType === 'dark'
+                    ? 'mingcute:moon-fill'
+                    : 'mingcute:sun-fill'
                 "
               />
               <span class="name">
@@ -413,22 +379,19 @@ defineExpose({ openRightMenu })
               />
 
               <Slider :value="playerVolume" @update="(val) => (playerVolume = val)" />
-              <Icon
-                icon="material-symbols:volume-up-rounded"
-                @click="playerVolume = Math.min(1, playerVolume + 0.1)"
-              />
+              <Icon icon="material-symbols:volume-up-rounded" @click="playerVolume = Math.min(1, playerVolume + 0.1)" />
             </div>
             <div class="control" @click.stop>
-              <div class="btn" title="上一曲" @click="playerControl('prev')">
+              <div v-tippy class="btn" title="上一曲" @click="playerControl('prev')">
                 <Icon icon="material-symbols:skip-previous-rounded" />
               </div>
-              <div v-if="playState" class="btn" title="暂停" @click="playerControl('toggle')">
+              <div v-if="playState" v-tippy class="btn" title="暂停" @click="playerControl('toggle')">
                 <Icon icon="material-symbols:pause-rounded" />
               </div>
-              <div v-else class="btn" title="播放" @click="playerControl('toggle')">
+              <div v-else v-tippy class="btn" title="播放" @click="playerControl('toggle')">
                 <Icon icon="material-symbols:play-arrow-rounded" />
               </div>
-              <div class="btn" title="下一曲" @click="playerControl('next')">
+              <div v-tippy class="btn" title="下一曲" @click="playerControl('next')">
                 <Icon icon="material-symbols:skip-next-rounded" />
               </div>
             </div>
@@ -438,10 +401,7 @@ defineExpose({ openRightMenu })
     </Transition>
     <!-- 快速评论 -->
     <Modal
-      :show="commentCopyShow"
-      title="快速评论"
-      title-icon="chat"
-      @mask-click="commentCopyClose"
+      :show="commentCopyShow" title-icon="chat" @mask-click="commentCopyClose"
       @modal-close="commentCopyClose"
     >
       <span class="modal-tip"> 您无需删除现有的输入框内容，直接在下方评论即可 </span>
@@ -459,6 +419,7 @@ defineExpose({ openRightMenu })
   height: 100vh;
   z-index: 9999;
   transition: opacity 0.2s;
+
   .menu-content {
     position: absolute;
     width: 180px;
@@ -469,6 +430,7 @@ defineExpose({ openRightMenu })
       border-color 0.3s,
       box-shadow 0.3s,
       background-color 0.3s;
+
     .tools {
       display: flex;
       flex-direction: row;
@@ -477,35 +439,43 @@ defineExpose({ openRightMenu })
       justify-content: space-between;
       padding-bottom: 12px;
       border-bottom: 1px solid var(--main-card-border);
+
       .btn {
         width: 34px;
         height: 34px;
         min-width: 34px;
       }
     }
+
     .all-menu {
       margin-top: 12px;
+
       .btn {
         justify-content: flex-start;
         margin-bottom: 6px;
+
         svg {
           width: 20px;
           height: 20px;
         }
+
         &:last-child {
           margin-bottom: 0;
         }
       }
+
       &.general {
         padding-top: 12px;
         border-top: 1px solid var(--main-card-border);
       }
     }
+
     .player {
       .data {
         display: flex;
         flex-direction: column;
         align-items: center;
+
         span {
           width: 100%;
           padding: 0 8px;
@@ -514,12 +484,14 @@ defineExpose({ openRightMenu })
           overflow: hidden;
           text-overflow: ellipsis;
         }
+
         .artist {
           font-size: 14px;
           margin-top: 4px;
           color: var(--main-font-second-color);
         }
       }
+
       .volume {
         display: flex;
         flex-direction: row;
@@ -528,32 +500,39 @@ defineExpose({ openRightMenu })
         padding: 0 6px;
         margin-top: 1rem;
         width: 100%;
+
         svg {
           color: var(--main-font-second-color);
           width: 20px;
           height: 20px;
           transition: color 0.3s;
           cursor: pointer;
+
           &:first-child {
             margin-right: 6px;
           }
+
           &:last-child {
             margin-left: 6px;
           }
+
           &:hover {
             color: var(--main-color);
           }
         }
       }
+
       .control {
         display: flex;
         flex-direction: row;
         align-items: center;
         justify-content: space-evenly;
         margin-top: 8px;
+
         .btn {
           padding: 6px;
           margin-bottom: 0;
+
           svg {
             width: 26px;
             height: 26px;
@@ -561,6 +540,7 @@ defineExpose({ openRightMenu })
         }
       }
     }
+
     .btn {
       display: flex;
       align-items: center;
@@ -570,17 +550,21 @@ defineExpose({ openRightMenu })
       transition:
         color 0.3s,
         background-color 0.3s;
+
       svg {
         width: 20px;
         height: 20px;
         transition: color 0.3s;
       }
+
       .name {
         margin-left: 12px;
       }
+
       &:hover {
         color: var(--main-card-background);
         background-color: var(--main-color);
+
         svg {
           color: var(--main-card-background);
         }
@@ -588,6 +572,7 @@ defineExpose({ openRightMenu })
     }
   }
 }
+
 .modal-tip {
   font-size: 15px;
   margin-top: -4px;

@@ -12,7 +12,7 @@ export async function getThemeConfig() {
 
     if (existsSync(configPath)) {
       // 文件存在时进行动态导入
-      const userConfig = await import('../themeConfig')
+      const userConfig = await import('../themeConfig.ts')
 
       return Object.assign(themeConfig, userConfig.themeConfig || {})
     }

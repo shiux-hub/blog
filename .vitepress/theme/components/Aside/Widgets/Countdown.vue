@@ -7,7 +7,7 @@ const { theme } = useData()
 
 // 倒计时数据
 const remainData = ref<TimeDifferenceRecord | null>(null)
-const remainInterval = ref<NodeJS.Timeout | null>(null)
+const remainInterval = ref<number>()
 
 // 获取倒计时数据
 function getRemainData() {

@@ -9,6 +9,7 @@ async function initComments(themeConfig: ThemeConfig) {
     if (!option.enable)
       return false
     const server = option[commentType]?.server
+
     console.log('开始加载', commentType, server)
     switch (commentType) {
       case 'artalk':

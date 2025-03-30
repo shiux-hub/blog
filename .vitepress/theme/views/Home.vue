@@ -59,7 +59,6 @@ function getCurrentPage() {
 // 根据页数计算列表数据
 const postData = computed(() => {
   const page = getCurrentPage()
-  console.log('当前页数：', page)
   let data = null
   // 分类数据
   if (props.showCategories) {
@@ -82,8 +81,8 @@ function restoreScrollY(val) {
   if (typeof window === 'undefined' || val)
     return false
   const scrollY = store.lastScrollY
+  // TODO: 没有实现
   nextTick().then(() => {
-    console.log('滚动位置：', scrollY)
     // 平滑滚动
     window.scrollTo({
       top: scrollY,
@@ -112,16 +111,12 @@ watch(
         <PostList :list-data="postData" />
         <!-- 分页 -->
         <Pagination
-          :total="allListTotal"
-          :page="Number(page)"
-          :limit="postSize"
-          :use-params="showCategories || showTags ? true : false"
-          :route-path="
-            showCategories
-              ? `/pages/categories/${showCategories}`
-              : showTags
-                ? `/pages/tags/${showTags}`
-                : ''
+          :total="allListTotal" :page="Number(page)" :limit="postSize"
+          :use-params="showCategories || showTags ? true : false" :route-path="showCategories
+            ? `/pages/categories/${showCategories}`
+            : showTags
+              ? `/pages/tags/${showTags}`
+              : ''
           "
         />
       </div>
@@ -137,18 +132,22 @@ watch(
     width: 100%;
     display: flex;
     flex-direction: row;
+
     .posts-content {
       width: calc(100% - 300px);
       transition: width 0.3s;
     }
+
     .main-aside {
       width: 300px;
       padding-left: 1rem;
     }
+
     @media (max-width: 1200px) {
       .posts-content {
         width: 100%;
       }
+
       .main-aside {
         display: none;
       }

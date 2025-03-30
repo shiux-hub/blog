@@ -17,6 +17,10 @@ const postMetaData = computed(() => {
   return theme.value.postData.find(item => item.id === postId)
 })
 
+// 日期
+const createdDate = computed(() => formatTimestamp(postMetaData.value.date))
+const updatedDate = computed(() => formatTimestamp(page.value?.lastUpdated || postMetaData.value.lastModified))
+
 onMounted(() => {
   initFancybox(theme.value)
 })
@@ -26,11 +30,11 @@ onMounted(() => {
   <div v-if="postMetaData" class="post">
     <div class="post-meta">
       <div class="meta">
+        <a v-if="frontmatter.original" v-tippy href="/posts/cc" class="post-meta-original cat-item" title="该文章为原创文章，注意版权协议">原创</a>
         <div class="categories">
           <a
             v-for="(item, index) in postMetaData.categories"
-            :key="index"
-            :href="`/pages/categories/${item}`"
+            :key="index" v-tippy="`查看更多<strong>【${item}】</strong>分类的文章`" :href="`/pages/categories/${item}`"
             class="cat-item"
           >
             <Icon icon="mingcute:classify-2-fill" />
@@ -40,9 +44,7 @@ onMounted(() => {
         <div class="tags">
           <a
             v-for="(item, index) in postMetaData.tags"
-            :key="index"
-            :href="`/pages/tags/${item}`"
-            class="tag-item"
+            :key="index" v-tippy="`查看更多<strong>【${item}】</strong>标签的文章`" :href="`/pages/tags/${item}`" class="tag-item"
           >
             <Icon icon="mingcute:hashtag-fill" />
             <span class="name">{{ item }}</span>
@@ -53,21 +55,21 @@ onMounted(() => {
         {{ postMetaData.title || "未命名文章" }}
       </h1>
       <div class="other-meta">
-        <span class="meta date">
+        <span v-if="createdDate" v-tippy="`这篇文章创建于<strong>${createdDate}</strong>`" class="meta-item date">
           <Icon icon="mingcute:calendar-2-line" />
-          {{ formatTimestamp(postMetaData.date) }}
+          {{ createdDate }}
         </span>
-        <span class="update meta">
+        <span v-if="updatedDate" v-tippy="`这篇文章更新于<strong>${updatedDate}</strong>`" class="meta-item update">
           <Icon icon="mingcute:time-fill" />
-          {{ formatTimestamp(page?.lastUpdated || postMetaData.lastModified) }}
+          {{ updatedDate }}
         </span>
         <!-- 热度 -->
-        <span class="hot meta">
+        <span v-tippy class="meta-item hot" title="热度">
           <Icon icon="mingcute:fire-fill" />
           <span id="twikoo_visitors" class="artalk-pv-count">0</span>
         </span>
         <!-- 评论数 -->
-        <span class="chat meta hover" @click="commentRef?.scrollToComments">
+        <span v-if="theme.comment.enable" class="chat meta-item hover" @click="commentRef?.scrollToComments">
           <Icon icon="mingcute:chat-1-fill" />
           <span id="twikoo_comments" class="artalk-comment-count">0</span>
         </span>
@@ -90,19 +92,13 @@ onMounted(() => {
         <!-- 其他信息 -->
         <div class="other-meta">
           <div class="all-tags">
-            <a
-              v-for="(item, index) in postMetaData.tags"
-              :key="index"
-              :href="`/pages/tags/${item}`"
-              class="tag-item"
-            >
+            <a v-for="(item, index) in postMetaData.tags" :key="index" :href="`/pages/tags/${item}`" class="tag-item">
               <Icon icon="mingcute:hashtag-fill" />
               <span class="name">{{ item }}</span>
             </a>
           </div>
           <a
-            href="https://eqnxweimkr5.feishu.cn/share/base/form/shrcnCXCPmxCKKJYI3RKUfefJre"
-            class="report"
+            href="https://eqnxweimkr5.feishu.cn/share/base/form/shrcnCXCPmxCKKJYI3RKUfefJre" class="report"
             target="_blank"
           >
             <Icon icon="mingcute:report-line" />
@@ -130,38 +126,43 @@ onMounted(() => {
   display: flex;
   flex-direction: column;
   animation: fade-up 0.6s 0.1s backwards;
+
   .post-meta {
     padding: 2rem 0 3rem 18px;
     width: 100%;
+
     .meta {
       display: flex;
       flex-direction: row;
       align-items: center;
-      .categories {
-        margin-right: 12px;
-        .cat-item {
-          display: flex;
-          flex-direction: row;
-          align-items: center;
-          padding: 6px 12px;
-          font-size: 14px;
-          font-weight: bold;
-          border-radius: 8px;
-          background-color: var(--main-mask-Inverse-background);
-          opacity: 0.8;
-          svg {
-            margin-right: 6px;
-          }
-          &:hover {
-            color: var(--main-color);
-            background-color: var(--main-color-bg);
-          }
+      gap: 12px;
+
+      .cat-item {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        padding: 6px 12px;
+        font-size: 14px;
+        font-weight: bold;
+        border-radius: 8px;
+        background-color: var(--main-mask-Inverse-background);
+        opacity: 0.8;
+
+        svg {
+          margin-right: 6px;
+        }
+
+        &:hover {
+          color: var(--main-color);
+          background-color: var(--main-color-bg);
         }
       }
+
       .tags {
         display: flex;
         flex-direction: row;
         align-items: center;
+
         .tag-item {
           display: flex;
           flex-direction: row;
@@ -171,10 +172,12 @@ onMounted(() => {
           font-weight: bold;
           border-radius: 8px;
           opacity: 0.8;
+
           svg {
             margin-right: 4px;
             opacity: 0.6;
           }
+
           &:hover {
             color: var(--main-color);
             background-color: var(--main-color-bg);
@@ -182,17 +185,20 @@ onMounted(() => {
         }
       }
     }
+
     .title {
       font-size: 2.2rem;
       line-height: 1.2;
       color: var(--main-font-color);
       margin: 1.4rem 0;
     }
+
     .other-meta {
       display: flex;
       flex-direction: row;
       align-items: center;
-      .meta {
+
+      .meta-item {
         display: flex;
         flex-direction: row;
         align-items: center;
@@ -200,22 +206,27 @@ onMounted(() => {
         font-size: 14px;
         border-radius: 8px;
         opacity: 0.8;
+
         svg {
           margin-right: 6px;
           transition: color 0.3s;
         }
+
         &.date {
           padding-left: 0;
         }
+
         &.hot svg {
           width: 18px;
           height: 18px;
         }
+
         &.hover {
           transition:
             color 0.3s,
             background-color 0.3s;
           cursor: pointer;
+
           &:hover {
             color: var(--main-color);
             background-color: var(--main-color-bg);
@@ -224,29 +235,35 @@ onMounted(() => {
       }
     }
   }
+
   .post-content {
     width: 100%;
     display: flex;
     flex-direction: row;
     animation: fade-up 0.6s 0.3s backwards;
+
     .post-article {
       width: calc(100% - 300px);
       padding: 1rem 2.2rem 2.2rem 2.2rem;
       user-select: text;
       cursor: auto;
+
       &:hover {
         border-color: var(--main-card-border);
       }
+
       .expired {
         margin: 1.2rem 0 2rem 0;
         padding: 0.8rem 1.2rem;
         border-left: 6px solid var(--main-warning-color);
         border-radius: 6px 16px 16px 6px;
         user-select: none;
+
         strong {
           color: var(--main-warning-color);
         }
       }
+
       .other-meta {
         display: flex;
         flex-direction: row;
@@ -254,10 +271,12 @@ onMounted(() => {
         justify-content: space-between;
         margin: 2rem 0;
         opacity: 0.8;
+
         .all-tags {
           display: flex;
           flex-direction: row;
           align-items: center;
+
           .tag-item {
             display: flex;
             flex-direction: row;
@@ -268,17 +287,20 @@ onMounted(() => {
             border-radius: 8px;
             background-color: var(--main-card-border);
             margin-right: 12px;
+
             svg {
               margin-right: 4px;
               opacity: 0.6;
               font-weight: normal;
             }
+
             &:hover {
               color: var(--main-color);
               background-color: var(--main-color-bg);
             }
           }
         }
+
         .report {
           display: flex;
           flex-direction: row;
@@ -288,9 +310,11 @@ onMounted(() => {
           font-weight: bold;
           border-radius: 8px;
           background-color: var(--main-card-border);
+
           svg {
             margin-right: 6px;
           }
+
           &:hover {
             color: #efefef;
             background-color: var(--main-error-color);
@@ -298,57 +322,72 @@ onMounted(() => {
         }
       }
     }
+
     .main-aside {
       width: 300px;
       padding-left: 1rem;
     }
+
     @media (max-width: 1200px) {
       .post-article {
         width: 100%;
       }
+
       .main-aside {
         display: none;
       }
     }
   }
+
   svg {
     width: 1rem;
     height: 1rem;
   }
+
   @media (max-width: 768px) {
     .post-meta {
       padding: 4rem 1.5rem;
+
       .meta {
         justify-content: center;
+
         .categories {
           margin-right: 0;
         }
+
         .tags {
           display: none;
         }
       }
+
       .title {
         font-size: 1.6rem;
         text-align: center;
         line-height: 40px;
       }
+
       .other-meta {
         justify-content: center;
       }
     }
+
     .post-content {
       .post-article {
         border: none;
         padding: 20px 30px;
+
         .other-meta {
           margin: 1rem 0 2rem 0;
           flex-direction: column;
+
           .all-tags {
             flex-wrap: wrap;
+
             .tag-item {
               margin-top: 12px;
             }
           }
+
           .report {
             margin-top: 20px;
           }

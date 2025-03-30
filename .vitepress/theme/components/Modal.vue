@@ -53,9 +53,7 @@ watch(
         <div
           :style="{
             maxWidth: typeof maxWidth === 'string' ? maxWidth : `${maxWidth}px`,
-          }"
-          class="modal-main s-card"
-          @click.stop
+          }" class="modal-main s-card" @click.stop
         >
           <!-- 标题 -->
           <div v-if="title" class="title">
@@ -87,6 +85,7 @@ watch(
   width: 100vw;
   height: 100vh;
   z-index: 2000;
+
   .modal-mask {
     position: absolute;
     top: 0;
@@ -94,14 +93,16 @@ watch(
     width: 100%;
     height: 100%;
     z-index: -1;
-    background-color: var(--main-mask-background);
+    background-color: var(--color-mask-background-deep);
   }
+
   .modal-main {
     position: absolute;
     padding: 0;
     animation: fade-up 0.5s forwards;
     width: calc(100% - 40px);
     overflow: hidden;
+
     .title {
       display: flex;
       flex-direction: row;
@@ -112,14 +113,17 @@ watch(
       height: 64px;
       background-color: var(--main-card-background);
       border-bottom: 1px solid var(--main-card-border);
+
       .title-left {
         width: 100%;
+
         svg {
           width: 1.25rem;
           height: 1.25rem;
           margin-right: 8px;
         }
       }
+
       .close {
         position: absolute;
         right: 20px;
@@ -130,11 +134,13 @@ watch(
         padding: 8px;
         transition: background-color 0.3s;
         cursor: pointer;
+
         &:hover {
           background-color: var(--main-card-border);
         }
       }
     }
+
     .modal-content {
       max-height: calc(var(--height) - 46px);
       padding: 20px;

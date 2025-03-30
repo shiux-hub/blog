@@ -1,14 +1,14 @@
 import { mainStore } from '@/store'
-import { isNumber, isString, isUndefined, random, shuffle, throttle } from 'radashi'
+import { isNumber, isString, isUndefined, random, throttle } from 'radashi'
 
 /**
  * 计算滚动高度和滚动百分比
  */
 export const calculateScroll = throttle(
-  { interval: 300 },
+  { interval: 300, trailing: true },
   () => {
     try {
-      if (typeof window === 'undefined' || typeof document === 'undefined')
+      if (isUndefined(window) || isUndefined(document))
         return false
       const store = mainStore()
       const scrollY = window.scrollY || window.scrollY
@@ -127,7 +127,7 @@ export function shufflePost(postData) {
   let randomIndex
   do {
     // 随机生成一个索引值
-    randomIndex = random(0, postData.length)
+    randomIndex = random(0, postData.length - 1)
   } while (randomIndex === lastIndex && postData.length > 1)
   // 更新上一次的索引值
   lastIndex = randomIndex

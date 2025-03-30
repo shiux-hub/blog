@@ -23,15 +23,18 @@ const router = useRouter()
   flex-direction: column;
   align-items: center;
   margin: 4rem 0;
+
   .title {
     font-size: 8rem;
     margin: 2rem 0;
     line-height: 1;
   }
+
   .title-tip {
     font-size: 2rem;
     opacity: 0.6;
   }
+
   .to-home {
     margin-top: 2rem;
     padding: 12px 26px;
@@ -45,6 +48,7 @@ const router = useRouter()
       color 0.3s,
       background-color 0.3s;
     cursor: pointer;
+
     &:hover {
       color: var(--main-card-background);
       background-color: var(--main-color);

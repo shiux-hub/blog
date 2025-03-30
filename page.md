@@ -2,7 +2,7 @@
 title: 正在重定向
 ---
 
-<script setup>
+<script lang="ts" setup>
 import { onMounted } from "vue"
 import { useRouter } from "vitepress"
 

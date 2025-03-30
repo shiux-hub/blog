@@ -18,7 +18,6 @@ const { themeType, fontFamily, fontSize, infoPosition, backgroundType, backgroun
     <!-- 设置面板 -->
     <Modal
       :show="store.showSeetings"
-      title="个性化配置"
       title-icon="style"
       @mask-click="store.changeShowStatus('showSeetings')"
       @modal-close="store.changeShowStatus('showSeetings')"
@@ -28,16 +27,10 @@ const { themeType, fontFamily, fontSize, infoPosition, backgroundType, backgroun
         <div class="set-item">
           <span class="set-label">全站字体</span>
           <div class="set-options">
-            <span
-              class="options" :class="[{ choose: fontFamily === 'hmos' }]"
-              @click="fontFamily = 'hmos'"
-            >
+            <span class="options" :class="[{ choose: fontFamily === 'hmos' }]" @click="fontFamily = 'hmos'">
               HarmonyOS Sans
             </span>
-            <span
-              class="options" :class="[{ choose: fontFamily === 'lxgw' }]"
-              @click="fontFamily = 'lxgw'"
-            >
+            <span class="options" :class="[{ choose: fontFamily === 'lxgw' }]" @click="fontFamily = 'lxgw'">
               霞鹜文楷
             </span>
           </div>
@@ -54,10 +47,7 @@ const { themeType, fontFamily, fontSize, infoPosition, backgroundType, backgroun
         <div class="set-item">
           <span class="set-label">全站背景</span>
           <div class="set-options">
-            <span
-              class="options" :class="[{ choose: backgroundType === 'close' }]"
-              @click="backgroundType = 'close'"
-            >
+            <span class="options" :class="[{ choose: backgroundType === 'close' }]" @click="backgroundType = 'close'">
               关闭
             </span>
             <span
@@ -78,10 +68,7 @@ const { themeType, fontFamily, fontSize, infoPosition, backgroundType, backgroun
           <span class="set-label">背景图片地址</span>
           <div class="set-options">
             <input
-              v-model="backgroundUrl"
-              type="url"
-              pattern="https?://.+"
-              title="请输入有效的网址，例如：http://www.example.com"
+              v-model="backgroundUrl" v-tippy type="url" pattern="https?://.+" title="请输入有效的网址，例如：http://www.example.com"
               required
             >
           </div>
@@ -90,16 +77,10 @@ const { themeType, fontFamily, fontSize, infoPosition, backgroundType, backgroun
         <div class="set-item">
           <span class="set-label">Banner 高度</span>
           <div class="set-options">
-            <span
-              class="options" :class="[{ choose: bannerType === 'half' }]"
-              @click="bannerType = 'half'"
-            >
+            <span class="options" :class="[{ choose: bannerType === 'half' }]" @click="bannerType = 'half'">
               半屏
             </span>
-            <span
-              class="options" :class="[{ choose: bannerType === 'full' }]"
-              @click="bannerType = 'full'"
-            >
+            <span class="options" :class="[{ choose: bannerType === 'full' }]" @click="bannerType = 'full'">
               全屏
             </span>
           </div>
@@ -108,16 +89,10 @@ const { themeType, fontFamily, fontSize, infoPosition, backgroundType, backgroun
         <div class="set-item">
           <span class="set-label">额外信息显示位置</span>
           <div class="set-options">
-            <span
-              class="options" :class="[{ choose: infoPosition === 'normal' }]"
-              @click="infoPosition = 'normal'"
-            >
+            <span class="options" :class="[{ choose: infoPosition === 'normal' }]" @click="infoPosition = 'normal'">
               默认位置
             </span>
-            <span
-              class="options" :class="[{ choose: infoPosition === 'fixed' }]"
-              @click="infoPosition = 'fixed'"
-            >
+            <span class="options" :class="[{ choose: infoPosition === 'fixed' }]" @click="infoPosition = 'fixed'">
               右下角
             </span>
           </div>
@@ -138,10 +113,12 @@ const { themeType, fontFamily, fontSize, infoPosition, backgroundType, backgroun
     padding: 0;
     border-radius: 25px;
     box-shadow: 0 6px 10px -4px var(--main-dark-shadow);
+
     svg {
       margin-left: 10px;
       transition: color 0.3s;
     }
+
     .set-text {
       margin-left: 10px;
       display: inline-flex;
@@ -152,17 +129,20 @@ const { themeType, fontFamily, fontSize, infoPosition, backgroundType, backgroun
       white-space: nowrap;
       transition: opacity 0.3s;
     }
+
     &:hover {
       width: 140px;
       color: var(--main-card-background);
       border-color: var(--main-color);
       background-color: var(--main-color);
+
       .set-text {
         opacity: 1;
       }
     }
   }
 }
+
 .set-list {
   .title {
     display: block;
@@ -174,22 +154,26 @@ const { themeType, fontFamily, fontSize, infoPosition, backgroundType, backgroun
     border-radius: 4px 8px 8px 4px;
     background-color: var(--main-border-shadow);
     padding: 6px 0 6px 12px;
+
     &:first-child {
       margin-top: 0;
     }
   }
+
   .set-item {
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
     margin-bottom: 12px;
+
     .set-options {
       display: flex;
       flex-direction: row;
       align-items: center;
       height: 40px;
       border-radius: 8px;
+
       .options {
         display: flex;
         align-items: center;
@@ -203,19 +187,23 @@ const { themeType, fontFamily, fontSize, infoPosition, backgroundType, backgroun
         transition:
           color 0.3s,
           background-color 0.3s;
+
         &.choose,
         &:hover {
           color: var(--main-card-background);
           background-color: var(--main-color);
           box-shadow: 0 8px 16px -4px var(--main-border-shadow);
         }
+
         &:last-child {
           margin-right: 0;
         }
       }
+
       .num {
         margin: 0 4px;
       }
+
       input {
         border: none;
         outline: none;
@@ -228,14 +216,18 @@ const { themeType, fontFamily, fontSize, infoPosition, backgroundType, backgroun
         font-size: 14px;
       }
     }
+
     &:last-child {
       margin-bottom: 0;
     }
+
     @media (max-width: 512px) {
       flex-direction: column;
       align-items: flex-start;
+
       .set-options {
         margin-top: 8px;
+
         .options {
           &:first-child {
             margin-left: 0;

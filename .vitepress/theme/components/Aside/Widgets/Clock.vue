@@ -3,7 +3,7 @@
 const hourRotate = ref(315)
 const minuteRotate = ref(45)
 const secondRotate = ref(180)
-const pointerInterval = ref<NodeJS.Timeout | null>(null)
+const pointerInterval = ref<number>()
 
 // 计算指针旋转角度
 function updatePointer() {

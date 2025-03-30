@@ -17,10 +17,10 @@ let observer: IntersectionObserver | null = null
 // 是否加载
 const load = ref(false)
 // 加载元素
-const box = ref<Element | null>(null)
+const box = ref<Element>()
 
 // 初始化 IntersectionObserver
-function initLazyIntersectionObserver(fn) {
+function initLazyIntersectionObserver(fn: (entry: IntersectionObserverEntry) => void) {
   const observer = new IntersectionObserver(entrys => entrys.forEach(entry => fn(entry)), {
     rootMargin: '0px',
     threshold: 0,
@@ -33,15 +33,17 @@ onMounted(() => {
     if (entry.isIntersecting) {
       // 当内容可见
       load.value = true
-      observer?.unobserve(box.value)
+      if (box.value)
+        observer?.unobserve(box.value)
       observer = null
     }
   })
   // 观察
-  observer.observe(box.value)
+  if (box.value)
+    observer.observe(box.value)
 })
 
-onBeforeUnmount(() => observer && observer.unobserve(box.value))
+onBeforeUnmount(() => observer && box.value && observer.unobserve(box.value))
 </script>
 
 <template>

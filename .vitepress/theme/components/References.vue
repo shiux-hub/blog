@@ -16,13 +16,7 @@ const references = frontmatter.value?.references
       <span class="title-text">参考资料</span>
     </div>
     <ul class="list">
-      <a
-        v-for="(item, index) in references"
-        :key="index"
-        :href="item.url"
-        class="list-item"
-        target="_blank"
-      >
+      <a v-for="(item, index) in references" :key="index" :href="item.url" class="list-item" target="_blank">
         <span class="item-title">{{ item.title }}</span>
       </a>
     </ul>
@@ -35,6 +29,7 @@ const references = frontmatter.value?.references
   padding: 18px;
   margin-top: 2rem;
   background-color: var(--main-card-second-background);
+
   .title {
     display: flex;
     flex-direction: row;
@@ -42,6 +37,7 @@ const references = frontmatter.value?.references
     color: var(--main-font-second-color);
     font-size: 15px;
     margin-bottom: 0.8rem;
+
     svg {
       margin-right: 4px;
       width: 18px;
@@ -50,12 +46,14 @@ const references = frontmatter.value?.references
       opacity: 0.6;
     }
   }
+
   .list {
     display: flex;
     flex-direction: column;
     margin: 0;
     list-style-type: none;
     padding-left: 0.4rem;
+
     .list-item {
       display: inline-flex;
       flex-direction: row;
@@ -66,12 +64,15 @@ const references = frontmatter.value?.references
       margin-bottom: 0.4rem;
       overflow: auto;
       transition: color 0.3s;
+
       .item-title {
         padding-bottom: 2px;
       }
+
       &:last-child {
         margin-bottom: 0;
       }
+
       &::before {
         content: "";
         position: absolute;
@@ -83,6 +84,7 @@ const references = frontmatter.value?.references
         border-radius: 50%;
         transition: background-color 0.3s;
       }
+
       &::after {
         content: "";
         position: absolute;
@@ -94,11 +96,14 @@ const references = frontmatter.value?.references
         background-color: var(--main-color);
         transition: width 0.3s;
       }
+
       &:hover {
         color: var(--main-color);
+
         &::before {
           background-color: var(--main-color);
         }
+
         &::after {
           width: calc(100% - 1rem);
         }

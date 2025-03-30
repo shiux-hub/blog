@@ -4,10 +4,11 @@ import { useData } from '@/composables/data'
 import { mainStore } from '@/store'
 import { formatTimestamp } from '@/utils/helper'
 import { Icon } from '@iconify/vue'
+import { isArray, random } from 'radashi'
 
 withDefaults(defineProps<{
   // 列表数据
-  listData?: string[]
+  listData?: any[]
   // 简洁模式
   simple?: boolean
 }>(), {
@@ -34,20 +35,20 @@ const gridStyle = computed(() =>
 )
 
 // 判断是否显示封面
-const showCover = () => themeConfig.value?.cover?.showCover?.enable
+const showCover = computed(() => themeConfig.value?.cover?.showCover?.enable)
 
 // 获取封面图片 按优先级获取：cover > defaultCover > false
-function getCover({ cover: itemCover }) {
+function getCover(postCover: string) {
   const { cover } = themeConfig.value ?? {}
 
-  if (!cover?.showCover?.enable)
-    return false
-  if (itemCover)
-    return itemCover
+  if (!showCover.value)
+    return undefined
+  if (postCover)
+    return postCover
 
-  return Array.isArray(cover.showCover.defaultCover)
-    ? cover.showCover.defaultCover[Math.floor(Math.random() * cover.showCover.defaultCover.length)]
-    : false
+  return isArray(cover.showCover.defaultCover)
+    ? cover.showCover.defaultCover[random(0, cover.showCover.defaultCover.length - 1)]
+    : undefined
 }
 
 // 前往文章
@@ -67,12 +68,12 @@ function toPost(path: string) {
     <div
       v-for="(item, index) in listData"
       :key="index"
-      class="post-item s-card hover" :class="[{ simple, cover: showCover(item), [`cover-${layoutType}`]: showCover(item) }]"
+      class="post-item s-card hover" :class="[{ simple, cover: showCover, [`cover-${layoutType}`]: showCover }]"
       :style="{ animationDelay: `${0.4 + index / 10}s` }"
       @click="toPost(item.regularPath)"
     >
-      <div v-if="!simple && showCover(item)" class="post-cover">
-        <img :src="getCover(item)" :alt="item.title">
+      <div v-if="!simple && showCover" class="post-cover">
+        <img :src="getCover(item.cover)" :alt="item.title">
       </div>
 
       <div class="post-content">

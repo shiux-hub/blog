@@ -1,4 +1,5 @@
 /// <reference types="vite/client" />
+/// <reference types="vite-plugin-pwa/client" />
 import type { Message } from './types/site'
 
 declare module '*.vue' {
@@ -14,4 +15,6 @@ declare global {
   }
   declare function setTimeout(handler: TimerHandler, timeout?: number, ...arguments: any[]): number
   declare function clearTimeout(handle?: number): void
+  declare function setInterval(handler: TimerHandler, timeout?: number, ...arguments: any[]): number
+  declare function clearInterval(handle?: number): void
 }

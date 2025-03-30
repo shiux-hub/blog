@@ -152,6 +152,7 @@ onBeforeUnmount(() => {
   margin-top: 12px;
   transition: transform 0.3s;
   cursor: pointer;
+
   .player-content {
     margin: 0;
     width: fit-content;
@@ -163,6 +164,7 @@ onBeforeUnmount(() => {
     border: 1px solid var(--main-card-border);
     box-shadow: 0 6px 10px -4px var(--main-dark-shadow);
     transition: all 0.3s;
+
     :deep(.aplayer-body) {
       display: flex;
       flex-direction: row;
@@ -170,6 +172,7 @@ onBeforeUnmount(() => {
       padding: 6px;
       padding-right: 12px;
       pointer-events: none;
+
       .aplayer-pic {
         width: 30px;
         height: 30px;
@@ -180,10 +183,12 @@ onBeforeUnmount(() => {
         animation: rotate 20s linear infinite;
         animation-play-state: paused;
         z-index: 2;
+
         .aplayer-button {
           display: none;
         }
       }
+
       .aplayer-info {
         display: flex;
         flex-direction: row;
@@ -192,6 +197,7 @@ onBeforeUnmount(() => {
         margin: 0;
         padding: 0;
         border: none;
+
         .aplayer-music {
           margin: 0;
           padding: 0;
@@ -199,6 +205,7 @@ onBeforeUnmount(() => {
           display: flex;
           line-height: normal;
           z-index: 2;
+
           .aplayer-title {
             line-height: normal;
             display: inline-block;
@@ -207,10 +214,12 @@ onBeforeUnmount(() => {
             overflow: hidden;
             text-overflow: ellipsis;
           }
+
           .aplayer-author {
             display: none;
           }
         }
+
         .aplayer-lrc {
           margin: 0;
           opacity: 0;
@@ -220,10 +229,12 @@ onBeforeUnmount(() => {
           transition:
             width 0.3s,
             opacity 0.3s;
+
           &::before,
           &::after {
             display: none;
           }
+
           .aplayer-lrc-contents {
             p {
               text-align: center;
@@ -232,12 +243,14 @@ onBeforeUnmount(() => {
               transition:
                 filter 0.3s,
                 opacity 0.3s;
+
               &.aplayer-lrc-current {
                 filter: blur(0);
               }
             }
           }
         }
+
         .aplayer-controller {
           position: absolute;
           top: 0;
@@ -245,20 +258,25 @@ onBeforeUnmount(() => {
           width: 100%;
           height: 100%;
           z-index: 0;
+
           .aplayer-time {
             display: none;
           }
+
           .aplayer-bar-wrap {
             margin: 0;
             padding: 0;
             opacity: 0;
             transition: opacity 0.3s;
+
             .aplayer-bar {
               height: 100%;
               background: transparent;
+
               .aplayer-loaded {
                 display: none;
               }
+
               .aplayer-played {
                 height: 100%;
                 background: var(--main-color-white) !important;
@@ -268,14 +286,17 @@ onBeforeUnmount(() => {
           }
         }
       }
+
       .aplayer-notice,
       .aplayer-miniswitcher {
         display: none;
       }
     }
+
     :deep(.aplayer-list) {
       display: none;
     }
+
     &::after {
       content: "播放音乐";
       position: absolute;
@@ -294,28 +315,34 @@ onBeforeUnmount(() => {
       transition: opacity 0.3s;
       z-index: 3;
     }
+
     &:hover {
       border-color: var(--main-color);
       box-shadow: 0 8px 16px -4px var(--main-color-bg);
+
       &::after {
         opacity: 1;
       }
     }
   }
+
   &.playing {
     .player-content {
       color: var(--main-card-background);
       background-color: var(--main-color);
       border: 1px solid var(--main-color);
+
       :deep(.aplayer-body) {
         .aplayer-pic {
           animation-play-state: running;
         }
+
         .aplayer-info {
           .aplayer-lrc {
             opacity: 1;
             width: 200px;
           }
+
           .aplayer-controller {
             .aplayer-bar-wrap {
               opacity: 1;
@@ -323,14 +350,17 @@ onBeforeUnmount(() => {
           }
         }
       }
+
       &::after {
         opacity: 0;
       }
     }
   }
+
   &:active {
     transform: scale(0.98);
   }
+
   @media (max-width: 768px) {
     display: none;
   }

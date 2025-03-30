@@ -45,7 +45,7 @@ function formatSearchData(data) {
 }
 
 // 跳转搜索结果
-function jumpSearch(url) {
+function jumpSearch(url: string) {
   store.changeShowStatus('searchShow')
   router.go(url)
 }
@@ -57,19 +57,13 @@ onBeforeUnmount(() => {
 
 <template>
   <Modal
-    :show="store.searchShow"
-    title="全局搜索"
-    title-icon="search"
-    @mask-click="store.changeShowStatus('searchShow')"
+    v-tippy :show="store.searchShow" title="全局搜索" title-icon="search" @mask-click="store.changeShowStatus('searchShow')"
     @modal-close="store.changeShowStatus('searchShow')"
   >
     <ais-instant-search
-      :search-client="searchClient"
-      :future="{
+      :search-client="searchClient" :future="{
         preserveSharedStateOnUnmount: true,
-      }"
-      index-name="imsyy"
-      @state-change="searchChange"
+      }" index-name="imsyy" @state-change="searchChange"
     >
       <ais-configure :hits-per-page.camel="8" />
       <ais-search-box placeholder="想要搜点什么" autofocus />
@@ -78,9 +72,7 @@ onBeforeUnmount(() => {
           <Transition name="fade" mode="out-in">
             <div v-if="formatSearchData(items)?.length" class="search-list">
               <div
-                v-for="(item, index) in formatSearchData(items)"
-                :key="index"
-                class="search-item s-card hover"
+                v-for="(item, index) in formatSearchData(items)" :key="index" class="search-item s-card hover"
                 @click="jumpSearch(item.url)"
               >
                 <p class="title" v-html="item.title" />
@@ -114,9 +106,11 @@ onBeforeUnmount(() => {
 <style lang="scss">
 .ais-InstantSearch {
   height: 100%;
+
   .ais-SearchBox {
     height: 40px;
     width: 100%;
+
     .ais-SearchBox-input {
       width: 100%;
       outline: none;
@@ -130,56 +124,68 @@ onBeforeUnmount(() => {
       transition:
         border-color 0.3s,
         box-shadow 0.3s;
+
       &:focus {
         border-color: var(--main-color);
         box-shadow: 0 8px 16px -4px var(--main-color-bg);
       }
+
       &::-webkit-search-cancel-button {
         display: none;
       }
     }
+
     .ais-SearchBox-loadingIndicator,
     .ais-SearchBox-submit,
     .ais-SearchBox-reset {
       display: none;
     }
   }
+
   .ais-Hits {
     margin-top: 20px;
     min-height: 300px;
     height: 100%;
+
     .no-result {
       height: 300px;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
+
       svg {
         width: 40px;
         height: 40px;
         margin-bottom: 12px;
       }
+
       .text {
         font-size: 18px;
         opacity: 0.6;
       }
     }
+
     .search-list {
       .search-item {
         margin-bottom: 12px;
+
         .title {
           display: inline;
           font-size: 16px;
           margin-bottom: 6px;
         }
+
         .anchor {
           margin-top: 6px;
           color: var(--main-font-second-color);
           font-size: 14px;
+
           &::before {
             content: "# ";
           }
         }
+
         .content {
           color: var(--main-font-second-color);
           margin-top: 0.8rem;
@@ -187,21 +193,26 @@ onBeforeUnmount(() => {
           padding: 8px;
           border-radius: 8px;
         }
+
         p {
           margin: 0;
+
           mark {
             background-color: transparent;
             color: var(--main-color);
           }
         }
+
         &:last-child {
           margin-bottom: 0;
         }
       }
     }
   }
+
   .ais-Pagination {
     margin-top: 20px;
+
     .ais-Pagination-list {
       list-style: none;
       margin: 0;
@@ -210,6 +221,7 @@ onBeforeUnmount(() => {
       flex-direction: row;
       align-items: center;
       justify-content: center;
+
       .ais-Pagination-item {
         margin: 0 4px;
         width: 30px;
@@ -217,30 +229,37 @@ onBeforeUnmount(() => {
         border-radius: 8px;
         transition: background-color 0.3s;
         cursor: pointer;
+
         .ais-Pagination-link {
           display: flex;
           align-items: center;
           justify-content: center;
           width: 100%;
           height: 100%;
+
           &:hover {
             color: var(--main-font-color);
           }
         }
+
         &:hover {
           color: var(--main-font-color);
           background-color: var(--main-color);
+
           .ais-Pagination-link {
             color: var(--main-card-border);
           }
         }
+
         &.ais-Pagination-item--selected {
           font-weight: bold;
           background-color: var(--main-color);
+
           .ais-Pagination-link {
             color: var(--main-card-border);
           }
         }
+
         &.ais-Pagination-item--disabled,
         &.ais-Pagination-item--nextPage,
         &.ais-Pagination-item--lastPage {
@@ -249,6 +268,7 @@ onBeforeUnmount(() => {
       }
     }
   }
+
   .ais-Stats {
     display: flex;
     align-items: center;
@@ -257,6 +277,7 @@ onBeforeUnmount(() => {
     margin-top: 20px;
     opacity: 0.8;
     font-size: 14px;
+
     .power {
       display: flex;
       flex-direction: row;
@@ -266,22 +287,27 @@ onBeforeUnmount(() => {
       transition:
         color 0.3s,
         opacity 0.3s;
+
       svg {
         margin-right: 4px;
         width: 20px;
         height: 20px;
         transition: color 0.3s;
       }
+
       .name {
         font-weight: bold;
       }
+
       &:hover {
         opacity: 1;
         color: var(--main-color);
       }
     }
+
     @media (max-width: 512px) {
       justify-content: center;
+
       .information {
         display: none;
       }

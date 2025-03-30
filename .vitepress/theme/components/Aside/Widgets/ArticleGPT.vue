@@ -8,7 +8,7 @@ const router = useRouter()
 
 // 摘要数据
 const loading = ref(true)
-const waitTimeOut = ref<NodeJS.Timeout | null>(null)
+const waitTimeOut = ref<number>()
 const abstractData = ref('')
 const showIndex = ref(0)
 const showType = ref(false)

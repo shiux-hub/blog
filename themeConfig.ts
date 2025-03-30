@@ -1,10 +1,10 @@
-import type { ThemeConfig } from '@/types/theme'
+import type { ThemeConfig } from './.vitepress/theme/types/theme'
 
 export const themeConfig: ThemeConfig = {
   // 站点信息
   siteMeta: {
     // 站点标题
-    title: 'Curve',
+    title: '修科斯\'s 小站',
     // 站点描述
     description: 'Hello World',
     // 站点logo
@@ -15,16 +15,15 @@ export const themeConfig: ThemeConfig = {
     lang: 'zh-CN',
     // 作者
     author: {
-      name: 'Admin',
+      name: 'Shiux(修科斯)',
       cover: '/images/logo/logo.webp',
-      email: '114514@gmail.com',
-      link: 'https://www.imsyy.top',
+      email: 'dropout.cn@gmail.com',
+      link: 'https://blog.shiux.com',
     },
   },
-  // 开始年份
   startYear: 2020,
   // 备案信息
-  icp: '萌ICP备114514号',
+  icp: '',
   // 建站日期
   since: '2020-07-28',
   // 每页文章数据
@@ -220,9 +219,9 @@ export const themeConfig: ThemeConfig = {
       coverLayout: 'both',
       // 默认封面(随机展示)
       defaultCover: [
-        'https://example.com/1.avif',
-        'https://example.com/2.avif',
-        'https://example.com/3.avif',
+        'https://www.dmoe.cc/random.php?1',
+        'https://www.dmoe.cc/random.php?2',
+        'https://www.dmoe.cc/random.php?3',
       ],
     },
   },

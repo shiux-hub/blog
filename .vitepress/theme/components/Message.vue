@@ -10,7 +10,7 @@ const messageClose = ref(false)
 const messageContent = ref<string | null>(null)
 const messageAlways = ref(false)
 const messageDuration = ref(0)
-const messageTimeOut = ref<NodeJS.Timeout | null>(null)
+const messageTimeOut = ref<number>()
 
 // 消息处理
 function showMessage(text: string, type = 'info', options: {

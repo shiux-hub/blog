@@ -56,17 +56,20 @@ onBeforeUnmount(() => {
   height: 100vh;
   background-color: var(--main-card-background);
   z-index: 9999;
+
   .logo {
     width: 100px;
     height: 100px;
     animation: loading 2s infinite;
   }
+
   .tip {
     position: absolute;
     bottom: 2rem;
     font-size: 14px;
     opacity: 0;
     transition: opacity 0.3s;
+
     &.show {
       opacity: 0.6;
     }

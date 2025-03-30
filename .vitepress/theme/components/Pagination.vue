@@ -137,9 +137,7 @@ onMounted(() => {
 <template>
   <div v-if="total > 0" class="pagination">
     <div
-      v-if="currentPage > 1"
-      class="page-item prev"
-      @click="
+      v-if="currentPage > 1" class="page-item prev" @click="
         jumpPage(
           currentPage === 2 ? `${routePath}` : `${routePath}/page/${currentPage - 1}`,
           currentPage === 2 ? 1 : currentPage - 1,
@@ -151,30 +149,23 @@ onMounted(() => {
     </div>
     <div class="page-number">
       <div
-        v-for="(item, index) in pageNumber"
-        :key="index"
+        v-for="(item, index) in pageNumber" :key="index"
         :class="[item === '...' ? 'point' : 'page-item', { choose: item === currentPage }]"
         @click="item !== '...' && jumpPage(item === 1 ? routePath : `${routePath}/page/${item}`, item)"
       >
         <span class="page-num">{{ item }}</span>
       </div>
       <!-- 快速跳转 -->
-      <div class="fast-jump" :class="[{ focus: inputFocus }]" title="快速跳转">
+      <div v-tippy class="fast-jump" :class="[{ focus: inputFocus }]" title="快速跳转">
         <input
-          v-model.number="jumpInput"
-          :min="1"
-          :max="totalPages"
-          @focus="inputFocus = true"
-          @blur="fastJump"
-          @input="validateInput"
-          @keydown.enter="fastJump"
+          v-model.number="jumpInput" :min="1" :max="totalPages" @focus="inputFocus = true" @blur="fastJump"
+          @input="validateInput" @keydown.enter="fastJump"
         >
         <Icon icon="mingcute:arrows-right-line" :class="[{ click: jumpInput }]" @click.stop="fastJump" />
       </div>
     </div>
     <div
-      v-if="currentPage * limit < total"
-      class="page-item next"
+      v-if="currentPage * limit < total" class="page-item next"
       @click="jumpPage(`${routePath}/page/${currentPage + 1}`, currentPage + 1)"
     >
       <span class="page-text">下页</span>
@@ -194,6 +185,7 @@ onMounted(() => {
   width: 100%;
   height: 40px;
   animation: fade-up 0.6s 0.4s backwards;
+
   .page-item {
     position: relative;
     display: flex;
@@ -210,17 +202,20 @@ onMounted(() => {
       border-color 0.3s,
       box-shadow 0.3s;
     cursor: pointer;
+
     &.prev,
     &.next {
       position: absolute;
       width: 80px;
       left: 0;
+
       svg {
         transform: rotate(180deg);
         transition:
           color 0.3s,
           transform 0.3s;
       }
+
       .page-text {
         opacity: 0;
         margin-left: 4px;
@@ -230,31 +225,39 @@ onMounted(() => {
           margin 0.3s;
       }
     }
+
     &.next {
       left: auto;
       right: 0;
+
       svg {
         transform: rotate(0);
       }
+
       .page-text {
         margin-right: 4px;
         margin-left: -36px;
       }
     }
+
     &:hover {
       border-color: var(--main-color);
       box-shadow: 0 8px 16px -4px var(--main-color-bg);
+
       svg {
         color: var(--main-color);
       }
+
       &.prev,
       &.next {
         color: var(--main-color);
+
         .page-text {
           opacity: 1;
           margin-right: 0;
         }
       }
+
       &.next {
         .page-text {
           margin-right: 4px;
@@ -263,14 +266,17 @@ onMounted(() => {
       }
     }
   }
+
   .page-number {
     width: 100%;
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: center;
+
     .page-item {
       margin: 0 6px;
+
       &.choose {
         color: var(--main-card-background);
         border-color: var(--main-color);
@@ -278,14 +284,17 @@ onMounted(() => {
         box-shadow: 0 8px 16px -4px var(--main-color-bg);
       }
     }
+
     .point {
       margin: 0 4px;
       transform: translateY(-8px);
       font-size: 22px;
     }
+
     .fast-jump {
       position: relative;
       margin: 0 6px;
+
       input {
         border: none;
         outline: none;
@@ -301,6 +310,7 @@ onMounted(() => {
         box-shadow: 0 8px 16px -4px var(--main-border-shadow);
         transition: all 0.3s;
       }
+
       svg {
         position: absolute;
         display: flex;
@@ -317,11 +327,13 @@ onMounted(() => {
           opacity 0.3s,
           background-color 0.3s;
         cursor: pointer;
+
         &:hover {
           color: var(--main-card-background);
           background-color: var(--main-color);
         }
       }
+
       &.focus,
       &:hover {
         input {
@@ -329,9 +341,11 @@ onMounted(() => {
           border-color: var(--main-color);
           box-shadow: 0 8px 16px -4px var(--main-color-bg);
         }
+
         svg {
           opacity: 0.2;
           pointer-events: none;
+
           &.click {
             opacity: 1;
             pointer-events: all;
@@ -340,14 +354,17 @@ onMounted(() => {
       }
     }
   }
+
   @media (max-width: 768px) {
     .page-number {
       display: none;
     }
+
     .page-item {
       &:first-child {
         margin-right: 10px;
       }
+
       &:last-child {
         margin-left: 10px;
       }

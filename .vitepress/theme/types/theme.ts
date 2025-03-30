@@ -12,7 +12,8 @@ export interface ThemeConfig {
       link: string
     }
   }
-  icp: string
+  startYear: number | boolean
+  icp: string | boolean
   since: string
   postSize: number
   inject: {

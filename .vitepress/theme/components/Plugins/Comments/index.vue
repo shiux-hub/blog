@@ -1,5 +1,6 @@
 <!-- 评论 -->
 <script lang="ts" setup>
+import { useData } from '@/composables/data'
 import { Icon } from '@iconify/vue'
 
 withDefaults(defineProps<{

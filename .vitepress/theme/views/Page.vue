@@ -25,18 +25,22 @@ const { frontmatter } = useData()
   display: flex;
   flex-direction: row;
   animation: fade-up 0.6s 0.1s backwards;
+
   .page-content {
     width: 100%;
     transition: width 0.3s;
+
     :deep(#main-comment) {
       width: 100%;
+
       .comment-content {
         .atk-list {
           .atk-list-header {
             margin-bottom: 8px;
           }
+
           .atk-list-comments-wrap {
-            > .atk-comment-wrap {
+            >.atk-comment-wrap {
               padding: 0.8rem;
               margin-bottom: 1rem;
               border-bottom: none;
@@ -49,24 +53,30 @@ const { frontmatter } = useData()
         }
       }
     }
+
     .s-card {
       padding: 1rem 2rem;
     }
   }
+
   &.has-aside {
     animation: fade-up 0.6s 0.3s backwards;
+
     .page-content {
       width: calc(100% - 300px);
     }
+
     .main-aside {
       width: 300px;
       padding-left: 1rem;
     }
   }
+
   @media (max-width: 1200px) {
     .page-content {
       width: 100% !important;
     }
+
     .main-aside {
       display: none;
     }

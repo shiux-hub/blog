@@ -38,9 +38,7 @@ function pageJump(url) {
                 <span class="link-title"> {{ item.text }}</span>
                 <div v-if="item.items" class="link-child">
                   <div
-                    v-for="({ link, icon, text }, childIndex) in item.items"
-                    :key="childIndex"
-                    class="link-child-btn"
+                    v-for="({ link, icon, text }, childIndex) in item.items" :key="childIndex" class="link-child-btn"
                     @click="pageJump(link)"
                   >
                     <Icon v-if="icon" :icon />
@@ -52,12 +50,10 @@ function pageJump(url) {
             <hr>
             <!-- 标签 -->
             <div class="tags-list menu-item">
-              <span class="link-title"> 标签</span>
+              <span class="link-title">标签</span>
               <div class="link-child">
                 <div
-                  v-for="(item, tag, index) in tagsData"
-                  :key="index"
-                  class="link-child-btn"
+                  v-for="(item, tag, index) in tagsData" :key="index" class="link-child-btn"
                   @click="pageJump(`/pages/tags/${tag}`)"
                 >
                   <span class="name">{{ tag }}</span>
@@ -80,6 +76,7 @@ function pageJump(url) {
   width: 100vw;
   height: 100vh;
   z-index: 3000;
+
   .menu-mask {
     position: absolute;
     top: 0;
@@ -87,8 +84,9 @@ function pageJump(url) {
     width: 100%;
     height: 100%;
     z-index: -1;
-    background-color: var(--main-mask-background);
+    background-color: var(--color-mask-background-deep);
   }
+
   .menu-content {
     position: absolute;
     top: 0;
@@ -99,6 +97,7 @@ function pageJump(url) {
     border-radius: 12px 0 0 12px;
     padding: 20px;
     overflow: auto;
+
     .close-control {
       position: absolute;
       top: 10px;
@@ -114,6 +113,7 @@ function pageJump(url) {
         opacity 0.3s;
       border-radius: 50%;
       cursor: pointer;
+
       svg {
         width: 18px;
         height: 18px;
@@ -123,31 +123,39 @@ function pageJump(url) {
           color 0.3s,
           opacity 0.3s;
       }
+
       &:hover {
         background-color: var(--main-color);
+
         svg {
           color: var(--main-card-background);
         }
       }
     }
+
     .menu-list {
       margin-bottom: 20px;
+
       &:last-child {
         margin-bottom: 0;
       }
     }
+
     .menu-item {
       margin-bottom: 12px;
+
       .link-title {
         font-size: 14px;
         margin-bottom: 12px;
         display: inline-block;
         color: var(--main-font-second-color);
       }
+
       .link-child {
         display: grid;
         gap: 12px;
         grid-template-columns: 1fr 1fr;
+
         .link-child-btn {
           display: flex;
           flex-direction: row;
@@ -159,28 +167,31 @@ function pageJump(url) {
           border: 1px solid var(--main-card-border);
           box-shadow: 0 8px 16px -4px var(--main-border-shadow);
           font-size: 15px;
+
           svg {
             margin-right: 6px;
             opacity: 0.6;
           }
+
           .name {
             max-width: 80px;
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
           }
+
           .num {
             opacity: 0.4;
-            font-size: 12px;
-            margin-bottom: auto;
             margin-left: 4px;
           }
         }
       }
+
       &:last-child {
         margin-bottom: 0;
       }
     }
+
     hr {
       margin: 1rem 0;
       opacity: 0.4;

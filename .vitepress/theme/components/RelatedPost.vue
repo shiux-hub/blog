@@ -57,6 +57,7 @@ onMounted(() => {
 <style lang="scss" scoped>
 .related-post {
   margin-top: 1rem;
+
   .title {
     display: flex;
     flex-direction: row;
@@ -65,17 +66,20 @@ onMounted(() => {
     width: 100%;
     margin: 3rem 0 1rem 0;
     padding: 0 6px;
+
     .name {
       display: flex;
       align-items: center;
       font-size: 24px;
       font-weight: bold;
+
       svg {
         width: 26px;
         height: 26px;
         margin-right: 8px;
       }
     }
+
     .shuffle {
       opacity: 0.6;
       font-size: 14px;
@@ -83,6 +87,7 @@ onMounted(() => {
         color 0.3s,
         opacity 0.3s;
       cursor: pointer;
+
       &:hover {
         opacity: 1;
         color: var(--main-color);

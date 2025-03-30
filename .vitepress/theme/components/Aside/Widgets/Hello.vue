@@ -8,7 +8,7 @@ const { theme } = useData()
 
 // 问候数据
 const helloClick = ref(0)
-const helloTimeOut = ref<NodeJS.Timeout | null>(null)
+const helloTimeOut = ref<number>()
 const helloText = ref(getGreetings())
 
 // 恢复问候语

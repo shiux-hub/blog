@@ -35,7 +35,7 @@ const socialLinkData = computed(() => {
       >
         <Icon :icon />
       </a>
-      <div class="logo" title="返回顶部" @click="smoothScrolling()">
+      <div v-tippy class="logo" title="返回顶部" @click="smoothScrolling()">
         <img :src="siteMeta.author.cover" alt="author" class="author">
       </div>
       <a
