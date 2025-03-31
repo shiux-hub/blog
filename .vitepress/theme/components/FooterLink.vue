@@ -28,18 +28,25 @@ const socialLinkData = computed(() => {
       <span class="site-desc">{{ site.description }}</span>
       <a href="/" class="to-home">了解更多</a>
     </div>
-    <div class="footer-social">
+    <div class="footer-social w-full flex flex-wrap justify-center items-center mt-12 mb-4 gap-y-13 gap-x-8">
       <a
-        v-for="({ link, icon }, index) in socialLinkData.first" :key="index" :href="link" target="_blank"
+        v-for="({ link, icon, title }, index) in socialLinkData.first" :key="index" v-tippy="title" :href="link"
+        target="_blank"
         class="social-link"
       >
         <Icon :icon />
       </a>
-      <div v-tippy class="logo" title="返回顶部" @click="smoothScrolling()">
-        <img :src="siteMeta.author.cover" alt="author" class="author">
+      <div
+        v-tippy
+        class="mx-4 size-15 max-md:hidden transition-transform duration-300 cursor-pointer hover:scale-120 active:scale-100"
+        title="返回顶部"
+        @click="smoothScrolling()"
+      >
+        <img :src="siteMeta.author.cover" alt="author" class="author size-full">
       </div>
       <a
-        v-for="({ link, icon }, index) in socialLinkData.second" :key="index" :href="link" target="_blank"
+        v-for="({ link, icon, title }, index) in socialLinkData.second" :key="index" v-tippy="title" :href="link"
+        target="_blank"
         class="social-link"
       >
         <Icon :icon />
@@ -117,71 +124,32 @@ const socialLinkData = computed(() => {
     }
   }
 
-  .footer-social {
-    width: 100%;
+  .footer-social .social-link {
     display: flex;
-    flex-wrap: wrap;
-    flex-direction: row;
     justify-content: center;
     align-items: center;
-    margin-top: 3rem;
-    margin-bottom: 1rem;
-    gap: 2rem 52px;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    contain: layout paint;
+    background-color: var(--main-font-color);
+    transition:
+      transform 0.3s,
+      background-color 0.3s;
+    color: var(--main-card-background);
 
-    .social-link {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      width: 32px;
-      height: 32px;
-      border-radius: 50%;
-      contain: layout paint;
-      background-color: var(--main-font-color);
-      transition:
-        transform 0.3s,
-        background-color 0.3s;
-      color: var(--main-card-background);
-
-      svg {
-        width: 20px;
-        height: 20px;
-      }
-
-      &:hover {
-        transform: scale(1.15);
-        background-color: var(--main-color);
-      }
-
-      &:active {
-        transform: scale(1);
-      }
+    svg {
+      width: 20px;
+      height: 20px;
     }
 
-    .logo {
-      width: 60px;
-      height: 60px;
-      margin: 0 1rem;
-      transition: transform 0.3s;
-      cursor: pointer;
-
-      img {
-        width: 100%;
-        height: 100%;
-      }
-
-      &:hover {
-        transform: scale(1.2);
-      }
-
-      &:active {
-        transform: scale(1);
-      }
+    &:hover {
+      transform: scale(1.15);
+      background-color: var(--main-color);
     }
 
-    @media (max-width: 768px) {
-      .logo {
-        display: none;
-      }
+    &:active {
+      transform: scale(1);
     }
   }
 

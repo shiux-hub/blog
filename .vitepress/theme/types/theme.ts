@@ -50,6 +50,7 @@ export interface ThemeConfig {
        */
       icon: string
       link: string
+      title: string
     }>
     sitemap: Array<{
       text: string

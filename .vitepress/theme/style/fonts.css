@@ -3,9 +3,3 @@
   font-display: swap;
   src: url("/fonts/title.ttf");
 }
-
-html,
-body,
-#app {
-  font-family: var(--main-font-family) !important;
-}

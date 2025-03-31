@@ -15,7 +15,6 @@ import VueTippy from 'vue-tippy'
 
 // 全局样式
 import '@/style/main.css'
-import '@/style/main.scss'
 
 // pinia
 const pinia = createPinia()

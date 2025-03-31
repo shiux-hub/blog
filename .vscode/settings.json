@@ -1,5 +1,5 @@
 {
-  "tailwindCSS.experimental.configFile": ".vitepress/theme/style/main.css",
+  "tailwindCSS.experimental.configFile": ".vitepress/theme/style/tailwind.css",
   // Disable the default formatter, use eslint instead
   "prettier.enable": false,
   "editor.formatOnSave": false,
