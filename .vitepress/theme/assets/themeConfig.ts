@@ -233,26 +233,32 @@ export const themeConfig: ThemeConfig = {
       {
         icon: 'mdi:email-outline',
         link: 'mailto:one@imsyy.top',
+        title: '给我发邮件',
       },
       {
         icon: 'ri:github-line',
         link: 'https://www.github.com/imsyy/',
+        title: 'GitHub',
       },
       {
         icon: 'ri:telegram-2-line',
         link: 'https://t.me/bottom_user',
+        title: 'Telegram',
       },
       {
         icon: 'ri:bilibili-line',
         link: 'https://space.bilibili.com/98544142',
+        title: 'BiliBili',
       },
       {
         icon: 'ri:qq-line',
         link: 'https://res.abeim.cn/api/qq/?qq=1539250352',
+        title: 'QQ',
       },
       {
         icon: 'ri:twitter-x-line',
         link: 'https://twitter.com/iimmsyy',
+        title: 'X',
       },
     ],
     // sitemap

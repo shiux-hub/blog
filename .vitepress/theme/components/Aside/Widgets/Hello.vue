@@ -3,6 +3,7 @@
 import { useData } from '@/composables/data'
 import { getGreetings } from '@/utils/helper'
 import { Icon } from '@iconify/vue'
+import { random } from 'radashi'
 
 const { theme } = useData()
 
@@ -55,7 +56,7 @@ function isHasUser() {
   const { nick } = JSON.parse(userData)
   const hello = ['很高兴见到你', '好久不见', '欢迎回来']
   // 随机问候语
-  helloText.value = `${hello[Math.floor(Math.random() * hello.length)]}，${nick}`
+  helloText.value = `${hello[random(0, hello.length - 1)]}，${nick}`
   return true
 }
 
@@ -84,10 +85,10 @@ onBeforeUnmount(() => {
         <span class="desc">{{ theme.siteMeta.description }}</span>
       </div>
       <div class="link">
-        <a href="https://github.com/imsyy/" target="_blank" class="social-link">
+        <a href="https://github.com/shiux-lab/" target="_blank" class="social-link">
           <Icon icon="ri:github-line" />
         </a>
-        <a href="mailto:one@imsyy.top" target="_blank" class="social-link">
+        <a href="mailto:dropout.cn@gmail.com" target="_blank" class="social-link">
           <Icon icon="mdi:email-outline" />
         </a>
       </div>
