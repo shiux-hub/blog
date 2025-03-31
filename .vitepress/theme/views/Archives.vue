@@ -7,12 +7,12 @@ const router = useRouter()
 </script>
 
 <template>
-  <div class="archives s-card">
-    <div class="title">
-      <h1 class="name">
+  <div class="archives p-8 s-card">
+    <div class="font-bold mb-4 flex gap-2">
+      <h1 class="border-none">
         文章
       </h1>
-      <sup v-if="theme.postData?.length" class="num">{{ theme.postData.length }}</sup>
+      <sup v-if="theme.postData?.length" class="text-xl opacity-60">{{ theme.postData.length }}</sup>
     </div>
     <div class="archives-list">
       <div v-for="(year, index) in theme.archivesData.year" :key="index" class="year-list">
@@ -42,23 +42,6 @@ const router = useRouter()
 <style lang="scss" scoped>
 .archives {
   padding: 2rem;
-
-  .title {
-    display: flex;
-    margin-bottom: 1rem;
-
-    .name {
-      margin: 0;
-      border-bottom: none;
-    }
-
-    .num {
-      margin-left: 8px;
-      font-size: 20px;
-      font-weight: bold;
-      opacity: 0.6;
-    }
-  }
 
   .archives-list {
     .year-list {
