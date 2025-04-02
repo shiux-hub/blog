@@ -1,5 +1,5 @@
 <!-- 下一篇文章 -->
-<script setup>
+<script lamg="ts" setup>
 import { useData } from '@/composables/data'
 import { mainStore } from '@/store'
 import { generateId } from '@/utils/commonTools'

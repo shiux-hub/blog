@@ -74,8 +74,7 @@ onMounted(() => {
 })
 
 onBeforeUnmount(() => {
-  if (waitTimeOut.value)
-    clearTimeout(waitTimeOut.value)
+  clearTimeout(waitTimeOut.value)
 })
 </script>
 

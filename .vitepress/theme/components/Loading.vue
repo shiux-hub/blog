@@ -1,4 +1,4 @@
-<script setup>
+<script lang="ts" setup>
 import { useData } from '@/composables/data'
 import { mainStore } from '@/store'
 import { storeToRefs } from 'pinia'
@@ -9,7 +9,7 @@ const { loadingStatus } = storeToRefs(store)
 
 // 显示提示
 const showTip = ref(false)
-const showTimeOut = ref(null)
+const showTimeOut = ref<number>()
 
 // 监听加载状态
 watch(

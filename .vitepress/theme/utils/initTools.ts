@@ -1,7 +1,7 @@
 import { mainStore } from '@/store'
 
 // 必要数据
-let loadingTimer: number = 0
+let loadingTimer: number | null = null
 let lastPathName: string | null = null
 
 // 是否仅触发跳转后
@@ -75,7 +75,8 @@ function changeLoading(option: {
       // 替换链接
       // jumpRedirect(null, true);
       // 清除定时器
-      clearTimeout(loadingTimer)
+      if (loadingTimer)
+        clearTimeout(loadingTimer)
     },
     Math.floor(Math.random() * (800 - 260 + 1)) + 260,
   )
