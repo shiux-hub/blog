@@ -137,20 +137,20 @@ onMounted(() => {
 <template>
   <div v-if="total > 0" class="pagination">
     <div
-      v-if="currentPage > 1" class="page-item prev" @click="
+      v-if="currentPage > 1" class="page-item group h-12.5 text-font-color next w-full transition duration-300 space-x-1 bg-card-background border border-card-border shadow-md shadow-border-shadow max-md:hover:text-white max-md:hover:bg-theme md:h-10 md:hover:shadow-theme-none md:w-20 md:hover:text-theme md:hover:border-theme" @click="
         jumpPage(
           currentPage === 2 ? `${routePath}` : `${routePath}/page/${currentPage - 1}`,
           currentPage === 2 ? 1 : currentPage - 1,
         )
       "
     >
-      <Icon icon="mingcute:right-fill" />
-      <span class="page-text">上页</span>
+      <Icon icon="mingcute:left-fill" class="max-md:hidden" />
+      <span class="page-text mr-0 transition-[opacity,margin] duration-300 md:opacity-0 md:group-hover:mr-0 md:group-hover:opacity-100 md:-mr-8">上页</span>
     </div>
-    <div class="page-number">
+    <div class="page-number items-center justify-center w-full hidden md:flex">
       <div
         v-for="(item, index) in pageNumber" :key="index"
-        :class="[item === '...' ? 'point' : 'page-item', { choose: item === currentPage }]"
+        :class="[item === '...' ? 'point' : 'page-item w-10', { choose: item === currentPage }]"
         @click="item !== '...' && jumpPage(item === 1 ? routePath : `${routePath}/page/${item}`, item)"
       >
         <span class="page-num">{{ item }}</span>
@@ -165,115 +165,37 @@ onMounted(() => {
       </div>
     </div>
     <div
-      v-if="currentPage * limit < total" class="page-item next"
+      v-if="currentPage * limit < total"
+      class="page-item group h-12.5 text-font-color next w-full transition duration-300 space-x-1 bg-card-background border border-card-border shadow-md shadow-border-shadow max-md:hover:text-white max-md:hover:bg-theme md:h-10 md:hover:shadow-theme-none md:w-20 md:hover:text-theme md:hover:border-theme"
       @click="jumpPage(`${routePath}/page/${currentPage + 1}`, currentPage + 1)"
     >
-      <span class="page-text">下页</span>
-      <Icon icon="mingcute:right-fill" />
+      <span class="page-text ml-0 transition-[opacity,margin] duration-300 md:opacity-0 md:group-hover:ml-0 md:group-hover:opacity-100 md:-ml-8">下页</span>
+      <Icon icon="mingcute:right-fill" class="max-md:hidden" />
     </div>
   </div>
 </template>
 
 <style lang="scss" scoped>
 .pagination {
-  position: relative;
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: center;
   margin-top: 20px;
   width: 100%;
-  height: 40px;
+  gap: .5rem;
   animation: fade-up 0.6s 0.4s backwards;
 
   .page-item {
-    position: relative;
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 40px;
-    height: 40px;
     border-radius: 8px;
     overflow: hidden;
-    background-color: var(--main-card-background);
-    border: 1px solid var(--main-card-border);
-    box-shadow: 0 8px 16px -4px var(--main-border-shadow);
-    transition:
-      border-color 0.3s,
-      box-shadow 0.3s;
     cursor: pointer;
-
-    &.prev,
-    &.next {
-      position: absolute;
-      width: 80px;
-      left: 0;
-
-      svg {
-        transform: rotate(180deg);
-        transition:
-          color 0.3s,
-          transform 0.3s;
-      }
-
-      .page-text {
-        opacity: 0;
-        margin-left: 4px;
-        margin-right: -36px;
-        transition:
-          opacity 0.3s,
-          margin 0.3s;
-      }
-    }
-
-    &.next {
-      left: auto;
-      right: 0;
-
-      svg {
-        transform: rotate(0);
-      }
-
-      .page-text {
-        margin-right: 4px;
-        margin-left: -36px;
-      }
-    }
-
-    &:hover {
-      border-color: var(--main-color);
-      box-shadow: 0 8px 16px -4px var(--main-color-bg);
-
-      svg {
-        color: var(--main-color);
-      }
-
-      &.prev,
-      &.next {
-        color: var(--main-color);
-
-        .page-text {
-          opacity: 1;
-          margin-right: 0;
-        }
-      }
-
-      &.next {
-        .page-text {
-          margin-right: 4px;
-          margin-left: 0;
-        }
-      }
-    }
   }
 
   .page-number {
-    width: 100%;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-
     .page-item {
       margin: 0 6px;
 
@@ -351,22 +273,6 @@ onMounted(() => {
             pointer-events: all;
           }
         }
-      }
-    }
-  }
-
-  @media (max-width: 768px) {
-    .page-number {
-      display: none;
-    }
-
-    .page-item {
-      &:first-child {
-        margin-right: 10px;
-      }
-
-      &:last-child {
-        margin-left: 10px;
       }
     }
   }

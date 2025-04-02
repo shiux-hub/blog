@@ -137,8 +137,10 @@ onBeforeUnmount(() => {
     </template>
   </main>
   <!-- 页脚 -->
-  <FooterLink v-show="!loadingStatus" :show-bar="isPostPage && !page.isNotFound" />
-  <Footer v-show="!loadingStatus" />
+  <footer class="flex flex-col items-center mt-12 gap-8 bg-linear-180 from-transparent to-card-background to-25% max-md:mt-0 max-md:from-card-background max-md:z-999">
+    <FooterLink v-show="!loadingStatus" class="mb-8" :show-bar="isPostPage && !page.isNotFound" />
+    <Footer v-show="!loadingStatus" class="mt-4" />
+  </footer>
   <!-- 悬浮菜单 -->
   <Teleport to="body">
     <!-- 左侧菜单 -->
