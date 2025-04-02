@@ -143,7 +143,7 @@ onMounted(() => {
   >
     <div
       v-if="currentPage > 1"
-      class="group text-font-color next bg-card-background border-card-border shadow-border-shadow max-md:hover:bg-theme md:hover:shadow-theme-none md:hover:text-theme md:hover:border-theme flex h-12.5 flex-1 shrink-0 cursor-pointer items-center justify-center space-x-1 overflow-hidden rounded-lg border shadow-md transition duration-300 max-md:hover:text-white md:h-10 md:w-20"
+      class="group text-font-color next bg-card-background border-card-border shadow-border-shadow max-md:hover:bg-theme md:hover:shadow-theme-none md:hover:text-theme md:hover:border-theme flex h-12.5 shrink-0 cursor-pointer items-center justify-center space-x-1 overflow-hidden rounded-lg border shadow-md transition duration-300 max-md:flex-1 max-md:hover:text-white md:h-10 md:w-20"
       @click="
         jumpPage(
           currentPage === 2
@@ -208,7 +208,7 @@ onMounted(() => {
     </div>
     <div
       v-if="currentPage * limit < total"
-      class="group text-font-color next bg-card-background border-card-border shadow-border-shadow max-md:hover:bg-theme md:hover:shadow-theme-none md:hover:text-theme md:hover:border-theme flex h-12.5 flex-1 shrink-0 cursor-pointer items-center justify-center space-x-1 overflow-hidden rounded-lg border shadow-md transition duration-300 max-md:hover:text-white md:h-10 md:w-20"
+      class="group text-font-color next bg-card-background border-card-border shadow-border-shadow max-md:hover:bg-theme md:hover:shadow-theme-none md:hover:text-theme md:hover:border-theme flex h-12.5 shrink-0 cursor-pointer items-center justify-center space-x-1 overflow-hidden rounded-lg border shadow-md transition duration-300 max-md:flex-1 max-md:hover:text-white md:h-10 md:w-20"
       @click="jumpPage(`${routePath}/page/${currentPage + 1}`, currentPage + 1)"
     >
       <span
