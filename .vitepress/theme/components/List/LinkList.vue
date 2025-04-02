@@ -1,41 +1,51 @@
 <script lang="ts" setup>
-withDefaults(defineProps<{
-  // 列表数据
-  listData: {
-    typeName: string
-    typeDesc: string
-    typeList: {
-      name: string
-      desc: string
-      url: string
-      avatar?: string
-      ico?: string
-    }[]
-  }[] | string
-  // 显示数量
-  showCount?: boolean
-  useFriendsLink?: boolean
-}>(), {
-  showCount: true,
-  useFriendsLink: false,
-})
+withDefaults(
+  defineProps<{
+    // 列表数据
+    listData:
+      | {
+        typeName: string
+        typeDesc: string
+        typeList: {
+          name: string
+          desc: string
+          url: string
+          avatar?: string
+          ico?: string
+        }[]
+      }[]
+      | string
+    // 显示数量
+    showCount?: boolean
+    useFriendsLink?: boolean
+  }>(),
+  {
+    showCount: true,
+    useFriendsLink: false,
+  },
+)
 </script>
 
 <template>
   <Transition name="fade" mode="out-in">
     <div v-if="listData?.length" class="link-list">
-      <div v-for="(type, index) in listData" :key="index" class="link-type-list">
+      <div
+        v-for="(type, index) in listData"
+        :key="index"
+        class="link-type-list"
+      >
         <div class="title">
           <h2 class="name">
-            <span class="name-text">{{ type?.typeName || "未知分组" }}</span>
+            <span class="name-text">{{ type?.typeName || '未知分组' }}</span>
             <span v-if="showCount" class="name-count">（{{ type?.typeList?.length || 0 }}）</span>
           </h2>
-          <span class="tip">{{ type?.typeDesc || "分组暂无简介" }}</span>
+          <span class="tip">{{ type?.typeDesc || '分组暂无简介' }}</span>
         </div>
         <div v-if="type?.typeList" class="all-link">
           <a
             v-for="(link, key) in type.typeList"
-            :key class="link-card s-card"
+            :key
+            class="link-card s-card"
             :class="[
               {
                 'loss': type?.type === 'loss',
@@ -49,14 +59,21 @@ withDefaults(defineProps<{
               <LazyLoader :use-friends-link="link.avatar || link.ico">
                 <img
                   :src="link.avatar || link.ico"
-                  class="cover-img" :class="[{ 'cf-friends-avatar': useFriendsLink }]"
+                  class="cover-img"
+                  :class="[{ 'cf-friends-avatar': useFriendsLink }]"
                   :alt="link?.name || 'cover'"
-                  @load="(e) => (e.target as HTMLImageElement)?.classList?.add('loaded')"
+                  @load="
+                    (e) =>
+                      (e.target as HTMLImageElement)?.classList?.add('loaded')
+                  "
                 >
               </LazyLoader>
             </div>
             <div class="data">
-              <span class="name" :class="[{ 'cf-friends-name': useFriendsLink }]">{{ link.name }}</span>
+              <span
+                class="name"
+                :class="[{ 'cf-friends-name': useFriendsLink }]"
+              >{{ link.name }}</span>
               <span class="desc">{{ link.desc }}</span>
             </div>
           </a>

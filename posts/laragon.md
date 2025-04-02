@@ -104,10 +104,10 @@ coverHeight:
 ## 注意事项
 
 1. 如果提示端口已被占用，可以修改端口，可以参考下图示例
-![修改端口](/images/9b21f3802ad658ac382a8a0e9465eda9.png)
+   ![修改端口](/images/9b21f3802ad658ac382a8a0e9465eda9.png)
 
 2. 如果提示dll文件缺失，下载运行库安装重启即可。
-**三方下载地址** - <http://dreamcast2.ys168.com/>
+   **三方下载地址** - <http://dreamcast2.ys168.com/>
 
 ## 更多功能
 

@@ -49,7 +49,7 @@ encodeURIComponent('黄山') // 返回 %E9%BB%84%E5%B1%B1
 
 ## escape（不推荐使用，推荐使用上面两个方法代替）
 
-该方法会对ASCII中**字母、数字及符号*@-_+./**之外的所有字符进行编码。
+该方法会对ASCII中**字母、数字及符号\*@-\_+./**之外的所有字符进行编码。
 
 ```javascript
 const url = 'https://google.com/pathname?a=1&b=abcde&c=黄山#hash'

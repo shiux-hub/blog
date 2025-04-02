@@ -51,7 +51,8 @@ export const mainStore = defineStore('main', {
     lastScrollY: 0,
     // 站点背景
     backgroundType: 'patterns',
-    backgroundUrl: 'https://tuapi.eees.cc/api.php?category={dongman,fengjing}&type=302',
+    backgroundUrl:
+      'https://tuapi.eees.cc/api.php?category={dongman,fengjing}&type=302',
   }),
   getters: {},
   actions: {

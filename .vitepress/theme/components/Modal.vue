@@ -2,27 +2,30 @@
 <script lang="ts" setup>
 import { Icon } from '@iconify/vue'
 
-const props = withDefaults(defineProps<{
-  // 是否显示
-  show?: boolean
-  // 标题
-  title?: string
-  // 标题图标
-  titleIcon?: string
-  // 是否显示关闭按钮
-  showClose?: boolean
-  // 最大宽度
-  maxWidth?: number | string
-  // 最大高度
-  maxHeight?: number
-}>(), {
-  show: false,
-  title: '',
-  titleIcon: '',
-  showClose: true,
-  maxWidth: 800,
-  maxHeight: 80,
-})
+const props = withDefaults(
+  defineProps<{
+    // 是否显示
+    show?: boolean
+    // 标题
+    title?: string
+    // 标题图标
+    titleIcon?: string
+    // 是否显示关闭按钮
+    showClose?: boolean
+    // 最大宽度
+    maxWidth?: number | string
+    // 最大高度
+    maxHeight?: number
+  }>(),
+  {
+    show: false,
+    title: '',
+    titleIcon: '',
+    showClose: true,
+    maxWidth: 800,
+    maxHeight: 80,
+  },
+)
 
 // 发射事件
 const emit = defineEmits<{
@@ -53,7 +56,9 @@ watch(
         <div
           :style="{
             maxWidth: typeof maxWidth === 'string' ? maxWidth : `${maxWidth}px`,
-          }" class="modal-main s-card" @click.stop
+          }"
+          class="modal-main s-card"
+          @click.stop
         >
           <!-- 标题 -->
           <div v-if="title" class="title">
@@ -62,7 +67,12 @@ watch(
               <span class="title-text">{{ title }}</span>
             </div>
             <!-- 关闭按钮 -->
-            <Icon v-if="showClose" icon="mingcute:close-fill" class="close" @click="modalClose" />
+            <Icon
+              v-if="showClose"
+              icon="mingcute:close-fill"
+              class="close"
+              @click="modalClose"
+            />
           </div>
           <!-- 弹窗内容 -->
           <div class="modal-content" :style="{ '--height': `${maxHeight}vh` }">

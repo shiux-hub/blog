@@ -27,17 +27,14 @@ MacOS安装MySQL的方法主要分为两种。分别是：
 ![](https://i.loli.net/2021/08/17/5vtZsQPcN6hVg1X.png)
 下载好了之后，长这样。双击打开。
 ![](https://i.loli.net/2021/08/17/sYbkJ7wotQd6Eza.png)
-再次双击进行安装
-2. 下载完成后，点安装，一路点“继续”，直到
+再次双击进行安装2. 下载完成后，点安装，一路点“继续”，直到
 
 ![](https://i.loli.net/2020/02/14/ksVqxNF4TPduafC.png)
-这里选择第二个。 初步安装成功，这里自己设置的密码要记住，以后连数据库都要用。
-3. 如何配置
+这里选择第二个。 初步安装成功，这里自己设置的密码要记住，以后连数据库都要用。3. 如何配置
 
 进入系统偏好，打开`mysql` 看一下是不是打开的，一般安装默认安装好了就打开的。 是绿色的就代表是开启状态，这个启动选项可以不选。
 ![](https://i.loli.net/2020/02/14/keyfSD8ErwQPnKp.png)
-![](https://i.loli.net/2020/02/14/l7oiJAS6D5B4zMt.png)
-4. 打开终端
+![](https://i.loli.net/2020/02/14/l7oiJAS6D5B4zMt.png) 4. 打开终端
 
 输入：`cd /usr/local/mysql`，回车执行
 
@@ -47,8 +44,7 @@ MacOS安装MySQL的方法主要分为两种。分别是：
 
 在文档的最下方输入：`export PATH=${PATH}:/usr/local/mysql/bin` 然后按`Esc`退出`insert`状态，并在最下方输入:wq保存退出(或直接按shift+zz，或者切换到大写模式按ZZ，就可以保存退出了)。
 
-输入：`source .bash_profile` 回车执行，运行环境变量。 再输入`mysql`命令`mysql -u root -p`，即可使用。
-5. 以后每次使用的话，打开终端输入`/usr/local/mysql/bin/mysql -u root -p`即可使用。
+输入：`source .bash_profile` 回车执行，运行环境变量。 再输入`mysql`命令`mysql -u root -p`，即可使用。5. 以后每次使用的话，打开终端输入`/usr/local/mysql/bin/mysql -u root -p`即可使用。
 
 ### 使用Homebrew安装MySQL
 
@@ -59,13 +55,14 @@ MacOS安装MySQL的方法主要分为两种。分别是：
    ```
 
 2. Homebrew安装与启动MySQL服务
-   * 安装mysql
+
+   - 安装mysql
 
    ```bash
    brew install mysql
    ```
 
-   * 配置并启动MySQL服务
+   - 配置并启动MySQL服务
 
    ```bash
    brew tap homebrew/services
@@ -80,7 +77,7 @@ MacOS安装MySQL的方法主要分为两种。分别是：
 
 4. MySQL安装测试
 
-   * 查看MySQL版本
+   - 查看MySQL版本
 
    ```bash
    #查看MySQL版本
@@ -90,7 +87,7 @@ MacOS安装MySQL的方法主要分为两种。分别是：
    mysql Ver 8.0.19 for osx10.15 on x86_64 (Homebrew)
    ```
 
-   * MySQL shell测试
+   - MySQL shell测试
 
    ```bash
    #进入MySQL shell

@@ -25,11 +25,20 @@ function pageJump(url: string) {
     <Transition name="fade" mode="out-in">
       <div v-show="store.mobileMenuShow" class="mobile-menu">
         <!-- 背景遮罩 -->
-        <div class="menu-mask" @click="store.changeShowStatus('mobileMenuShow')" />
+        <div
+          class="menu-mask"
+          @click="store.changeShowStatus('mobileMenuShow')"
+        />
         <Transition name="toLeft" mode="out-in">
-          <div v-show="store.mobileMenuShow" class="menu-content s-card">
+          <div
+            v-show="store.mobileMenuShow"
+            class="menu-content s-card bg-mask-background-deep rounded-none"
+          >
             <!-- 关闭按钮 -->
-            <div class="close-control" @click="store.changeShowStatus('mobileMenuShow')">
+            <div
+              class="close-control"
+              @click="store.changeShowStatus('mobileMenuShow')"
+            >
               <Icon icon="mingcute:close-fill" />
             </div>
             <!-- 菜单 -->
@@ -38,25 +47,29 @@ function pageJump(url: string) {
                 <span class="link-title"> {{ item.text }}</span>
                 <div v-if="item.items" class="grid grid-cols-2 gap-3">
                   <div
-                    v-for="({ link, icon, text }) in item.items" :key="text" class="link-child-btn"
+                    v-for="{ link, icon, text } in item.items"
+                    :key="text"
+                    class="link-child-btn"
                     @click="pageJump(link)"
                   >
                     <Icon v-if="icon" :icon />
-                    <span class="truncate max-w-20">{{ text }}</span>
+                    <span class="max-w-20 truncate">{{ text }}</span>
                   </div>
                 </div>
               </div>
             </div>
             <hr>
             <!-- 标签 -->
-            <div class="tags-list menu-item">
+            <div class="menu-item">
               <span class="link-title">标签</span>
-              <div class="grid grid-cols-2 gap-3">
+              <div class="flex flex-wrap gap-1 text-sm">
                 <div
-                  v-for="(item, tag) in tagsData" :key="tag" class="link-child-btn space-x-1"
+                  v-for="(item, tag) in tagsData"
+                  :key="tag"
+                  class="border-card-border bg-card-background space-x-1 rounded-lg border px-2 py-0.5 transition-colors duration-300"
                   @click="pageJump(`/pages/tags/${tag}`)"
                 >
-                  <span class="truncate max-w-20">{{ tag }}</span>
+                  <span class="max-w-20 truncate">{{ tag }}</span>
                   <sup class="opacity-40">{{ item.count }}</sup>
                 </div>
               </div>
@@ -94,7 +107,6 @@ function pageJump(url: string) {
     height: 100%;
     width: 100%;
     max-width: 300px;
-    border-radius: 12px 0 0 12px;
     padding: 20px;
     overflow: auto;
 

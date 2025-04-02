@@ -51,7 +51,7 @@ const { theme } = useData()
       }
     }
     &::after {
-      content: "";
+      content: '';
       position: absolute;
       bottom: 0;
       left: 0;

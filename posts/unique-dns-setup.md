@@ -26,24 +26,24 @@ coverHeight:
 
 在POSIX规范下，执行网络请求需要先通过gethostbyname、getremoteaddr等操作系统提供的方法进行DNS解析，获取到IP地址以后发起连接；如果DNS解析不成功，网络请求就无从谈起了。因此绝大部分依赖TUN和TAP的某些软件都会接管系统DNS解析。接管DNS解析后随之而来的便是一系列问题：
 
-* DNS污染：由于特殊的网络环境，通过你本机直接进行DNS解析得到的结果可能不可靠。
-* CDN优化：如果要访问的目标网站使用了CDN，最理想的结果是 距离代理服务器最近的CDN节点 - 代理服务器 - 你。如果你通过本机直接进行DNS解析，获取到的IP地址可能并不是距离你远端代理服务器 最近的CDN节点。
+- DNS污染：由于特殊的网络环境，通过你本机直接进行DNS解析得到的结果可能不可靠。
+- CDN优化：如果要访问的目标网站使用了CDN，最理想的结果是 距离代理服务器最近的CDN节点 - 代理服务器 - 你。如果你通过本机直接进行DNS解析，获取到的IP地址可能并不是距离你远端代理服务器 最近的CDN节点。
 
 由于常见的某些协议都运行在Layer 4上、支持封装域名；因此Surge/Clash等软件在转发流量时，都是封装目标域名，而不是目标域名在本机解析到的IP地址，从而规避DNS污染和实现CDN优化。
 
 如果软件一旦决定将某个域名转发给远端代理服务器，远端代理服务器也需要对拿到的域名进行一次解析，在本机解析的IP地址其实没有起任何作用，白白浪费一个RTT。于是2001年四月，IETF通过了RFC3089，描述了一种网关通过接管DNS、返回Fake IP来建立TCP/IP链接的方法。简单的流程如下：
 
-* 代理网关接管本机的DNS解析
-* 一个软件意图对一个域名发起网络请求，于是先通过DNS解析获取域名对应的IP
-* 代理网关收到DNS解析请求后，不做任何DNS解析，而是直接返回一个保留IP地址（Fake IP）
-* 发起网络请求的软件获取到Fake IP后，试图以Fake IP为目标发起网络请求
-* 代理网关截获网络请求，通过目标的Fake IP反推出目标域名
-* 代理网关将流量和目标域名使用某种协议重新封装后、转发给远端代理服务器
+- 代理网关接管本机的DNS解析
+- 一个软件意图对一个域名发起网络请求，于是先通过DNS解析获取域名对应的IP
+- 代理网关收到DNS解析请求后，不做任何DNS解析，而是直接返回一个保留IP地址（Fake IP）
+- 发起网络请求的软件获取到Fake IP后，试图以Fake IP为目标发起网络请求
+- 代理网关截获网络请求，通过目标的Fake IP反推出目标域名
+- 代理网关将流量和目标域名使用某种协议重新封装后、转发给远端代理服务器
 
 不过在日常使用中，即使有了Fake IP也不能完全避免本机进行DNS解析。Surge/Clash使用Fake IP后，当且只当以下两种情况时会在本机进行DNS解析：
 
-* 目标域名需要使用DIRECT策略（即直连）、此时Surge/Clash需要得到真实的目标IP、不通过代理服务器直接发起连接
-* Surge/Clash遇到了基于IP分流的策略（如 IP-CIDR、IP-ASN、GEOIP、LAN 等），此时Surge/Clash需要得到一个IP用于匹配分流
+- 目标域名需要使用DIRECT策略（即直连）、此时Surge/Clash需要得到真实的目标IP、不通过代理服务器直接发起连接
+- Surge/Clash遇到了基于IP分流的策略（如 IP-CIDR、IP-ASN、GEOIP、LAN 等），此时Surge/Clash需要得到一个IP用于匹配分流
 
 也就是说，如果Surge和Clash能够匹配到了一条域名规则、指示网络请求需要被转发给远端代理服务器，Surge和Clash便不会在本地进行DNS解析。因此在编写Surge和Clash（以及同类软件Shadowrocket、Quantumult(X)、Surfboard等）的规则时，将IP相关规则（IP-CIDR、IP-ASN、GEOIP等）放在其余的规则（DOMAIN、DST-PORT、SRC-PORT、PROTOCOL、URL-REGEX）的后面；除此以外，需要代理的域名的规则组越完善、Surge/Clash匹配到IP类规则的概率也就越低，需要本机DNS解析的次数也就越少。
 
@@ -68,15 +68,15 @@ coverHeight:
 
 一开始，你使用的是由运营商下发给你的运营商DNS，假设运营商的递归DNS的IP是`1.2.3.4`，于是：
 
-* 你向`1.2.3.4`发起DNS查询：请问`alicdn.example.com`的解析结果是什么？
-* `1.2.3.4`问`example.com`的权威DNS查询：`alicdn.example.com`的解析结果是什么？
-* `example.com`的权威DNS告诉`1.2.3.4`：`alicdn.example.com`用CNAME指向了`alicdn.example.com.w.alikunlun.com`。
-* 于是`1.2.3.4`把结果返回给你：`alicdn.example.com`用CNAME指向了`alicdn.example.com.w.alikunlun.com`
-* 你问`1.2.3.4`：请问`alicdn.example.com.w.alikunlun.com`的解析结果是什么？
-* `1.2.3.4`问`alikunlun.com`的权威DNS：`alicdn.example.com.w.alikunlun.com`的解析结果是什么？
-* `alikunlun.com`是阿里云CDN的域名，阿里的权威DNS开始找：地理位置最接近`1.2.3.4`的CDN节点是哪些？有`19.19.8.10`。
-* `alikunlun.com`告诉`1.2.3.4`：`alicdn.example.com.w.alikunlun.com`解析到了`19.19.8.10`。
-* `1.2.3.4`把结果返回给你：`alicdn.example.com.w.alikunlun.com`解析到了`19.19.8.10`。
+- 你向`1.2.3.4`发起DNS查询：请问`alicdn.example.com`的解析结果是什么？
+- `1.2.3.4`问`example.com`的权威DNS查询：`alicdn.example.com`的解析结果是什么？
+- `example.com`的权威DNS告诉`1.2.3.4`：`alicdn.example.com`用CNAME指向了`alicdn.example.com.w.alikunlun.com`。
+- 于是`1.2.3.4`把结果返回给你：`alicdn.example.com`用CNAME指向了`alicdn.example.com.w.alikunlun.com`
+- 你问`1.2.3.4`：请问`alicdn.example.com.w.alikunlun.com`的解析结果是什么？
+- `1.2.3.4`问`alikunlun.com`的权威DNS：`alicdn.example.com.w.alikunlun.com`的解析结果是什么？
+- `alikunlun.com`是阿里云CDN的域名，阿里的权威DNS开始找：地理位置最接近`1.2.3.4`的CDN节点是哪些？有`19.19.8.10`。
+- `alikunlun.com`告诉`1.2.3.4`：`alicdn.example.com.w.alikunlun.com`解析到了`19.19.8.10`。
+- `1.2.3.4`把结果返回给你：`alicdn.example.com.w.alikunlun.com`解析到了`19.19.8.10`。
 
 ![运营商DNS](https://s1.ax1x.com/2023/02/17/pSqQy9K.png)
 
@@ -102,14 +102,14 @@ coverHeight:
 
 有的公共DNS除了在全国设立Anycast节点、负责接收DNS查询以外，还在全国30余省市均部署了额外的服务器（称作「DNS出口服务器」）。这些DNS出口服务器不会直接接收来自终端用户的DNS查询，而是Anycast节点接收到终端用户的DNS查询后，转交给DNS出口服务器再进行解析：
 
-* 你（`114.5.1.4`）向`233.5.5.5`发起查询：请问`alicdn.example.com`的解析结果是什么？
-* `223.5.5.5`的众多Anycast节点中的一个收到了你的查询、开始寻找：我在全国部署的上百个DNS出口服务器中，哪一个是距离`114.5.1.4`最近的？
-* 223.5.5.5 将DNS查询转交给距离你最近的 DNS 出口服务器（称作「DNS 出口 A」）。
-* DNS出口A问alikunlun.com的权威DNS：`alicdn.example.com.w.alikunlun.com`的解析结果是什么？
-* 阿里云CDN开始找：地理位置最接近A的CDN节点都是哪些？
-* `alikunlun.com`告诉A：`alicdn.example.com.w.alikunlun.com`解析到了这些IP。
-* A告诉`223.5.5.5`：`alicdn.example.com.w.alikunlun.com`解析到了这些IP。
-* `223.5.5.5`告诉你：`alicdn.example.com.w.alikunlun.com`解析到了这些IP。
+- 你（`114.5.1.4`）向`233.5.5.5`发起查询：请问`alicdn.example.com`的解析结果是什么？
+- `223.5.5.5`的众多Anycast节点中的一个收到了你的查询、开始寻找：我在全国部署的上百个DNS出口服务器中，哪一个是距离`114.5.1.4`最近的？
+- 223.5.5.5 将DNS查询转交给距离你最近的 DNS 出口服务器（称作「DNS 出口 A」）。
+- DNS出口A问alikunlun.com的权威DNS：`alicdn.example.com.w.alikunlun.com`的解析结果是什么？
+- 阿里云CDN开始找：地理位置最接近A的CDN节点都是哪些？
+- `alikunlun.com`告诉A：`alicdn.example.com.w.alikunlun.com`解析到了这些IP。
+- A告诉`223.5.5.5`：`alicdn.example.com.w.alikunlun.com`解析到了这些IP。
+- `223.5.5.5`告诉你：`alicdn.example.com.w.alikunlun.com`解析到了这些IP。
 
 ![多出口IP的公共DNS](https://s1.ax1x.com/2023/02/17/pSqQfHA.png)
 
@@ -119,29 +119,29 @@ coverHeight:
 
 为了解决权威DNS难以根据终端用户的真实IP返回最适合用户的CDN节点的问题，IETF通过了[RFC7871](https://datatracker.ietf.org/doc/html/rfc7871)，即EDNS Client Subnet（ECS）。RFC7871定义了在DNS查询时，用户可以指定一个IP网段，权威DNS可以据此返回最适合这个IP网段的CDN节点：
 
-* 你（`114.5.1.4`）问支持ECS的公共DNS`119.29.29.29`：我是`114.5.1.0/24`，请问`alicdn.example.com.w.alikunlun.com`的解析结果是什么？
-* `119.29.29.29`问`alikunlun.com`的权威DNS：`114.5.1.0/24`在问`alicdn.example.com.w.alikunlun.com`的解析结果是什么？
-* 阿里云CDN开始找：地理位置最接近`114.5.1.0/24`的CDN节点都是哪些？
-* `alikunlun.com`告诉`119.29.29.29`：`alicdn.example.com.w.alikunlun.com`解析到了这些IP。
-* `119.29.29.29`把结果返回给你：`alicdn.example.com.w.alikunlun.com`解析到了这些IP。
+- 你（`114.5.1.4`）问支持ECS的公共DNS`119.29.29.29`：我是`114.5.1.0/24`，请问`alicdn.example.com.w.alikunlun.com`的解析结果是什么？
+- `119.29.29.29`问`alikunlun.com`的权威DNS：`114.5.1.0/24`在问`alicdn.example.com.w.alikunlun.com`的解析结果是什么？
+- 阿里云CDN开始找：地理位置最接近`114.5.1.0/24`的CDN节点都是哪些？
+- `alikunlun.com`告诉`119.29.29.29`：`alicdn.example.com.w.alikunlun.com`解析到了这些IP。
+- `119.29.29.29`把结果返回给你：`alicdn.example.com.w.alikunlun.com`解析到了这些IP。
 
 ![支持EDNS Client Subnet的公共DNS](https://s1.ax1x.com/2023/02/17/pSqQHgS.png)
 
 虽然ECS解决了权威DNS无法获取用户真实IP的问题，但是在实践中仍然存在一些困难：
 
-* 使用ECS有可能泄漏用户的隐私信息，一些公共DNS（如Cloudflare的`1.1.1.1`和`1.0.0.1`）因此拒绝提供ECS支持。
-* 在[RFC7871的11.2章节](https://datatracker.ietf.org/doc/html/rfc7871#section-11.2)中提到了一种针对ECS的攻击（即Birthday Attack），因此当DNS请求/响应中的ECS信息不完整时、需要彻底忽略ECS，降级回传统DNS查询。
-* 使用ECS会降低递归DNS的性能、甚至可以被用于发动针对递归DNS的攻击：以前一个递归DNS可以为所有人缓存同一个CDN节点IP，现在却需要为每个人缓存不同的CDN节点IP。[RFC7871的11.3章节](https://datatracker.ietf.org/doc/html/rfc7871#section-11.3)也因此指出，并非所有的递归DNS都需要支持ECS。
-* ECS需要从用户、到递归DNS、到权威DNS全链路均提供支持才能生效。虽然在[DNSFlagDay](https://dnsflagday.net/)的大力推动下，绝大部分权威DNS已经支持ECS，但在递归DNS中ECS的普及率仍然不容乐观。
+- 使用ECS有可能泄漏用户的隐私信息，一些公共DNS（如Cloudflare的`1.1.1.1`和`1.0.0.1`）因此拒绝提供ECS支持。
+- 在[RFC7871的11.2章节](https://datatracker.ietf.org/doc/html/rfc7871#section-11.2)中提到了一种针对ECS的攻击（即Birthday Attack），因此当DNS请求/响应中的ECS信息不完整时、需要彻底忽略ECS，降级回传统DNS查询。
+- 使用ECS会降低递归DNS的性能、甚至可以被用于发动针对递归DNS的攻击：以前一个递归DNS可以为所有人缓存同一个CDN节点IP，现在却需要为每个人缓存不同的CDN节点IP。[RFC7871的11.3章节](https://datatracker.ietf.org/doc/html/rfc7871#section-11.3)也因此指出，并非所有的递归DNS都需要支持ECS。
+- ECS需要从用户、到递归DNS、到权威DNS全链路均提供支持才能生效。虽然在[DNSFlagDay](https://dnsflagday.net/)的大力推动下，绝大部分权威DNS已经支持ECS，但在递归DNS中ECS的普及率仍然不容乐观。
 
 ---
 
 在补充介绍了递归DNS是如何优化CDN结果后，不难得出结论：
 
-* 需要被代理的域名、**必须在远端代理服务器上进行解析**、才能得到最合适的解析结果。
-* 在本地对需要代理的域名进行DNS解析，只不过是为了让Surge/Clash等软件能够基于IP分流（Surge/Clash的TUN/TAP会直接返回Fake IP、本地 DNS解析的结果根本不会暴露给外部）罢了。本地DNS解析的结果不需要很精确，**建议牺牲准确度换更快的速度。**
-* 为了能够让被代理的域名在远端服务器上解析，**在通过某种协议将代理请求发送给远端代理服务器时，必须直接封装该网络请求的域名。**
-* 使用Surge/Clash等软件后，**完全无需使用dnsproxy或dns2socks转发本地DNS查询。代理此类DNS查询不仅没有必要，反而会导致延迟升高、影响上网体验。**
+- 需要被代理的域名、**必须在远端代理服务器上进行解析**、才能得到最合适的解析结果。
+- 在本地对需要代理的域名进行DNS解析，只不过是为了让Surge/Clash等软件能够基于IP分流（Surge/Clash的TUN/TAP会直接返回Fake IP、本地 DNS解析的结果根本不会暴露给外部）罢了。本地DNS解析的结果不需要很精确，**建议牺牲准确度换更快的速度。**
+- 为了能够让被代理的域名在远端服务器上解析，**在通过某种协议将代理请求发送给远端代理服务器时，必须直接封装该网络请求的域名。**
+- 使用Surge/Clash等软件后，**完全无需使用dnsproxy或dns2socks转发本地DNS查询。代理此类DNS查询不仅没有必要，反而会导致延迟升高、影响上网体验。**
 
 ## 正确配置SmartDNS
 
@@ -163,15 +163,15 @@ coverHeight:
 
 有一些人认为，SmartDNS配置了数十个上游，需要对上游返回的每一个IP都进行测速，反而严重影响DNS解析速度。但是实际使用SmartDNS后，并没有出现DNS解析过慢的情况。这是因为SmartDNS早就考虑到了测速与延时的问题、并进行了相关的优化。SmartDNS在首次DNS解析请求时，会同时向所有上游发起并发查询；一旦有一个上游返回了结果，SmartDNS就会对这第一个返回的结果进行测速，得到其中延时最低的IP，将其返回给用户、设置TTL为10；与此同时，SmartDNS仍然会等待剩余上游返回结果、异步进行测速，直到所有上游都返回了结果（或超时）、SmartDNS将所有的IP都进行测速以后，才会得到最优IP：
 
-* 假设我们向SmartDNS解析一个域名`example.com`，由于没有命中SmartDNS的缓存，因此不得不向上游获取结果。
-* SmartDNS同时向上游A、B、C发起查询请求
-* 假设上游B最先返回了查询结果，查询结果包含了三个IP：`114.5.1.4`、`11.45.1.4`和`19.19.8.10`。
-* SmartDNS立刻开始对这三个IP进行测速。假设测得延时最低的IP是`11.45.1.4`
-* SmartDNS会立刻返回`11.45.1.4`给客户端，同时设置TTL为10（即指示`11.45.1.4`只应该在客户端被缓存10秒中）
-* 在接下来10秒内，客户端都会使用都会使用`11.45.1.4`来处理发往`example.com`的网络连接；与此同时SmartDNS仍然在等待上游A和C的结果。
-* 一旦上游A和C的查询结果也都返回，SmartDNS会把上游A、B、C的结果进行汇总去重、重新测速，最终得到最快的那个IP。
-* 由于SmartDNS有着非常严格的超时设置，因此上述「等待剩余上游结果并分别进行测速」步骤不会超过10秒。
-* 等到10秒过去、客户端再次向SmartDNS查询`example.com`时，SmartDNS才会返回最快的IP、并设置一个「正确」的TTL。
+- 假设我们向SmartDNS解析一个域名`example.com`，由于没有命中SmartDNS的缓存，因此不得不向上游获取结果。
+- SmartDNS同时向上游A、B、C发起查询请求
+- 假设上游B最先返回了查询结果，查询结果包含了三个IP：`114.5.1.4`、`11.45.1.4`和`19.19.8.10`。
+- SmartDNS立刻开始对这三个IP进行测速。假设测得延时最低的IP是`11.45.1.4`
+- SmartDNS会立刻返回`11.45.1.4`给客户端，同时设置TTL为10（即指示`11.45.1.4`只应该在客户端被缓存10秒中）
+- 在接下来10秒内，客户端都会使用都会使用`11.45.1.4`来处理发往`example.com`的网络连接；与此同时SmartDNS仍然在等待上游A和C的结果。
+- 一旦上游A和C的查询结果也都返回，SmartDNS会把上游A、B、C的结果进行汇总去重、重新测速，最终得到最快的那个IP。
+- 由于SmartDNS有着非常严格的超时设置，因此上述「等待剩余上游结果并分别进行测速」步骤不会超过10秒。
+- 等到10秒过去、客户端再次向SmartDNS查询`example.com`时，SmartDNS才会返回最快的IP、并设置一个「正确」的TTL。
 
 总而言之，SmartDNS首先会尽快返回一个「次优」的IP、要求客户端仅在接下来10秒钟内使用「次优」的IP，之后SmartDNS就能返回「最优」的IP。
 
@@ -182,10 +182,10 @@ coverHeight:
 
 [felixonmars/dnsmasq-china-list](https://github.com/felixonmars/dnsmasq-china-list)是一组开源的，覆盖了绝大部分中国大陆的域名的dnsmasq配置文件，也可以通过预定义的`Makefile`生成供unbound、bind9、dnscrypt-proxy、SmartDNS、AdGuardHome、coredns使用的配置文件。截至本文写就，`dnsmasq-china-list`已经收录了65743个域名。满足以下任意两条规则之一的域名即会被收录到列表中：
 
-* 是`.cn`后缀的域名（包括`.edu.cn`、`.gov.cn`、`.org.cn`、`.ac.cn`等）
-* 满足以下两条规则中任意一条的、非`.cn`后缀的域名：
-  * 域名使用的权威DNS（Authoritative DNS）拥有位于中国大陆境内的节点
-  * 通过位于中国大陆境内的递归DNS解析时，解析得到的IP位于中国大陆境内
+- 是`.cn`后缀的域名（包括`.edu.cn`、`.gov.cn`、`.org.cn`、`.ac.cn`等）
+- 满足以下两条规则中任意一条的、非`.cn`后缀的域名：
+  - 域名使用的权威DNS（Authoritative DNS）拥有位于中国大陆境内的节点
+  - 通过位于中国大陆境内的递归DNS解析时，解析得到的IP位于中国大陆境内
 
 如果需要设置SmartDNS针对指定域名使用与默认配置不同的上游进行解析，可以使用nameserver，如下所示：
 

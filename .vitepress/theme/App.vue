@@ -7,8 +7,15 @@ import { storeToRefs } from 'pinia'
 const route = useRoute()
 const store = mainStore()
 const { frontmatter, page } = useData()
-const { loadingStatus, footerIsShow, themeValue, themeType, backgroundType, fontFamily, fontSize }
-  = storeToRefs(store)
+const {
+  loadingStatus,
+  footerIsShow,
+  themeValue,
+  themeType,
+  backgroundType,
+  fontFamily,
+  fontSize,
+} = storeToRefs(store)
 
 // 右键菜单
 const rightMenuRef = useTemplateRef('rightMenuRef')
@@ -28,7 +35,11 @@ function openRightMenu(e: MouseEvent) {
 function copyTip() {
   const copiedText = window.getSelection()?.toString()
   // 检查文本内容是否不为空
-  if (copiedText && copiedText.trim().length > 0 && typeof window.$message !== 'undefined') {
+  if (
+    copiedText
+    && copiedText.trim().length > 0
+    && typeof window.$message !== 'undefined'
+  ) {
     window.$message.success('复制成功，在转载时请标注本文地址')
   }
 }
@@ -48,8 +59,12 @@ function changeSiteThemeType() {
   // 添加新的 class
   if (themeType.value === 'auto') {
     // 根据当前操作系统颜色方案更改明暗主题
-    const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches
-    const autoThemeClass: 'dark' | 'light' = systemPrefersDark ? 'dark' : 'light'
+    const systemPrefersDark = window.matchMedia(
+      '(prefers-color-scheme: dark)',
+    ).matches
+    const autoThemeClass: 'dark' | 'light' = systemPrefersDark
+      ? 'dark'
+      : 'light'
     htmlElement.classList.add(autoThemeClass)
     themeValue.value = autoThemeClass
   }
@@ -104,7 +119,9 @@ onMounted(() => {
   // 复制监听
   window.addEventListener('copy', copyTip)
   // 监听系统颜色
-  window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', changeSiteThemeType)
+  window
+    .matchMedia('(prefers-color-scheme: dark)')
+    .addEventListener('change', changeSiteThemeType)
 })
 
 onBeforeUnmount(() => {
@@ -123,7 +140,10 @@ onBeforeUnmount(() => {
   <!-- 导航栏 -->
   <Nav />
   <!-- 主内容 -->
-  <main class="main-layout" :class="[{ 'loading': loadingStatus, 'is-post': isPostPage }]">
+  <main
+    class="main-layout"
+    :class="[{ 'loading': loadingStatus, 'is-post': isPostPage }]"
+  >
     <!-- 404 -->
     <NotFound v-if="page.isNotFound" />
     <!-- 首页 -->
@@ -137,8 +157,14 @@ onBeforeUnmount(() => {
     </template>
   </main>
   <!-- 页脚 -->
-  <footer class="flex flex-col items-center mt-12 gap-8 bg-linear-180 from-transparent to-card-background to-25% max-md:mt-0 max-md:from-card-background max-md:z-999">
-    <FooterLink v-show="!loadingStatus" class="mb-8" :show-bar="isPostPage && !page.isNotFound" />
+  <footer
+    class="to-card-background max-md:from-card-background mt-12 flex flex-col items-center gap-8 bg-linear-180 from-transparent to-25% max-md:z-999 max-md:mt-0"
+  >
+    <FooterLink
+      v-show="!loadingStatus"
+      class="mb-8"
+      :show-bar="isPostPage && !page.isNotFound"
+    />
     <Footer v-show="!loadingStatus" class="mt-4" />
   </footer>
   <!-- 悬浮菜单 -->

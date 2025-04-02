@@ -21,11 +21,17 @@ export function generateId(fileName: string) {
  * 动态加载脚本
  * @param src - 脚本 URL
  */
-export function loadScript(src: string, option: {
-  async?: boolean
-  reload?: boolean
-  callback?: (error: Event | string | null, script?: HTMLScriptElement | Element | null) => void
-} = {}) {
+export function loadScript(
+  src: string,
+  option: {
+    async?: boolean
+    reload?: boolean
+    callback?: (
+      error: Event | string | null,
+      script?: HTMLScriptElement | Element | null,
+    ) => void
+  } = {},
+) {
   if (typeof document === 'undefined' || !src)
     return false
   // 获取配置
@@ -62,10 +68,16 @@ export function loadScript(src: string, option: {
  * 动态加载样式表
  * @param href - 样式表 URL
  */
-export function loadCSS(href: string, option: {
-  reload?: boolean
-  callback?: (error: Event | string | null, link?: HTMLLinkElement | Element | null) => void
-} = {}) {
+export function loadCSS(
+  href: string,
+  option: {
+    reload?: boolean
+    callback?: (
+      error: Event | string | null,
+      link?: HTMLLinkElement | Element | null,
+    ) => void
+  } = {},
+) {
   if (typeof document === 'undefined' || !href)
     return false
   // 获取配置
@@ -104,7 +116,11 @@ export function loadCSS(href: string, option: {
  * @param themeConfig - 主题配置
  * @param isDom - 是否为 DOM 对象
  */
-export function jumpRedirect(html: string | null, themeConfig: ThemeConfig, isDom = false) {
+export function jumpRedirect(
+  html: string | null,
+  themeConfig: ThemeConfig,
+  isDom = false,
+) {
   try {
     // 是否为开发环境
     const isDev = process.env.NODE_ENV === 'development'
@@ -128,7 +144,9 @@ export function jumpRedirect(html: string | null, themeConfig: ThemeConfig, isDo
         // 检查链接是否包含 target="_blank" 属性
         if (link.getAttribute('target') === '_blank') {
           // 检查链接是否包含排除的类
-          if (excludeClass.some(className => link.classList.contains(className))) {
+          if (
+            excludeClass.some(className => link.classList.contains(className))
+          ) {
             return false
           }
           const linkHref = link.getAttribute('href')

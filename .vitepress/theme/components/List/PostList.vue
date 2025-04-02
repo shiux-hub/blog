@@ -6,14 +6,17 @@ import { formatTimestamp } from '@/utils/helper'
 import { Icon } from '@iconify/vue'
 import { isArray, random } from 'radashi'
 
-withDefaults(defineProps<{
-  // 列表数据
-  listData?: any[]
-  // 简洁模式
-  simple?: boolean
-}>(), {
-  simple: false,
-})
+withDefaults(
+  defineProps<{
+    // 列表数据
+    listData?: any[]
+    // 简洁模式
+    simple?: boolean
+  }>(),
+  {
+    simple: false,
+  },
+)
 const store = mainStore()
 const router = useRouter()
 
@@ -21,7 +24,9 @@ const { theme: themeConfig } = useData()
 
 // 计算布局类型
 const layoutType = computed(() =>
-  themeConfig.value?.cover?.twoColumns ? 'twoColumns' : themeConfig.value?.cover?.showCover?.coverLayout ?? 'left',
+  themeConfig.value?.cover?.twoColumns
+    ? 'twoColumns'
+    : (themeConfig.value?.cover?.showCover?.coverLayout ?? 'left'),
 )
 
 // 计算网格样式
@@ -47,7 +52,9 @@ function getCover(postCover: string) {
     return postCover
 
   return isArray(cover.showCover.defaultCover)
-    ? cover.showCover.defaultCover[random(0, cover.showCover.defaultCover.length - 1)]
+    ? cover.showCover.defaultCover[
+      random(0, cover.showCover.defaultCover.length - 1)
+    ]
     : undefined
 }
 
@@ -64,11 +71,18 @@ function toPost(path: string) {
 </script>
 
 <template>
-  <div class="post-lists" :class="{ 'layout-grid': layoutType === 'twoColumns' }" :style="gridStyle">
+  <div
+    class="post-lists"
+    :class="{ 'layout-grid': layoutType === 'twoColumns' }"
+    :style="gridStyle"
+  >
     <div
       v-for="(item, index) in listData"
       :key="index"
-      class="post-item s-card hover" :class="[{ simple, cover: showCover, [`cover-${layoutType}`]: showCover }]"
+      class="post-item s-card hover"
+      :class="[
+        { simple, cover: showCover, [`cover-${layoutType}`]: showCover },
+      ]"
       :style="{ animationDelay: `${0.4 + index / 10}s` }"
       @click="toPost(item.regularPath)"
     >
@@ -114,7 +128,7 @@ function toPost(path: string) {
 <style lang="scss" scoped>
 .post-lists {
   .post-item {
-    padding: 0!important;
+    padding: 0 !important;
     display: flex;
     margin-bottom: 1rem;
     animation: fade-up 0.6s 0.4s backwards;
@@ -133,7 +147,9 @@ function toPost(path: string) {
         object-fit: cover;
         transform-origin: center center;
         will-change: transform, filter;
-        transition: transform 0.5s ease-out, filter 0.5s ease-out;
+        transition:
+          transform 0.5s ease-out,
+          filter 0.5s ease-out;
         backface-visibility: hidden;
       }
     }
@@ -205,13 +221,7 @@ function toPost(path: string) {
           opacity: 0.8;
           margin-right: 20px;
           overflow: hidden;
-          mask: linear-gradient(
-            90deg,
-            #fff 0,
-            #fff 90%,
-            hsla(0, 0%, 100%, 0.6) 95%,
-            hsla(0, 0%, 100%, 0) 100%
-          );
+          mask: linear-gradient(90deg, #fff 0, #fff 90%, hsla(0, 0%, 100%, 0.6) 95%, hsla(0, 0%, 100%, 0) 100%);
           .tags-name {
             display: flex;
             flex-direction: row;
@@ -250,7 +260,7 @@ function toPost(path: string) {
     }
     &:hover {
       .post-cover img {
-        filter: brightness(.8);
+        filter: brightness(0.8);
         transform: scale(1.05);
       }
       .post-content {

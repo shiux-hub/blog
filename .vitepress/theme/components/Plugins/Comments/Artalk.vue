@@ -91,7 +91,12 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <div id="comment-dom" ref="commentRef" class="comment-content artalk" :class="[{ fill }]" />
+  <div
+    id="comment-dom"
+    ref="commentRef"
+    class="comment-content artalk"
+    :class="[{ fill }]"
+  />
 </template>
 
 <style lang="scss">
@@ -134,7 +139,7 @@ onUnmounted(() => {
     }
     .atk-plug-panel-wrap {
       .atk-grp {
-        &[data-grp-name="小黄脸"] {
+        &[data-grp-name='小黄脸'] {
           .atk-item {
             font-size: 2rem;
             transition: background 0.3s;
@@ -189,7 +194,7 @@ onUnmounted(() => {
             margin: 4px;
             vertical-align: inherit;
             border-radius: 6px;
-            font-family: "Fira Code", var(--main-font-family), monospace;
+            font-family: 'Fira Code', var(--main-font-family), monospace;
           }
           pre {
             code {

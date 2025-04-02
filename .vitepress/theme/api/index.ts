@@ -31,7 +31,8 @@ export async function getSiteInfo(url: string) {
     details.title = titleElement ? titleElement.textContent : '暂无标题'
     // 获取 icon
     const iconLink
-      = doc.querySelector('link[rel=\'shortcut icon\']') || doc.querySelector('link[rel=\'icon\']')
+      = doc.querySelector('link[rel=\'shortcut icon\']')
+        || doc.querySelector('link[rel=\'icon\']')
     const iconLinkHref = iconLink?.getAttribute('href')
     if (iconLinkHref) {
       details.iconUrl = new URL(iconLinkHref, url).href
@@ -41,7 +42,9 @@ export async function getSiteInfo(url: string) {
     }
     // 获取描述
     const metaDescription = doc.querySelector('meta[name=\'description\']')
-    details.description = metaDescription ? metaDescription.textContent : '暂无站点描述'
+    details.description = metaDescription
+      ? metaDescription.textContent
+      : '暂无站点描述'
   }
   catch (error) {
     console.error('获取站点信息失败：', error)
@@ -57,7 +60,12 @@ export async function getSiteInfo(url: string) {
  * @param type - 类型
  * @returns 音乐详情
  */
-export async function getMusicList(url: string, id: number, server: string = 'netease', type = 'playlist') {
+export async function getMusicList(
+  url: string,
+  id: number,
+  server: string = 'netease',
+  type = 'playlist',
+) {
   const result = await fetch(`${url}?server=${server}&type=${type}&id=${id}`)
   const list = await result.json()
   return list.map((song) => {
@@ -84,11 +92,10 @@ export async function getStatistics(key: string) {
     '总访问量',
   ]
   const data = await result.text()
-  const num = data.match(/(<\/span><span>).*?(\/span><\/p>)/g)
-    ?.map((el) => {
-      const val = el.replace(/(<\/span><span>)/g, '')
-      return val.replace(/(<\/span><\/p>)/g, '')
-    })
+  const num = data.match(/(<\/span><span>).*?(\/span><\/p>)/g)?.map((el) => {
+    const val = el.replace(/(<\/span><span>)/g, '')
+    return val.replace(/(<\/span><\/p>)/g, '')
+  })
   const statistics: Record<string, string> = {}
   num?.forEach((el, index) => {
     if (index === num.length - 1)

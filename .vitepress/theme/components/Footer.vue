@@ -41,72 +41,89 @@ onBeforeUnmount(() => {
 </script>
 
 <template>
-  <div id="footer-bar" ref="footer-bar" class="flex bg-card-second-background border border-card-border overflow-hidden animate-show transition duration-300">
-    <div class="footer-content container flex flex-wrap items-center justify-between mx-auto text-font-color min-h-8 gap-2 px-6 py-4 max-md:text-sm">
-      <div class="flex items-center max-md:[&_.meta]:hidden">
-        <span v-if="theme.startYear" class="time">@ {{ theme.startYear }} - {{ thisYear }} By </span>
-        <a v-tippy title="前往我的主页" :href="theme.siteMeta.author.link" class="author link hover:text-theme hover:bg-theme-op" target="_blank">
-          <img class="aspect-square w-5" src="/images/logo/logo.svg">{{ theme.siteMeta.author.name }}
+  <div
+    id="footer-bar"
+    ref="footer-bar"
+    class="bg-card-second-background border-card-border animate-show flex w-full overflow-hidden border transition duration-300"
+  >
+    <div
+      class="text-font-color container mx-auto flex min-h-8 flex-wrap items-center justify-between gap-2 px-6 py-4 max-md:justify-center max-md:gap-2 max-md:text-sm"
+    >
+      <div
+        class="flex flex-wrap items-center gap-1 max-md:justify-center max-md:gap-2"
+      >
+        <span v-if="theme.startYear">@ {{ theme.startYear }} - {{ thisYear }} By
+        </span>
+        <a
+          v-tippy
+          title="前往我的主页"
+          :href="theme.siteMeta.author.link"
+          class="hover:text-theme hover:bg-theme-op inline-flex items-center gap-1 truncate rounded-full p-2 font-bold transition-colors duration-300"
+          target="_blank"
+        >
+          <img class="aspect-square w-5" src="/images/logo/logo.svg">{{
+            theme.siteMeta.author.name
+          }}
         </a>
-        <a v-if="theme.icp" class="icp link hover:text-theme hover:bg-theme-op" href="https://beian.miit.gov.cn/" target="_blank">
-          <Icon icon="mingcute:safety-certificate-line max-sm:hidden" class="opacity-60" />
-          {{ theme.icp }}
-        </a>
+        <div
+          class="text-font-second-color flex flex-wrap items-center gap-1 text-xs max-md:justify-center"
+        >
+          <a
+            v-if="theme.icp"
+            v-tippy
+            title="前往工业和信息化部政务服务平台"
+            class="hover:text-theme inline-flex items-center gap-1 truncate rounded-full px-2 font-normal transition-colors duration-300"
+            href="https://beian.miit.gov.cn/#/Integrated/index"
+            target="_blank"
+          >
+            <Icon
+              icon="mingcute:safety-certificate-line"
+              class="size-5 opacity-60 max-sm:hidden"
+            />
+            {{ theme.icp }}
+          </a>
+          <a
+            class="hover:text-theme inline-flex items-center gap-1 truncate rounded-full px-2 font-normal transition-colors duration-300"
+            rel="external nofollow"
+            href="https://vitepress.dev/"
+            target="_blank"
+          >
+            <span class="opacity-80">Powered by</span>
+            <span>VitePress</span>
+          </a>
+        </div>
       </div>
-      <div class="meta flex flex-wrap items-center">
-        <a class="link hover:text-theme hover:bg-theme-op" rel="external nofollow" href="https://vitepress.dev/" target="_blank">
-          <span class="opacity-80">Powered by</span>
-          <span class="name">VitePress</span>
+      <div class="flex flex-wrap items-center gap-2 max-md:justify-center">
+        <a
+          class="hover:text-theme hover:bg-theme-op inline-flex items-center gap-1 truncate rounded-full p-2 font-bold transition-colors duration-300"
+          rel="external nofollow"
+          href="https://github.com/imsyy/vitepress-theme-curve"
+          target="_blank"
+        >
+          <Icon icon="mingcute:palette-fill" class="size-5" />
+          <span>主题</span>
         </a>
-        <a class="link hover:text-theme hover:bg-theme-op" rel="external nofollow" href="https://github.com/imsyy/vitepress-theme-curve" target="_blank">
-          <Icon icon="mingcute:palette-fill" />
-          <span class="name">主题</span>
-        </a>
-        <a class="link hover:text-theme hover:bg-theme-op" href="/rss.xml" target="_blank">
-          <Icon icon="mingcute:rss-2-fill" />
-          <span class="name">订阅</span>
+        <a
+          class="hover:text-theme hover:bg-theme-op inline-flex items-center gap-1 truncate rounded-full p-2 font-bold transition-colors duration-300"
+          href="/rss.xml"
+          target="_blank"
+        >
+          <Icon icon="mingcute:rss-2-fill" class="size-5" />
+          <span>订阅</span>
         </a>
         <a
           v-tippy
           title="网站采用 署名-非商业性使用-禁止演绎 4.0 国际 标准"
-          class="link hover:text-theme hover:bg-theme-op gap-1"
+          class="hover:text-theme hover:bg-theme-op inline-flex items-center gap-1 truncate rounded-full p-2 font-bold transition-colors duration-300"
           href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh-hans"
           target="_blank"
         >
-          <Icon icon="ri:creative-commons-line" />
-          <Icon icon="ri:creative-commons-by-line" />
-          <Icon icon="ri:creative-commons-nc-line" />
-          <Icon icon="ri:creative-commons-sa-line" />
+          <Icon icon="ri:creative-commons-line" class="size-5" />
+          <Icon icon="ri:creative-commons-by-line" class="size-5" />
+          <Icon icon="ri:creative-commons-nc-line" class="size-5" />
+          <Icon icon="ri:creative-commons-sa-line" class="size-5" />
         </a>
       </div>
     </div>
   </div>
 </template>
-
-<style scoped>
-@reference "tailwindcss";
-
-.footer-content {
-  .link {
-    display: inline-flex;
-    flex-direction: row;
-    align-items: center;
-    font-weight: bold;
-    text-overflow: ellipsis;
-    overflow: hidden;
-    white-space: nowrap;
-    padding: 8px;
-    height: 38px;
-    border-radius: 32px;
-    transition:
-      color 0.3s,
-      background-color 0.3s;
-    cursor: pointer;
-    gap: 0.25rem;
-
-    svg {
-      @apply size-5;
-    }
-  }
-}
-</style>

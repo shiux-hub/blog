@@ -67,11 +67,15 @@ export default withPwa(
     // transformHead
     transformPageData: async (pageData) => {
       // canonical URL
-      const canonicalUrl = `${themeConfig.siteMeta.site}/${pageData.relativePath}`
-        .replace(/index\.md$/, '')
-        .replace(/\.md$/, '')
+      const canonicalUrl
+        = `${themeConfig.siteMeta.site}/${pageData.relativePath}`
+          .replace(/index\.md$/, '')
+          .replace(/\.md$/, '')
       pageData.frontmatter.head ??= []
-      pageData.frontmatter.head.push(['link', { rel: 'canonical', href: canonicalUrl }])
+      pageData.frontmatter.head.push([
+        'link',
+        { rel: 'canonical', href: canonicalUrl },
+      ])
     },
     // transformHtml
     transformHtml: (html) => {
@@ -142,7 +146,8 @@ export default withPwa(
             },
           },
           {
-            urlPattern: /(.*?)\.(ico|webp|png|jpe?g|svg|gif|bmp|psd|tiff|tga|eps)/,
+            urlPattern:
+              /(.*?)\.(ico|webp|png|jpe?g|svg|gif|bmp|psd|tiff|tga|eps)/,
             handler: 'CacheFirst',
             options: {
               cacheName: 'image-cache',
@@ -152,7 +157,11 @@ export default withPwa(
         // 缓存文件
         globPatterns: ['**/*.{js,css,html,ico,png,jpg,jpeg,gif,svg,woff2,ttf}'],
         // 排除路径
-        navigateFallbackDenylist: [/^\/sitemap.xml$/, /^\/rss.xml$/, /^\/robots.txt$/],
+        navigateFallbackDenylist: [
+          /^\/sitemap.xml$/,
+          /^\/rss.xml$/,
+          /^\/robots.txt$/,
+        ],
       },
       manifest: {
         name: themeConfig.siteMeta.title,

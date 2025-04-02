@@ -7,25 +7,35 @@ const router = useRouter()
 </script>
 
 <template>
-  <div class="archives p-8 s-card">
-    <div class="font-bold mb-4 flex gap-2">
+  <div class="archives s-card p-8">
+    <div class="mb-4 flex gap-2 font-bold">
       <h1 class="border-none">
         文章
       </h1>
-      <sup v-if="theme.postData?.length" class="text-xl opacity-60">{{ theme.postData.length }}</sup>
+      <sup v-if="theme.postData?.length" class="text-xl opacity-60">{{
+        theme.postData.length
+      }}</sup>
     </div>
     <div class="archives-list">
-      <div v-for="(year, index) in theme.archivesData.year" :key="index" class="year-list">
+      <div
+        v-for="(year, index) in theme.archivesData.year"
+        :key="index"
+        class="year-list"
+      >
         <span class="year">{{ year }}</span>
         <div class="posts">
           <div
-            v-for="(post, postIndex) in theme.archivesData.data[year].articles" :key="postIndex"
-            class="posts-item s-card hover" @click="router.go(post.regularPath)"
+            v-for="(post, postIndex) in theme.archivesData.data[year].articles"
+            :key="postIndex"
+            class="posts-item s-card hover"
+            @click="router.go(post.regularPath)"
           >
             <span class="title">{{ post.title }}</span>
             <div class="tags">
               <a
-                v-for="(tags, tagsIndex) in post.tags" :key="tagsIndex" :href="`/pages/tags/${tags}`"
+                v-for="(tags, tagsIndex) in post.tags"
+                :key="tagsIndex"
+                :href="`/pages/tags/${tags}`"
                 class="type-item"
               >
                 <Icon icon="mingcute:hashtag-fill" />
@@ -59,7 +69,7 @@ const router = useRouter()
         margin-bottom: 1rem;
 
         &::before {
-          content: "";
+          content: '';
           position: absolute;
           left: 0;
           width: 4px;
@@ -105,7 +115,6 @@ const router = useRouter()
               }
 
               &:hover {
-
                 .name,
                 svg {
                   color: var(--main-color);

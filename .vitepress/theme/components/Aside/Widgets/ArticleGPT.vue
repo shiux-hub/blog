@@ -86,10 +86,14 @@ onBeforeUnmount(() => {
         文章摘要
         <Icon class="icon-up" icon="mingcute:up-fill" />
       </span>
-      <span class="logo" :class="[{ loading }]" @click="showOther"> FakeGPT </span>
+      <span class="logo" :class="[{ loading }]" @click="showOther">
+        FakeGPT
+      </span>
     </div>
     <div class="content s-card">
-      <span class="text">{{ abstractData === "" ? "加载中..." : abstractData }}</span>
+      <span class="text">{{
+        abstractData === '' ? '加载中...' : abstractData
+      }}</span>
       <span v-if="loading" class="point">|</span>
     </div>
     <div class="meta">

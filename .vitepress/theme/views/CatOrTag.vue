@@ -3,11 +3,14 @@
 import { useData } from '@/composables/data'
 import { Icon } from '@iconify/vue'
 
-withDefaults(defineProps<{
-  type?: 'categories' | 'tags' // 页面类型：categories 分类，tags 标签
-}>(), {
-  type: 'categories',
-})
+withDefaults(
+  defineProps<{
+    type?: 'categories' | 'tags' // 页面类型：categories 分类，tags 标签
+  }>(),
+  {
+    type: 'categories',
+  },
+)
 const { theme } = useData()
 </script>
 
@@ -15,7 +18,7 @@ const { theme } = useData()
   <div class="cat-or-tag">
     <div class="title">
       <h1 class="title-name">
-        {{ type === "categories" ? "全部分类" : "全部标签" }}
+        {{ type === 'categories' ? '全部分类' : '全部标签' }}
       </h1>
       <span v-if="type === 'categories'" class="title-num">
         共有 {{ Object.keys(theme.categoriesData)?.length || 0 }} 个分类
@@ -26,7 +29,9 @@ const { theme } = useData()
     </div>
     <div v-if="type === 'categories'" class="type-lists">
       <a
-        v-for="(item, key, index) in theme.categoriesData" :key="index" :href="`/pages/categories/${key}`"
+        v-for="(item, key, index) in theme.categoriesData"
+        :key="index"
+        :href="`/pages/categories/${key}`"
         class="type-item s-card"
       >
         <Icon icon="mingcute:classify-2-fill" />
@@ -36,7 +41,9 @@ const { theme } = useData()
     </div>
     <div v-else class="type-lists">
       <a
-        v-for="(item, key, index) in theme.tagsData" :key="index" :href="`/pages/tags/${key}`"
+        v-for="(item, key, index) in theme.tagsData"
+        :key="index"
+        :href="`/pages/tags/${key}`"
         class="type-item s-card"
       >
         <Icon icon="mingcute:hashtag-fill" />

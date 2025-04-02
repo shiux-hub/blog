@@ -111,12 +111,16 @@ watch(
         <PostList :list-data="postData" />
         <!-- 分页 -->
         <Pagination
-          :total="allListTotal" :page="Number(page)" :limit="postSize"
-          :use-params="showCategories || showTags ? true : false" :route-path="showCategories
-            ? `/pages/categories/${showCategories}`
-            : showTags
-              ? `/pages/tags/${showTags}`
-              : ''
+          :total="allListTotal"
+          :page="Number(page)"
+          :limit="postSize"
+          :use-params="showCategories || showTags ? true : false"
+          :route-path="
+            showCategories
+              ? `/pages/categories/${showCategories}`
+              : showTags
+                ? `/pages/tags/${showTags}`
+                : ''
           "
         />
       </div>

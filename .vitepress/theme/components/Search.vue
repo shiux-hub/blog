@@ -18,7 +18,8 @@ const hasSearchValue = ref(false)
 // 搜索变化
 function searchChange({ uiState, setUiState }) {
   const searchData = Object.values(uiState)
-  hasSearchValue.value = searchData.length > 0 && searchData[0].query?.length > 0
+  hasSearchValue.value
+    = searchData.length > 0 && searchData[0].query?.length > 0
   setUiState(uiState)
 }
 
@@ -57,13 +58,20 @@ onBeforeUnmount(() => {
 
 <template>
   <Modal
-    v-tippy :show="store.searchShow" title="全局搜索" title-icon="search" @mask-click="store.changeShowStatus('searchShow')"
+    v-tippy
+    :show="store.searchShow"
+    title="全局搜索"
+    title-icon="search"
+    @mask-click="store.changeShowStatus('searchShow')"
     @modal-close="store.changeShowStatus('searchShow')"
   >
     <ais-instant-search
-      :search-client="searchClient" :future="{
+      :search-client="searchClient"
+      :future="{
         preserveSharedStateOnUnmount: true,
-      }" index-name="imsyy" @state-change="searchChange"
+      }"
+      index-name="imsyy"
+      @state-change="searchChange"
     >
       <ais-configure :hits-per-page.camel="8" />
       <ais-search-box placeholder="想要搜点什么" autofocus />
@@ -72,12 +80,18 @@ onBeforeUnmount(() => {
           <Transition name="fade" mode="out-in">
             <div v-if="formatSearchData(items)?.length" class="search-list">
               <div
-                v-for="(item, index) in formatSearchData(items)" :key="index" class="search-item s-card hover"
+                v-for="(item, index) in formatSearchData(items)"
+                :key="index"
+                class="search-item s-card hover"
                 @click="jumpSearch(item.url)"
               >
                 <p class="title" v-html="item.title" />
                 <p v-if="item?.anchor" class="anchor" v-html="item.anchor" />
-                <p v-if="item?.content" class="content s-card" v-html="item.content" />
+                <p
+                  v-if="item?.content"
+                  class="content s-card"
+                  v-html="item.content"
+                />
               </div>
             </div>
             <div v-else class="no-result">
@@ -91,7 +105,9 @@ onBeforeUnmount(() => {
       <ais-stats>
         <template #default="{ processingTimeMS }">
           <div class="information">
-            <span v-if="hasSearchValue" class="text"> 本次用时 {{ processingTimeMS }} 毫秒 </span>
+            <span v-if="hasSearchValue" class="text">
+              本次用时 {{ processingTimeMS }} 毫秒
+            </span>
           </div>
           <a class="power" href="https://www.algolia.com/" target="_blank">
             <Icon icon="tabler:brand-algolia" />
@@ -182,7 +198,7 @@ onBeforeUnmount(() => {
           font-size: 14px;
 
           &::before {
-            content: "# ";
+            content: '# ';
           }
         }
 

@@ -3,12 +3,15 @@
 import { useData } from '@/composables/data'
 import { Icon } from '@iconify/vue'
 
-withDefaults(defineProps<{
-  // 填充评论区
-  fill?: boolean | string
-}>(), {
-  fill: false,
-})
+withDefaults(
+  defineProps<{
+    // 填充评论区
+    fill?: boolean | string
+  }>(),
+  {
+    fill: false,
+  },
+)
 const { theme } = useData()
 const router = useRouter()
 const mainCommentRef = useTemplateRef('mainCommentRef')

@@ -1,8 +1,7 @@
 /* 文章内容样式 */
 :deep(.markdown-main-style) {
-
   /* 标题 */
-  div> {
+  div > {
     h1 {
       font-size: 2rem;
       text-align: center;
@@ -29,7 +28,7 @@
       z-index: 0;
 
       &::after {
-        content: "";
+        content: '';
         position: absolute;
         left: 0;
         bottom: 0;
@@ -63,7 +62,7 @@
     transition: opacity 0.3s;
 
     &::before {
-      content: "#";
+      content: '#';
       position: absolute;
       left: -1.3rem;
       color: var(--main-color);
@@ -92,7 +91,7 @@
       padding: 0 6px;
       border-radius: 6px;
       background-color: var(--main-card-border);
-      font-family: "Fira Code", var(--font-custom), monospace;
+      font-family: 'Fira Code', var(--font-custom), monospace;
       font-optical-sizing: auto;
       white-space: nowrap;
       transform: translateY(-2px);
@@ -116,7 +115,7 @@
       color: var(--main-color);
 
       &::before {
-        content: "";
+        content: '';
         position: absolute;
         border-radius: 2px;
         bottom: 2px;
@@ -195,7 +194,7 @@
 
   /* 代码块 */
   div {
-    &[class*="language-"] {
+    &[class*='language-'] {
       position: relative;
       display: flex;
       flex-direction: row-reverse;
@@ -249,7 +248,7 @@
         }
 
         &::before {
-          content: "复制成功";
+          content: '复制成功';
           position: absolute;
           left: -60px;
           font-size: 14px;
@@ -307,7 +306,7 @@
         border-left: 1px solid var(--main-card-border);
 
         code {
-          font-family: "Fira Code", var(--font-custom), monospace;
+          font-family: 'Fira Code', var(--font-custom), monospace;
           font-optical-sizing: auto;
 
           .line {
@@ -368,7 +367,7 @@
       overflow: auto;
 
       &::before {
-        content: "";
+        content: '';
         position: absolute;
         left: 0;
         top: 0.7rem;
@@ -539,15 +538,15 @@
         cursor: pointer;
 
         &::before {
-          content: "\e057";
-          font-family: "iconfont";
+          content: '\e057';
+          font-family: 'iconfont';
           margin-right: 6px;
           font-size: 18px;
           transition: transform 0.3s;
         }
 
         &::after {
-          content: "+";
+          content: '+';
           margin-left: auto;
         }
 
@@ -578,7 +577,7 @@
           }
 
           &::after {
-            content: "-";
+            content: '-';
           }
         }
 
@@ -623,7 +622,7 @@
         transition: all 0.3s;
         cursor: pointer;
 
-        &[aria-selected="true"] {
+        &[aria-selected='true'] {
           color: var(--main-color);
           border-bottom-color: var(--main-color);
         }
@@ -673,7 +672,7 @@
     }
 
     &::after {
-      content: "";
+      content: '';
       position: absolute;
       top: 7px;
       left: 7px;
@@ -685,7 +684,7 @@
     }
 
     &::before {
-      content: "";
+      content: '';
       position: absolute;
       top: 0;
       left: 0;
@@ -730,7 +729,7 @@
       border-radius: 50%;
 
       &::after {
-        content: "";
+        content: '';
         opacity: 0;
         position: absolute;
         width: 65%;

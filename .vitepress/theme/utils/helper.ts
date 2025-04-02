@@ -12,7 +12,8 @@ export const calculateScroll = throttle(
         return false
       const store = mainStore()
       const scrollY = window.scrollY || window.scrollY
-      const totalHeight = document.documentElement.scrollHeight - window.innerHeight
+      const totalHeight
+        = document.documentElement.scrollHeight - window.innerHeight
       const scrollPercentage = ((scrollY / totalHeight) * 100).toFixed(0)
       // 判断滚动方向
       const scrollDirection = scrollY > store.scrollData.height ? 'down' : 'up'
@@ -84,7 +85,9 @@ export function formatTimestamp(timestamp: number) {
     return '1天前'
   }
   else {
-    const difference = Math.floor((+today - +targetDate) / (1000 * 60 * 60 * 24))
+    const difference = Math.floor(
+      (+today - +targetDate) / (1000 * 60 * 60 * 24),
+    )
     if (difference <= 0) {
       return '今日内'
     }

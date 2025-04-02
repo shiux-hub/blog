@@ -13,11 +13,16 @@ const messageDuration = ref(0)
 const messageTimeOut = ref<number>()
 
 // 消息处理
-function showMessage(text: string, type = 'info', options: {
-  close?: boolean
-  always?: boolean
-  duration?: number
-} = {}, func?: (...props: any) => void) {
+function showMessage(
+  text: string,
+  type = 'info',
+  options: {
+    close?: boolean
+    always?: boolean
+    duration?: number
+  } = {},
+  func?: (...props: any) => void,
+) {
   // 解构配置
   const { close = false, always = false, duration = 3000 } = options
   // 先隐藏
@@ -80,11 +85,14 @@ onMounted(() => {
   <Teleport to="body">
     <Transition name="fadeDown" mode="out-in">
       <div
-        v-if="messageShow" class="message" :class="[messageType, { always: messageAlways }]"
-        :style="{ '--duration': `${messageDuration}ms` }" @click="closeMessage"
+        v-if="messageShow"
+        class="message"
+        :class="[messageType, { always: messageAlways }]"
+        :style="{ '--duration': `${messageDuration}ms` }"
+        @click="closeMessage"
       >
         <div class="message-content">
-          <span class="text">{{ messageContent || "默认消息内容" }}</span>
+          <span class="text">{{ messageContent || '默认消息内容' }}</span>
           <span v-if="messageClose" class="close">
             <Icon icon="mingcute:close-fill" />
           </span>
@@ -164,7 +172,7 @@ onMounted(() => {
   }
 
   &::after {
-    content: "";
+    content: '';
     position: absolute;
     top: 0;
     left: 0;

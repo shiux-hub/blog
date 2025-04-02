@@ -1,4 +1,7 @@
-import { getAllPosts, getAllType } from '../../.vitepress/theme/utils/getPostData'
+import {
+  getAllPosts,
+  getAllType,
+} from '../../.vitepress/theme/utils/getPostData'
 
 // eslint-disable-next-line antfu/no-top-level-await
 const postData = await getAllPosts()

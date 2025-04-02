@@ -10,6 +10,7 @@ cover:
 coverWidth:
 coverHeight:
 ---
+
 ## `JS`的`Document`属性和调用方法
 
 ```javascript
@@ -134,7 +135,7 @@ document.location.replace(URL) // 打开新的网页
 
    ```html
    <form name="Myform">
-     <input name="myctrl"/>
+     <input name="myctrl" />
    </form>
    <script>
      document.Myform.myctrl() //document.表单名.控件名

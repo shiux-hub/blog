@@ -9,7 +9,8 @@ const { backgroundType, backgroundUrl, themeValue } = storeToRefs(store)
 function coverError(e: Event) {
   const target = e.target as HTMLImageElement
   // 替换为透明图片
-  target.src = 'data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' version=\'1.1\' width=\'100%25\' height=\'100%25\'%3E%3C/svg%3E'
+  target.src
+    = 'data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' version=\'1.1\' width=\'100%25\' height=\'100%25\'%3E%3C/svg%3E'
   window.$message.error('背景图片加载失败，请重新设置')
 }
 
@@ -23,10 +24,19 @@ function coverLoaded(e: Event) {
 <template>
   <Teleport to="body">
     <!-- 站点背景 -->
-    <div v-if="backgroundType !== 'close'" class="background" :class="[backgroundType, themeValue]">
+    <div
+      v-if="backgroundType !== 'close'"
+      class="background"
+      :class="[backgroundType, themeValue]"
+    >
       <img
-        v-if="backgroundType === 'image'" id="background-cover" :src="backgroundUrl" class="cover" alt="background"
-        @error="coverError" @load="coverLoaded"
+        v-if="backgroundType === 'image'"
+        id="background-cover"
+        :src="backgroundUrl"
+        class="cover"
+        alt="background"
+        @error="coverError"
+        @load="coverLoaded"
       >
     </div>
   </Teleport>

@@ -116,8 +116,12 @@ onMounted(() => {
         <span class="title2">开启创造力</span>
         <div class="skills-list">
           <a
-            v-for="(item, index) in skillsData" :key="index" :style="{ '--color': item.color }" :href="item.link"
-            class="skills-item" target="_blank"
+            v-for="(item, index) in skillsData"
+            :key="index"
+            :style="{ '--color': item.color }"
+            :href="item.link"
+            class="skills-item"
+            target="_blank"
           >
             <div class="skills-logo">
               <Icon :icon="item.icon" />
@@ -136,7 +140,11 @@ onMounted(() => {
           <span class="list-item" style="--color: #357ef5">ZZRVTC · 计算机应用技术</span>
           <span class="list-item" style="--color: #eb372a">FE · 前端开发工程师</span>
         </div>
-        <img class="career-img" src="https://pic.efefee.cn/uploads/2024/02/22/65d71db18bcf9.png" alt="career">
+        <img
+          class="career-img"
+          src="https://pic.efefee.cn/uploads/2024/02/22/65d71db18bcf9.png"
+          alt="career"
+        >
       </div>
     </div>
     <div class="about-content" style="grid-template-columns: 3fr 2fr">
@@ -149,11 +157,18 @@ onMounted(() => {
           在
           <a href="https://www.16personalities.com/ch/" target="_blank">16personalities</a>
           了解更多关于
-          <a href="https://www.16personalities.com/ch/istj-%E4%BA%BA%E6%A0%BC" target="_blank">
+          <a
+            href="https://www.16personalities.com/ch/istj-%E4%BA%BA%E6%A0%BC"
+            target="_blank"
+          >
             物流师
           </a>
         </span>
-        <img src="https://pic.efefee.cn/uploads/2024/02/22/65d6bc7ae72ae.png" alt="male" class="male">
+        <img
+          src="https://pic.efefee.cn/uploads/2024/02/22/65d6bc7ae72ae.png"
+          alt="male"
+          class="male"
+        >
       </div>
       <!-- 座右铭 -->
       <div class="about-item">
@@ -164,7 +179,8 @@ onMounted(() => {
     </div>
     <div class="about-content" style="grid-template-columns: 1fr 1fr">
       <div
-        class="about-item like image" style="
+        class="about-item like image"
+        style="
           --color: #0c0e20;
           background-image: url(https://pic.efefee.cn/uploads/2024/02/27/65dd812567723.webp);
         "
@@ -178,7 +194,8 @@ onMounted(() => {
         </div>
       </div>
       <div
-        class="about-item like image" style="
+        class="about-item like image"
+        style="
           --color: #7b3c25;
           background-image: url(https://pic.efefee.cn/uploads/2024/02/27/65dd836099d16.webp);
         "
@@ -195,7 +212,8 @@ onMounted(() => {
     <div class="about-content" style="grid-template-columns: 2fr 3fr">
       <!-- 数据 -->
       <div
-        class="about-item static image" style="
+        class="about-item image static"
+        style="
           --color: #0f1114;
           background-image: url(https://pic.efefee.cn/uploads/2024/04/15/661c8fbf226d3.webp);
         "
@@ -204,7 +222,11 @@ onMounted(() => {
           <span class="tip">数据</span>
           <span class="title2">访问统计</span>
           <div class="static-data">
-            <div v-for="(item, key, index) in statisticsData" :key="index" class="static-item">
+            <div
+              v-for="(item, key, index) in statisticsData"
+              :key="index"
+              class="static-item"
+            >
               <span class="static-name">{{ key }}</span>
               <span class="static-num">{{ item }}</span>
             </div>
@@ -220,7 +242,9 @@ onMounted(() => {
       <div class="about-item child">
         <div
           class="about-item map image"
-          style="background-image: url(https://pic.efefee.cn/uploads/2024/04/15/661cbccc56af5.webp)"
+          style="
+            background-image: url(https://pic.efefee.cn/uploads/2024/04/15/661cbccc56af5.webp);
+          "
         >
           <span class="position">我现在住在 <strong>中国，河南省</strong></span>
         </div>
@@ -452,7 +476,7 @@ onMounted(() => {
             color: var(--main-font-second-color);
 
             &::before {
-              content: "";
+              content: '';
               display: block;
               width: 16px;
               height: 16px;
@@ -528,7 +552,7 @@ onMounted(() => {
         }
 
         &::after {
-          content: "";
+          content: '';
           position: absolute;
           width: 100%;
           height: 100%;

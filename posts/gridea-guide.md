@@ -58,6 +58,7 @@ Gridea最早叫Hve Notes，开发者为了更易读和好记，重新命名为Gr
 1. 添加CNAME（别名）
    主机`blog`
    指向`<user>.github.io`或`<organization>.github.io`
+
    > Navigate to your DNS provider and create a CNAME record that points your subdomain to the default domain for your site. For example, if you want to use the subdomain `www.example.com` for your user site, create a CNAME record that points `www.example.com` to \<user>.github.io. If you want to use the subdomain `another.example.com` for your organization site, create a CNAME record that points `another.example.com` to \<organization>.github.io. The CNAME record should always point to \<user>.github.io or \<organization>.github.io, excluding the repository name. For more information about how to create the correct record, see your DNS provider's documentation. For more information about the default domain for your site, see "About GitHub Pages."
 
 2. 在GitHub Pages设置中进行自定义域名绑定
@@ -75,10 +76,10 @@ Gridea最早叫Hve Notes，开发者为了更易读和好记，重新命名为Gr
 下载安装过程不做说明
 
 1. 设置代码本地目录
-点击此处设置
-![打开设置](https://s1.ax1x.com/2020/04/08/G2ovCD.png)
-![设置目录](https://s1.ax1x.com/2020/04/08/G2ozgH.png)
+   点击此处设置
+   ![打开设置](https://s1.ax1x.com/2020/04/08/G2ovCD.png)
+   ![设置目录](https://s1.ax1x.com/2020/04/08/G2ozgH.png)
 2. 设置远程服务
-点击"远程", 然后选择 "Coding Pages"
-按页面提示填写**保存**后, 点击**检测远程链接**
-![设置远程](https://s1.ax1x.com/2020/04/08/G2TVPS.png)
+   点击"远程", 然后选择 "Coding Pages"
+   按页面提示填写**保存**后, 点击**检测远程链接**
+   ![设置远程](https://s1.ax1x.com/2020/04/08/G2TVPS.png)

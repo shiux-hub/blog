@@ -13,7 +13,8 @@ const allLinkData = computed(() => {
 function randomJump() {
   try {
     const friendList = allLinkData.value
-    const randomList = friendList[Math.floor(Math.random() * friendList.length)]
+    const randomList
+      = friendList[Math.floor(Math.random() * friendList.length)]
     window.$message.warning(
       `您即将前往 ${randomList?.name}，请注意链接是否安全`,
       {

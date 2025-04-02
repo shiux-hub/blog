@@ -3,12 +3,15 @@
 import { useData } from '@/composables/data'
 import { Icon } from '@iconify/vue'
 
-withDefaults(defineProps<{
-  // 显示类别
-  type?: string
-}>(), {
-  type: 'categories',
-})
+withDefaults(
+  defineProps<{
+    // 显示类别
+    type?: string
+  }>(),
+  {
+    type: 'categories',
+  },
+)
 const { theme, params } = useData()
 // 获取当前路由路径
 const currentTypeName = computed(() => {
@@ -31,7 +34,8 @@ const currentTypeName = computed(() => {
         v-for="(_, key, index) in theme.categoriesData"
         :key="index"
         :href="`/pages/categories/${key}`"
-        class="type-item" :class="[{ hidden: currentTypeName === key }]"
+        class="type-item"
+        :class="[{ hidden: currentTypeName === key }]"
       >
         {{ key }}
       </a>
@@ -43,15 +47,22 @@ const currentTypeName = computed(() => {
   </div>
   <div v-else-if="type === 'tags'" class="type-bar s-card hover">
     <div class="all-type">
-      <a v-if="currentTypeName" :href="`/pages/tags/${currentTypeName}`" class="type-item choose">
+      <a
+        v-if="currentTypeName"
+        :href="`/pages/tags/${currentTypeName}`"
+        class="type-item choose"
+      >
         {{ currentTypeName }}
-        <span class="num">{{ theme.tagsData?.[currentTypeName]?.count || 0 }}</span>
+        <span class="num">{{
+          theme.tagsData?.[currentTypeName]?.count || 0
+        }}</span>
       </a>
       <a
         v-for="(item, key, index) in theme.tagsData"
         :key="index"
         :href="`/pages/tags/${key}`"
-        class="type-item" :class="[{ hidden: currentTypeName === key }]"
+        class="type-item"
+        :class="[{ hidden: currentTypeName === key }]"
       >
         {{ key }}
         <span class="num">{{ item.count }}</span>
@@ -82,13 +93,7 @@ const currentTypeName = computed(() => {
     align-items: center;
     margin-right: 12px;
     overflow: hidden;
-    mask: linear-gradient(
-      90deg,
-      #fff 0,
-      #fff 90%,
-      hsla(0, 0%, 100%, 0.6) 95%,
-      hsla(0, 0%, 100%, 0) 100%
-    );
+    mask: linear-gradient(90deg, #fff 0, #fff 90%, hsla(0, 0%, 100%, 0.6) 95%, hsla(0, 0%, 100%, 0) 100%);
     .type-item {
       display: flex;
       align-items: center;

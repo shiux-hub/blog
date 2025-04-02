@@ -10,7 +10,10 @@ import { createContentLoader } from 'vitepress'
  * @param config VitePress buildEnd
  * @param themeConfig 主题配置
  */
-export async function createRssFile(config: SiteConfig<ThemeConfig>, themeConfig: ThemeConfig) {
+export async function createRssFile(
+  config: SiteConfig<ThemeConfig>,
+  themeConfig: ThemeConfig,
+) {
   // 配置信息
   const siteMeta = themeConfig.siteMeta
   const hostLink = siteMeta.site

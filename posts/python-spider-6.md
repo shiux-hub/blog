@@ -337,7 +337,7 @@ print(soup.find_all(text='Foo'))
 
 通过`get_text()`就可以获取文本内容
 
-[![复制代码](https://common.cnblogs.com/images/copycode.gif)](javascript:void(0);)
+[![复制代码](https://common.cnblogs.com/images/copycode.gif)](<javascript:void(0);>)
 
 ```python
 from bs4 import BeautifulSoup
@@ -370,7 +370,7 @@ for li in soup.select('li'):
 
 或者属性的时候可以通过[属性名]或者attrs[属性名]
 
-[![复制代码](https://common.cnblogs.com/images/copycode.gif)](javascript:void(0);)
+[![复制代码](https://common.cnblogs.com/images/copycode.gif)](<javascript:void(0);>)
 
 ```python
 from bs4 import BeautifulSoup

@@ -23,14 +23,20 @@ function changeCloseStyle() {
 // 右键菜单开关
 function rightMenuSwitch() {
   store.useRightMenu = !store.useRightMenu
-  window.$message.info(`${store.useRightMenu ? '已开启' : '已关闭'}自定义右键菜单`)
+  window.$message.info(
+    `${store.useRightMenu ? '已开启' : '已关闭'}自定义右键菜单`,
+  )
 }
 </script>
 
 <template>
   <Teleport to="body">
     <Transition name="fade" mode="out-in" @before-enter="changeCloseStyle">
-      <div v-if="store.controlShow" class="control" @click="store.changeShowStatus('controlShow')">
+      <div
+        v-if="store.controlShow"
+        class="control"
+        @click="store.changeShowStatus('controlShow')"
+      >
         <!-- 关闭按钮 -->
         <div ref="closeControlRef" class="close-control">
           <Icon icon="mingcute:close-fill" />
@@ -41,27 +47,45 @@ function rightMenuSwitch() {
         <div class="control-content" @click.stop>
           <!-- 功能菜单 -->
           <div class="menu">
-            <div v-tippy class="menu-item open" title="显示模式切换" @click.stop="store.changeThemeType">
+            <div
+              v-tippy
+              class="menu-item open"
+              title="显示模式切换"
+              @click.stop="store.changeThemeType"
+            >
               <Icon
-                :icon="store.themeType === 'auto'
-                  ? 'mingcute:history-anticlockwise-fill'
-                  : store.themeType === 'dark'
-                    ? 'mingcute:moon-fill'
-                    : 'mingcute:sun-fill'
+                :icon="
+                  store.themeType === 'auto'
+                    ? 'mingcute:history-anticlockwise-fill'
+                    : store.themeType === 'dark'
+                      ? 'mingcute:moon-fill'
+                      : 'mingcute:sun-fill'
                 "
               />
             </div>
-            <div v-tippy class="menu-item" :class="[{ open: store.useRightMenu }]" title="右键菜单开关" @click.stop="rightMenuSwitch">
+            <div
+              v-tippy
+              class="menu-item"
+              :class="[{ open: store.useRightMenu }]"
+              title="右键菜单开关"
+              @click.stop="rightMenuSwitch"
+            >
               <Icon icon="majesticons:list-box" />
             </div>
             <div
-              v-tippy class="menu-item" :class="[{ open: store.playerShow }]" title="播放器开关"
+              v-tippy
+              class="menu-item"
+              :class="[{ open: store.playerShow }]"
+              title="播放器开关"
               @click.stop="store.playerShow = !store.playerShow"
             >
               <Icon icon="mingcute:music-2-fill" />
             </div>
             <div
-              v-tippy class="menu-item" :class="[{ open: store.backgroundBlur }]" title="背景模糊开关"
+              v-tippy
+              class="menu-item"
+              :class="[{ open: store.backgroundBlur }]"
+              title="背景模糊开关"
               @click.stop="store.changeShowStatus('backgroundBlur')"
             >
               <Icon icon="mdi:blur" />

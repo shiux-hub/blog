@@ -20,7 +20,7 @@ coverHeight:
 
 阅读本文。你会在其中找到各种资源——知名UX网站、UX项目、公司博客和在线课程。
 
-*你最喜欢哪一个？告诉我！*
+_你最喜欢哪一个？告诉我！_
 
 ## 网站和博客推荐
 
@@ -90,7 +90,7 @@ NNgroup（Nielsen Norman Group）是基于研究UX领域的全球领导者。他
 
 没有强大的工具集，你就不可能成为一名优秀的UX专家。如果你不完全是一个初学者，那么你肯定正在使用下面提到的工具之一。 如果你没有关注他们的博客，我建议你关注他们，因为他们发布的内容质量很高。
 
-*经过一番探索，你一定会提高自己的技能并找到灵感。*
+_经过一番探索，你一定会提高自己的技能并找到灵感。_
 
 **Adobe** – <https://blog.adobe.com/en/topics/illustrator.html>
 
@@ -108,7 +108,7 @@ NNgroup（Nielsen Norman Group）是基于研究UX领域的全球领导者。他
 
 如今，在线课程比以往任何时候都发展迅速。它们是现在参加UX课程的唯一途径。 这种类型的教育可能并不适合所有人，但我们向您保证它们值得一试。
 
-*以下是您可能感兴趣的建议：*
+_以下是您可能感兴趣的建议：_
 
 **Hack Design** – <https://hackdesign.org/>
 
@@ -118,4 +118,4 @@ NNgroup（Nielsen Norman Group）是基于研究UX领域的全球领导者。他
 
 **UX Training** – <https://www.uxtraining.com/ux-design-course-online>
 
-*如果你觉得还有我没提到的，请告诉我！*
+_如果你觉得还有我没提到的，请告诉我！_

@@ -36,7 +36,10 @@ const isOutLink = computed(() => {
   if (!link)
     return false
   // 是否为站内链接
-  return !link.startsWith('/') && (link.startsWith('http://') || link.startsWith('https://'))
+  return (
+    !link.startsWith('/')
+    && (link.startsWith('http://') || link.startsWith('https://'))
+  )
 })
 
 // 获取站点数据
@@ -57,7 +60,11 @@ onMounted(() => {
 </script>
 
 <template>
-  <a :href="url" :target="isOutLink ? '_blank' : undefined" class="link-card s-card hover">
+  <a
+    :href="url"
+    :target="isOutLink ? '_blank' : undefined"
+    class="link-card s-card hover"
+  >
     <span v-if="isOutLink" class="link-tip">引用站外地址，请注意甄别链接安全性</span>
     <div class="link-data">
       <div class="link-icon">
@@ -74,10 +81,14 @@ onMounted(() => {
       <div class="link-desc">
         <!-- 标题 -->
         <span v-if="title" class="link-title">{{ title }}</span>
-        <span v-else class="link-title">{{ siteInfo?.title || "暂无标题" }}</span>
+        <span v-else class="link-title">{{
+          siteInfo?.title || '暂无标题'
+        }}</span>
         <!-- 描述 -->
         <span v-if="desc" class="link-description">{{ desc }}</span>
-        <span v-else class="link-description">{{ siteInfo?.description || "暂无站点描述" }}</span>
+        <span v-else class="link-description">{{
+          siteInfo?.description || '暂无站点描述'
+        }}</span>
       </div>
       <Icon icon="mingcute:up-fill" />
     </div>

@@ -13,17 +13,30 @@ const { site, theme, frontmatter, page } = useData()
 
 <template>
   <header class="main-header">
-    <nav class="main-nav" :class="[scrollData.direction, { top: scrollData.height === 0 }]">
+    <nav
+      class="main-nav"
+      :class="[scrollData.direction, { top: scrollData.height === 0 }]"
+    >
       <div class="nav-all">
         <!-- 导航栏左侧 -->
         <div class="left-nav">
           <div v-tippy class="more-menu nav-btn" title="更多内容">
             <Icon icon="mingcute:classify-3-fill" />
             <div class="more-card s-card">
-              <div v-for="(item, index) in theme.navMore" :key="index" class="more-item">
+              <div
+                v-for="(item, index) in theme.navMore"
+                :key="index"
+                class="more-item"
+              >
                 <span class="more-name">{{ item.name }}</span>
                 <div class="more-list">
-                  <a v-for="(link, i) in item.list" :key="i" :href="link.url" class="more-link" target="_blank">
+                  <a
+                    v-for="(link, i) in item.list"
+                    :key="i"
+                    :href="link.url"
+                    class="more-link"
+                    target="_blank"
+                  >
                     <img class="link-icon" :src="link.icon" :alt="link.name">
                     <span class="link-name">{{ link.name }}</span>
                   </a>
@@ -31,10 +44,15 @@ const { site, theme, frontmatter, page } = useData()
               </div>
             </div>
           </div>
-          <div v-tippy class="site-name group active:scale-95" title="返回博客主页" @click="router.go('/')">
+          <div
+            v-tippy
+            class="site-name group active:scale-95"
+            title="返回博客主页"
+            @click="router.go('/')"
+          >
             {{ site.title }}
             <div
-              class="absolute rounded-3xl flex items-center justify-center opacity-0 transition-opacity duration-300 group-hover:opacity-100 inset-0 size-full text-card-background bg-theme"
+              class="text-card-background bg-theme absolute inset-0 flex size-full items-center justify-center rounded-3xl opacity-0 transition-opacity duration-300 group-hover:opacity-100"
             >
               <Icon icon="mingcute:home-4-fill" class="size-5.5" />
             </div>
@@ -43,11 +61,17 @@ const { site, theme, frontmatter, page } = useData()
         <!-- 导航栏菜单 -->
         <div class="nav-center">
           <div class="site-menu">
-            <div v-for="(item, index) in theme.nav" :key="index" class="menu-item">
+            <div
+              v-for="(item, index) in theme.nav"
+              :key="index"
+              class="menu-item"
+            >
               <span class="link-btn"> {{ item.text }}</span>
               <div v-if="item.items" class="link-child">
                 <span
-                  v-for="({ link, icon, text }, childIndex) in item.items" :key="childIndex" class="link-child-btn"
+                  v-for="({ link, icon, text }, childIndex) in item.items"
+                  :key="childIndex"
+                  class="link-child-btn"
                   @click="router.go(link)"
                 >
                   <Icon v-if="icon" :icon />
@@ -57,7 +81,10 @@ const { site, theme, frontmatter, page } = useData()
             </div>
           </div>
           <span class="site-title" @click="smoothScrolling()">
-            {{ (frontmatter.home ? site.description : page.title) || site.description }}
+            {{
+              (frontmatter.home ? site.description : page.title)
+                || site.description
+            }}
           </span>
         </div>
         <div class="right-nav">
@@ -72,40 +99,65 @@ const { site, theme, frontmatter, page } = useData()
             <Icon icon="mingcute:airplane-fill" />
           </a>
           <!-- 随机文章 -->
-          <div v-tippy class="menu-btn nav-btn" title="随机前往一篇文章" @click="router.go(shufflePost(theme.postData))">
+          <div
+            v-tippy
+            class="menu-btn nav-btn"
+            title="随机前往一篇文章"
+            @click="router.go(shufflePost(theme.postData))"
+          >
             <Icon icon="mingcute:shuffle-2-fill" />
           </div>
           <!-- 搜索 -->
           <div
             v-if="theme.search.enable"
-            v-tippy class="menu-btn nav-btn" title="全站搜索"
+            v-tippy
+            class="menu-btn nav-btn"
+            title="全站搜索"
             @click="store.changeShowStatus('searchShow')"
           >
             <Icon icon="mingcute:search-line" />
           </div>
           <!-- 中控台 -->
           <div
-            id="open-control" v-tippy class="menu-btn nav-btn pc" title="打开中控台"
+            id="open-control"
+            v-tippy
+            class="menu-btn nav-btn pc"
+            title="打开中控台"
             @click="store.changeShowStatus('controlShow')"
           >
             <Icon icon="mingcute:dashboard-3-fill" />
           </div>
           <!-- 返回顶部 -->
           <div
-            v-tippy class="to-top menu-btn" :class="{
-              hidden: scrollData.height === 0, long: scrollData.percentage > 90,
-            }" title="返回顶部" @click="smoothScrolling"
+            v-tippy
+            class="to-top menu-btn"
+            :class="{
+              hidden: scrollData.height === 0,
+              long: scrollData.percentage > 90,
+            }"
+            title="返回顶部"
+            @click="smoothScrolling"
           >
             <div class="to-top-btn">
               <Transition name="fade" mode="out-in">
                 <span :key="scrollData.percentage > 90" class="num">
-                  {{ scrollData.percentage <= 90 ? scrollData.percentage : "返回顶部" }} </span>
+                  {{
+                    scrollData.percentage <= 90
+                      ? scrollData.percentage
+                      : '返回顶部'
+                  }}
+                </span>
               </Transition>
               <Icon icon="mingcute:arrow-up-fill" />
             </div>
           </div>
           <!-- 移动端菜单 -->
-          <div v-tippy class="menu-btn nav-btn mobile" title="打开菜单" @click="store.changeShowStatus('mobileMenuShow')">
+          <div
+            v-tippy
+            class="menu-btn nav-btn mobile"
+            title="打开菜单"
+            @click="store.changeShowStatus('mobileMenuShow')"
+          >
             <Icon icon="mingcute:menu-fill" />
           </div>
         </div>
@@ -145,7 +197,7 @@ const { site, theme, frontmatter, page } = useData()
       backdrop-filter 0.3s;
 
     &::after {
-      content: "";
+      content: '';
       position: absolute;
       height: 1px;
       width: 100%;
@@ -263,7 +315,7 @@ const { site, theme, frontmatter, page } = useData()
           }
 
           &::after {
-            content: "";
+            content: '';
             position: absolute;
             top: -20px;
             left: 0;
@@ -375,7 +427,7 @@ const { site, theme, frontmatter, page } = useData()
               transform 0.3s;
 
             &::before {
-              content: "";
+              content: '';
               position: absolute;
               top: -14px;
               left: 0;
@@ -415,7 +467,7 @@ const { site, theme, frontmatter, page } = useData()
           &:first-child {
             .link-child {
               &::after {
-                content: "";
+                content: '';
                 position: absolute;
                 top: -60px;
                 left: 0;
@@ -428,7 +480,7 @@ const { site, theme, frontmatter, page } = useData()
           &:last-child {
             .link-child {
               &::after {
-                content: "";
+                content: '';
                 position: absolute;
                 top: -60px;
                 right: 0;
@@ -474,7 +526,7 @@ const { site, theme, frontmatter, page } = useData()
         cursor: pointer;
 
         &::after {
-          content: "返回顶部";
+          content: '返回顶部';
           position: absolute;
           top: 0;
           left: 0;

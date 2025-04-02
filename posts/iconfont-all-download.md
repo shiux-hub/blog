@@ -20,7 +20,7 @@ coverHeight:
 1. 按下F12或者打开浏览器开发者模式
 
 2. 进入console的窗口
-![打开console](https://i.loli.net/2021/08/01/vp31rX8tU9heNMC.png)
+   ![打开console](https://i.loli.net/2021/08/01/vp31rX8tU9heNMC.png)
 3. 输入下列代码，然后回车
 
    ```javascript

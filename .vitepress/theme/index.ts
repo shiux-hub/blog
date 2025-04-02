@@ -26,10 +26,7 @@ const Theme = {
   Layout: () => {
     return h(RootApp)
   },
-  enhanceApp({ app, router }: {
-    app: App
-    router: Router
-  }) {
+  enhanceApp({ app, router }: { app: App, router: Router }) {
     // 挂载
     app.use(pinia)
     app.use(InstantSearch)

@@ -11,13 +11,10 @@ function checkboxClick() {
 
 <template>
   <div class="checkbox" @click="checkboxClick">
-    <div
-      class="checkbox-box group"
-      :class="{ check: model }"
-    >
+    <div class="checkbox-box group" :class="{ check: model }">
       <Icon
         icon="mingcute:check-fill"
-        class="absolute size-3 text-card-background opacity-0 scale-0 transition-[opacity,scale] group-hover:opacity-100 group-hover:scale-100"
+        class="text-card-background absolute size-3 scale-0 opacity-0 transition-[opacity,scale] group-hover:scale-100 group-hover:opacity-100"
       />
     </div>
     <div class="checkbox-label">

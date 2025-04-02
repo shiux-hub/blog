@@ -1,11 +1,14 @@
 <script lang="ts" setup>
 import { useData } from '@/composables/data'
 
-withDefaults(defineProps<{
-  showToc?: boolean
-}>(), {
-  showToc: false,
-})
+withDefaults(
+  defineProps<{
+    showToc?: boolean
+  }>(),
+  {
+    showToc: false,
+  },
+)
 const { theme } = useData()
 </script>
 

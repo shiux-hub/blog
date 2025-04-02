@@ -5,8 +5,15 @@ import { Icon } from '@iconify/vue'
 import { storeToRefs } from 'pinia'
 
 const store = mainStore()
-const { themeType, fontFamily, fontSize, infoPosition, backgroundType, backgroundUrl, bannerType }
-  = storeToRefs(store)
+const {
+  themeType,
+  fontFamily,
+  fontSize,
+  infoPosition,
+  backgroundType,
+  backgroundUrl,
+  bannerType,
+} = storeToRefs(store)
 </script>
 
 <template>
@@ -27,10 +34,18 @@ const { themeType, fontFamily, fontSize, infoPosition, backgroundType, backgroun
         <div class="set-item">
           <span class="set-label">全站字体</span>
           <div class="set-options">
-            <span class="options" :class="[{ choose: fontFamily === 'hmos' }]" @click="fontFamily = 'hmos'">
+            <span
+              class="options"
+              :class="[{ choose: fontFamily === 'hmos' }]"
+              @click="fontFamily = 'hmos'"
+            >
               HarmonyOS Sans
             </span>
-            <span class="options" :class="[{ choose: fontFamily === 'lxgw' }]" @click="fontFamily = 'lxgw'">
+            <span
+              class="options"
+              :class="[{ choose: fontFamily === 'lxgw' }]"
+              @click="fontFamily = 'lxgw'"
+            >
               霞鹜文楷
             </span>
           </div>
@@ -38,7 +53,9 @@ const { themeType, fontFamily, fontSize, infoPosition, backgroundType, backgroun
         <div class="set-item">
           <span class="set-label">全站字体大小</span>
           <div class="set-options">
-            <span class="options" @click="store.changeFontSize(false)"> - </span>
+            <span class="options" @click="store.changeFontSize(false)">
+              -
+            </span>
             <span class="num">{{ fontSize }}</span>
             <span class="options" @click="store.changeFontSize(true)"> + </span>
           </div>
@@ -47,18 +64,24 @@ const { themeType, fontFamily, fontSize, infoPosition, backgroundType, backgroun
         <div class="set-item">
           <span class="set-label">全站背景</span>
           <div class="set-options">
-            <span class="options" :class="[{ choose: backgroundType === 'close' }]" @click="backgroundType = 'close'">
+            <span
+              class="options"
+              :class="[{ choose: backgroundType === 'close' }]"
+              @click="backgroundType = 'close'"
+            >
               关闭
             </span>
             <span
-              class="options" :class="[{ choose: backgroundType === 'patterns' }]"
+              class="options"
+              :class="[{ choose: backgroundType === 'patterns' }]"
               @click="backgroundType = 'patterns'"
             >
               纹理
             </span>
             <span
-              class="options" :class="[{ choose: backgroundType === 'image' }]"
-              @click="(backgroundType = 'image'), (themeType = 'dark')"
+              class="options"
+              :class="[{ choose: backgroundType === 'image' }]"
+              @click="((backgroundType = 'image'), (themeType = 'dark'))"
             >
               图片
             </span>
@@ -68,7 +91,11 @@ const { themeType, fontFamily, fontSize, infoPosition, backgroundType, backgroun
           <span class="set-label">背景图片地址</span>
           <div class="set-options">
             <input
-              v-model="backgroundUrl" v-tippy type="url" pattern="https?://.+" title="请输入有效的网址，例如：http://www.example.com"
+              v-model="backgroundUrl"
+              v-tippy
+              type="url"
+              pattern="https?://.+"
+              title="请输入有效的网址，例如：http://www.example.com"
               required
             >
           </div>
@@ -77,10 +104,18 @@ const { themeType, fontFamily, fontSize, infoPosition, backgroundType, backgroun
         <div class="set-item">
           <span class="set-label">Banner 高度</span>
           <div class="set-options">
-            <span class="options" :class="[{ choose: bannerType === 'half' }]" @click="bannerType = 'half'">
+            <span
+              class="options"
+              :class="[{ choose: bannerType === 'half' }]"
+              @click="bannerType = 'half'"
+            >
               半屏
             </span>
-            <span class="options" :class="[{ choose: bannerType === 'full' }]" @click="bannerType = 'full'">
+            <span
+              class="options"
+              :class="[{ choose: bannerType === 'full' }]"
+              @click="bannerType = 'full'"
+            >
               全屏
             </span>
           </div>
@@ -89,10 +124,18 @@ const { themeType, fontFamily, fontSize, infoPosition, backgroundType, backgroun
         <div class="set-item">
           <span class="set-label">额外信息显示位置</span>
           <div class="set-options">
-            <span class="options" :class="[{ choose: infoPosition === 'normal' }]" @click="infoPosition = 'normal'">
+            <span
+              class="options"
+              :class="[{ choose: infoPosition === 'normal' }]"
+              @click="infoPosition = 'normal'"
+            >
               默认位置
             </span>
-            <span class="options" :class="[{ choose: infoPosition === 'fixed' }]" @click="infoPosition = 'fixed'">
+            <span
+              class="options"
+              :class="[{ choose: infoPosition === 'fixed' }]"
+              @click="infoPosition = 'fixed'"
+            >
               右下角
             </span>
           </div>

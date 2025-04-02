@@ -92,23 +92,39 @@ onBeforeUnmount(() => {
 </script>
 
 <template>
-  <div v-if="type === 'text'" id="main-banner" class="banner" :class="bannerType">
+  <div
+    v-if="type === 'text'"
+    id="main-banner"
+    class="banner"
+    :class="bannerType"
+  >
     <h1 class="title">
       你好，欢迎来到{{ theme.siteMeta.title }}
     </h1>
     <div class="subtitle">
       <Transition name="fade" mode="out-in">
         <span :key="hitokotoData?.hitokoto" class="text">
-          {{ hitokotoData?.hitokoto ? hitokotoData?.hitokoto : theme.siteMeta.description }}
+          {{
+            hitokotoData?.hitokoto
+              ? hitokotoData?.hitokoto
+              : theme.siteMeta.description
+          }}
         </span>
       </Transition>
     </div>
     <Transition v-if="height === 'full'" name="fade" mode="out-in">
-      <Icon v-if="height === 'full'" icon="mingcute:arrow-up-fill" @click="scrollToHome" />
+      <Icon
+        v-if="height === 'full'"
+        icon="mingcute:arrow-up-fill"
+        @click="scrollToHome"
+      />
     </Transition>
   </div>
   <div
-    v-else-if="type === 'page'" class="banner-page s-card" :class="[{ image }]" :style="{
+    v-else-if="type === 'page'"
+    class="banner-page s-card"
+    :class="[{ image }]"
+    :style="{
       backgroundImage: image ? `url(${image})` : '',
     }"
   >
@@ -156,7 +172,7 @@ onBeforeUnmount(() => {
   }
 
   .title {
-    font-family: "Site Title";
+    font-family: 'Site Title';
     font-weight: bold;
     font-size: 2.75rem;
   }

@@ -1,15 +1,18 @@
 <!-- 懒加载 -->
 <script lang="ts" setup>
-withDefaults(defineProps<{
-  // 兼容友链朋友圈
-  useFriendsLink?: boolean | string
-  width?: string
-  height?: string
-}>(), {
-  useFriendsLink: false,
-  width: '100%',
-  height: '100%',
-})
+withDefaults(
+  defineProps<{
+    // 兼容友链朋友圈
+    useFriendsLink?: boolean | string
+    width?: string
+    height?: string
+  }>(),
+  {
+    useFriendsLink: false,
+    width: '100%',
+    height: '100%',
+  },
+)
 
 // IntersectionObserver
 let observer: IntersectionObserver | null = null
@@ -20,11 +23,16 @@ const load = ref(false)
 const box = ref<Element>()
 
 // 初始化 IntersectionObserver
-function initLazyIntersectionObserver(fn: (entry: IntersectionObserverEntry) => void) {
-  const observer = new IntersectionObserver(entrys => entrys.forEach(entry => fn(entry)), {
-    rootMargin: '0px',
-    threshold: 0,
-  })
+function initLazyIntersectionObserver(
+  fn: (entry: IntersectionObserverEntry) => void,
+) {
+  const observer = new IntersectionObserver(
+    entrys => entrys.forEach(entry => fn(entry)),
+    {
+      rootMargin: '0px',
+      threshold: 0,
+    },
+  )
   return observer
 }
 
@@ -51,16 +59,22 @@ onBeforeUnmount(() => observer && box.value && observer.unobserve(box.value))
   <slot v-else />
   <div v-if="useFriendsLink" class="hidden">
     <!-- 适配友链朋友圈 -->
-    <img :data-lazy-src="useFriendsLink" class="cf-friends-avatar" alt="cover">
+    <img
+      :data-lazy-src="useFriendsLink"
+      class="cf-friends-avatar"
+      alt="cover"
+    >
   </div>
 </template>
 
 <style lang="scss" scoped>
 .loading {
-  background: linear-gradient(90deg,
-      var(--main-card-border) 25%,
-      var(--main-card-background) 37%,
-      var(--main-card-border) 63%);
+  background: linear-gradient(
+    90deg,
+    var(--main-card-border) 25%,
+    var(--main-card-background) 37%,
+    var(--main-card-border) 63%
+  );
   background-size: 400% 100%;
   animation: skeleton-loading 1.4s ease infinite;
 }

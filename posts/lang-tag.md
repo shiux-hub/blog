@@ -88,7 +88,11 @@ coverHeight:
 ## `lang`属性在西文中的差异
 
 ```html
-<style>.upper { text-transform: uppercase; }</style>
+<style>
+  .upper {
+    text-transform: uppercase;
+  }
+</style>
 <p class="upper" lang="en-US">shipping</p>
 <p class="upper" lang="tr">shipping</p>
 ```
@@ -119,7 +123,11 @@ coverHeight:
 这种想法是不正确的。因为现代字体具有OpenType的locl特性，会根据`lang`属性改变字形。
 
 ```html
-<style>.font-k { font-family: 'Source Han Sans SC', sans-serif; }</style>
+<style>
+  .font-k {
+    font-family: 'Source Han Sans SC', sans-serif;
+  }
+</style>
 <p class="font-k">天</p>
 <p class="font-k" lang="zh-CN">天</p>
 ```
@@ -156,21 +164,41 @@ coverHeight:
 例如，使用楷体排版的多语言网页可以这样设置 CSS：
 
 ```css
-:lang(zh), :lang(ja), :lang(ko) { text-align: justify; }
-:lang(zh-CN) { font-family: KaiTi, cursive; }
-:lang(zh-TW) { font-family: DFKai-SB, cursive; }
-:lang(zh-HK) { font-family: DFPHKStdKai-B5, cursive; }
+:lang(zh),
+:lang(ja),
+:lang(ko) {
+  text-align: justify;
+}
+:lang(zh-CN) {
+  font-family: KaiTi, cursive;
+}
+:lang(zh-TW) {
+  font-family: DFKai-SB, cursive;
+}
+:lang(zh-HK) {
+  font-family: DFPHKStdKai-B5, cursive;
+}
 ```
 
-西文文本不宜使用两侧对齐，否则会造成[川流](https://zh.wikipedia.org/wiki/川流_(字体排印学))现象，而中文、日文、韩文可以使用两侧对齐。这时，使用`lang="zh"`，可以一次性选择所有中文变体，即所有以`zh`起始的`lang`属性。
+西文文本不宜使用两侧对齐，否则会造成[川流](<https://zh.wikipedia.org/wiki/川流_(字体排印学)>)现象，而中文、日文、韩文可以使用两侧对齐。这时，使用`lang="zh"`，可以一次性选择所有中文变体，即所有以`zh`起始的`lang`属性。
 
 如果将`lang="zh-CN"`改为`lang="zh"`，则上述CSS代码中的`lang="zh-CN"`也必须改为`lang="zh"`。在维护过程中，有可能因为维护人员的疏忽，规则之间被调换了顺序，写作：
 
 ```css
-:lang(zh), :lang(ja), :lang(ko) { text-align: justify; }
-:lang(zh-TW) { font-family: DFKai-SB, cursive; }
-:lang(zh-HK) { font-family: DFPHKStdKai-B5, cursive; }
-:lang(zh) { font-family: KaiTi, cursive; }
+:lang(zh),
+:lang(ja),
+:lang(ko) {
+  text-align: justify;
+}
+:lang(zh-TW) {
+  font-family: DFKai-SB, cursive;
+}
+:lang(zh-HK) {
+  font-family: DFPHKStdKai-B5, cursive;
+}
+:lang(zh) {
+  font-family: KaiTi, cursive;
+}
 ```
 
 这样就产生了bug，因为这会导致`:lang(zh-TW)`与`:lang(zh-HK)`两条规则都被`:lang(zh)`覆盖。
@@ -189,8 +217,12 @@ coverHeight:
 
 ```html
 <style>
-.glyph-hk:lang(zh-Hant) { font-language-override: "ZHH"; }
-.glyph-kr:lang(zh-Hant) { font-language-override: "KOR"; }
+  .glyph-hk:lang(zh-Hant) {
+    font-language-override: 'ZHH';
+  }
+  .glyph-kr:lang(zh-Hant) {
+    font-language-override: 'KOR';
+  }
 </style>
 <p lang="zh-Hant">霄</p>
 <p class="glyph-hk" lang="zh-Hant">霄</p>
@@ -233,7 +265,7 @@ coverHeight:
 - [CJKV Information Processing](https://book.douban.com/subject/3404546/)
 - [Language subtag lookup app](https://r12a.github.io/app-subtags/)
 - [ISO 639-1 列表](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes)
-- [ISO 639-3 列表](https://en.wikipedia.org/wiki/Wikipedia:WikiProject_Languages/List_of_ISO_639-3_language_codes_(2019))
+- [ISO 639-3 列表](<https://en.wikipedia.org/wiki/Wikipedia:WikiProject_Languages/List_of_ISO_639-3_language_codes_(2019)>)
 - [ISO 15924 列表](https://www.unicode.org/iso15924/iso15924-codes.html)
 - [OpenType Features in CSS](https://sparanoid.com/lab/opentype-features/)
 - [繁简中文转换概说](https://zhuanlan.zhihu.com/p/104314323)

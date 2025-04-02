@@ -12,11 +12,18 @@ const route = useRoute()
 </script>
 
 <template>
-  <div class="copyright relative s-card">
-    <Icon icon="mingcute:copyright-line" class="absolute -top-16 -right-16 opacity-10 size-64 rotate-[334deg]" />
+  <div class="copyright s-card relative">
+    <Icon
+      icon="mingcute:copyright-line"
+      class="absolute -top-16 -right-16 size-64 rotate-[334deg] opacity-10"
+    />
     <div class="title">
-      <span class="post-name">{{ postData?.title || "未命名文章" }}</span>
-      <a :href="theme.siteMeta.site + route.path" class="post-link" target="_blank">
+      <span class="post-name">{{ postData?.title || '未命名文章' }}</span>
+      <a
+        :href="theme.siteMeta.site + route.path"
+        class="post-link"
+        target="_blank"
+      >
         {{ theme.siteMeta.site + route.path }}
       </a>
     </div>
@@ -35,7 +42,11 @@ const route = useRoute()
       </div>
       <div class="meta-item cc">
         <span class="tip">许可协议</span>
-        <a class="name" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh-hans" target="_blank">
+        <a
+          class="name"
+          href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh-hans"
+          target="_blank"
+        >
           CC BY-NC-SA 4.0
         </a>
       </div>

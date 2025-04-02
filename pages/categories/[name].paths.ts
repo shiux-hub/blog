@@ -1,6 +1,9 @@
 import type { VitePressData } from 'vitepress'
 import type { ThemeConfig } from '../../.vitepress/theme/types/theme'
-import { getAllCategories, getAllPosts } from '../../.vitepress/theme/utils/getPostData'
+import {
+  getAllCategories,
+  getAllPosts,
+} from '../../.vitepress/theme/utils/getPostData'
 
 // eslint-disable-next-line antfu/no-top-level-await
 const postData = await getAllPosts()

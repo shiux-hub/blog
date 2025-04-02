@@ -55,28 +55,25 @@ function generateDirData() {
 }
 
 // 高亮对应目录项
-const activeTocItem = throttle(
-  { interval: 100 },
-  () => {
-    if (!tocData.value)
-      return false
-    // 所有标题
-    const headers = getAllTitle()
-    if (!headers)
-      return false
-    // 容错高度
-    const bufferheight = 120
-    // 遍历所有标题
-    for (const header of headers) {
-      const rect = header.getBoundingClientRect()
-      // 检查标题是否在视口中
-      if (rect.top - bufferheight <= 0 && rect.bottom + bufferheight >= 0) {
-        // 高亮对应标题
-        activeHeader.value = header.id
-      }
+const activeTocItem = throttle({ interval: 100 }, () => {
+  if (!tocData.value)
+    return false
+  // 所有标题
+  const headers = getAllTitle()
+  if (!headers)
+    return false
+  // 容错高度
+  const bufferheight = 120
+  // 遍历所有标题
+  for (const header of headers) {
+    const rect = header.getBoundingClientRect()
+    // 检查标题是否在视口中
+    if (rect.top - bufferheight <= 0 && rect.bottom + bufferheight >= 0) {
+      // 高亮对应标题
+      activeHeader.value = header.id
     }
-  },
-)
+  }
+})
 
 // 滚动标题至指定位置
 function scrollToHeader(id: string) {
@@ -118,7 +115,10 @@ watch(
     if (!tocAllDom || !activeTocItem)
       return false
     activeTocHeight.value = activeTocItem?.offsetTop - 2 || 0
-    tocAllDom?.scrollTo({ top: activeTocHeight.value - 80, behavior: 'smooth' })
+    tocAllDom?.scrollTo({
+      top: activeTocHeight.value - 80,
+      behavior: 'smooth',
+    })
   },
 )
 
@@ -145,14 +145,21 @@ onBeforeUnmount(() => {
       <Icon icon="mingcute:menu-fill" />
       <span class="name">目录</span>
     </div>
-    <div id="toc-all" class="toc-list" :style="{ '--height': `${activeTocHeight}px` }">
+    <div
+      id="toc-all"
+      class="toc-list"
+      :style="{ '--height': `${activeTocHeight}px` }"
+    >
       <span
         v-for="(item, index) in tocData"
         :id="`toc-${item.id}`"
         :key="index"
-        class="toc-item" :class="[
+        class="toc-item"
+        :class="[
           item.type,
-          { active: item.id === activeHeader || (index === 0 && !activeHeader) },
+          {
+            active: item.id === activeHeader || (index === 0 && !activeHeader),
+          },
         ]"
         @click="scrollToHeader(item.id)"
       >
@@ -233,7 +240,7 @@ onBeforeUnmount(() => {
       }
     }
     &::after {
-      content: "";
+      content: '';
       position: absolute;
       left: 12px;
       top: var(--height);
@@ -246,7 +253,7 @@ onBeforeUnmount(() => {
     }
   }
   &::before {
-    content: "";
+    content: '';
     position: absolute;
     left: 12px;
     bottom: 20px;

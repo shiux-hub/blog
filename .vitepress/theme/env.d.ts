@@ -13,8 +13,16 @@ declare global {
   interface Window {
     $message: Message
   }
-  declare function setTimeout(handler: TimerHandler, timeout?: number, ...arguments: any[]): number
+  declare function setTimeout(
+    handler: TimerHandler,
+    timeout?: number,
+    ...arguments: any[]
+  ): number
   declare function clearTimeout(handle?: number): void
-  declare function setInterval(handler: TimerHandler, timeout?: number, ...arguments: any[]): number
+  declare function setInterval(
+    handler: TimerHandler,
+    timeout?: number,
+    ...arguments: any[]
+  ): number
   declare function clearInterval(handle?: number): void
 }

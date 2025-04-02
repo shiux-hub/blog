@@ -82,7 +82,14 @@ export const themeConfig: ThemeConfig = {
       ],
       // Embed code
       ['link', { rel: 'preconnect', href: 'https://use.sevencdn.com' }],
-      ['link', { rel: 'preconnect', href: 'https://fonts.gstatic.com', crossorigin: '' }],
+      [
+        'link',
+        {
+          rel: 'preconnect',
+          href: 'https://fonts.gstatic.com',
+          crossorigin: '',
+        },
+      ],
       [
         'link',
         {
@@ -107,15 +114,31 @@ export const themeConfig: ThemeConfig = {
     {
       text: '文库',
       items: [
-        { text: '文章列表', link: '/pages/archives', icon: 'mingcute:follow-fill' },
-        { text: '全部分类', link: '/pages/categories', icon: 'mingcute:classify-2-fill' },
-        { text: '全部标签', link: '/pages/tags', icon: 'mingcute:hashtag-fill' },
+        {
+          text: '文章列表',
+          link: '/pages/archives',
+          icon: 'mingcute:follow-fill',
+        },
+        {
+          text: '全部分类',
+          link: '/pages/categories',
+          icon: 'mingcute:classify-2-fill',
+        },
+        {
+          text: '全部标签',
+          link: '/pages/tags',
+          icon: 'mingcute:hashtag-fill',
+        },
       ],
     },
     {
       text: '专栏',
       items: [
-        { text: '我的项目', link: '/pages/project', icon: 'mingcute:code-fill' },
+        {
+          text: '我的项目',
+          link: '/pages/project',
+          icon: 'mingcute:code-fill',
+        },
         { text: '效率工具', link: '/pages/tools', icon: 'mingcute:tool-fill' },
       ],
     },
@@ -129,9 +152,21 @@ export const themeConfig: ThemeConfig = {
     {
       text: '我的',
       items: [
-        { text: '畅所欲言', link: '/pages/message', icon: 'mingcute:comment-fill' },
-        { text: '致谢名单', link: '/pages/thanks', icon: 'mingcute:certificate-fill' },
-        { text: '关于本站', link: '/pages/about', icon: 'mingcute:user-2-fill' },
+        {
+          text: '畅所欲言',
+          link: '/pages/message',
+          icon: 'mingcute:comment-fill',
+        },
+        {
+          text: '致谢名单',
+          link: '/pages/thanks',
+          icon: 'mingcute:certificate-fill',
+        },
+        {
+          text: '关于本站',
+          link: '/pages/about',
+          icon: 'mingcute:user-2-fill',
+        },
       ],
     },
   ],
@@ -275,10 +310,26 @@ export const themeConfig: ThemeConfig = {
       {
         text: '项目',
         items: [
-          { text: 'Home', link: 'https://github.com/imsyy/home/', newTab: true },
-          { text: 'SPlayer', link: 'https://github.com/imsyy/SPlayer/', newTab: true },
-          { text: 'DailyHotApi', link: 'https://github.com/imsyy/DailyHotApi/', newTab: true },
-          { text: 'Snavigation', link: 'https://github.com/imsyy/Snavigation/', newTab: true },
+          {
+            text: 'Home',
+            link: 'https://github.com/imsyy/home/',
+            newTab: true,
+          },
+          {
+            text: 'SPlayer',
+            link: 'https://github.com/imsyy/SPlayer/',
+            newTab: true,
+          },
+          {
+            text: 'DailyHotApi',
+            link: 'https://github.com/imsyy/DailyHotApi/',
+            newTab: true,
+          },
+          {
+            text: 'Snavigation',
+            link: 'https://github.com/imsyy/Snavigation/',
+            newTab: true,
+          },
         ],
       },
       {
@@ -303,7 +354,11 @@ export const themeConfig: ThemeConfig = {
         items: [
           { text: '站点状态', link: 'https://status.imsyy.top/', newTab: true },
           { text: '一个导航', link: 'https://nav.imsyy.top/', newTab: true },
-          { text: '站点订阅', link: 'https://blog.imsyy.top/rss.xml', newTab: true },
+          {
+            text: '站点订阅',
+            link: 'https://blog.imsyy.top/rss.xml',
+            newTab: true,
+          },
           {
             text: '反馈投诉',
             link: 'https://eqnxweimkr5.feishu.cn/share/base/form/shrcnCXCPmxCKKJYI3RKUfefJre',

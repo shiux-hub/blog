@@ -6,10 +6,16 @@ const { frontmatter } = useData()
 </script>
 
 <template>
-  <div :class="[frontmatter.layout || 'page', { 'has-aside': frontmatter.aside }]">
+  <div
+    :class="[frontmatter.layout || 'page', { 'has-aside': frontmatter.aside }]"
+  >
     <div class="page-content">
       <!-- 页面内容 -->
-      <Content id="page-content" class="markdown-main-style" :class="[{ 's-card': frontmatter.card }]" />
+      <Content
+        id="page-content"
+        class="markdown-main-style"
+        :class="[{ 's-card': frontmatter.card }]"
+      />
       <!-- 评论 -->
       <Comments v-if="frontmatter.comment" />
     </div>
@@ -18,7 +24,7 @@ const { frontmatter } = useData()
 </template>
 
 <style lang="scss" scoped>
-@use "../style/post.scss";
+@use '../style/post.scss';
 
 .page {
   width: 100%;
@@ -40,7 +46,7 @@ const { frontmatter } = useData()
           }
 
           .atk-list-comments-wrap {
-            >.atk-comment-wrap {
+            > .atk-comment-wrap {
               padding: 0.8rem;
               margin-bottom: 1rem;
               border-bottom: none;

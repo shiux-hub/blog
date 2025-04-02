@@ -53,7 +53,7 @@ const pageNumber = computed(() => {
   pages.push(1)
   // 当 startPage > 2 时，前面需要显示省略号
   if (startPage > 2) {
-    pages.push('...')
+    pages.push('more')
   }
   else {
     // 如果 startPage 是 2，不需要省略号，直接显示第二页
@@ -65,7 +65,7 @@ const pageNumber = computed(() => {
   }
   // 当 endPage < totalPages-1 时，后面需要显示省略号
   if (endPage < total - 1) {
-    pages.push('...')
+    pages.push('more')
   }
   else {
     // 如果 endPage 是 totalPages-1，不需要省略号，直接显示倒数第二页
@@ -115,7 +115,9 @@ function fastJump() {
   if (!jumpInput.value)
     return false
   jumpPage(
-    jumpInput.value === 1 ? `${props.routePath}` : `${props.routePath}/page/${jumpInput.value}`,
+    jumpInput.value === 1
+      ? `${props.routePath}`
+      : `${props.routePath}/page/${jumpInput.value}`,
     jumpInput.value,
   )
 }
@@ -135,143 +137,148 @@ onMounted(() => {
 </script>
 
 <template>
-  <div v-if="total > 0" class="pagination">
+  <div
+    v-if="total > 0"
+    class="animate-fade-up mt-5 flex w-full items-center justify-center gap-2 delay-100 duration-600"
+  >
     <div
-      v-if="currentPage > 1" class="page-item group h-12.5 text-font-color next w-full transition duration-300 space-x-1 bg-card-background border border-card-border shadow-md shadow-border-shadow max-md:hover:text-white max-md:hover:bg-theme md:h-10 md:hover:shadow-theme-none md:w-20 md:hover:text-theme md:hover:border-theme" @click="
+      v-if="currentPage > 1"
+      class="group text-font-color next bg-card-background border-card-border shadow-border-shadow max-md:hover:bg-theme md:hover:shadow-theme-none md:hover:text-theme md:hover:border-theme flex h-12.5 flex-1 shrink-0 cursor-pointer items-center justify-center space-x-1 overflow-hidden rounded-lg border shadow-md transition duration-300 max-md:hover:text-white md:h-10 md:w-20"
+      @click="
         jumpPage(
-          currentPage === 2 ? `${routePath}` : `${routePath}/page/${currentPage - 1}`,
+          currentPage === 2
+            ? `${routePath}`
+            : `${routePath}/page/${currentPage - 1}`,
           currentPage === 2 ? 1 : currentPage - 1,
         )
       "
     >
       <Icon icon="mingcute:left-fill" class="max-md:hidden" />
-      <span class="page-text mr-0 transition-[opacity,margin] duration-300 md:opacity-0 md:group-hover:mr-0 md:group-hover:opacity-100 md:-mr-8">上页</span>
+      <span
+        class="mr-0 transition-[opacity,margin] duration-300 md:-mr-8 md:opacity-0 md:group-hover:mr-0 md:group-hover:opacity-100"
+      >上页</span>
     </div>
-    <div class="page-number items-center justify-center w-full hidden md:flex">
+    <div
+      class="page-number hidden w-full items-center justify-center gap-2 md:flex"
+    >
       <div
-        v-for="(item, index) in pageNumber" :key="index"
-        :class="[item === '...' ? 'point' : 'page-item w-10', { choose: item === currentPage }]"
-        @click="item !== '...' && jumpPage(item === 1 ? routePath : `${routePath}/page/${item}`, item)"
+        v-for="(item, index) in pageNumber"
+        :key="index"
+        class="flex size-10 shrink-0 cursor-pointer items-center justify-center overflow-hidden rounded-lg transition-colors duration-300"
+        :class="{
+          'border-card-border hover:border-theme hover:shadow-theme-op hover:text-theme border shadow-md':
+            item !== 'more',
+          'text-card-background border-theme bg-theme shadow-theme-op shadow-md':
+            item === currentPage,
+        }"
+        @click="
+          item !== 'more'
+            && jumpPage(item === 1 ? routePath : `${routePath}/page/${item}`, item)
+        "
       >
-        <span class="page-num">{{ item }}</span>
+        <Icon
+          v-if="item === 'more'"
+          class="size-7"
+          icon="mingcute:more-1-fill"
+        />
+        <span v-else>{{ item }}</span>
       </div>
       <!-- 快速跳转 -->
-      <div v-tippy class="fast-jump" :class="[{ focus: inputFocus }]" title="快速跳转">
+      <div
+        v-tippy
+        class="fast-jump"
+        :class="[{ focus: inputFocus }]"
+        title="快速跳转"
+      >
         <input
-          v-model.number="jumpInput" :min="1" :max="totalPages" @focus="inputFocus = true" @blur="fastJump"
-          @input="validateInput" @keydown.enter="fastJump"
+          v-model.number="jumpInput"
+          :min="1"
+          :max="totalPages"
+          @focus="inputFocus = true"
+          @blur="fastJump"
+          @input="validateInput"
+          @keydown.enter="fastJump"
         >
-        <Icon icon="mingcute:arrows-right-line" :class="[{ click: jumpInput }]" @click.stop="fastJump" />
+        <Icon
+          icon="mingcute:arrows-right-line"
+          :class="[{ click: jumpInput }]"
+          @click.stop="fastJump"
+        />
       </div>
     </div>
     <div
       v-if="currentPage * limit < total"
-      class="page-item group h-12.5 text-font-color next w-full transition duration-300 space-x-1 bg-card-background border border-card-border shadow-md shadow-border-shadow max-md:hover:text-white max-md:hover:bg-theme md:h-10 md:hover:shadow-theme-none md:w-20 md:hover:text-theme md:hover:border-theme"
+      class="group text-font-color next bg-card-background border-card-border shadow-border-shadow max-md:hover:bg-theme md:hover:shadow-theme-none md:hover:text-theme md:hover:border-theme flex h-12.5 flex-1 shrink-0 cursor-pointer items-center justify-center space-x-1 overflow-hidden rounded-lg border shadow-md transition duration-300 max-md:hover:text-white md:h-10 md:w-20"
       @click="jumpPage(`${routePath}/page/${currentPage + 1}`, currentPage + 1)"
     >
-      <span class="page-text ml-0 transition-[opacity,margin] duration-300 md:opacity-0 md:group-hover:ml-0 md:group-hover:opacity-100 md:-ml-8">下页</span>
+      <span
+        class="page-text ml-0 transition-[opacity,margin] duration-300 md:-ml-8 md:opacity-0 md:group-hover:ml-0 md:group-hover:opacity-100"
+      >下页</span>
       <Icon icon="mingcute:right-fill" class="max-md:hidden" />
     </div>
   </div>
 </template>
 
 <style lang="scss" scoped>
-.pagination {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-  margin-top: 20px;
-  width: 100%;
-  gap: .5rem;
-  animation: fade-up 0.6s 0.4s backwards;
+.page-number {
+  .fast-jump {
+    position: relative;
+    margin: 0 6px;
 
-  .page-item {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 8px;
-    overflow: hidden;
-    cursor: pointer;
-  }
+    input {
+      border: none;
+      outline: none;
+      background: none;
+      width: 40px;
+      height: 40px;
+      border-radius: 8px;
+      padding: 0 8px;
+      font-size: 16px;
+      color: var(--main-font-color);
+      background-color: var(--main-card-background);
+      border: 1px solid var(--main-card-border);
+      box-shadow: 0 8px 16px -4px var(--main-border-shadow);
+      transition: all 0.3s;
+    }
 
-  .page-number {
-    .page-item {
-      margin: 0 6px;
+    svg {
+      position: absolute;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      top: 5px;
+      right: 5px;
+      width: 30px;
+      height: 30px;
+      border-radius: 4px;
+      background-color: var(--main-card-background);
+      transition:
+        color 0.3s,
+        opacity 0.3s,
+        background-color 0.3s;
+      cursor: pointer;
 
-      &.choose {
+      &:hover {
         color: var(--main-card-background);
-        border-color: var(--main-color);
         background-color: var(--main-color);
-        box-shadow: 0 8px 16px -4px var(--main-color-bg);
       }
     }
 
-    .point {
-      margin: 0 4px;
-      transform: translateY(-8px);
-      font-size: 22px;
-    }
-
-    .fast-jump {
-      position: relative;
-      margin: 0 6px;
-
+    &.focus,
+    &:hover {
       input {
-        border: none;
-        outline: none;
-        background: none;
-        width: 40px;
-        height: 40px;
-        border-radius: 8px;
-        padding: 0 8px;
-        font-size: 16px;
-        color: var(--main-font-color);
-        background-color: var(--main-card-background);
-        border: 1px solid var(--main-card-border);
-        box-shadow: 0 8px 16px -4px var(--main-border-shadow);
-        transition: all 0.3s;
+        width: 100px;
+        border-color: var(--main-color);
+        box-shadow: 0 8px 16px -4px var(--main-color-bg);
       }
 
       svg {
-        position: absolute;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        top: 5px;
-        right: 5px;
-        width: 30px;
-        height: 30px;
-        border-radius: 4px;
-        background-color: var(--main-card-background);
-        transition:
-          color 0.3s,
-          opacity 0.3s,
-          background-color 0.3s;
-        cursor: pointer;
+        opacity: 0.2;
+        pointer-events: none;
 
-        &:hover {
-          color: var(--main-card-background);
-          background-color: var(--main-color);
-        }
-      }
-
-      &.focus,
-      &:hover {
-        input {
-          width: 100px;
-          border-color: var(--main-color);
-          box-shadow: 0 8px 16px -4px var(--main-color-bg);
-        }
-
-        svg {
-          opacity: 0.2;
-          pointer-events: none;
-
-          &.click {
-            opacity: 1;
-            pointer-events: all;
-          }
+        &.click {
+          opacity: 1;
+          pointer-events: all;
         }
       }
     }

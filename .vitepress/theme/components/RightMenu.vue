@@ -1,15 +1,27 @@
 <script lang="ts" setup>
 import { useData } from '@/composables/data'
 import { mainStore } from '@/store'
-import { copyImage, copyText, downloadImage, shufflePost, smoothScrolling } from '@/utils/helper'
+import {
+  copyImage,
+  copyText,
+  downloadImage,
+  shufflePost,
+  smoothScrolling,
+} from '@/utils/helper'
 import { Icon } from '@iconify/vue'
 import { storeToRefs } from 'pinia'
 
 const router = useRouter()
 const store = mainStore()
 const { theme } = useData()
-const { useRightMenu, themeType, playerShow, playerVolume, playState, playerData }
-  = storeToRefs(store)
+const {
+  useRightMenu,
+  themeType,
+  playerShow,
+  playerVolume,
+  playState,
+  playerData,
+} = storeToRefs(store)
 
 // 右键菜单数据
 const rightMenuX = ref(0)
@@ -88,8 +100,9 @@ function checkClickType(target: EventTarget) {
   if (!target?.tagName)
     return false
   // 写入内容
-  clickedTypeData.value
-    = window.getSelection()?.toString().length ? window.getSelection()?.toString() : target
+  clickedTypeData.value = window.getSelection()?.toString().length
+    ? window.getSelection()?.toString()
+    : target
   switch (target.tagName) {
     case 'A':
       // 链接类型
@@ -142,13 +155,17 @@ async function rightMenuFunc(type) {
         break
       case 'input-paste':
         const text = await navigator.clipboard.readText()
-        if (clickedTypeData.value && typeof clickedTypeData.value === 'object') {
+        if (
+          clickedTypeData.value
+          && typeof clickedTypeData.value === 'object'
+        ) {
           const inputElement = clickedTypeData.value
           const start = inputElement.selectionStart
           const end = inputElement.selectionEnd
           const value = inputElement.value
           // 在光标位置插入文本
-          const newValue = value.substring(0, start) + text + value.substring(end)
+          const newValue
+            = value.substring(0, start) + text + value.substring(end)
           inputElement.value = newValue
           // 更新光标位置
           const newCursorPosition = start + text.length
@@ -187,16 +204,16 @@ function playerControl(type) {
 }
 
 // 选中内容是否为链接
-function isLink(data) {
+function isLink(data: string) {
   if (!data)
     return false
-  const hasProtocol = /^(http|https):\/\//i.test(data)
+  const hasProtocol = /^(?:http|https):\/\//i.test(data)
   const urlData = hasProtocol ? data : `http://${data}`
   try {
-    new URL(urlData)
+    URL.canParse(urlData)
     return urlData
   }
-  catch (error) {
+  catch {
     return false
   }
 }
@@ -227,65 +244,126 @@ defineExpose({ openRightMenu })
   <Teleport to="body">
     <!-- 右键菜单 -->
     <Transition name="fade" mode="out-in">
-      <div v-if="rightMenuShow" class="right-menu" @click="rightMenuShow = false" @contextmenu.stop="closeRightMenu">
+      <div
+        v-if="rightMenuShow"
+        class="right-menu"
+        @click="rightMenuShow = false"
+        @contextmenu.stop="closeRightMenu"
+      >
         <div
-          ref="rightMenuRef" :style="{
+          ref="rightMenuRef"
+          :style="{
             left: `${rightMenuX}px`,
             top: `${rightMenuY}px`,
-          }" class="menu-content s-card hover" @contextmenu.stop="closeRightMenu"
+          }"
+          class="menu-content s-card hover"
+          @contextmenu.stop="closeRightMenu"
         >
           <div class="tools">
-            <div v-tippy class="btn" title="后退" @click="rightMenuFunc('back')">
+            <div
+              v-tippy
+              class="btn"
+              title="后退"
+              @click="rightMenuFunc('back')"
+            >
               <Icon icon="mingcute:arrow-left-fill" />
             </div>
-            <div v-tippy class="btn" title="前进" @click="rightMenuFunc('forward')">
+            <div
+              v-tippy
+              class="btn"
+              title="前进"
+              @click="rightMenuFunc('forward')"
+            >
               <Icon icon="mingcute:arrow-right-fill" />
             </div>
-            <div v-tippy class="btn" title="刷新" @click="rightMenuFunc('reload')">
+            <div
+              v-tippy
+              class="btn"
+              title="刷新"
+              @click="rightMenuFunc('reload')"
+            >
               <Icon icon="mingcute:refresh-1-fill" />
             </div>
-            <div v-tippy class="btn" title="返回顶部" @click="smoothScrolling()">
+            <div
+              v-tippy
+              class="btn"
+              title="返回顶部"
+              @click="smoothScrolling()"
+            >
               <Icon icon="mingcute:arrow-up-fill" />
             </div>
           </div>
           <div class="all-menu">
-            <div v-if="clickedType === 'normal'" class="btn" @click="router.go(shufflePost(theme.postData))">
+            <div
+              v-if="clickedType === 'normal'"
+              class="btn"
+              @click="router.go(shufflePost(theme.postData))"
+            >
               <Icon icon="mingcute:shuffle-2-fill" />
               <span class="name">随便逛逛</span>
             </div>
-            <div v-if="clickedType === 'normal'" class="btn" @click="router.go('/pages/categories')">
+            <div
+              v-if="clickedType === 'normal'"
+              class="btn"
+              @click="router.go('/pages/categories')"
+            >
               <Icon icon="mingcute:classify-2-fill" />
               <span class="name">全部分类</span>
             </div>
-            <div v-if="clickedType === 'normal'" class="btn" @click="router.go('/pages/tags')">
+            <div
+              v-if="clickedType === 'normal'"
+              class="btn"
+              @click="router.go('/pages/tags')"
+            >
               <Icon icon="mingcute:hashtag-fill" />
               <span class="name">全部标签</span>
             </div>
             <!-- 链接类型 -->
-            <div v-if="clickedType === 'link'" class="btn" @click="rightMenuFunc('open-link')">
+            <div
+              v-if="clickedType === 'link'"
+              class="btn"
+              @click="rightMenuFunc('open-link')"
+            >
               <Icon icon="mingcute:external-link-fill" />
               <span class="name">新标签页打开</span>
             </div>
             <div
-              v-if="clickedType === 'link'" class="btn" @click="
-                copyText(clickedTypeData?.getAttribute('original-href') || clickedTypeData?.href)
+              v-if="clickedType === 'link'"
+              class="btn"
+              @click="
+                copyText(
+                  clickedTypeData?.getAttribute('original-href')
+                    || clickedTypeData?.href,
+                )
               "
             >
               <Icon icon="mingcute:link-2-fill" />
               <span class="name">复制链接地址</span>
             </div>
             <!-- 图片类型 -->
-            <div v-if="clickedType === 'image'" class="btn" @click="copyImage(clickedTypeData?.src)">
+            <div
+              v-if="clickedType === 'image'"
+              class="btn"
+              @click="copyImage(clickedTypeData?.src)"
+            >
               <Icon icon="mingcute:photo-album-fill" />
               <span class="name">复制此图片</span>
             </div>
-            <div v-if="clickedType === 'image'" class="btn" @click="downloadImage(clickedTypeData?.src)">
+            <div
+              v-if="clickedType === 'image'"
+              class="btn"
+              @click="downloadImage(clickedTypeData?.src)"
+            >
               <Icon icon="mingcute:file-download-fill" />
               <span class="name">下载此图片</span>
             </div>
             <!-- 输入框 -->
             <div
-              v-if="clickedType === 'input' && typeof clickedTypeData.value === 'string'" class="btn"
+              v-if="
+                clickedType === 'input'
+                  && typeof clickedTypeData.value === 'string'
+              "
+              class="btn"
               @click="rightMenuFunc('input-paste')"
             >
               <Icon icon="mingcute:paste-fill" />
@@ -293,15 +371,21 @@ defineExpose({ openRightMenu })
             </div>
             <!-- 选中文本 -->
             <a
-              v-if="(clickedType === 'text' || clickedType === 'input') && isLink(clickedTypeData)"
-              :href="`${isLink(clickedTypeData)}`" class="btn right-menu-link" target="_blank"
+              v-if="
+                (clickedType === 'text' || clickedType === 'input')
+                  && isLink(clickedTypeData)
+              "
+              :href="`${isLink(clickedTypeData)}`"
+              class="btn right-menu-link"
+              target="_blank"
             >
               <Icon icon="mingcute:external-link-fill" />
               <span class="name">在新标签页打开</span>
             </a>
             <a
               v-if="clickedType === 'text' || clickedType === 'input'"
-              :href="`https://www.baidu.com/s?wd=${encodeURIComponent(clickedTypeData)}`" class="btn right-menu-link"
+              :href="`https://www.baidu.com/s?wd=${encodeURIComponent(clickedTypeData)}`"
+              class="btn right-menu-link"
               target="_blank"
             >
               <Icon icon="ri:baidu-fill" />
@@ -309,21 +393,28 @@ defineExpose({ openRightMenu })
             </a>
             <a
               v-if="clickedType === 'text' || clickedType === 'input'"
-              :href="`https://cn.bing.com/search?q=${encodeURIComponent(clickedTypeData)}`" class="btn right-menu-link"
+              :href="`https://cn.bing.com/search?q=${encodeURIComponent(clickedTypeData)}`"
+              class="btn right-menu-link"
               target="_blank"
             >
               <Icon icon="mdi:microsoft-bing" />
               <span class="name">使用必应搜索</span>
             </a>
             <div
-              v-if="clickedType === 'text' || clickedType === 'input'" class="btn"
+              v-if="clickedType === 'text' || clickedType === 'input'"
+              class="btn"
               @click="copyText(clickedTypeData)"
             >
               <Icon icon="mingcute:copy-fill" />
               <span class="name">复制选中文本</span>
             </div>
             <div
-              v-if="clickedType === 'text' && !commentCopyShow && theme.comment.type === 'artalk'" class="btn"
+              v-if="
+                clickedType === 'text'
+                  && !commentCopyShow
+                  && theme.comment.type === 'artalk'
+              "
+              class="btn"
               @click="commentCopy(clickedTypeData)"
             >
               <Icon icon="mingcute:comment-fill" />
@@ -352,16 +443,21 @@ defineExpose({ openRightMenu })
             <!-- 明暗模式 -->
             <div class="btn" @click.stop="store.changeThemeType">
               <Icon
-                :icon="themeType === 'auto'
-                  ? 'mingcute:history-anticlockwise-fill'
-                  : themeType === 'dark'
-                    ? 'mingcute:moon-fill'
-                    : 'mingcute:sun-fill'
+                :icon="
+                  themeType === 'auto'
+                    ? 'mingcute:history-anticlockwise-fill'
+                    : themeType === 'dark'
+                      ? 'mingcute:moon-fill'
+                      : 'mingcute:sun-fill'
                 "
               />
               <span class="name">
                 {{
-                  themeType === "auto" ? "跟随系统" : themeType === "dark" ? "深色模式" : "浅色模式"
+                  themeType === 'auto'
+                    ? '跟随系统'
+                    : themeType === 'dark'
+                      ? '深色模式'
+                      : '浅色模式'
                 }}
               </span>
             </div>
@@ -378,20 +474,48 @@ defineExpose({ openRightMenu })
                 @click="playerVolume = Math.max(0, playerVolume - 0.1)"
               />
 
-              <Slider :value="playerVolume" @update="(val) => (playerVolume = val)" />
-              <Icon icon="material-symbols:volume-up-rounded" @click="playerVolume = Math.min(1, playerVolume + 0.1)" />
+              <Slider
+                :value="playerVolume"
+                @update="(val) => (playerVolume = val)"
+              />
+              <Icon
+                icon="material-symbols:volume-up-rounded"
+                @click="playerVolume = Math.min(1, playerVolume + 0.1)"
+              />
             </div>
             <div class="control" @click.stop>
-              <div v-tippy class="btn" title="上一曲" @click="playerControl('prev')">
+              <div
+                v-tippy
+                class="btn"
+                title="上一曲"
+                @click="playerControl('prev')"
+              >
                 <Icon icon="material-symbols:skip-previous-rounded" />
               </div>
-              <div v-if="playState" v-tippy class="btn" title="暂停" @click="playerControl('toggle')">
+              <div
+                v-if="playState"
+                v-tippy
+                class="btn"
+                title="暂停"
+                @click="playerControl('toggle')"
+              >
                 <Icon icon="material-symbols:pause-rounded" />
               </div>
-              <div v-else v-tippy class="btn" title="播放" @click="playerControl('toggle')">
+              <div
+                v-else
+                v-tippy
+                class="btn"
+                title="播放"
+                @click="playerControl('toggle')"
+              >
                 <Icon icon="material-symbols:play-arrow-rounded" />
               </div>
-              <div v-tippy class="btn" title="下一曲" @click="playerControl('next')">
+              <div
+                v-tippy
+                class="btn"
+                title="下一曲"
+                @click="playerControl('next')"
+              >
                 <Icon icon="material-symbols:skip-next-rounded" />
               </div>
             </div>
@@ -401,10 +525,14 @@ defineExpose({ openRightMenu })
     </Transition>
     <!-- 快速评论 -->
     <Modal
-      :show="commentCopyShow" title-icon="chat" @mask-click="commentCopyClose"
+      :show="commentCopyShow"
+      title-icon="chat"
+      @mask-click="commentCopyClose"
       @modal-close="commentCopyClose"
     >
-      <span class="modal-tip"> 您无需删除现有的输入框内容，直接在下方评论即可 </span>
+      <span class="modal-tip">
+        您无需删除现有的输入框内容，直接在下方评论即可
+      </span>
       <Artalk :fill="commentCopyData" />
     </Modal>
   </Teleport>

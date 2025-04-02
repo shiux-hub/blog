@@ -8,10 +8,13 @@ import { Icon } from '@iconify/vue'
 const { theme } = useData()
 
 onMounted(() => {
-  loadScript('https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js', {
-    async: true,
-    reload: true,
-  })
+  loadScript(
+    'https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js',
+    {
+      async: true,
+      reload: true,
+    },
+  )
 })
 </script>
 
@@ -80,12 +83,12 @@ onMounted(() => {
       }
       #busuanzi_value_site_pv {
         &::after {
-          content: " 次";
+          content: ' 次';
         }
       }
       #busuanzi_value_site_uv {
         &::after {
-          content: " 人";
+          content: ' 人';
         }
       }
       &:last-child {

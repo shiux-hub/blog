@@ -79,18 +79,21 @@ onBeforeUnmount(() => {
 
 <template>
   <div
-    v-if="nextPostData" class="next-post s-card" :class="[
+    v-if="nextPostData"
+    class="next-post s-card"
+    :class="[
       {
         fixed: infoPosition === 'fixed',
         show: infoPosition === 'fixed' && nextPostShow && !footerIsShow,
       },
-    ]" @click="router.go(nextPostData?.regularPath)"
+    ]"
+    @click="router.go(nextPostData?.regularPath)"
   >
     <span class="post-tip">
-      {{ isNextPost ? "下一篇阅读" : "阅读上一篇" }}
+      {{ isNextPost ? '下一篇阅读' : '阅读上一篇' }}
     </span>
     <span class="post-title">
-      {{ nextPostData?.title || "暂无标题" }}
+      {{ nextPostData?.title || '暂无标题' }}
     </span>
   </div>
 </template>

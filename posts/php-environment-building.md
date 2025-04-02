@@ -28,24 +28,24 @@ XAMPP（Apache+MySQL+PHP+PERL）是一个功能强大的建站集成软件包。
 ## 安装XMAPP
 
 1. 首先我在D盘创建了一个文件夹XMAPP，然后在XMAPP创建了三个文件夹。
-![](https://img-blog.csdnimg.cn/20181111120338184.png)
-package目录存放软件安装包
-path目录存放软件安装目录
-`virtualhost`目录是虚拟主机,也就是应用目录
+   ![](https://img-blog.csdnimg.cn/20181111120338184.png)
+   package目录存放软件安装包
+   path目录存放软件安装目录
+   `virtualhost`目录是虚拟主机,也就是应用目录
 2. 首先下载好XMAPP，放到一个位置，我放在`D:\XAMPP\package`这个位置的。
 3. 然后双击，进入安装界面，一直next...。
-我将安装路径选择了D:\XAMPP\path
+   我将安装路径选择了D:\XAMPP\path
 4. 直到安装完毕是这个样子的。
-![](https://img-blog.csdnimg.cn/2018111112100880.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2d1b2Jpbmh1aQ==,size_16,color_FFFFFF,t_70)
+   ![](https://img-blog.csdnimg.cn/2018111112100880.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2d1b2Jpbmh1aQ==,size_16,color_FFFFFF,t_70)
 
 ## 配置虚拟主机
 
 1. 然后我在`D:\XMAPP\virtualhost`中新建了一个文件`index.php`
-![](https://img-blog.csdnimg.cn/20181111121229408.png)
-很简单的一个函数，就当做首页了吧
+   ![](https://img-blog.csdnimg.cn/20181111121229408.png)
+   很简单的一个函数，就当做首页了吧
 2. 找到`XAMPP的安装目录==>apache==>conf==>extra`
-然后用编辑器打开`httpd-vhosts.conf`
-在文件的最下面写如下代码：
+   然后用编辑器打开`httpd-vhosts.conf`
+   在文件的最下面写如下代码：
 
 ```html
 <VirtualHost *:80>
@@ -73,7 +73,7 @@ path目录存放软件安装目录
 ## 测试是否XAMPP成功运行
 
 1. 先打开`Apache`
-![](https://img-blog.csdnimg.cn/2018111112185328.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2d1b2Jpbmh1aQ==,size_16,color_FFFFFF,t_70)
+   ![](https://img-blog.csdnimg.cn/2018111112185328.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2d1b2Jpbmh1aQ==,size_16,color_FFFFFF,t_70)
 2. 在浏览器中输入 主机名==>我的主机名为：localhost
 
 现在XAMPP就安装并配置好了。

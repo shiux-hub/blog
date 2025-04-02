@@ -3,9 +3,7 @@ import { useData } from '@/composables/data'
 import { jumpRedirect } from '@/utils/commonTools'
 import initComments from '@/utils/initComments'
 
-const {
-  fill = false,
-} = defineProps<{
+const { fill = false } = defineProps<{
   fill?: boolean | string
 }>()
 
@@ -60,5 +58,10 @@ onMounted(() => {
 </script>
 
 <template>
-  <div id="comment-dom" ref="commentRef" class="comment-content twikoo" :class="[{ fill }]" />
+  <div
+    id="comment-dom"
+    ref="commentRef"
+    class="comment-content twikoo"
+    :class="[{ fill }]"
+  />
 </template>

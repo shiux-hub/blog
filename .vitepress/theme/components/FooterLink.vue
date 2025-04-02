@@ -4,12 +4,15 @@ import { useData } from '@/composables/data'
 import { smoothScrolling } from '@/utils/helper'
 import { Icon } from '@iconify/vue'
 
-withDefaults(defineProps<{
-  // 显示底栏
-  showBar?: boolean
-}>(), {
-  showBar: true,
-})
+withDefaults(
+  defineProps<{
+    // 显示底栏
+    showBar?: boolean
+  }>(),
+  {
+    showBar: true,
+  },
+)
 const { theme, site } = useData()
 const { footer, siteMeta } = theme.value
 // 社交链接数据
@@ -28,9 +31,14 @@ const socialLinkData = computed(() => {
       <span class="site-desc">{{ site.description }}</span>
       <a href="/" class="to-home">了解更多</a>
     </div>
-    <div class="footer-social w-full flex flex-wrap justify-center items-center mt-12 mb-4 gap-y-13 gap-x-8">
+    <div
+      class="footer-social mt-12 mb-4 flex w-full flex-wrap items-center justify-center gap-x-8 gap-y-13"
+    >
       <a
-        v-for="({ link, icon, title }, index) in socialLinkData.first" :key="index" v-tippy="title" :href="link"
+        v-for="({ link, icon, title }, index) in socialLinkData.first"
+        :key="index"
+        v-tippy="title"
+        :href="link"
         target="_blank"
         class="social-link"
       >
@@ -38,14 +46,21 @@ const socialLinkData = computed(() => {
       </a>
       <div
         v-tippy
-        class="mx-4 size-15 max-md:hidden transition-transform duration-300 cursor-pointer hover:scale-120 active:scale-100"
+        class="mx-4 size-15 cursor-pointer transition-transform duration-300 hover:scale-120 active:scale-100 max-md:hidden"
         title="返回顶部"
         @click="smoothScrolling()"
       >
-        <img :src="siteMeta.author.cover" alt="author" class="author size-full">
+        <img
+          :src="siteMeta.author.cover"
+          alt="author"
+          class="author size-full"
+        >
       </div>
       <a
-        v-for="({ link, icon, title }, index) in socialLinkData.second" :key="index" v-tippy="title" :href="link"
+        v-for="({ link, icon, title }, index) in socialLinkData.second"
+        :key="index"
+        v-tippy="title"
+        :href="link"
         target="_blank"
         class="social-link"
       >
@@ -53,12 +68,19 @@ const socialLinkData = computed(() => {
       </a>
     </div>
     <div class="footer-sitemap">
-      <div v-for="(item, index) in footer.sitemap" :key="index" class="sitemap-item">
+      <div
+        v-for="(item, index) in footer.sitemap"
+        :key="index"
+        class="sitemap-item"
+      >
         <span class="title">{{ item.text }}</span>
         <div class="links">
           <a
-            v-for="(link, linkIndex) in item.items" :key="linkIndex" :href="link.link"
-            :target="link.newTab ? '_blank' : undefined" class="link-text"
+            v-for="(link, linkIndex) in item.items"
+            :key="linkIndex"
+            :href="link.link"
+            :target="link.newTab ? '_blank' : undefined"
+            class="link-text"
           >
             {{ link.text }}
           </a>

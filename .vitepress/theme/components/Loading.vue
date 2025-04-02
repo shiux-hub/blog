@@ -37,7 +37,9 @@ onBeforeUnmount(() => {
     <Transition name="fade" mode="out-in">
       <div v-if="loadingStatus" class="loading" @click="loadingStatus = false">
         <img :src="theme.siteMeta.logo" class="logo" alt="loading-logo">
-        <span class="tip" :class="[{ show: showTip }]"> 一直显示？点击任意区域即可关闭 </span>
+        <span class="tip" :class="[{ show: showTip }]">
+          一直显示？点击任意区域即可关闭
+        </span>
       </div>
     </Transition>
   </Teleport>

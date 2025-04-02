@@ -83,10 +83,18 @@ onBeforeUnmount(() => {
         <span class="desc">{{ theme.siteMeta.description }}</span>
       </div>
       <div class="link">
-        <a href="https://github.com/shiux-lab/" target="_blank" class="social-link">
+        <a
+          href="https://github.com/shiux-lab/"
+          target="_blank"
+          class="social-link"
+        >
           <Icon icon="ri:github-line" />
         </a>
-        <a href="mailto:dropout.cn@gmail.com" target="_blank" class="social-link">
+        <a
+          href="mailto:dropout.cn@gmail.com"
+          target="_blank"
+          class="social-link"
+        >
           <Icon icon="mdi:email-outline" />
         </a>
       </div>

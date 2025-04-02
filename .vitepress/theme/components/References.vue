@@ -16,7 +16,13 @@ const references = frontmatter.value?.references
       <span class="title-text">参考资料</span>
     </div>
     <ul class="list">
-      <a v-for="(item, index) in references" :key="index" :href="item.url" class="list-item" target="_blank">
+      <a
+        v-for="(item, index) in references"
+        :key="index"
+        :href="item.url"
+        class="list-item"
+        target="_blank"
+      >
         <span class="item-title">{{ item.title }}</span>
       </a>
     </ul>
@@ -74,7 +80,7 @@ const references = frontmatter.value?.references
       }
 
       &::before {
-        content: "";
+        content: '';
         position: absolute;
         left: 0;
         width: 8px;
@@ -86,7 +92,7 @@ const references = frontmatter.value?.references
       }
 
       &::after {
-        content: "";
+        content: '';
         position: absolute;
         left: 0;
         bottom: 0;

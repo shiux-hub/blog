@@ -33,7 +33,7 @@
       body {
         background-color: var(--main-site-background);
         color: var(--main-font-color);
-        font-family: "PingFang SC", "Open Sans", "Microsoft YaHei", sans-serif;
+        font-family: 'PingFang SC', 'Open Sans', 'Microsoft YaHei', sans-serif;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -139,7 +139,7 @@
         font-size: 15px;
       }
       footer .icp::before {
-        content: "|";
+        content: '|';
         margin: 0 8px;
         margin-left: 4px;
         opacity: 0.2;
@@ -169,7 +169,7 @@
       <a class="power" href="https://blog.imsyy.top/">
         ©
         <script>
-          document.write(new Date().getFullYear());
+          document.write(new Date().getFullYear())
         </script>
         無名小栈
       </a>
@@ -177,110 +177,99 @@
     </footer>
     <script>
       // 跳转网址
-      let jumpLink;
-      let interval;
+      let jumpLink
+      let interval
       // 获取元素
-      const urlDom = document.getElementById("url");
-      const urlTip = document.getElementById("site-info");
-      const jumpContent = document.getElementById("jump-content");
-      const jumpButton = document.getElementById("jump-button");
+      const urlDom = document.getElementById('url')
+      const urlTip = document.getElementById('site-info')
+      const jumpContent = document.getElementById('jump-content')
+      const jumpButton = document.getElementById('jump-button')
       // 网址白名单
-      const whitelist = [
-        "*.imsyy.top",
-        "gitee.com",
-        "github.com",
-        "*.baidu.com",
-        "*.bing.cn",
-        "npmjs.com",
-      ];
+      const whitelist = ['*.imsyy.top', 'gitee.com', 'github.com', '*.baidu.com', '*.bing.cn', 'npmjs.com']
       // 网址黑名单
-      const blacklist = ["*.taobao.com", "*.jd.com"];
+      const blacklist = ['*.taobao.com', '*.jd.com']
       // 提示文本
       const tipText = {
-        safe: "✅ 该网址为信任网址，即将跳转",
-        danger: "⛔ 该网址处于黑名单",
-      };
+        safe: '✅ 该网址为信任网址，即将跳转',
+        danger: '⛔ 该网址处于黑名单',
+      }
       // 自动跳转
       const autoJump = () => {
-        let count = 3;
+        let count = 3
         const updateContent = () => {
-          jumpButton.innerHTML = `${count} 秒后自动跳转`;
-          count--;
+          jumpButton.innerHTML = `${count} 秒后自动跳转`
+          count--
           if (count < 0) {
-            clearInterval(interval);
-            jumpButton.innerHTML = "正在跳转";
-            window.location.replace(jumpLink);
+            clearInterval(interval)
+            jumpButton.innerHTML = '正在跳转'
+            window.location.replace(jumpLink)
           }
-        };
+        }
         // 每秒更新一次
-        updateContent();
-        interval = setInterval(updateContent, 1000);
-      };
+        updateContent()
+        interval = setInterval(updateContent, 1000)
+      }
       // 获取跳转网址
       const getJumpUrl = () => {
         try {
           // 解析 URL 参数
-          const urlParams = new URLSearchParams(window.location.search);
-          const encodedUrl = urlParams.get("url");
+          const urlParams = new URLSearchParams(window.location.search)
+          const encodedUrl = urlParams.get('url')
           // 解密 Base64
-          jumpLink = atob(encodedUrl);
-          urlDom.innerHTML = jumpLink;
+          jumpLink = atob(encodedUrl)
+          urlDom.innerHTML = jumpLink
           // 获取网址的主机名
-          const urlHostname = new URL(jumpLink).hostname;
+          const urlHostname = new URL(jumpLink).hostname
           // 判断网址是否在黑名单中
           for (let i = 0; i < blacklist.length; i++) {
-            const blackPattern = blacklist[i].replace(/\*/g, ".*");
+            const blackPattern = blacklist[i].replace(/\*/g, '.*')
             if (urlHostname.match(blackPattern)) {
               // 显示提示信息
-              urlTip.innerHTML = tipText.danger;
-              jumpButton.innerHTML = "禁止跳转";
-              jumpButton.style.cursor = "not-allowed";
-              jumpButton.style.pointerEvents = "none";
-              jumpButton.style.opacity = "0.4";
-              jumpContent.className = "danger";
-              return true;
+              urlTip.innerHTML = tipText.danger
+              jumpButton.innerHTML = '禁止跳转'
+              jumpButton.style.cursor = 'not-allowed'
+              jumpButton.style.pointerEvents = 'none'
+              jumpButton.style.opacity = '0.4'
+              jumpContent.className = 'danger'
+              return true
             }
           }
           // 判断网址是否在白名单中
           for (let i = 0; i < whitelist.length; i++) {
-            const whitePattern = whitelist[i].replace(/\*/g, ".*");
+            const whitePattern = whitelist[i].replace(/\*/g, '.*')
             if (urlHostname.match(whitePattern)) {
               // 显示提示信息
-              urlTip.innerHTML = tipText.safe;
-              jumpContent.className = "safe";
-              autoJump();
-              return true;
+              urlTip.innerHTML = tipText.safe
+              jumpContent.className = 'safe'
+              autoJump()
+              return true
             }
           }
         } catch (error) {
-          console.error(error);
-          jumpContent.remove();
-          urlDom.innerHTML = "获取跳转链接失败";
+          console.error(error)
+          jumpContent.remove()
+          urlDom.innerHTML = '获取跳转链接失败'
         }
-      };
-      document.addEventListener("contextmenu", function (event) {
-        event.preventDefault();
-      });
-      document.addEventListener("keydown", function (event) {
+      }
+      document.addEventListener('contextmenu', function (event) {
+        event.preventDefault()
+      })
+      document.addEventListener('keydown', function (event) {
         if (event.keyCode === 123) {
-          event.preventDefault();
+          event.preventDefault()
         }
-        if (
-          event.ctrlKey &&
-          event.shiftKey &&
-          (event.keyCode === 73 || event.keyCode === 74 || event.keyCode === 67)
-        ) {
-          event.preventDefault();
+        if (event.ctrlKey && event.shiftKey && (event.keyCode === 73 || event.keyCode === 74 || event.keyCode === 67)) {
+          event.preventDefault()
         }
-      });
-      jumpButton.addEventListener("click", () => {
-        clearInterval(interval);
-        jumpButton.innerHTML = "正在跳转";
-        if (jumpLink) window.location.replace(jumpLink);
-      });
-      window.addEventListener("DOMContentLoaded", () => {
-        getJumpUrl();
-      });
+      })
+      jumpButton.addEventListener('click', () => {
+        clearInterval(interval)
+        jumpButton.innerHTML = '正在跳转'
+        if (jumpLink) window.location.replace(jumpLink)
+      })
+      window.addEventListener('DOMContentLoaded', () => {
+        getJumpUrl()
+      })
     </script>
   </body>
 </html>

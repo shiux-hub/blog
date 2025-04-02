@@ -19,7 +19,9 @@ const postMetaData = computed(() => {
 
 // 日期
 const createdDate = computed(() => formatTimestamp(postMetaData.value.date))
-const updatedDate = computed(() => formatTimestamp(page.value?.lastUpdated || postMetaData.value.lastModified))
+const updatedDate = computed(() =>
+  formatTimestamp(page.value?.lastUpdated || postMetaData.value.lastModified),
+)
 
 onMounted(() => {
   initFancybox(theme.value)
@@ -30,11 +32,19 @@ onMounted(() => {
   <div v-if="postMetaData" class="post">
     <div class="post-meta">
       <div class="meta">
-        <a v-if="frontmatter.original" v-tippy href="/posts/cc" class="post-meta-original cat-item" title="该文章为原创文章，注意版权协议">原创</a>
+        <a
+          v-if="frontmatter.original"
+          v-tippy
+          href="/posts/cc"
+          class="post-meta-original cat-item"
+          title="该文章为原创文章，注意版权协议"
+        >原创</a>
         <div class="categories">
           <a
             v-for="(item, index) in postMetaData.categories"
-            :key="index" v-tippy="`查看更多<strong>【${item}】</strong>分类的文章`" :href="`/pages/categories/${item}`"
+            :key="index"
+            v-tippy="`查看更多<strong>【${item}】</strong>分类的文章`"
+            :href="`/pages/categories/${item}`"
             class="cat-item"
           >
             <Icon icon="mingcute:classify-2-fill" />
@@ -44,7 +54,10 @@ onMounted(() => {
         <div class="tags">
           <a
             v-for="(item, index) in postMetaData.tags"
-            :key="index" v-tippy="`查看更多<strong>【${item}】</strong>标签的文章`" :href="`/pages/tags/${item}`" class="tag-item"
+            :key="index"
+            v-tippy="`查看更多<strong>【${item}】</strong>标签的文章`"
+            :href="`/pages/tags/${item}`"
+            class="tag-item"
           >
             <Icon icon="mingcute:hashtag-fill" />
             <span class="name">{{ item }}</span>
@@ -52,14 +65,22 @@ onMounted(() => {
         </div>
       </div>
       <h1 class="title">
-        {{ postMetaData.title || "未命名文章" }}
+        {{ postMetaData.title || '未命名文章' }}
       </h1>
       <div class="other-meta">
-        <span v-if="createdDate" v-tippy="`这篇文章创建于<strong>${createdDate}</strong>`" class="meta-item date">
+        <span
+          v-if="createdDate"
+          v-tippy="`这篇文章创建于<strong>${createdDate}</strong>`"
+          class="meta-item date"
+        >
           <Icon icon="mingcute:calendar-2-line" />
           {{ createdDate }}
         </span>
-        <span v-if="updatedDate" v-tippy="`这篇文章更新于<strong>${updatedDate}</strong>`" class="meta-item update">
+        <span
+          v-if="updatedDate"
+          v-tippy="`这篇文章更新于<strong>${updatedDate}</strong>`"
+          class="meta-item update"
+        >
           <Icon icon="mingcute:time-fill" />
           {{ updatedDate }}
         </span>
@@ -69,7 +90,11 @@ onMounted(() => {
           <span id="twikoo_visitors" class="artalk-pv-count">0</span>
         </span>
         <!-- 评论数 -->
-        <span v-if="theme.comment.enable" class="chat meta-item hover" @click="commentRef?.scrollToComments">
+        <span
+          v-if="theme.comment.enable"
+          class="chat meta-item hover"
+          @click="commentRef?.scrollToComments"
+        >
           <Icon icon="mingcute:chat-1-fill" />
           <span id="twikoo_comments" class="artalk-comment-count">0</span>
         </span>
@@ -79,7 +104,9 @@ onMounted(() => {
       <article class="post-article s-card">
         <!-- 过期提醒 -->
         <div v-if="postMetaData?.expired >= 180" class="expired s-card">
-          本文发表于 <strong>{{ postMetaData?.expired }}</strong> 天前，其中的信息可能已经事过境迁
+          本文发表于
+          <strong>{{ postMetaData?.expired }}</strong>
+          天前，其中的信息可能已经事过境迁
         </div>
         <!-- AI 摘要 -->
         <ArticleGPT />
@@ -88,17 +115,26 @@ onMounted(() => {
         <!-- 参考资料 -->
         <References />
         <!-- 版权 -->
-        <Copyright v-if="frontmatter.copyright !== false" :post-data="postMetaData" />
+        <Copyright
+          v-if="frontmatter.copyright !== false"
+          :post-data="postMetaData"
+        />
         <!-- 其他信息 -->
         <div class="other-meta">
           <div class="all-tags">
-            <a v-for="(item, index) in postMetaData.tags" :key="index" :href="`/pages/tags/${item}`" class="tag-item">
+            <a
+              v-for="(item, index) in postMetaData.tags"
+              :key="index"
+              :href="`/pages/tags/${item}`"
+              class="tag-item"
+            >
               <Icon icon="mingcute:hashtag-fill" />
               <span class="name">{{ item }}</span>
             </a>
           </div>
           <a
-            href="https://eqnxweimkr5.feishu.cn/share/base/form/shrcnCXCPmxCKKJYI3RKUfefJre" class="report"
+            href="https://eqnxweimkr5.feishu.cn/share/base/form/shrcnCXCPmxCKKJYI3RKUfefJre"
+            class="report"
             target="_blank"
           >
             <Icon icon="mingcute:report-line" />
@@ -119,7 +155,7 @@ onMounted(() => {
 </template>
 
 <style lang="scss" scoped>
-@use "../style/post.scss";
+@use '../style/post.scss';
 
 .post {
   width: 100%;

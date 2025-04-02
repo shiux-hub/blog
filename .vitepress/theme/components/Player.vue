@@ -75,7 +75,10 @@ function getMusicData() {
     const songInfo = playerDom.value.querySelector('.aplayer-info')
     // 歌曲信息
     const songName = songInfo.querySelector('.aplayer-title').textContent
-    const songArtist = songInfo.querySelector('.aplayer-author').textContent.replace(' - ', '')
+    const songArtist = songInfo
+      .querySelector('.aplayer-author')
+      .textContent
+      .replace(' - ', '')
     console.log(songName, songArtist)
     // 更新信息
     playerData.value = {
@@ -141,7 +144,12 @@ onBeforeUnmount(() => {
 </script>
 
 <template>
-  <div v-if="playerShow" class="player" :class="[{ playing: playState }]" @click="player?.toggle()">
+  <div
+    v-if="playerShow"
+    class="player"
+    :class="[{ playing: playState }]"
+    @click="player?.toggle()"
+  >
     <div ref="playerDom" class="player-content" />
   </div>
 </template>
@@ -298,7 +306,7 @@ onBeforeUnmount(() => {
     }
 
     &::after {
-      content: "播放音乐";
+      content: '播放音乐';
       position: absolute;
       top: 0;
       left: 0;

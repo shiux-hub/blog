@@ -33,18 +33,27 @@ onBeforeUnmount(() => {
     <div class="count-left">
       <span class="text"> 距离 </span>
       <span class="name">{{ theme.aside.countDown.data.name }}</span>
-      <span class="time"> {{ getDaysUntil(theme.aside.countDown.data.date) }} </span>
+      <span class="time">
+        {{ getDaysUntil(theme.aside.countDown.data.date) }}
+      </span>
       <span class="date">{{ theme.aside.countDown.data.date }}</span>
     </div>
     <div v-if="remainData" class="count-right">
-      <div v-for="(item, tag, index) in remainData" :key="index" class="count-item">
+      <div
+        v-for="(item, tag, index) in remainData"
+        :key="index"
+        class="count-item"
+      >
         <div class="item-name">
           {{ item.name }}
         </div>
         <div class="item-progress">
           <div
             class="progress-bar"
-            :style="{ width: `${item.percentage}%`, opacity: item.percentage / 100 }"
+            :style="{
+              width: `${item.percentage}%`,
+              opacity: item.percentage / 100,
+            }"
           />
           <span class="percentage" :class="[{ many: item.percentage >= 46 }]">
             {{ item.percentage }}%
@@ -52,7 +61,7 @@ onBeforeUnmount(() => {
           <span class="remaining" :class="[{ many: item.percentage >= 60 }]">
             <span class="tip">还剩</span>
             {{ item.remaining }}
-            <span class="tip">{{ tag === "day" ? "小时" : "天" }}</span>
+            <span class="tip">{{ tag === 'day' ? '小时' : '天' }}</span>
           </span>
         </div>
       </div>
@@ -92,7 +101,7 @@ onBeforeUnmount(() => {
       opacity: 0.6;
     }
     &::after {
-      content: "";
+      content: '';
       position: absolute;
       right: -0.8rem;
       width: 2px;

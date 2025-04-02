@@ -69,10 +69,12 @@ export async function getAllPosts(): Promise<PostDataItem[]> {
           const { birthtimeMs, mtimeMs } = stat
           // 解析 front matter
           const { data } = matter(content)
-          const { title, date, categories, description, tags, top, cover } = data as Frontmatter
+          const { title, date, categories, description, tags, top, cover }
+            = data as Frontmatter
           // 计算文章的过期天数
           const expired = Math.floor(
-            (new Date().getTime() - new Date(date).getTime()) / (1000 * 60 * 60 * 24),
+            (new Date().getTime() - new Date(date).getTime())
+            / (1000 * 60 * 60 * 24),
           )
           // 返回文章对象
           return {
@@ -206,6 +208,8 @@ export function getAllArchives(postData: PostDataItem[]) {
     }
   })
   // 提取年份并按降序排序
-  const sortedYears = Object.keys(archiveData).sort((a, b) => Number.parseInt(b) - Number.parseInt(a))
+  const sortedYears = Object.keys(archiveData).sort(
+    (a, b) => Number.parseInt(b) - Number.parseInt(a),
+  )
   return { data: archiveData, year: sortedYears }
 }

@@ -47,7 +47,9 @@ onMounted(() => {
         <Icon icon="mingcute:ai-fill" />
         相关推荐
       </span>
-      <span class="shuffle" @click="router.go(shufflePost(theme.postData))"> 随便逛逛 </span>
+      <span class="shuffle" @click="router.go(shufflePost(theme.postData))">
+        随便逛逛
+      </span>
     </div>
     <!-- 文章列表 -->
     <PostList :list-data="relatedData" simple />

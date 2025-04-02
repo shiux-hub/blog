@@ -18,12 +18,12 @@ FastAPI可以使用任何您想要的关系型数据库。
 
 您可以很容易地将SQLAlchemy支持任何数据库，像：
 
-* PostgreSQL
-* MySQL
-* SQLite
-* Oracle
-* SQL Server
-* 等等其它数据库
+- PostgreSQL
+- MySQL
+- SQLite
+- Oracle
+- SQL Server
+- 等等其它数据库
 
 在此示例中，我们将使用MySQL。
 
@@ -147,9 +147,9 @@ class Item(Base):
 items = relationship("Item", back_populates="owner")
 ```
 
-* 当访问`user`中的属性`items`时，如`my_user.items`，它将有一个`ItemSQLAlchemy`模型列表（来自`items`表），这些模型具有指向`users`表中此记录的外键
-* 当您访问`my_user.items`时，`SQLAlchemy`实际上会从`items`表中的获取一批记录并在此处填充进去。
-* 同样，当访问`Item`中的属性`owner`时，它将包含表中的`UserSQLAlchemy`模型`users`。使用`owner_id`属性/列及其外键来了解要从`users`表中获取哪条记录。
+- 当访问`user`中的属性`items`时，如`my_user.items`，它将有一个`ItemSQLAlchemy`模型列表（来自`items`表），这些模型具有指向`users`表中此记录的外键
+- 当您访问`my_user.items`时，`SQLAlchemy`实际上会从`items`表中的获取一批记录并在此处填充进去。
+- 同样，当访问`Item`中的属性`owner`时，它将包含表中的`UserSQLAlchemy`模型`users`。使用`owner_id`属性/列及其外键来了解要从`users`表中获取哪条记录。
 
 ## 创建Pydantic模型`schemas.py`
 

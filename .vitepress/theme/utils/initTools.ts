@@ -55,10 +55,12 @@ export function routeChange(type: 'before' | 'after', to: string) {
 }
 
 // 切换加载状态
-function changeLoading(option: {
-  status?: boolean
-  always?: boolean
-} = {}) {
+function changeLoading(
+  option: {
+    status?: boolean
+    always?: boolean
+  } = {},
+) {
   // pinia
   const store = mainStore()
   // 获取配置

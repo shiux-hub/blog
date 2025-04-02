@@ -36,15 +36,15 @@ JetBrains家的产品有一个很良心的地方，他会允许你试用30天（
 > 提供以下两种方法，二选一即可。
 
 1. 插件市场安装：
-在`Settings/Preferences... -> Plugins`内手动添加第三方插件仓库地址：`https://plugins.zhile.io` 搜索： IDE Eval Reset插件进行安装。
-![管理插件仓库](/images/547acf4426094cef2b6320cb2fc56461.png)
-![添加插件仓库](/images/08f04a365fae66db5605b356babbf245.png)
-![安装插件](/images/688e8719c10f5d074e6427025527848a.png)
+   在`Settings/Preferences... -> Plugins`内手动添加第三方插件仓库地址：`https://plugins.zhile.io` 搜索： IDE Eval Reset插件进行安装。
+   ![管理插件仓库](/images/547acf4426094cef2b6320cb2fc56461.png)
+   ![添加插件仓库](/images/08f04a365fae66db5605b356babbf245.png)
+   ![安装插件](/images/688e8719c10f5d074e6427025527848a.png)
 
 2. 手动下载安装：
-[点击这个链接(v2.2.3)下载插件的 zip 包](https://fuocu.lanzoui.com/ie3Fksry09i)（macOS可能会自动解压，切记使用的是zip包，不是解压后的文件夹！），然后打开`Settings/Preferences... -> Plugins`手动安装插件。
-![从磁盘添加插件](/images/98f506280ddba598a20cc891ed555b53.png)
-![选择插件](/images/28baf8fec6bb6f9dd93f7f534f18c24f.png)
+   [点击这个链接(v2.2.3)下载插件的 zip 包](https://fuocu.lanzoui.com/ie3Fksry09i)（macOS可能会自动解压，切记使用的是zip包，不是解压后的文件夹！），然后打开`Settings/Preferences... -> Plugins`手动安装插件。
+   ![从磁盘添加插件](/images/98f506280ddba598a20cc891ed555b53.png)
+   ![选择插件](/images/28baf8fec6bb6f9dd93f7f534f18c24f.png)
 
 ### 如何使用
 
@@ -65,12 +65,12 @@ JetBrains家的产品有一个很良心的地方，他会允许你试用30天（
 ### 如何更新
 
 1. 插件更新机制（推荐）：
-IDE 会自行检测其自身和所安装插件的更新并给予提示。如果本插件有更新，你会收到提示看到更新日志，自行选择是否更新。
-点击IDE的Check for Updates...菜单手动检测 IDE 和所安装插件的更新。如果本插件有更新，你会收到提示看到更新日志，自行选择是否更新。
-插件更新可能会需要重启IDE。
+   IDE 会自行检测其自身和所安装插件的更新并给予提示。如果本插件有更新，你会收到提示看到更新日志，自行选择是否更新。
+   点击IDE的Check for Updates...菜单手动检测 IDE 和所安装插件的更新。如果本插件有更新，你会收到提示看到更新日志，自行选择是否更新。
+   插件更新可能会需要重启IDE。
 
 2. 手动更新：
-从本页面下载最新的插件zip包安装更新。插件更新需要重启IDE。
+   从本页面下载最新的插件zip包安装更新。插件更新需要重启IDE。
 
 ### 一些说明
 

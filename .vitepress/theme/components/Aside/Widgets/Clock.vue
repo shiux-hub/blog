@@ -39,9 +39,18 @@ onBeforeUnmount(() => {
 <template>
   <div class="clock">
     <div class="clock-content">
-      <div :style="{ transform: ` rotate(${hourRotate}deg)` }" class="pointer hour" />
-      <div :style="{ transform: ` rotate(${minuteRotate}deg)` }" class="pointer minute" />
-      <div :style="{ transform: ` rotate(${secondRotate}deg)` }" class="pointer second" />
+      <div
+        :style="{ transform: ` rotate(${hourRotate}deg)` }"
+        class="pointer hour"
+      />
+      <div
+        :style="{ transform: ` rotate(${minuteRotate}deg)` }"
+        class="pointer minute"
+      />
+      <div
+        :style="{ transform: ` rotate(${secondRotate}deg)` }"
+        class="pointer second"
+      />
     </div>
   </div>
 </template>
@@ -91,7 +100,7 @@ onBeforeUnmount(() => {
         transform-origin: 2px 55px;
         z-index: 3;
         &::after {
-          content: "";
+          content: '';
           position: absolute;
           bottom: -6px;
           width: 4px;
@@ -102,7 +111,7 @@ onBeforeUnmount(() => {
       }
     }
     &::after {
-      content: "";
+      content: '';
       position: absolute;
       width: 8px;
       height: 8px;
