@@ -5,58 +5,66 @@
 
 /** 全局颜色变量 */
 :root {
-  --foreground: #425aef;
-  --background: #4259ef0d;
-  --site-background: #f7f9fe;
-  --card-background: #fff;
-  --card-second-background: #f7f7f9;
-  --font-color: #363636;
-  --font-second-color: #3c3c43cc;
-  --card-border: #e3e8f7;
-  --border-shadow: #2c2d300c;
-  --scrollbar-bar: rgba(60, 60, 67, 0.4);
-  --mask-background: rgba(255, 255, 255, 0.6);
-  --mask-background-deep: rgba(255, 255, 255, 0.85);
-  --mask-inverse-background: rgba(0, 0, 0, 0.08);
-  --mask-second-background: rgba(255, 255, 255, 0.45);
-  --color-opacity: rgba(255, 255, 255, 0.15);
-  --dark-opacity: rgba(255, 255, 255, 0.15);
-  --dark-shadow: #0000006e;
-  --info: #50bfff;
-  --info-gray: #50bfff60;
-  --warning: #ffa500;
-  --warning-gray: #f7ba2a60;
-  --success: #13ce66;
-  --success-gray: #13ce6660;
-  --error: #ff3842;
-  --error-gray: #ff38423b;
-  --blue: #0084ff;
-  --white: #ffffff40;
-  --gray: #999;
-  --red: #ff3842;
+  --theme: hsl(232, 84%, 60%);
+  --theme-op: hsla(232, 84%, 60%, 0.137);
+  --theme-op-deep: hsla(232, 84%, 60%, 0.867);
+  --theme-op-light: hsla(232, 84%, 60%, 0.051);
+  --theme-none: hsla(232, 84%, 60%, 0.004);
+  --site-background: hsl(225, 80%, 98%);
+  --card-background: hsl(0, 0%, 100%);
+  --card-second-background: hsl(240, 14%, 97%);
+  --font-color: hsl(0, 0%, 21%);
+  --font-second-color: hsla(240, 6%, 25%, 0.8);
+  --card-border: hsl(225, 56%, 93%);
+  --border-shadow: hsla(225, 4%, 18%, 0.047);
+  --scrollbar-bar: hsla(240, 6%, 25%, 0.4);
+  --mask-background: hsla(0, 0%, 100%, 0.6);
+  --mask-background-deep: hsla(0, 0%, 100%, 0.85);
+  --mask-inverse-background: hsla(0, 0%, 0%, 0.08);
+  --mask-second-background: hsla(0, 0%, 100%, 0.45);
+  --color-opacity: hsla(0, 0%, 100%, 0.15);
+  --dark-opacity: hsla(0, 0%, 100%, 0.15);
+  --dark-shadow: hsla(0, 0%, 0%, 0.431);
+  --info: hsl(202, 100%, 66%);
+  --info-gray: hsla(202, 100%, 66%, 0.376);
+  --warning: hsl(39, 100%, 50%);
+  --warning-gray: hsla(42, 93%, 57%, 0.376);
+  --success: hsl(147, 83%, 44%);
+  --success-gray: hsla(147, 83%, 44%, 0.376);
+  --error: hsl(357, 100%, 61%);
+  --error-gray: hsla(357, 100%, 61%, 0.231);
+  --blue: hsl(209, 100%, 50%);
+  --gray: hsl(0, 0%, 60%);
+  --red: hsl(357, 100%, 61%);
 }
 
 .dark {
-  --foreground: #dfac46;
-  --background: #f2b94b23;
-  --site-background: #18171d;
-  --card-background: #1b1c20;
-  --card-second-background: #21232a;
-  --font-color: #f7f7fa;
-  --font-second-color: #a1a2b8;
-  --card-border: #3d3d3f;
-  --border-shadow: #00000050;
-  --scrollbar-bar: rgba(200, 200, 223, 0.4);
-  --mask-background: rgba(0, 0, 0, 0.6);
-  --mask-background-deep: rgba(0, 0, 0, 0.85);
-  --mask-inverse-background: rgba(255, 255, 255, 0.08);
-  --mask-second-background: rgba(0, 0, 0, 0.45);
-  --color-opacity: rgba(0, 0, 0, 0.15);
+  --theme: hsl(42, 100%, 64%);
+  --theme-op: hsla(40, 87%, 62%, 0.137);
+  --theme-op-deep: hsla(40, 87%, 62%, 0.867);
+  --theme-none: hsla(40, 87%, 62%, 0);
+  --site-background: hsl(250, 12%, 10%);
+  --card-background: hsl(228, 8%, 12%);
+  --card-second-background: hsl(227, 12%, 15%);
+  --font-color: hsl(240, 23%, 97%);
+  --font-second-color: hsl(237, 14%, 68%);
+  --card-border: hsl(240, 2%, 24%);
+  --border-shadow: hsla(0, 0%, 0%, 0.314);
+  --scrollbar-bar: hsla(240, 26%, 83%, 0.4);
+  --mask-background: hsla(0, 0%, 0%, 0.6);
+  --mask-background-deep: hsla(0, 0%, 0%, 0.85);
+  --mask-inverse-background: hsla(0, 0%, 100%, 0.08);
+  --mask-second-background: hsla(0, 0%, 0%, 0.45);
+  --color-opacity: hsla(0, 0%, 0%, 0.15);
 }
 
 @theme inline {
   --color-foreground: var(--foreground);
   --color-background: var(--background);
+  --color-theme: var(--theme);
+  --color-theme-op: var(--theme-op);
+  --color-theme-op-deep: var(--theme-op-deep);
+  --color-theme-none: var(--theme-none);
   --color-site-background: var(--site-background);
   --color-card-background: var(--card-background);
   --color-card-second-background: var(--card-second-background);
@@ -81,9 +89,147 @@
   --color-error: var(--error);
   --color-error-gray: var(--error-gray);
   --color-blue: var(--blue);
-  --color-white: var(--white);
   --color-gray: var(--gray);
   --color-red: var(--red);
   --font-custom: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu,
   Cantarell, "Helvetica Neue", sans-serif;
+
+  --animate-show: show 0.3s backwards;
+
+
+  /* 渐入 */
+  @keyframes show {
+    from {
+      opacity: 0;
+    }
+
+    to {
+      opacity: 1;
+    }
+  }
+
+  /* 上浮 */
+  @keyframes fade-up {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes fade-up-opacity {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+
+    to {
+      opacity: 0.8;
+      transform: translateY(0);
+    }
+  }
+
+  /* 下沉 */
+  @keyframes fade-down {
+    from {
+      opacity: 0;
+      transform: translateY(-50px);
+    }
+
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* 左移 */
+  @keyframes fade-left {
+    from {
+      opacity: 0;
+      transform: translateX(10px);
+    }
+
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  /* 加载 */
+  @keyframes loading {
+    0% {
+      opacity: 1;
+    }
+
+    50% {
+      opacity: 0.4;
+    }
+
+    100% {
+      opacity: 1;
+    }
+  }
+
+  /* 进度 */
+  @keyframes loading-width {
+    0% {
+      width: 0%;
+    }
+
+    100% {
+      width: 100%;
+    }
+  }
+
+  /* 渐变 */
+  @keyframes gradientFlow {
+
+    0%,
+    100% {
+      background-position: 0% 50%;
+    }
+
+    50% {
+      background-position: 100% 50%;
+    }
+  }
+
+  /* 骨架屏加载 */
+  @keyframes skeleton-loading {
+    0% {
+      background-position: 100% 50%;
+    }
+
+    100% {
+      background-position: 0 50%;
+    }
+  }
+
+  /* 旋转 */
+  @keyframes rotate {
+    0% {
+      transform: rotate(0deg);
+    }
+
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+
+  /* 循环下沉 */
+  @keyframes moveDown {
+
+    0%,
+    100% {
+      bottom: 30px;
+    }
+
+    50% {
+      bottom: 60px;
+    }
+  }
 }

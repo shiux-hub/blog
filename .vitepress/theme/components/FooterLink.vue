@@ -77,7 +77,6 @@ const socialLinkData = computed(() => {
   flex-wrap: wrap;
   flex-direction: row;
   margin: 1rem auto;
-  margin-bottom: 3rem;
   padding: 0 1rem;
   animation: show 0.3s backwards;
 

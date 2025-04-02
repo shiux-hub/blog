@@ -1,4 +1,4 @@
-<script setup>
+<script lang="ts" setup>
 import { useData } from '@/composables/data'
 import { mainStore } from '@/store'
 import { shufflePost, smoothScrolling } from '@/utils/helper'
@@ -34,7 +34,7 @@ const { site, theme, frontmatter, page } = useData()
           <div v-tippy class="site-name group active:scale-95" title="返回博客主页" @click="router.go('/')">
             {{ site.title }}
             <div
-              class="absolute rounded-3xl flex items-center justify-center opacity-0 transition-opacity duration-300 group-hover:opacity-100 inset-0 size-full text-card-background bg-foreground"
+              class="absolute rounded-3xl flex items-center justify-center opacity-0 transition-opacity duration-300 group-hover:opacity-100 inset-0 size-full text-card-background bg-theme"
             >
               <Icon icon="mingcute:home-4-fill" class="size-5.5" />
             </div>

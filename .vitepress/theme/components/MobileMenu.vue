@@ -1,4 +1,4 @@
-<script setup>
+<script lang="ts" setup>
 import { useData } from '@/composables/data'
 import { mainStore } from '@/store'
 import { Icon } from '@iconify/vue'
@@ -11,7 +11,7 @@ const { theme } = useData()
 const { nav, tagsData } = theme.value
 
 // 页面跳转
-function pageJump(url) {
+function pageJump(url: string) {
   if (!url)
     return false
   store.changeShowStatus('mobileMenuShow')
@@ -36,13 +36,13 @@ function pageJump(url) {
             <div class="menu-list">
               <div v-for="(item, index) in nav" :key="index" class="menu-item">
                 <span class="link-title"> {{ item.text }}</span>
-                <div v-if="item.items" class="link-child">
+                <div v-if="item.items" class="grid grid-cols-2 gap-3">
                   <div
-                    v-for="({ link, icon, text }, childIndex) in item.items" :key="childIndex" class="link-child-btn"
+                    v-for="({ link, icon, text }) in item.items" :key="text" class="link-child-btn"
                     @click="pageJump(link)"
                   >
                     <Icon v-if="icon" :icon />
-                    <span class="name">{{ text }}</span>
+                    <span class="truncate max-w-20">{{ text }}</span>
                   </div>
                 </div>
               </div>
@@ -51,13 +51,13 @@ function pageJump(url) {
             <!-- 标签 -->
             <div class="tags-list menu-item">
               <span class="link-title">标签</span>
-              <div class="link-child">
+              <div class="grid grid-cols-2 gap-3">
                 <div
-                  v-for="(item, tag, index) in tagsData" :key="index" class="link-child-btn"
+                  v-for="(item, tag) in tagsData" :key="tag" class="link-child-btn space-x-1"
                   @click="pageJump(`/pages/tags/${tag}`)"
                 >
-                  <span class="name">{{ tag }}</span>
-                  <sup class="num">{{ item.count }}</sup>
+                  <span class="truncate max-w-20">{{ tag }}</span>
+                  <sup class="opacity-40">{{ item.count }}</sup>
                 </div>
               </div>
             </div>
@@ -151,39 +151,21 @@ function pageJump(url) {
         color: var(--main-font-second-color);
       }
 
-      .link-child {
-        display: grid;
-        gap: 12px;
-        grid-template-columns: 1fr 1fr;
+      .link-child-btn {
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+        align-items: center;
+        border-radius: 8px;
+        padding: 10px 12px;
+        background-color: var(--main-card-background);
+        border: 1px solid var(--main-card-border);
+        box-shadow: 0 8px 16px -4px var(--main-border-shadow);
+        font-size: 15px;
 
-        .link-child-btn {
-          display: flex;
-          flex-direction: row;
-          justify-content: flex-start;
-          align-items: center;
-          border-radius: 8px;
-          padding: 10px 12px;
-          background-color: var(--main-card-background);
-          border: 1px solid var(--main-card-border);
-          box-shadow: 0 8px 16px -4px var(--main-border-shadow);
-          font-size: 15px;
-
-          svg {
-            margin-right: 6px;
-            opacity: 0.6;
-          }
-
-          .name {
-            max-width: 80px;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-          }
-
-          .num {
-            opacity: 0.4;
-            margin-left: 4px;
-          }
+        svg {
+          margin-right: 6px;
+          opacity: 0.6;
         }
       }
 

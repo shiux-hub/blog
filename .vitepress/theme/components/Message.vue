@@ -22,8 +22,7 @@ function showMessage(text: string, type = 'info', options: {
   const { close = false, always = false, duration = 3000 } = options
   // 先隐藏
   messageShow.value = false
-  if (messageTimeOut.value)
-    clearTimeout(messageTimeOut.value)
+  clearTimeout(messageTimeOut.value)
   // 显示弹窗
   nextTick().then(() => {
     // 更改默认配置
@@ -68,8 +67,7 @@ const message: Message = {
 // 关闭消息
 function closeMessage() {
   messageShow.value = false
-  if (messageTimeOut.value)
-    clearTimeout(messageTimeOut.value)
+  clearTimeout(messageTimeOut.value)
 }
 
 onMounted(() => {

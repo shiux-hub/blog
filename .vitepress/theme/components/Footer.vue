@@ -1,4 +1,4 @@
-<script setup>
+<script lang="ts" setup>
 import { useData } from '@/composables/data'
 import { mainStore } from '@/store'
 import { Icon } from '@iconify/vue'
@@ -7,17 +7,17 @@ import { storeToRefs } from 'pinia'
 const store = mainStore()
 const { theme } = useData()
 const { footerIsShow } = storeToRefs(store)
+const footerRef = useTemplateRef('footer-bar')
 
 // 视窗监听器
-const observer = ref(null)
+const observer = ref<IntersectionObserver>()
 
 // 实时年份
 const thisYear = computed(() => new Date().getFullYear())
 
 // 监听页脚视窗
 function isShowFooter() {
-  const footerDom = document.getElementById('main-footer')
-  if (!footerDom)
+  if (!footerRef.value)
     return false
   if (observer.value)
     observer.value?.disconnect()
@@ -27,7 +27,7 @@ function isShowFooter() {
     })
   })
   // 添加监视器
-  observer.value?.observe(footerDom)
+  observer.value?.observe(footerRef.value)
 }
 
 onMounted(() => {
@@ -41,33 +41,35 @@ onBeforeUnmount(() => {
 </script>
 
 <template>
-  <footer id="main-footer" class="main-footer">
-    <div class="footer-content">
-      <div class="copyright">
+  <div id="footer-bar" ref="footer-bar" class="flex bg-card-second-background border border-card-border overflow-hidden animate-show transition duration-300">
+    <div class="footer-content container flex flex-wrap items-center justify-between mx-auto text-font-color min-h-8 gap-2 px-6 py-4 max-md:text-sm">
+      <div class="flex items-center max-md:[&_.meta]:hidden">
         <span v-if="theme.startYear" class="time">@ {{ theme.startYear }} - {{ thisYear }} By </span>
-        <a :href="theme.siteMeta.author.link" class="author link" target="_blank">
-          {{ theme.siteMeta.author.name }}
+        <a v-tippy title="前往我的主页" :href="theme.siteMeta.author.link" class="author link hover:text-theme hover:bg-theme-op" target="_blank">
+          <img class="aspect-square w-5" src="/images/logo/logo.svg">{{ theme.siteMeta.author.name }}
         </a>
-        <a v-if="theme.icp" class="icp link" href="https://beian.miit.gov.cn/" target="_blank">
-          <Icon icon="mingcute:safety-certificate-line" />
+        <a v-if="theme.icp" class="icp link hover:text-theme hover:bg-theme-op" href="https://beian.miit.gov.cn/" target="_blank">
+          <Icon icon="mingcute:safety-certificate-line max-sm:hidden" class="opacity-60" />
           {{ theme.icp }}
         </a>
       </div>
-      <div class="meta">
-        <a class="power link" href="https://vitepress.dev/" target="_blank">
-          <span class="by">Powered by</span>
+      <div class="meta flex flex-wrap items-center">
+        <a class="link hover:text-theme hover:bg-theme-op" rel="external nofollow" href="https://vitepress.dev/" target="_blank">
+          <span class="opacity-80">Powered by</span>
           <span class="name">VitePress</span>
         </a>
-        <a class="theme link" href="https://github.com/imsyy/vitepress-theme-curve" target="_blank">
+        <a class="link hover:text-theme hover:bg-theme-op" rel="external nofollow" href="https://github.com/imsyy/vitepress-theme-curve" target="_blank">
           <Icon icon="mingcute:palette-fill" />
           <span class="name">主题</span>
         </a>
-        <a class="rss link" href="https://blog.imsyy.top/rss.xml" target="_blank">
+        <a class="link hover:text-theme hover:bg-theme-op" href="/rss.xml" target="_blank">
           <Icon icon="mingcute:rss-2-fill" />
           <span class="name">订阅</span>
         </a>
         <a
-          class="cc link"
+          v-tippy
+          title="网站采用 署名-非商业性使用-禁止演绎 4.0 国际 标准"
+          class="link hover:text-theme hover:bg-theme-op gap-1"
           href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh-hans"
           target="_blank"
         >
@@ -78,111 +80,32 @@ onBeforeUnmount(() => {
         </a>
       </div>
     </div>
-  </footer>
+  </div>
 </template>
 
-<style lang="scss" scoped>
-.main-footer {
-  display: flex;
-  margin-top: 1rem;
-  padding: 1rem 0;
-  background-color: var(--main-card-background);
-  border-top: 1px solid var(--main-card-border);
-  overflow: hidden;
-  animation: show 0.3s backwards;
-  transition:
-    color 0.3s,
-    border 0.3s,
-    background-color 0.3s;
-  .footer-content {
-    display: flex;
-    flex-wrap: wrap;
+<style scoped>
+@reference "tailwindcss";
+
+.footer-content {
+  .link {
+    display: inline-flex;
+    flex-direction: row;
     align-items: center;
-    justify-content: space-between;
-    width: 100%;
-    max-width: 1400px;
-    margin: 0 auto;
-    padding: 0 1rem;
-    color: var(--main-font-color);
-    line-height: 1;
-    min-height: 32px;
-    .copyright {
-      display: flex;
-      align-items: center;
-      .icp {
-        svg {
-          width: 1.25rem;
-          height: 1.25rem;
-          opacity: 0.6;
-        }
-      }
-    }
-    .meta {
-      display: flex;
-      flex-direction: row;
-      align-items: center;
-      .power {
-        margin-right: 4px;
-        .by {
-          font-weight: normal;
-          opacity: 0.8;
-          margin-right: 6px;
-        }
-      }
-      .rss {
-        margin-right: 4px;
-        svg {
-          margin-right: 6px;
-        }
-      }
-      .cc {
-        svg {
-          margin: 0 2px;
-          font-weight: normal;
-        }
-      }
-    }
-    .link {
-      display: inline-flex;
-      flex-direction: row;
-      align-items: center;
-      font-weight: bold;
-      text-overflow: ellipsis;
-      overflow: hidden;
-      white-space: nowrap;
-      padding: 8px;
-      margin: 0 2px;
-      height: 38px;
-      border-radius: 12px;
-      transition:
-        color 0.3s,
-        background-color 0.3s;
-      cursor: pointer;
-      svg {
-        width: 22px;
-        height: 22px;
-        margin-right: 4px;
-        transition: color 0.3s;
-      }
-      &:hover {
-        color: var(--main-color);
-        background-color: var(--main-color-bg);
-      }
-    }
-    @media (max-width: 768px) {
-      font-size: 14px;
-      .meta {
-        display: none;
-      }
-    }
-    @media (max-width: 420px) {
-      .copyright {
-        .icp {
-          svg {
-            display: none;
-          }
-        }
-      }
+    font-weight: bold;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    padding: 8px;
+    height: 38px;
+    border-radius: 32px;
+    transition:
+      color 0.3s,
+      background-color 0.3s;
+    cursor: pointer;
+    gap: 0.25rem;
+
+    svg {
+      @apply size-5;
     }
   }
 }

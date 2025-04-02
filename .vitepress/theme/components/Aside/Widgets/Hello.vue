@@ -22,8 +22,7 @@ function resetHello() {
 
 // 更改问候语
 function changeHello() {
-  if (helloTimeOut.value)
-    clearTimeout(helloTimeOut.value)
+  clearTimeout(helloTimeOut.value)
   helloClick.value++
   if (helloClick.value === 1) {
     helloText.value = '点这里干什么？'
@@ -65,8 +64,7 @@ onMounted(() => {
 })
 
 onBeforeUnmount(() => {
-  if (helloTimeOut.value)
-    clearTimeout(helloTimeOut.value)
+  clearTimeout(helloTimeOut.value)
 })
 </script>
 
