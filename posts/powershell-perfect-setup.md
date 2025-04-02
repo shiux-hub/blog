@@ -6,7 +6,7 @@ categories:
   - Windows
 tags:
   - 技巧
-  - Powershell
+  - PowerShell
   - 终端
   - 笔记
 cover:
@@ -35,7 +35,7 @@ coverHeight:
 装上该字体，即可进入下一步。
 
 该项难度系数：:star::star:
-（或许有人登 Github 有网络问题，请自行解决。）
+（或许有人登 GitHub 有网络问题，请自行解决。）
 
 ## 安装新款Powershell Core
 
@@ -53,7 +53,7 @@ coverHeight:
 
 2022年下半年开始，可以到微软商店下载了。
 
-直接在商店中搜索`Powershell`
+直接在商店中搜索`PowerShell`
 
 ![商店中下载Powershell](https://s1.ax1x.com/2023/02/22/pSvU1A0.png)
 
@@ -319,7 +319,7 @@ winget install JanDeDobbeleer.OhMyPosh -s winget
         "cyan": "#3A96DD",
         "foreground": "#CCCCCC",
         "green": "#13A10E",
-        "name": "Campbell Powershell",
+        "name": "Campbell PowerShell",
         "purple": "#881798",
         "red": "#C50F1F",
         "selectionBackground": "#FFFFFF",

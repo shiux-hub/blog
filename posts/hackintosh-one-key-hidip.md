@@ -3,7 +3,7 @@ title: 黑苹果一键HiDPI
 reprint: false
 date: 2023-01-19 00:48:58
 categories:
-  - MacOS
+  - macOS
 tags:
   - Hackintosh
   - Issue

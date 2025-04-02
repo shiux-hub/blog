@@ -3,7 +3,7 @@ title: OhMyZSH使用指北
 reprint: false
 date: 2021-11-07 20:56:31
 categories:
-  - MacOS
+  - macOS
 tags:
   - 终端
   - 笔记

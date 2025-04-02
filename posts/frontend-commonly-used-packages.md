@@ -43,7 +43,7 @@ url参数转化(parse和stringify)的轻量级js库
 
 ## DOM库
 
-**JQuery** - <https://jquery.com/>
+**jQuery** - <https://jquery.com/>
 
 封装了各种DOM事件操作, 设计思想值得研究借鉴
 
@@ -103,7 +103,7 @@ JavaScript动画库，可以处理CSS属性，单个CSS转换，SVG或任何DOM�
 
 **Velocity** - <http://velocityjs.org/>
 
-高效的 Javascript 动画引擎，与jQuery的 $.animate() 有相同的API, 同时还支持彩色动画、转换、循环、画架、SVG支持和滚动等效果
+高效的 JavaScript 动画引擎，与jQuery的 $.animate() 有相同的API, 同时还支持彩色动画、转换、循环、画架、SVG支持和滚动等效果
 
 [开源地址](https://github.com/julianshapiro/velocity)
 

@@ -5,7 +5,7 @@ tags:
   - 技巧
   - 终端
 categories:
-  - MacOS
+  - macOS
 date: 2020-02-28 13:21:47
 cover:
 coverWidth:

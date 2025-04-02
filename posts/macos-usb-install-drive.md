@@ -3,7 +3,7 @@ title: 一键制作 macOS Monterey U盘 USB 启动安装盘命令方法教程 (�
 reprint: false
 date: 2021-11-07 21:02:35
 categories:
-  - MacOS
+  - macOS
 tags:
   - 技巧
 cover: https://s2.loli.net/2023/01/01/sFAKEtPzYlVQd9B.png

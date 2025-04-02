@@ -12,7 +12,7 @@ import { Icon } from '@iconify/vue'
       <template #footer-slot>
         <a class="to-github" href="https://github.com/imsyy/" target="_blank">
           <Icon icon="ri:github-line" />
-          <span>前往 Github</span>
+          <span>前往 GitHub</span>
         </a>
       </template>
     </Banner>

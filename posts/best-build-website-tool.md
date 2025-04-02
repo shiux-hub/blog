@@ -23,7 +23,7 @@ WordPress是一种使用PHP语言开发的博客平台，用户可以在支持PH
 
 ![Typecho](https://i.loli.net/2021/08/13/Jxp9t2Ofc6AEkwC.png)
 
-Typecho是一个由中国团队开发的开源跨平台博客程序。它基于PHP5构建,并支持多种操作系统(Linux,Unix,BSD,Windows)、 服务器(Apache,Lighttpd,IIS,Nginx)和数据库(Mysql,PostgreSQL,SQLite)。
+Typecho是一个由中国团队开发的开源跨平台博客程序。它基于PHP5构建,并支持多种操作系统(Linux,UNIX,BSD,Windows)、 服务器(Apache,Lighttpd,IIS,Nginx)和数据库(MySQL,PostgreSQL,SQLite)。
 
 **Dedecms** - <http://www.dedecms.com/>
 

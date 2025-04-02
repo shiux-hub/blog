@@ -14,7 +14,7 @@ coverHeight:
 
 ## 使用方法
 
-### MacOS
+### macOS
 
 打开 AdGuard -> 设置 -> 内容拦截 -> User rules
 
@@ -64,7 +64,7 @@ EasyPrivacy 是隐私保护，不被跟踪。
 5. ad3.txt：合并自乘风视频广告过滤规则、EasylistChina、EasylistLite、CJX’sAnnoyance、EasyPrivacy。
 **jsdelivr** - <https://cdn.jsdelivr.net/gh/o0HalfLife0o/list@master/ad3.txt>
 **GitHub** - <https://raw.githubusercontent.com/o0HalfLife0o/list/master/ad3.txt>
-6. ad-edentw.txt：合并自 Adblock Warning Removal List、ABP filters、anti-adblock-killer-filters。
+6. ad-edentw.txt：合并自 AdBlock Warning Removal List、ABP filters、anti-adblock-killer-filters。
 **jsdelivr** - <https://cdn.jsdelivr.net/gh/o0HalfLife0o/list@master/ad-edentw.txt>
 **GitHub** - <https://raw.githubusercontent.com/o0HalfLife0o/list/master/ad-edentw.txt>
 

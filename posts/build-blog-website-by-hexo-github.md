@@ -89,9 +89,9 @@ GitHub是一个在线软件源代码托管服务平台，使用Git作为版本�
 
 ![新建文件夹](https://i.loli.net/2020/07/24/qDPyxdHz3GUXguE.png)
 
-#### 使用`VSCode`打开文件夹并新建终端
+#### 使用`VS Code`打开文件夹并新建终端
 
-打开`VSCode->`打开文件夹`->`选择文件夹`->`点击打开
+打开`VS Code->`打开文件夹`->`选择文件夹`->`点击打开
 
 ![使用VSCode打开文件夹](https://i.loli.net/2020/07/24/VYLKwh67ezbcHSp.png)
 
@@ -412,7 +412,7 @@ description: 附加一段文章摘要，字数最好在140字以内，会出现�
 具体用什么还是看个人喜好，我用vscode非常方便。只需要下载两个插件：
 
 - Markdown All in One
-- Markdown Preview Github Styling
+- Markdown Preview GitHub Styling
 
 在vscode里写完可以直接看到md生成的效果
 

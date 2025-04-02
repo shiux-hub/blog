@@ -3,7 +3,7 @@ title: 黑苹果合盖睡眠问题修复
 reprint: false
 date: 2023-01-02 03:50:57
 categories:
-  - MacOS
+  - macOS
 tags:
   - Hackintosh
   - Issue

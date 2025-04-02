@@ -6,7 +6,7 @@ categories:
 tags:
   - DNS
   - IP
-  - MacOS
+  - macOS
   - 技巧
 date: 2020-02-23 19:22:04
 cover: https://s1.ax1x.com/2023/02/17/pSbzwGV.png
