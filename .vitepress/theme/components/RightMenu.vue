@@ -3,13 +3,13 @@ import { useData } from '@/composables/data'
 import { mainStore } from '@/store'
 import {
   copyImage,
-  copyText,
   downloadImage,
   shufflePost,
   smoothScrolling,
 } from '@/utils/helper'
 import { Icon } from '@iconify/vue'
 import { storeToRefs } from 'pinia'
+import {useClipboard} from '@vueuse/core'
 
 const router = useRouter()
 const store = mainStore()
@@ -22,12 +22,13 @@ const {
   playState,
   playerData,
 } = storeToRefs(store)
+const { text, copy, copied, isSupported } = useClipboard()
 
 // 右键菜单数据
 const rightMenuX = ref(0)
 const rightMenuY = ref(0)
 const clickedType = ref('normal')
-const clickedTypeData = ref<string | null>('')
+const clickedTypeData = ref<string>()
 const rightMenuRef = useTemplateRef('rightMenuRef')
 const rightMenuShow = ref(false)
 
@@ -151,7 +152,7 @@ async function rightMenuFunc(type) {
       case 'copy-link':
         const pageLink = theme.value.site + router.route.path
         if (pageLink)
-          copyText(pageLink)
+          copy(pageLink)
         break
       case 'input-paste':
         const text = await navigator.clipboard.readText()
@@ -331,7 +332,7 @@ defineExpose({ openRightMenu })
               v-if="clickedType === 'link'"
               class="btn"
               @click="
-                copyText(
+                copy(
                   clickedTypeData?.getAttribute('original-href')
                     || clickedTypeData?.href,
                 )
@@ -403,7 +404,7 @@ defineExpose({ openRightMenu })
             <div
               v-if="clickedType === 'text' || clickedType === 'input'"
               class="btn"
-              @click="copyText(clickedTypeData)"
+              @click="copy(clickedTypeData)"
             >
               <Icon icon="mingcute:copy-fill" />
               <span class="name">复制选中文本</span>
