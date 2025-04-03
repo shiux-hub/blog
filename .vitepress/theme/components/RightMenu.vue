@@ -8,8 +8,8 @@ import {
   smoothScrolling,
 } from '@/utils/helper'
 import { Icon } from '@iconify/vue'
+import { useClipboard } from '@vueuse/core'
 import { storeToRefs } from 'pinia'
-import {useClipboard} from '@vueuse/core'
 
 const router = useRouter()
 const store = mainStore()
@@ -22,7 +22,7 @@ const {
   playState,
   playerData,
 } = storeToRefs(store)
-const { text, copy, copied, isSupported } = useClipboard()
+const { copy } = useClipboard()
 
 // 右键菜单数据
 const rightMenuX = ref(0)
@@ -132,7 +132,7 @@ function checkClickType(target: EventTarget) {
 }
 
 // 右键菜单点击事件
-async function rightMenuFunc(type) {
+async function rightMenuFunc(type: string) {
   try {
     if (!type)
       return false
@@ -184,7 +184,7 @@ async function rightMenuFunc(type) {
 }
 
 // 播放器控制
-function playerControl(type) {
+function playerControl(type: string) {
   if (typeof $player !== 'object' || !type)
     return false
   switch (type) {
@@ -220,7 +220,7 @@ function isLink(data: string) {
 }
 
 // 评论选中内容
-function commentCopy(data) {
+function commentCopy(data: string) {
   if (!data)
     return false
   let commentData = `> ${data.trim().replace(/\s+/g, ' ')}`
