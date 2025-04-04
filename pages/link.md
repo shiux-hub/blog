@@ -4,7 +4,7 @@ aside: false
 comment: true
 ---
 
-<script setup>
+<script lang="ts" setup>
 import Link from "@/views/Link.vue";
 </script>
 

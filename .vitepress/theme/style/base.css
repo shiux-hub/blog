@@ -248,7 +248,7 @@ html.dark {
     @apply p-3 rounded-2xl bg-card-background border border-card-border shadow-lg shadow-border-shadow transition duration-300;
 
     &.hover:hover {
-      @apply border-theme shadow-border-shadow;
+      @apply border-theme shadow-theme-op;
     }
   }
 
@@ -260,7 +260,7 @@ html.dark {
     }
 
     &:hover {
-      @apply bg-theme text-card-background;
+      @apply text-card-background;
     }
   }
 

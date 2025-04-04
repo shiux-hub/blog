@@ -452,7 +452,6 @@ const { site, theme, frontmatter, page } = useData()
                 margin-right: 8px;
                 width: 1.25rem;
                 height: 1.25rem;
-                transition: color 0.3s;
               }
 
               &:hover {
@@ -617,13 +616,6 @@ const { site, theme, frontmatter, page } = useData()
             color: var(--main-card-background);
             transition: opacity 0.1s;
           }
-
-          .icon-up {
-            position: absolute;
-            color: var(--main-card-background);
-            opacity: 0;
-            transition: opacity 0.3s;
-          }
         }
 
         &.hidden {
@@ -649,10 +641,6 @@ const { site, theme, frontmatter, page } = useData()
 
             .num {
               opacity: 0;
-            }
-
-            .icon-up {
-              opacity: 1;
             }
           }
 

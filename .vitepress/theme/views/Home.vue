@@ -3,28 +3,16 @@
 import { useData } from '@/composables/data'
 import { mainStore } from '@/store'
 
-const props = defineProps({
+const { showHeader, page, category, tag } = defineProps<{
   // 显示首页头部
-  showHeader: {
-    type: Boolean,
-    default: false,
-  },
+  showHeader: boolean
   // 当前页数
-  page: {
-    type: Number,
-    default: 1,
-  },
+  page?: number
   // 显示分类
-  showCategories: {
-    type: [null, String],
-    default: null,
-  },
+  category?: string
   // 显示标签
-  showTags: {
-    type: [null, String],
-    default: null,
-  },
-})
+  tag?: string
+}>()
 const { theme } = useData()
 const store = mainStore()
 // 每页文章数
@@ -32,10 +20,10 @@ const postSize = theme.value.postSize
 
 // 列表总数量
 const allListTotal = computed(() => {
-  const data = props.showCategories
-    ? theme.value.categoriesData[props.showCategories]?.articles
-    : props.showTags
-      ? theme.value.tagsData[props.showTags]?.articles
+  const data = category
+    ? theme.value.categoriesData[category]?.articles
+    : tag
+      ? theme.value.tagsData[tag]?.articles
       : theme.value.postData
   // 返回数量
   return data ? data.length : 0
@@ -43,7 +31,7 @@ const allListTotal = computed(() => {
 
 // 获得当前页数
 function getCurrentPage() {
-  if (props.showCategories || props.showTags) {
+  if (category || tag) {
     if (typeof window === 'undefined')
       return 0
     const params = new URLSearchParams(window.location.search)
@@ -53,7 +41,7 @@ function getCurrentPage() {
     const currentPage = Number(page)
     return currentPage ? currentPage - 1 : 0
   }
-  return props.page ? props.page - 1 : 0
+  return page ? page - 1 : 0
 }
 
 // 根据页数计算列表数据
@@ -61,12 +49,12 @@ const postData = computed(() => {
   const page = getCurrentPage()
   let data = null
   // 分类数据
-  if (props.showCategories) {
-    data = theme.value.categoriesData[props.showCategories]?.articles
+  if (category) {
+    data = theme.value.categoriesData[category]?.articles
   }
   // 标签数据
-  else if (props.showTags) {
-    data = theme.value.tagsData[props.showTags]?.articles
+  else if (tag) {
+    data = theme.value.tagsData[tag]?.articles
   }
   // 文章数据
   else {
@@ -77,9 +65,9 @@ const postData = computed(() => {
 })
 
 // 恢复滚动位置
-function restoreScrollY(val) {
-  if (typeof window === 'undefined' || val)
-    return false
+function restoreScrollY(val: boolean) {
+  if (val)
+    return
   const scrollY = store.lastScrollY
   // TODO: 没有实现
   nextTick().then(() => {
@@ -106,7 +94,7 @@ watch(
     <div class="home-content">
       <div class="posts-content">
         <!-- 分类总览 -->
-        <TypeBar :type="showTags ? 'tags' : 'categories'" />
+        <TypeBar :type="tag ? 'tags' : 'categories'" />
         <!-- 文章列表 -->
         <PostList :list-data="postData" />
         <!-- 分页 -->
@@ -114,12 +102,12 @@ watch(
           :total="allListTotal"
           :page="Number(page)"
           :limit="postSize"
-          :use-params="showCategories || showTags ? true : false"
+          :use-params="category || tag ? true : false"
           :route-path="
-            showCategories
-              ? `/pages/categories/${showCategories}`
-              : showTags
-                ? `/pages/tags/${showTags}`
+            category
+              ? `/pages/categories/${category}`
+              : tag
+                ? `/pages/tags/${tag}`
                 : ''
           "
         />

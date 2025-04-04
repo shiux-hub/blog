@@ -263,7 +263,7 @@ defineExpose({ openRightMenu })
           <div class="flex items-center w-full justify-between">
             <div
               v-tippy
-              class="btn size-8"
+              class="btn hover:bg-theme size-8"
               title="后退"
               @click="rightMenuFunc('back')"
             >
@@ -271,7 +271,7 @@ defineExpose({ openRightMenu })
             </div>
             <div
               v-tippy
-              class="btn size-8"
+              class="btn hover:bg-theme size-8"
               title="前进"
               @click="rightMenuFunc('forward')"
             >
@@ -279,7 +279,7 @@ defineExpose({ openRightMenu })
             </div>
             <div
               v-tippy
-              class="btn size-8"
+              class="btn hover:bg-theme size-8"
               title="刷新"
               @click="rightMenuFunc('reload')"
             >
@@ -287,7 +287,7 @@ defineExpose({ openRightMenu })
             </div>
             <div
               v-tippy
-              class="btn size-8"
+              class="btn hover:bg-theme size-8"
               title="返回顶部"
               @click="smoothScrolling()"
             >
@@ -298,7 +298,7 @@ defineExpose({ openRightMenu })
           <div class="space-y-1.5">
             <div
               v-if="clickedType === 'normal'"
-              class="btn justify-start"
+              class="btn hover:bg-theme justify-start"
               @click="router.go(shufflePost(theme.postData))"
             >
               <Icon icon="mingcute:shuffle-2-fill" />
@@ -306,7 +306,7 @@ defineExpose({ openRightMenu })
             </div>
             <div
               v-if="clickedType === 'normal'"
-              class="btn justify-start"
+              class="btn hover:bg-theme justify-start"
               @click="router.go('/pages/categories')"
             >
               <Icon icon="mingcute:classify-2-fill" />
@@ -314,7 +314,7 @@ defineExpose({ openRightMenu })
             </div>
             <div
               v-if="clickedType === 'normal'"
-              class="btn justify-start"
+              class="btn hover:bg-theme justify-start"
               @click="router.go('/pages/tags')"
             >
               <Icon icon="mingcute:hashtag-fill" />
@@ -323,7 +323,7 @@ defineExpose({ openRightMenu })
             <!-- 链接类型 -->
             <div
               v-if="clickedType === 'link'"
-              class="btn justify-start"
+              class="btn hover:bg-theme justify-start"
               @click="rightMenuFunc('open-link')"
             >
               <Icon icon="mingcute:external-link-fill" />
@@ -331,7 +331,7 @@ defineExpose({ openRightMenu })
             </div>
             <div
               v-if="clickedType === 'link'"
-              class="btn justify-start"
+              class="btn hover:bg-theme justify-start"
               @click="
                 copy(
                   clickedTypeData?.getAttribute('original-href')
@@ -345,7 +345,7 @@ defineExpose({ openRightMenu })
             <!-- 图片类型 -->
             <div
               v-if="clickedType === 'image'"
-              class="btn justify-start"
+              class="btn hover:bg-theme justify-start"
               @click="copyImage(clickedTypeData?.src)"
             >
               <Icon icon="mingcute:photo-album-fill" />
@@ -353,7 +353,7 @@ defineExpose({ openRightMenu })
             </div>
             <div
               v-if="clickedType === 'image'"
-              class="btn justify-start"
+              class="btn hover:bg-theme justify-start"
               @click="downloadImage(clickedTypeData?.src)"
             >
               <Icon icon="mingcute:file-download-fill" />
@@ -365,7 +365,7 @@ defineExpose({ openRightMenu })
                 clickedType === 'input'
                   && typeof clickedTypeData.value === 'string'
               "
-              class="btn justify-start"
+              class="btn hover:bg-theme justify-start"
               @click="rightMenuFunc('input-paste')"
             >
               <Icon icon="mingcute:paste-fill" />
@@ -378,7 +378,7 @@ defineExpose({ openRightMenu })
                   && isLink(clickedTypeData)
               "
               :href="`${isLink(clickedTypeData)}`"
-              class="btn justify-start right-menu-link"
+              class="btn hover:bg-theme justify-start right-menu-link"
               target="_blank"
             >
               <Icon icon="mingcute:external-link-fill" />
@@ -387,7 +387,7 @@ defineExpose({ openRightMenu })
             <a
               v-if="clickedType === 'text' || clickedType === 'input'"
               :href="`https://www.baidu.com/s?wd=${encodeURIComponent(clickedTypeData)}`"
-              class="btn justify-start right-menu-link"
+              class="btn hover:bg-theme justify-start right-menu-link"
               target="_blank"
             >
               <Icon icon="ri:baidu-fill" />
@@ -396,7 +396,7 @@ defineExpose({ openRightMenu })
             <a
               v-if="clickedType === 'text' || clickedType === 'input'"
               :href="`https://cn.bing.com/search?q=${encodeURIComponent(clickedTypeData)}`"
-              class="btn justify-start right-menu-link"
+              class="btn hover:bg-theme justify-start right-menu-link"
               target="_blank"
             >
               <Icon icon="mdi:microsoft-bing" />
@@ -404,7 +404,7 @@ defineExpose({ openRightMenu })
             </a>
             <div
               v-if="clickedType === 'text' || clickedType === 'input'"
-              class="btn justify-start"
+              class="btn hover:bg-theme justify-start"
               @click="copy(clickedTypeData)"
             >
               <Icon icon="mingcute:copy-fill" />
@@ -416,7 +416,7 @@ defineExpose({ openRightMenu })
                   && !commentCopyShow
                   && theme.comment.type === 'artalk'
               "
-              class="btn justify-start"
+              class="btn hover:bg-theme justify-start"
               @click="commentCopy(clickedTypeData)"
             >
               <Icon icon="mingcute:comment-fill" />
@@ -427,12 +427,12 @@ defineExpose({ openRightMenu })
           <!-- 通用菜单 -->
           <div class="general space-y-1.5">
             <!-- 版权协议 -->
-            <div class="btn justify-start" @click="router.go('/pages/cc')">
+            <div class="btn hover:bg-theme justify-start" @click="router.go('/pages/cc')">
               <Icon icon="tabler:accessible-filled" />
               <span class="name">版权协议</span>
             </div>
             <!-- 隐私政策 -->
-            <div class="btn justify-start" @click="router.go('/pages/privacy')">
+            <div class="btn hover:bg-theme justify-start" @click="router.go('/pages/privacy')">
               <Icon icon="mingcute:safety-certificate-fill" />
               <span class="name">隐私政策</span>
             </div>
@@ -440,12 +440,12 @@ defineExpose({ openRightMenu })
           <div class="separator" />
           <div class="general space-y-1.5">
             <!-- 复制地址 -->
-            <div class="btn justify-start" @click="rightMenuFunc('copy-link')">
+            <div class="btn hover:bg-theme justify-start" @click="rightMenuFunc('copy-link')">
               <Icon icon="mingcute:copy-fill" />
               <span class="name">复制本页地址</span>
             </div>
             <!-- 明暗模式 -->
-            <div class="btn justify-start" @click.stop="store.changeThemeType">
+            <div class="btn hover:bg-theme justify-start" @click.stop="store.changeThemeType">
               <Icon
                 :icon="
                   themeType === 'auto'
@@ -493,7 +493,7 @@ defineExpose({ openRightMenu })
             <div class="control" @click.stop>
               <div
                 v-tippy
-                class="btn"
+                class="btn hover:bg-theme"
                 title="上一曲"
                 @click="playerControl('prev')"
               >
@@ -502,7 +502,7 @@ defineExpose({ openRightMenu })
               <div
                 v-if="playState"
                 v-tippy
-                class="btn"
+                class="btn hover:bg-theme"
                 title="暂停"
                 @click="playerControl('toggle')"
               >
@@ -511,7 +511,7 @@ defineExpose({ openRightMenu })
               <div
                 v-else
                 v-tippy
-                class="btn"
+                class="btn hover:bg-theme"
                 title="播放"
                 @click="playerControl('toggle')"
               >
@@ -519,7 +519,7 @@ defineExpose({ openRightMenu })
               </div>
               <div
                 v-tippy
-                class="btn"
+                class="btn hover:bg-theme"
                 title="下一曲"
                 @click="playerControl('next')"
               >

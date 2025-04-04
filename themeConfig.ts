@@ -148,7 +148,7 @@ export const themeConfig: DeepPartial<ThemeConfig> = {
     {
       text: '友链',
       items: [
-        { text: '友链鱼塘', link: '/pages/friends', icon: 'mdi:fishbowl' },
+        // { text: '友链鱼塘', link: '/pages/friends', icon: 'mdi:fishbowl' },
         { text: '友情链接', link: '/pages/link', icon: 'mdi:people' },
       ],
     },

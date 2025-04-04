@@ -22,30 +22,28 @@ import { Icon } from '@iconify/vue'
 </template>
 
 <style scoped>
-.banner-page {
-  .to-github {
-    height: 40px;
-    padding: 0 16px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 50px;
-    color: #fff;
-    background-color: var(--main-dark-opacity);
-    backdrop-filter: blur(20px);
-    transition:
-      color 0.3s,
-      background-color 0.3s;
+.to-github {
+  height: 40px;
+  padding: 0 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50px;
+  color: #fff;
+  background-color: var(--main-dark-opacity);
+  backdrop-filter: blur(20px);
+  transition:
+    color 0.3s,
+    background-color 0.3s;
 
-    svg {
-      margin-right: 8px;
-      transition: color 0.3s;
-    }
+  svg {
+    margin-right: 8px;
+    transition: color 0.3s;
+  }
 
-    &:hover {
-      color: var(--main-card-background);
-      background-color: var(--main-color);
-    }
+  &:hover {
+    color: var(--main-card-background);
+    background-color: var(--main-color);
   }
 }
 </style>

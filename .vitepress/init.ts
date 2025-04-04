@@ -26,7 +26,6 @@ export async function getThemeConfig() {
         },
       }
     }
-    // ... rest of the code ...
   }
   catch (error) {
     console.error('An error occurred while loading the configuration:', error)

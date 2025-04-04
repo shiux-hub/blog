@@ -232,7 +232,6 @@ function toPost(path: string) {
             svg {
               opacity: 0.6;
               margin-right: 4px;
-              transition: color 0.3s;
             }
             &:hover {
               color: var(--main-color);

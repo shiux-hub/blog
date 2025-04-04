@@ -4,33 +4,13 @@ import { cn } from '@/utils'
 import { Icon } from '@iconify/vue'
 
 // 分页数据
-const props = defineProps({
-  // 总数
-  total: {
-    type: Number,
-    default: 0,
-  },
-  // 当前页数
-  page: {
-    type: Number,
-    default: 1,
-  },
-  // 每页显示数量
-  limit: {
-    type: Number,
-    default: 8,
-  },
-  // 跳转目录
-  routePath: {
-    type: String,
-    default: '',
-  },
-  // 使用参数
-  useParams: {
-    type: Boolean,
-    default: false,
-  },
-})
+const { page, total, limit, routePath, useParams } = defineProps<{
+  total: number
+  page: number
+  limit: number
+  routePath: string
+  useParams: boolean
+}>()
 
 const router = useRouter()
 
@@ -39,8 +19,8 @@ const jumpInput = ref<number | null>(null)
 const inputFocus = ref(false)
 
 // 页数数据
-const currentPage = ref(props.page)
-const totalPages = computed(() => Math.ceil(props.total / props.limit))
+const currentPage = ref(page)
+const totalPages = computed(() => Math.ceil(total / limit))
 
 // 分页指示器数据
 const pageNumber = computed(() => {
@@ -96,12 +76,12 @@ function validateInput() {
 // 跳转页面
 function jumpPage(url: string, page: number | string) {
   // 使用参数跳转
-  if (props.useParams) {
+  if (useParams) {
     if (page === 1) {
-      router.go(`${props.routePath}`)
+      router.go(`${routePath}`)
     }
     else {
-      router.go(`${props.routePath}?page=${page}`)
+      router.go(`${routePath}?page=${page}`)
     }
   }
   // 正常跳转
@@ -117,8 +97,8 @@ function fastJump() {
     return false
   jumpPage(
     jumpInput.value === 1
-      ? `${props.routePath}`
-      : `${props.routePath}/page/${jumpInput.value}`,
+      ? `${routePath}`
+      : `${routePath}/page/${jumpInput.value}`,
     jumpInput.value,
   )
 }
@@ -127,7 +107,7 @@ function fastJump() {
 function checkCurrentPage() {
   const params = new URLSearchParams(window.location.search)
   const page = params.get('page')
-  if (page && props.useParams) {
+  if (page && useParams) {
     currentPage.value = Number(page)
   }
 }
@@ -144,7 +124,7 @@ onMounted(() => {
   >
     <div
       v-if="currentPage > 1"
-      class="group text-font-color next bg-card-background border-card-border shadow-border-shadow max-md:hover:bg-theme md:hover:shadow-theme-none md:hover:text-theme md:hover:border-theme flex h-12.5 shrink-0 cursor-pointer items-center justify-center space-x-1 overflow-hidden rounded-lg border shadow-md transition duration-300 max-md:flex-1 max-md:hover:text-white md:h-10 md:w-20"
+      class="group bg-card-background border-card-border shadow-border-shadow max-md:hover:bg-theme md:hover:shadow-theme-none md:hover:text-theme md:hover:border-theme flex h-12.5 shrink-0 cursor-pointer items-center justify-center space-x-1 overflow-hidden rounded-lg border shadow-md transition duration-300 max-md:flex-1 max-md:hover:text-white md:h-10 md:w-20"
       @click="
         jumpPage(
           currentPage === 2
@@ -188,7 +168,7 @@ onMounted(() => {
       <!-- 快速跳转 -->
       <div
         v-tippy
-        class="fast-jump"
+        class="fast-jump relative"
         :class="[{ focus: inputFocus }]"
         title="快速跳转"
       >
@@ -196,6 +176,7 @@ onMounted(() => {
           v-model.number="jumpInput"
           :min="1"
           :max="totalPages"
+          class="outline-none rounded-lg size-10 px-2 bg-card-background border border-card-border shadow-lg shadow-border-shadow transition-all duration-300"
           @focus="inputFocus = true"
           @blur="fastJump"
           @input="validateInput"
@@ -203,18 +184,19 @@ onMounted(() => {
         >
         <Icon
           icon="mingcute:arrows-right-line"
-          :class="[{ click: jumpInput }]"
+          class="absolute size-7 rounded-md -translate-y-1/2 top-1/2 right-1.5 transition duration-300 cursor-pointer hover:text-card-background hover:bg-theme"
+          :class="{ click: jumpInput }"
           @click.stop="fastJump"
         />
       </div>
     </div>
     <div
       v-if="currentPage * limit < total"
-      class="group text-font-color next bg-card-background border-card-border shadow-border-shadow max-md:hover:bg-theme md:hover:shadow-theme-none md:hover:text-theme md:hover:border-theme flex h-12.5 shrink-0 cursor-pointer items-center justify-center space-x-1 overflow-hidden rounded-lg border shadow-md transition duration-300 max-md:flex-1 max-md:hover:text-white md:h-10 md:w-20"
+      class="group bg-card-background border-card-border shadow-border-shadow max-md:hover:bg-theme md:hover:shadow-theme-none md:hover:text-theme md:hover:border-theme flex h-12.5 shrink-0 cursor-pointer items-center justify-center space-x-1 overflow-hidden rounded-lg border shadow-md transition duration-300 max-md:flex-1 max-md:hover:text-white md:h-10 md:w-20"
       @click="jumpPage(`${routePath}/page/${currentPage + 1}`, currentPage + 1)"
     >
       <span
-        class="page-text ml-0 transition-[opacity,margin] duration-300 md:-ml-8 md:opacity-0 md:group-hover:ml-0 md:group-hover:opacity-100"
+        class="ml-0 transition-[opacity,margin] duration-300 md:-ml-8 md:opacity-0 md:group-hover:ml-0 md:group-hover:opacity-100"
       >下页</span>
       <Icon icon="mingcute:right-fill" class="max-md:hidden" />
     </div>
@@ -223,54 +205,12 @@ onMounted(() => {
 
 <style scoped>
 .fast-jump {
-  position: relative;
-  margin: 0 6px;
-
-  input {
-    border: none;
-    outline: none;
-    background: none;
-    width: 40px;
-    height: 40px;
-    border-radius: 8px;
-    padding: 0 8px;
-    font-size: 16px;
-    color: var(--main-font-color);
-    background-color: var(--main-card-background);
-    border: 1px solid var(--main-card-border);
-    box-shadow: 0 8px 16px -4px var(--main-border-shadow);
-    transition: all 0.3s;
-  }
-
-  svg {
-    position: absolute;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    top: 5px;
-    right: 5px;
-    width: 30px;
-    height: 30px;
-    border-radius: 4px;
-    background-color: var(--main-card-background);
-    transition:
-      color 0.3s,
-      opacity 0.3s,
-      background-color 0.3s;
-    cursor: pointer;
-
-    &:hover {
-      color: var(--main-card-background);
-      background-color: var(--main-color);
-    }
-  }
-
   &.focus,
   &:hover {
     input {
+      --tw-shadow-color: var(--color-theme-op);
       width: 100px;
-      border-color: var(--main-color);
-      box-shadow: 0 8px 16px -4px var(--main-color-bg);
+      border-color: var(--color-theme);
     }
 
     svg {
