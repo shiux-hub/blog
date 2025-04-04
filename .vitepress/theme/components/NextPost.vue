@@ -80,7 +80,7 @@ onBeforeUnmount(() => {
 <template>
   <div
     v-if="nextPostData"
-    class="next-post s-card"
+    class="next-post card"
     :class="[
       {
         fixed: infoPosition === 'fixed',
@@ -98,7 +98,7 @@ onBeforeUnmount(() => {
   </div>
 </template>
 
-<style lang="scss" scoped>
+<style scoped>
 .next-post {
   width: 100%;
   display: flex;

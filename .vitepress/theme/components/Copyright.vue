@@ -12,7 +12,7 @@ const route = useRoute()
 </script>
 
 <template>
-  <div class="copyright s-card relative">
+  <div class="copyright card relative">
     <Icon
       icon="mingcute:copyright-line"
       class="absolute -top-16 -right-16 size-64 rotate-[334deg] opacity-10"
@@ -55,7 +55,7 @@ const route = useRoute()
   </div>
 </template>
 
-<style lang="scss" scoped>
+<style scoped>
 .copyright {
   position: relative;
   background-color: var(--main-card-second-background);

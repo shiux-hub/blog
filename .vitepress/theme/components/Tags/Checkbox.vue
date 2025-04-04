@@ -23,7 +23,7 @@ function checkboxClick() {
   </div>
 </template>
 
-<style lang="scss" scoped>
+<style scoped>
 .checkbox {
   display: flex;
   flex-direction: row;

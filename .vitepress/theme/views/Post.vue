@@ -101,9 +101,9 @@ onMounted(() => {
       </div>
     </div>
     <div class="post-content">
-      <article class="post-article s-card">
+      <article class="post-article card">
         <!-- 过期提醒 -->
-        <div v-if="postMetaData?.expired >= 180" class="expired s-card">
+        <div v-if="postMetaData?.expired >= 180" class="expired card">
           本文发表于
           <strong>{{ postMetaData?.expired }}</strong>
           天前，其中的信息可能已经事过境迁
@@ -154,8 +154,8 @@ onMounted(() => {
   </div>
 </template>
 
-<style lang="scss" scoped>
-@use '../style/post.scss';
+<style scoped>
+@import '../style/post.css';
 
 .post {
   width: 100%;

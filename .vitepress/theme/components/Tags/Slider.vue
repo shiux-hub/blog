@@ -39,7 +39,7 @@ watch(
   </ClientOnly>
 </template>
 
-<style lang="scss" scoped>
+<style scoped>
 .slider {
   width: 100% !important;
   height: auto !important;

@@ -90,7 +90,7 @@ const socialLinkData = computed(() => {
   </div>
 </template>
 
-<style lang="scss" scoped>
+<style scoped>
 .footer-link {
   width: 100%;
   max-width: 1200px;
@@ -193,7 +193,7 @@ const socialLinkData = computed(() => {
         margin: 1rem 0;
         font-size: 16px;
         font-weight: bold;
-        // margin-left: 8px;
+        /* margin-left: 8px; */
         color: var(--main-font-second-color);
 
         &.friends {

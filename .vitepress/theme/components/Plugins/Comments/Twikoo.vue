@@ -37,7 +37,7 @@ async function initTwikoo() {
 }
 
 // 填充评论区
-function fillComments(data) {
+function fillComments(data: string) {
   console.log('填充评论：', data)
   // 获取评论元素
   const commentDom = document.querySelector('.tk-input.el-textarea')

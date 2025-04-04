@@ -99,7 +99,7 @@ onUnmounted(() => {
   />
 </template>
 
-<style lang="scss">
+<style>
 #comment-dom,
 .atk-layer-wrap,
 .comment-content {
@@ -123,7 +123,7 @@ onUnmounted(() => {
 }
 </style>
 
-<style lang="scss" scoped>
+<style scoped>
 #comment-dom {
   :deep(.atk-main-editor) {
     .atk-bottom {

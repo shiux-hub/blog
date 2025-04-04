@@ -79,7 +79,7 @@ function toPost(path: string) {
     <div
       v-for="(item, index) in listData"
       :key="index"
-      class="post-item s-card hover"
+      class="post-item card hover"
       :class="[
         { simple, cover: showCover, [`cover-${layoutType}`]: showCover },
       ]"
@@ -125,7 +125,7 @@ function toPost(path: string) {
   </div>
 </template>
 
-<style lang="scss" scoped>
+<style scoped>
 .post-lists {
   .post-item {
     padding: 0 !important;
@@ -283,17 +283,17 @@ function toPost(path: string) {
       }
     }
 
-    // 封面靠左
+    /* 封面靠左 */
     &.cover-left {
       flex-direction: row;
     }
 
-    // 封面靠右
+    /* 封面靠右 */
     &.cover-right {
       flex-direction: row-reverse;
     }
 
-    // 交替布局
+    /* 交替布局 */
     &.cover-both {
       &:nth-child(odd) {
         flex-direction: row;
@@ -303,7 +303,7 @@ function toPost(path: string) {
       }
     }
 
-    // 移动端垂直布局
+    /* 移动端垂直布局 */
     @media (max-width: 768px) {
       &.cover-left,
       &.cover-right,
@@ -313,7 +313,7 @@ function toPost(path: string) {
     }
   }
 
-  // 网格布局
+  /* 网格布局 */
   &.layout-grid {
     display: grid;
     grid-template-columns: repeat(var(--grid-columns, 2), 1fr);

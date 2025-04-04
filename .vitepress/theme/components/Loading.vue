@@ -45,7 +45,7 @@ onBeforeUnmount(() => {
   </Teleport>
 </template>
 
-<style lang="scss" scoped>
+<style scoped>
 .loading {
   position: fixed;
   top: 0;

@@ -24,7 +24,7 @@ const { theme } = useData()
   </aside>
 </template>
 
-<style lang="scss" scoped>
+<style scoped>
 .main-aside {
   padding-left: 1rem;
   display: flex;

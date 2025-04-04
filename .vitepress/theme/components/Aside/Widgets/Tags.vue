@@ -7,7 +7,7 @@ const { theme } = useData()
 </script>
 
 <template>
-  <div class="tags-cloud s-card">
+  <div class="tags-cloud card">
     <div class="title">
       <Icon icon="mingcute:hashtag-fill" />
       <span class="title-name">热门标签</span>
@@ -27,7 +27,7 @@ const { theme } = useData()
   </div>
 </template>
 
-<style lang="scss" scoped>
+<style scoped>
 .tags-cloud {
   .all-tags {
     position: relative;

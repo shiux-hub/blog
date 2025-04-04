@@ -77,7 +77,7 @@ function toRewardList() {
         </div>
         <div
           v-if="showJump"
-          class="all-list s-card hover"
+          class="all-list card hover"
           @click="toRewardList"
         >
           <span class="title">全部赞赏者名单</span>
@@ -90,7 +90,7 @@ function toRewardList() {
   </div>
 </template>
 
-<style lang="scss" scoped>
+<style scoped>
 .reward {
   position: relative;
   display: flex;

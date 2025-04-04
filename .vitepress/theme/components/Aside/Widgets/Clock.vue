@@ -55,7 +55,7 @@ onBeforeUnmount(() => {
   </div>
 </template>
 
-<style lang="scss" scoped>
+<style scoped>
 .clock {
   width: 160px;
   height: 160px;
@@ -78,7 +78,6 @@ onBeforeUnmount(() => {
       bottom: calc(50% - 5px);
       box-shadow: 0 0 10px 0 #191a1b;
       border-radius: 25px;
-      //   transition: transform 0.3s;
       &.hour {
         width: 10px;
         height: 40px;

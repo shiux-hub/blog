@@ -19,7 +19,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="site-data s-card">
+  <div class="site-data card">
     <div class="title">
       <Icon icon="mingcute:chart-line-fill" />
       <span class="title-name">站点数据</span>
@@ -57,7 +57,7 @@ onMounted(() => {
   </div>
 </template>
 
-<style lang="scss" scoped>
+<style scoped>
 .site-data {
   .all-data {
     .data-item {

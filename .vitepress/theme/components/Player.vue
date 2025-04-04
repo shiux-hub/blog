@@ -154,7 +154,7 @@ onBeforeUnmount(() => {
   </div>
 </template>
 
-<style lang="scss" scoped>
+<style scoped>
 .player {
   height: 42px;
   margin-top: 12px;

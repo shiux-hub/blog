@@ -42,7 +42,7 @@ function coverLoaded(e: Event) {
   </Teleport>
 </template>
 
-<style lang="scss" scoped>
+<style scoped>
 .background {
   position: fixed;
   top: 0;

@@ -57,7 +57,7 @@ watch(
           :style="{
             maxWidth: typeof maxWidth === 'string' ? maxWidth : `${maxWidth}px`,
           }"
-          class="modal-main s-card"
+          class="modal-main card"
           @click.stop
         >
           <!-- 标题 -->
@@ -84,7 +84,7 @@ watch(
   </Teleport>
 </template>
 
-<style lang="scss" scoped>
+<style scoped>
 .modal {
   position: fixed;
   top: 0;

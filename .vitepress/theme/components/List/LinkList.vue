@@ -45,7 +45,7 @@ withDefaults(
           <a
             v-for="(link, key) in type.typeList"
             :key
-            class="link-card s-card"
+            class="link-card card"
             :class="[
               {
                 'loss': type?.type === 'loss',
@@ -86,7 +86,7 @@ withDefaults(
   </Transition>
 </template>
 
-<style lang="scss" scoped>
+<style scoped>
 .link-list {
   .link-type-list {
     margin-top: 2rem;

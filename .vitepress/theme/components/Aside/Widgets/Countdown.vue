@@ -29,7 +29,7 @@ onBeforeUnmount(() => {
 
 <template>
   <!-- 倒计时 -->
-  <div class="count-down s-card">
+  <div class="count-down card">
     <div class="count-left">
       <span class="text"> 距离 </span>
       <span class="name">{{ theme.aside.countDown.data.name }}</span>
@@ -69,7 +69,7 @@ onBeforeUnmount(() => {
   </div>
 </template>
 
-<style lang="scss" scoped>
+<style scoped>
 .count-down {
   display: flex;
   flex-direction: row;

@@ -183,13 +183,13 @@ onBeforeUnmount(() => {
   <Message />
 </template>
 
-<style lang="scss" scoped>
+<style scoped>
 .main-layout {
   width: 100%;
   max-width: 1400px;
   margin: 0 auto;
   padding: 1rem 2rem;
-  // 手动实现加载动画
+  /** 手动实现加载动画 */
   animation: show 0.5s forwards;
   animation-duration: 0.5s;
   display: block;

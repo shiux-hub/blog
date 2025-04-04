@@ -20,7 +20,7 @@ const currentTypeName = computed(() => {
 </script>
 
 <template>
-  <div v-if="type === 'categories'" class="type-bar s-card hover">
+  <div v-if="type === 'categories'" class="type-bar card hover">
     <div class="all-type">
       <a
         v-if="currentTypeName"
@@ -45,7 +45,7 @@ const currentTypeName = computed(() => {
       更多
     </a>
   </div>
-  <div v-else-if="type === 'tags'" class="type-bar s-card hover">
+  <div v-else-if="type === 'tags'" class="type-bar card hover">
     <div class="all-type">
       <a
         v-if="currentTypeName"
@@ -75,7 +75,7 @@ const currentTypeName = computed(() => {
   </div>
 </template>
 
-<style lang="scss" scoped>
+<style scoped>
 .type-bar {
   position: relative;
   display: flex;

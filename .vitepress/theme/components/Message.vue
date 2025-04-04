@@ -102,7 +102,7 @@ onMounted(() => {
   </Teleport>
 </template>
 
-<style lang="scss" scoped>
+<style scoped>
 .message {
   position: relative;
   position: fixed;
@@ -139,7 +139,8 @@ onMounted(() => {
       cursor: pointer;
 
       svg {
-        @apply size-3.5;
+        width: 14px;
+        height: 14px;
         color: var(--main-card-background);
         opacity: 0.6;
         transition: opacity 0.3s;

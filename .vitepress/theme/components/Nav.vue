@@ -22,7 +22,7 @@ const { site, theme, frontmatter, page } = useData()
         <div class="left-nav">
           <div v-tippy class="more-menu nav-btn" title="更多内容">
             <Icon icon="mingcute:classify-3-fill" />
-            <div class="more-card s-card">
+            <div class="more-card card">
               <div
                 v-for="(item, index) in theme.navMore"
                 :key="index"
@@ -172,7 +172,7 @@ const { site, theme, frontmatter, page } = useData()
   </header>
 </template>
 
-<style lang="scss" scoped>
+<style scoped>
 .main-header {
   position: relative;
   width: 100%;
@@ -684,7 +684,6 @@ const { site, theme, frontmatter, page } = useData()
       }
 
       .nav-center {
-        // display: none;
         position: absolute;
         top: 0;
         left: 0;

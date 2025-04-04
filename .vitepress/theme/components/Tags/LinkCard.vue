@@ -63,7 +63,7 @@ onMounted(() => {
   <a
     :href="url"
     :target="isOutLink ? '_blank' : undefined"
-    class="link-card s-card hover"
+    class="link-card card hover"
   >
     <span v-if="isOutLink" class="link-tip">引用站外地址，请注意甄别链接安全性</span>
     <div class="link-data">
@@ -95,7 +95,7 @@ onMounted(() => {
   </a>
 </template>
 
-<style lang="scss" scoped>
+<style scoped>
 .link-card {
   display: block;
   width: 100%;
@@ -151,6 +151,7 @@ onMounted(() => {
         font-size: 14px;
         overflow: hidden;
         display: -webkit-box;
+        line-clamp: 2;
         -webkit-line-clamp: 2;
         -webkit-box-orient: vertical;
         text-overflow: ellipsis;

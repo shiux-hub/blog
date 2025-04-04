@@ -14,7 +14,7 @@ const { frontmatter } = useData()
       <Content
         id="page-content"
         class="markdown-main-style"
-        :class="[{ 's-card': frontmatter.card }]"
+        :class="{ card: frontmatter.card }"
       />
       <!-- 评论 -->
       <Comments v-if="frontmatter.comment" />
@@ -23,8 +23,8 @@ const { frontmatter } = useData()
   </div>
 </template>
 
-<style lang="scss" scoped>
-@use '../style/post.scss';
+<style scoped>
+@import '../style/post.css';
 
 .page {
   width: 100%;
@@ -60,7 +60,7 @@ const { frontmatter } = useData()
       }
     }
 
-    .s-card {
+    .card {
       padding: 1rem 2rem;
     }
   }

@@ -92,7 +92,7 @@ function closeRightMenu(e: MouseEvent) {
   rightMenuX.value = 0
   rightMenuY.value = 0
   clickedType.value = 'normal'
-  clickedTypeData.value = null
+  clickedTypeData.value = undefined
   commentCopyData.value = false
 }
 
@@ -257,13 +257,13 @@ defineExpose({ openRightMenu })
             left: `${rightMenuX}px`,
             top: `${rightMenuY}px`,
           }"
-          class="menu-content s-card hover"
+          class="absolute w-45 space-y-3 animate-fade-up card hover"
           @contextmenu.stop="closeRightMenu"
         >
-          <div class="tools">
+          <div class="flex items-center w-full justify-between">
             <div
               v-tippy
-              class="btn"
+              class="btn size-8"
               title="后退"
               @click="rightMenuFunc('back')"
             >
@@ -271,7 +271,7 @@ defineExpose({ openRightMenu })
             </div>
             <div
               v-tippy
-              class="btn"
+              class="btn size-8"
               title="前进"
               @click="rightMenuFunc('forward')"
             >
@@ -279,7 +279,7 @@ defineExpose({ openRightMenu })
             </div>
             <div
               v-tippy
-              class="btn"
+              class="btn size-8"
               title="刷新"
               @click="rightMenuFunc('reload')"
             >
@@ -287,17 +287,18 @@ defineExpose({ openRightMenu })
             </div>
             <div
               v-tippy
-              class="btn"
+              class="btn size-8"
               title="返回顶部"
               @click="smoothScrolling()"
             >
               <Icon icon="mingcute:arrow-up-fill" />
             </div>
           </div>
-          <div class="all-menu">
+          <div class="separator" />
+          <div class="space-y-1.5">
             <div
               v-if="clickedType === 'normal'"
-              class="btn"
+              class="btn justify-start"
               @click="router.go(shufflePost(theme.postData))"
             >
               <Icon icon="mingcute:shuffle-2-fill" />
@@ -305,7 +306,7 @@ defineExpose({ openRightMenu })
             </div>
             <div
               v-if="clickedType === 'normal'"
-              class="btn"
+              class="btn justify-start"
               @click="router.go('/pages/categories')"
             >
               <Icon icon="mingcute:classify-2-fill" />
@@ -313,7 +314,7 @@ defineExpose({ openRightMenu })
             </div>
             <div
               v-if="clickedType === 'normal'"
-              class="btn"
+              class="btn justify-start"
               @click="router.go('/pages/tags')"
             >
               <Icon icon="mingcute:hashtag-fill" />
@@ -322,7 +323,7 @@ defineExpose({ openRightMenu })
             <!-- 链接类型 -->
             <div
               v-if="clickedType === 'link'"
-              class="btn"
+              class="btn justify-start"
               @click="rightMenuFunc('open-link')"
             >
               <Icon icon="mingcute:external-link-fill" />
@@ -330,7 +331,7 @@ defineExpose({ openRightMenu })
             </div>
             <div
               v-if="clickedType === 'link'"
-              class="btn"
+              class="btn justify-start"
               @click="
                 copy(
                   clickedTypeData?.getAttribute('original-href')
@@ -344,7 +345,7 @@ defineExpose({ openRightMenu })
             <!-- 图片类型 -->
             <div
               v-if="clickedType === 'image'"
-              class="btn"
+              class="btn justify-start"
               @click="copyImage(clickedTypeData?.src)"
             >
               <Icon icon="mingcute:photo-album-fill" />
@@ -352,7 +353,7 @@ defineExpose({ openRightMenu })
             </div>
             <div
               v-if="clickedType === 'image'"
-              class="btn"
+              class="btn justify-start"
               @click="downloadImage(clickedTypeData?.src)"
             >
               <Icon icon="mingcute:file-download-fill" />
@@ -364,7 +365,7 @@ defineExpose({ openRightMenu })
                 clickedType === 'input'
                   && typeof clickedTypeData.value === 'string'
               "
-              class="btn"
+              class="btn justify-start"
               @click="rightMenuFunc('input-paste')"
             >
               <Icon icon="mingcute:paste-fill" />
@@ -377,7 +378,7 @@ defineExpose({ openRightMenu })
                   && isLink(clickedTypeData)
               "
               :href="`${isLink(clickedTypeData)}`"
-              class="btn right-menu-link"
+              class="btn justify-start right-menu-link"
               target="_blank"
             >
               <Icon icon="mingcute:external-link-fill" />
@@ -386,7 +387,7 @@ defineExpose({ openRightMenu })
             <a
               v-if="clickedType === 'text' || clickedType === 'input'"
               :href="`https://www.baidu.com/s?wd=${encodeURIComponent(clickedTypeData)}`"
-              class="btn right-menu-link"
+              class="btn justify-start right-menu-link"
               target="_blank"
             >
               <Icon icon="ri:baidu-fill" />
@@ -395,7 +396,7 @@ defineExpose({ openRightMenu })
             <a
               v-if="clickedType === 'text' || clickedType === 'input'"
               :href="`https://cn.bing.com/search?q=${encodeURIComponent(clickedTypeData)}`"
-              class="btn right-menu-link"
+              class="btn justify-start right-menu-link"
               target="_blank"
             >
               <Icon icon="mdi:microsoft-bing" />
@@ -403,7 +404,7 @@ defineExpose({ openRightMenu })
             </a>
             <div
               v-if="clickedType === 'text' || clickedType === 'input'"
-              class="btn"
+              class="btn justify-start"
               @click="copy(clickedTypeData)"
             >
               <Icon icon="mingcute:copy-fill" />
@@ -415,34 +416,36 @@ defineExpose({ openRightMenu })
                   && !commentCopyShow
                   && theme.comment.type === 'artalk'
               "
-              class="btn"
+              class="btn justify-start"
               @click="commentCopy(clickedTypeData)"
             >
               <Icon icon="mingcute:comment-fill" />
               <span class="name">评论选中内容</span>
             </div>
           </div>
+          <div class="separator" />
           <!-- 通用菜单 -->
-          <div class="all-menu general">
+          <div class="general space-y-1.5">
             <!-- 版权协议 -->
-            <div class="btn" @click="router.go('/pages/cc')">
+            <div class="btn justify-start" @click="router.go('/pages/cc')">
               <Icon icon="tabler:accessible-filled" />
               <span class="name">版权协议</span>
             </div>
             <!-- 隐私政策 -->
-            <div class="btn" @click="router.go('/pages/privacy')">
+            <div class="btn justify-start" @click="router.go('/pages/privacy')">
               <Icon icon="mingcute:safety-certificate-fill" />
               <span class="name">隐私政策</span>
             </div>
           </div>
-          <div class="all-menu general">
+          <div class="separator" />
+          <div class="general space-y-1.5">
             <!-- 复制地址 -->
-            <div class="btn" @click="rightMenuFunc('copy-link')">
+            <div class="btn justify-start" @click="rightMenuFunc('copy-link')">
               <Icon icon="mingcute:copy-fill" />
               <span class="name">复制本页地址</span>
             </div>
             <!-- 明暗模式 -->
-            <div class="btn" @click.stop="store.changeThemeType">
+            <div class="btn justify-start" @click.stop="store.changeThemeType">
               <Icon
                 :icon="
                   themeType === 'auto'
@@ -463,15 +466,17 @@ defineExpose({ openRightMenu })
               </span>
             </div>
           </div>
+          <div class="separator" />
           <!-- 播放器控制 -->
-          <div v-if="playerShow" class="all-menu general player">
+          <div v-if="playerShow" class="general player">
             <div class="data">
               <span class="name">{{ playerData.name }}</span>
               <span class="artist">{{ playerData.artist }}</span>
             </div>
-            <div class="volume" @click.stop>
+            <div class="flex items-center justify-between p-1.5 mt-4 w-full" @click.stop>
               <Icon
                 icon="material-symbols:volume-down-rounded"
+                class="size-5 shrink-0 text-font-second-color cursor-pointer hover:text-theme"
                 @click="playerVolume = Math.max(0, playerVolume - 0.1)"
               />
 
@@ -481,6 +486,7 @@ defineExpose({ openRightMenu })
               />
               <Icon
                 icon="material-symbols:volume-up-rounded"
+                class="size-5 shrink-0 text-font-second-color cursor-pointer hover:text-theme"
                 @click="playerVolume = Math.min(1, playerVolume + 0.1)"
               />
             </div>
@@ -491,7 +497,7 @@ defineExpose({ openRightMenu })
                 title="上一曲"
                 @click="playerControl('prev')"
               >
-                <Icon icon="material-symbols:skip-previous-rounded" />
+                <Icon icon="material-symbols:skip-previous-rounded" class="size-6.5" />
               </div>
               <div
                 v-if="playState"
@@ -500,7 +506,7 @@ defineExpose({ openRightMenu })
                 title="暂停"
                 @click="playerControl('toggle')"
               >
-                <Icon icon="material-symbols:pause-rounded" />
+                <Icon icon="material-symbols:pause-rounded" class="size-6.5" />
               </div>
               <div
                 v-else
@@ -509,7 +515,7 @@ defineExpose({ openRightMenu })
                 title="播放"
                 @click="playerControl('toggle')"
               >
-                <Icon icon="material-symbols:play-arrow-rounded" />
+                <Icon icon="material-symbols:play-arrow-rounded" class="size-6.5" />
               </div>
               <div
                 v-tippy
@@ -517,7 +523,7 @@ defineExpose({ openRightMenu })
                 title="下一曲"
                 @click="playerControl('next')"
               >
-                <Icon icon="material-symbols:skip-next-rounded" />
+                <Icon icon="material-symbols:skip-next-rounded" class="size-6.5" />
               </div>
             </div>
           </div>
@@ -539,7 +545,7 @@ defineExpose({ openRightMenu })
   </Teleport>
 </template>
 
-<style lang="scss" scoped>
+<style scoped>
 .right-menu {
   position: fixed;
   top: 0;
@@ -549,154 +555,38 @@ defineExpose({ openRightMenu })
   z-index: 9999;
   transition: opacity 0.2s;
 
-  .menu-content {
-    position: absolute;
-    width: 180px;
-    background-color: var(--main-card-background);
-    animation: fade-up 0.2s forwards;
-    transition:
-      opacity 0.3s,
-      border-color 0.3s,
-      box-shadow 0.3s,
-      background-color 0.3s;
+  .player {
+    .data {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
 
-    .tools {
+      span {
+        width: 100%;
+        padding: 0 8px;
+        text-align: center;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+
+      .artist {
+        font-size: 14px;
+        margin-top: 4px;
+        color: var(--main-font-second-color);
+      }
+    }
+
+    .control {
       display: flex;
       flex-direction: row;
       align-items: center;
-      width: 100%;
-      justify-content: space-between;
-      padding-bottom: 12px;
-      border-bottom: 1px solid var(--main-card-border);
+      justify-content: space-evenly;
+      margin-top: 8px;
 
       .btn {
-        width: 34px;
-        height: 34px;
-        min-width: 34px;
-      }
-    }
-
-    .all-menu {
-      margin-top: 12px;
-
-      .btn {
-        justify-content: flex-start;
-        margin-bottom: 6px;
-
-        svg {
-          width: 20px;
-          height: 20px;
-        }
-
-        &:last-child {
-          margin-bottom: 0;
-        }
-      }
-
-      &.general {
-        padding-top: 12px;
-        border-top: 1px solid var(--main-card-border);
-      }
-    }
-
-    .player {
-      .data {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-
-        span {
-          width: 100%;
-          padding: 0 8px;
-          text-align: center;
-          white-space: nowrap;
-          overflow: hidden;
-          text-overflow: ellipsis;
-        }
-
-        .artist {
-          font-size: 14px;
-          margin-top: 4px;
-          color: var(--main-font-second-color);
-        }
-      }
-
-      .volume {
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        justify-content: space-between;
-        padding: 0 6px;
-        margin-top: 1rem;
-        width: 100%;
-
-        svg {
-          color: var(--main-font-second-color);
-          width: 20px;
-          height: 20px;
-          transition: color 0.3s;
-          cursor: pointer;
-
-          &:first-child {
-            margin-right: 6px;
-          }
-
-          &:last-child {
-            margin-left: 6px;
-          }
-
-          &:hover {
-            color: var(--main-color);
-          }
-        }
-      }
-
-      .control {
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        justify-content: space-evenly;
-        margin-top: 8px;
-
-        .btn {
-          padding: 6px;
-          margin-bottom: 0;
-
-          svg {
-            width: 26px;
-            height: 26px;
-          }
-        }
-      }
-    }
-
-    .btn {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      border-radius: 8px;
-      padding: 8px;
-      transition:
-        color 0.3s,
-        background-color 0.3s;
-
-      svg {
-        width: 20px;
-        height: 20px;
-        transition: color 0.3s;
-      }
-
-      .name {
-        margin-left: 12px;
-      }
-
-      &:hover {
-        color: var(--main-card-background);
-        background-color: var(--main-color);
-
-        svg {
-          color: var(--main-card-background);
-        }
+        padding: 6px;
+        margin-bottom: 0;
       }
     }
   }

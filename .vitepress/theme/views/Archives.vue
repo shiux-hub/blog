@@ -7,7 +7,7 @@ const router = useRouter()
 </script>
 
 <template>
-  <div class="archives s-card p-8">
+  <div class="archives card p-8">
     <div class="mb-4 flex gap-2 font-bold">
       <h1 class="border-none">
         文章
@@ -27,7 +27,7 @@ const router = useRouter()
           <div
             v-for="(post, postIndex) in theme.archivesData.data[year].articles"
             :key="postIndex"
-            class="posts-item s-card hover"
+            class="posts-item card hover:border hover:border-theme hover:shadow-lg hover:shadow-theme-op"
             @click="router.go(post.regularPath)"
           >
             <span class="title">{{ post.title }}</span>
@@ -49,7 +49,7 @@ const router = useRouter()
   </div>
 </template>
 
-<style lang="scss" scoped>
+<style scoped>
 .archives {
   padding: 2rem;
 

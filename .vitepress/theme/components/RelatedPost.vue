@@ -56,7 +56,7 @@ onMounted(() => {
   </div>
 </template>
 
-<style lang="scss" scoped>
+<style scoped>
 .related-post {
   margin-top: 1rem;
 

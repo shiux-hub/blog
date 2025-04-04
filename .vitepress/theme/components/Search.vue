@@ -82,14 +82,14 @@ onBeforeUnmount(() => {
               <div
                 v-for="(item, index) in formatSearchData(items)"
                 :key="index"
-                class="search-item s-card hover"
+                class="search-item card hover"
                 @click="jumpSearch(item.url)"
               >
                 <p class="title" v-html="item.title" />
                 <p v-if="item?.anchor" class="anchor" v-html="item.anchor" />
                 <p
                   v-if="item?.content"
-                  class="content s-card"
+                  class="content card"
                   v-html="item.content"
                 />
               </div>
@@ -119,7 +119,7 @@ onBeforeUnmount(() => {
   </Modal>
 </template>
 
-<style lang="scss">
+<style scoped>
 .ais-InstantSearch {
   height: 100%;
 

@@ -32,7 +32,7 @@ const { theme } = useData()
         v-for="(item, key, index) in theme.categoriesData"
         :key="index"
         :href="`/pages/categories/${key}`"
-        class="type-item s-card"
+        class="type-item card"
       >
         <Icon icon="mingcute:classify-2-fill" />
         <span class="name">{{ key }}</span>
@@ -44,7 +44,7 @@ const { theme } = useData()
         v-for="(item, key, index) in theme.tagsData"
         :key="index"
         :href="`/pages/tags/${key}`"
-        class="type-item s-card"
+        class="type-item card"
       >
         <Icon icon="mingcute:hashtag-fill" />
         <span class="name">{{ key }}</span>
@@ -54,7 +54,7 @@ const { theme } = useData()
   </div>
 </template>
 
-<style lang="scss" scoped>
+<style scoped>
 .cat-or-tag {
   min-height: 400px;
 

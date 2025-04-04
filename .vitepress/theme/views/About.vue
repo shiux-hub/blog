@@ -279,7 +279,7 @@ onMounted(() => {
   </div>
 </template>
 
-<style lang="scss" scoped>
+<style scoped>
 .about {
   .title {
     font-size: 2.4rem;

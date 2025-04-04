@@ -5,37 +5,24 @@ import { useData } from '@/composables/data'
 import { mainStore } from '@/store'
 import { Icon } from '@iconify/vue'
 
-const props = defineProps({
+const props = withDefaults(defineProps<{
   // 类型
-  type: {
-    type: String,
-    default: 'text',
-  },
+  type?: string
   // 高度
-  height: {
-    type: String,
-    default: 'half',
-  },
+  height?: string
   // 标题
-  title: {
-    type: String,
-    default: '这里是标题',
-  },
+  title?: string
   // 简介
-  desc: {
-    type: String,
-    default: '这里是简介',
-  },
+  desc?: string
   // 注释
-  footer: {
-    type: String,
-    default: '',
-  },
+  footer?: string
   // 背景
-  image: {
-    type: String,
-    default: '',
-  },
+  image?: string
+}>(), {
+  type: 'text',
+  height: 'half',
+  title: '这里是标题',
+  desc: '这里是简介',
 })
 const store = mainStore()
 const { theme } = useData()
@@ -122,7 +109,7 @@ onBeforeUnmount(() => {
   </div>
   <div
     v-else-if="type === 'page'"
-    class="banner-page s-card"
+    class="banner-page card"
     :class="[{ image }]"
     :style="{
       backgroundImage: image ? `url(${image})` : '',
@@ -149,7 +136,7 @@ onBeforeUnmount(() => {
   </div>
 </template>
 
-<style lang="scss" scoped>
+<style scoped>
 .banner {
   height: 300px;
   display: flex;

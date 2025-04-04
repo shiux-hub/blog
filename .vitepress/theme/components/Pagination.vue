@@ -1,5 +1,6 @@
 <!-- 分页 -->
 <script lang="ts" setup>
+import { cn } from '@/utils'
 import { Icon } from '@iconify/vue'
 
 // 分页数据
@@ -159,18 +160,19 @@ onMounted(() => {
       >上页</span>
     </div>
     <div
-      class="page-number hidden w-full items-center justify-center gap-2 md:flex"
+      class="hidden w-full items-center justify-center gap-2 md:flex"
     >
       <div
         v-for="(item, index) in pageNumber"
         :key="index"
-        class="flex size-10 shrink-0 cursor-pointer items-center justify-center overflow-hidden rounded-lg transition-colors duration-300"
-        :class="{
-          'border-card-border hover:border-theme hover:shadow-theme-op hover:text-theme border shadow-md':
-            item !== 'more',
-          'text-card-background border-theme bg-theme shadow-theme-op shadow-md':
-            item === currentPage,
-        }"
+        :class="cn(
+          'flex size-10 shrink-0 items-center justify-center overflow-hidden rounded-lg transition-colors duration-300',
+          {
+            'border-card-border cursor-pointer hover:border-theme bg-card-background hover:shadow-theme-op hover:text-theme border shadow-md':
+              item !== 'more',
+            'text-card-background hover:text-card-background border-theme bg-theme shadow-theme-op shadow-md':
+              item === currentPage,
+          })"
         @click="
           item !== 'more'
             && jumpPage(item === 1 ? routePath : `${routePath}/page/${item}`, item)
@@ -219,67 +221,65 @@ onMounted(() => {
   </div>
 </template>
 
-<style lang="scss" scoped>
-.page-number {
-  .fast-jump {
-    position: relative;
-    margin: 0 6px;
+<style scoped>
+.fast-jump {
+  position: relative;
+  margin: 0 6px;
 
+  input {
+    border: none;
+    outline: none;
+    background: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 8px;
+    padding: 0 8px;
+    font-size: 16px;
+    color: var(--main-font-color);
+    background-color: var(--main-card-background);
+    border: 1px solid var(--main-card-border);
+    box-shadow: 0 8px 16px -4px var(--main-border-shadow);
+    transition: all 0.3s;
+  }
+
+  svg {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    top: 5px;
+    right: 5px;
+    width: 30px;
+    height: 30px;
+    border-radius: 4px;
+    background-color: var(--main-card-background);
+    transition:
+      color 0.3s,
+      opacity 0.3s,
+      background-color 0.3s;
+    cursor: pointer;
+
+    &:hover {
+      color: var(--main-card-background);
+      background-color: var(--main-color);
+    }
+  }
+
+  &.focus,
+  &:hover {
     input {
-      border: none;
-      outline: none;
-      background: none;
-      width: 40px;
-      height: 40px;
-      border-radius: 8px;
-      padding: 0 8px;
-      font-size: 16px;
-      color: var(--main-font-color);
-      background-color: var(--main-card-background);
-      border: 1px solid var(--main-card-border);
-      box-shadow: 0 8px 16px -4px var(--main-border-shadow);
-      transition: all 0.3s;
+      width: 100px;
+      border-color: var(--main-color);
+      box-shadow: 0 8px 16px -4px var(--main-color-bg);
     }
 
     svg {
-      position: absolute;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      top: 5px;
-      right: 5px;
-      width: 30px;
-      height: 30px;
-      border-radius: 4px;
-      background-color: var(--main-card-background);
-      transition:
-        color 0.3s,
-        opacity 0.3s,
-        background-color 0.3s;
-      cursor: pointer;
+      opacity: 0.2;
+      pointer-events: none;
 
-      &:hover {
-        color: var(--main-card-background);
-        background-color: var(--main-color);
-      }
-    }
-
-    &.focus,
-    &:hover {
-      input {
-        width: 100px;
-        border-color: var(--main-color);
-        box-shadow: 0 8px 16px -4px var(--main-color-bg);
-      }
-
-      svg {
-        opacity: 0.2;
-        pointer-events: none;
-
-        &.click {
-          opacity: 1;
-          pointer-events: all;
-        }
+      &.click {
+        opacity: 1;
+        pointer-events: all;
       }
     }
   }

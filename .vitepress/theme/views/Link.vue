@@ -70,12 +70,11 @@ function randomJump() {
   </div>
 </template>
 
-<style lang="scss" scoped>
+<style scoped>
 .link {
   margin-bottom: 4rem;
 
   .banner-page {
-    // min-height: 440px;
     min-height: auto;
 
     .menu {

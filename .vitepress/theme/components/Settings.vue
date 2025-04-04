@@ -18,7 +18,7 @@ const {
 
 <template>
   <div class="settings">
-    <div class="set-btn s-card" @click="store.changeShowStatus('showSeetings')">
+    <div class="set-btn card" @click="store.changeShowStatus('showSeetings')">
       <Icon icon="mingcute:palette-2-fill" class="size-5.5 shrink-0" />
       <span class="set-text">个性化配置</span>
     </div>
@@ -145,7 +145,7 @@ const {
   </div>
 </template>
 
-<style lang="scss" scoped>
+<style scoped>
 .settings {
   .set-btn {
     display: flex;

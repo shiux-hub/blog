@@ -16,7 +16,7 @@ const router = useRouter()
   </div>
 </template>
 
-<style lang="scss" scoped>
+<style scoped>
 .not-found-content {
   animation: fade-up 0.6s 0.1s backwards;
   display: flex;

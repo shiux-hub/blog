@@ -173,24 +173,6 @@ html.dark {
     }
   }
 
-  /* 通用卡片 */
-  .s-card {
-    padding: 0.8rem;
-    border-radius: 16px;
-    background-color: var(--main-card-background);
-    border: 1px solid var(--main-card-border);
-    box-shadow: 0 8px 16px -4px var(--main-border-shadow);
-    transition: all 0.3s;
-    cursor: pointer;
-
-    &:hover {
-      &.hover {
-        border-color: var(--main-color);
-        box-shadow: 0 8px 16px -4px var(--main-color-bg);
-      }
-    }
-  }
-
   /** 滚动条 */
   ::-webkit-scrollbar {
     width: 6px;
@@ -256,6 +238,37 @@ html.dark {
     /* 标题颜色保持原样 */
     .custom-block-title {
       color: inherit;
+    }
+  }
+}
+
+@layer components {
+  /* 通用卡片 */
+  .card {
+    @apply p-3 rounded-2xl bg-card-background border border-card-border shadow-lg shadow-border-shadow transition duration-300;
+
+    &.hover:hover {
+      @apply border-theme shadow-border-shadow;
+    }
+  }
+
+  .btn {
+    @apply flex items-center p-2 gap-2 justify-center rounded-lg transition duration-300 cursor-pointer select-none;
+
+    svg {
+      @apply size-5;
+    }
+
+    &:hover {
+      @apply bg-theme text-card-background;
+    }
+  }
+
+  .separator {
+    @apply w-full h-px bg-card-border;
+
+    &.vertical {
+      @apply h-full w-px;
     }
   }
 }

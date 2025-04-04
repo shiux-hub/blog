@@ -140,7 +140,7 @@ onBeforeUnmount(() => {
 
 <template>
   <!-- 目录 -->
-  <div v-if="tocData && tocData?.length" class="toc s-card">
+  <div v-if="tocData && tocData?.length" class="toc card">
     <div class="toc-title">
       <Icon icon="mingcute:menu-fill" />
       <span class="name">目录</span>
@@ -169,7 +169,7 @@ onBeforeUnmount(() => {
   </div>
 </template>
 
-<style lang="scss" scoped>
+<style scoped>
 .toc {
   position: relative;
   padding: 0 !important;

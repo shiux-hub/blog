@@ -69,7 +69,7 @@ onBeforeUnmount(() => {
 </script>
 
 <template>
-  <div class="hello s-card" @mouseleave="resetHello">
+  <div class="hello card" @mouseleave="resetHello">
     <span class="tip" @click="changeHello">{{ helloText }}</span>
     <div class="content">
       <div class="site-logo">
@@ -102,7 +102,7 @@ onBeforeUnmount(() => {
   </div>
 </template>
 
-<style lang="scss" scoped>
+<style scoped>
 .hello {
   display: flex;
   flex-direction: column;

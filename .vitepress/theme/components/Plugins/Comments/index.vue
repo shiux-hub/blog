@@ -49,7 +49,7 @@ defineExpose({ scrollToComments })
   </div>
 </template>
 
-<style lang="scss" scoped>
+<style scoped>
 .comment {
   margin-top: 2rem;
   .title {

@@ -10,7 +10,7 @@ const references = frontmatter.value?.references
 </script>
 
 <template>
-  <div v-if="references" class="references s-card">
+  <div v-if="references" class="references card">
     <div class="title">
       <Icon icon="mingcute:quote-left-fill" />
       <span class="title-text">参考资料</span>
@@ -29,7 +29,7 @@ const references = frontmatter.value?.references
   </div>
 </template>
 
-<style lang="scss" scoped>
+<style scoped>
 .references {
   margin: 1rem 0;
   padding: 18px;

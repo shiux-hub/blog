@@ -67,7 +67,7 @@ onBeforeUnmount(() => observer && box.value && observer.unobserve(box.value))
   </div>
 </template>
 
-<style lang="scss" scoped>
+<style scoped>
 .loading {
   background: linear-gradient(
     90deg,

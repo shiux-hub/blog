@@ -32,7 +32,7 @@ function pageJump(url: string) {
         <Transition name="toLeft" mode="out-in">
           <div
             v-show="store.mobileMenuShow"
-            class="menu-content s-card bg-mask-background-deep rounded-none"
+            class="menu-content card bg-mask-background-deep rounded-none"
           >
             <!-- 关闭按钮 -->
             <div
@@ -81,7 +81,7 @@ function pageJump(url: string) {
   </Teleport>
 </template>
 
-<style lang="scss" scoped>
+<style scoped>
 .mobile-menu {
   position: fixed;
   top: 0;

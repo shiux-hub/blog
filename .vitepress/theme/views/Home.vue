@@ -130,7 +130,7 @@ watch(
   </div>
 </template>
 
-<style lang="scss" scoped>
+<style scoped>
 .home {
   .home-content {
     width: 100%;

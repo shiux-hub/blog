@@ -97,7 +97,7 @@ function rightMenuSwitch() {
   </Teleport>
 </template>
 
-<style lang="scss" scoped>
+<style scoped>
 .control {
   position: fixed;
   top: 0;
