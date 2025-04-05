@@ -4,7 +4,7 @@ import type { SiteInfo } from '@/types/site'
 import { getSiteInfo } from '@/api'
 import { Icon } from '@iconify/vue'
 
-const {url,title,desc,icon} = defineProps<{
+const { url, title, desc, icon } = defineProps<{
   // 地址
   url?: string
   // 标题

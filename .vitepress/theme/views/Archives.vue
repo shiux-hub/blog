@@ -7,14 +7,14 @@ const router = useRouter()
 </script>
 
 <template>
-  <div class="archives card p-8">
-    <div class="mb-4 flex gap-2 font-bold">
-      <h1 class="border-none">
+  <div class="archives flex flex-col gap-2 card p-8">
+    <div class="flex gap-2 font-bold">
+      <div class="border-none text-3xl leading-[2em]">
         文章
-      </h1>
-      <sup v-if="theme.postData?.length" class="text-xl opacity-60">{{
-        theme.postData.length
-      }}</sup>
+        <sup v-if="theme.postData?.length" class="text-base -top-[1em] opacity-60">{{
+          theme.postData.length
+        }}</sup>
+      </div>
     </div>
     <div class="archives-list">
       <div

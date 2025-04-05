@@ -129,6 +129,7 @@ const { site, theme, frontmatter, page } = useData()
           </div>
           <!-- 返回顶部 -->
           <div
+            v-show="scrollData.height !== 0"
             v-tippy
             class="to-top menu-btn"
             :class="{
@@ -136,21 +137,20 @@ const { site, theme, frontmatter, page } = useData()
               long: scrollData.percentage > 90,
             }"
             title="返回顶部"
-            @click="smoothScrolling"
+            @click="smoothScrolling()"
           >
             <div class="to-top-btn">
-              <Transition name="fade" mode="out-in">
-                <span :key="scrollData.percentage > 90" class="num">
-                  {{
-                    scrollData.percentage <= 90
-                      ? scrollData.percentage
-                      : '返回顶部'
-                  }}
-                </span>
-              </Transition>
+              <span class="num">
+                {{
+                  scrollData.percentage <= 90
+                    ? scrollData.percentage
+                    : '返回顶部'
+                }}
+              </span>
               <Icon icon="mingcute:arrow-up-fill" />
             </div>
           </div>
+
           <!-- 移动端菜单 -->
           <div
             v-tippy

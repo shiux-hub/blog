@@ -18,10 +18,16 @@ const postMetaData = computed(() => {
 })
 
 // 日期
-const createdDate = computed(() => formatTimestamp(postMetaData.value.date))
-const updatedDate = computed(() =>
-  formatTimestamp(page.value?.lastUpdated || postMetaData.value.lastModified),
-)
+const createdDate = computed(() => postMetaData.value && formatTimestamp(postMetaData.value?.date))
+const updatedDate = computed(() => {
+  if (page.value?.lastUpdated) {
+    return formatTimestamp(page.value?.lastUpdated)
+  }
+  else if (postMetaData.value?.lastModified) {
+    return formatTimestamp(postMetaData.value?.lastModified)
+  }
+  return null
+})
 
 onMounted(() => {
   initFancybox(theme.value)
@@ -29,9 +35,9 @@ onMounted(() => {
 </script>
 
 <template>
-  <div v-if="postMetaData" class="post">
-    <div class="post-meta">
-      <div class="meta">
+  <div v-if="postMetaData" class="flex flex-col gap-8 animate-fade-up duration-600 delay-100">
+    <div class="space-y-6 max-md:mt-8 mt-4 max-md:px-8 pl-4">
+      <div class="flex items-center gap-3 max-md:justify-center">
         <a
           v-if="frontmatter.original"
           v-tippy
@@ -39,73 +45,73 @@ onMounted(() => {
           class="post-meta-original cat-item"
           title="该文章为原创文章，注意版权协议"
         >原创</a>
-        <div class="categories">
+        <div class="categories max-md:mr-0">
           <a
             v-for="(item, index) in postMetaData.categories"
             :key="index"
             v-tippy="`查看更多<strong>【${item}】</strong>分类的文章`"
             :href="`/pages/categories/${item}`"
-            class="cat-item"
+            class="flex items-center gap-1.5 px-3 py-1.5 text-sm font-bold rounded-lg bg-mask-inverse-background opacity-80 hover:bg-theme-op hover:text-theme"
           >
-            <Icon icon="mingcute:classify-2-fill" />
-            <span class="name">{{ item }}</span>
+            <Icon icon="mingcute:classify-2-fill" class="size-4" />
+            {{ item }}
           </a>
         </div>
-        <div class="tags">
+        <div class="flex items-center max-md:hidden">
           <a
             v-for="(item, index) in postMetaData.tags"
             :key="index"
             v-tippy="`查看更多<strong>【${item}】</strong>标签的文章`"
             :href="`/pages/tags/${item}`"
-            class="tag-item"
+            class="flex items-center gap-1 px-3 py-1.5 text-sm font-bold rounded-lg opacity-80 hover:bg-theme-op hover:text-theme"
           >
-            <Icon icon="mingcute:hashtag-fill" />
-            <span class="name">{{ item }}</span>
+            <Icon icon="mingcute:hashtag-fill" class="opacity-60 size-4" />
+            {{ item }}
           </a>
         </div>
       </div>
-      <h1 class="title">
+      <h1 class="text-4xl leading-[1.2] font-bold max-md:text-2xl max-md:text-center max-md:leading-8">
         {{ postMetaData.title || '未命名文章' }}
       </h1>
-      <div class="other-meta">
+      <div class="flex items-center gap-6 opacity-80 max-md:justify-center">
         <span
           v-if="createdDate"
           v-tippy="`这篇文章创建于<strong>${createdDate}</strong>`"
-          class="meta-item date"
+          class="flex items-center gap-1.5 rounded-lg opacity-80 text-sm"
         >
-          <Icon icon="mingcute:calendar-2-line" />
+          <Icon icon="mingcute:calendar-2-line" class="size-4" />
           {{ createdDate }}
         </span>
         <span
           v-if="updatedDate"
           v-tippy="`这篇文章更新于<strong>${updatedDate}</strong>`"
-          class="meta-item update"
+          class="flex items-center gap-1.5 rounded-lg opacity-80 text-sm"
         >
-          <Icon icon="mingcute:time-fill" />
+          <Icon icon="mingcute:time-fill" class="size-4" />
           {{ updatedDate }}
         </span>
         <!-- 热度 -->
-        <span v-tippy class="meta-item hot" title="热度">
-          <Icon icon="mingcute:fire-fill" />
+        <span v-tippy class="flex items-center gap-1.5 rounded-lg opacity-80 text-sm hot" title="热度">
+          <Icon icon="mingcute:fire-fill" class="size-4" />
           <span id="twikoo_visitors" class="artalk-pv-count">0</span>
         </span>
         <!-- 评论数 -->
         <span
           v-if="theme.comment.enable"
-          class="chat meta-item hover"
+          class="flex items-center gap-1.5 rounded-lg opacity-80 text-sm transition-[color,background-color] duration-300 cursor-pointer hover:bg-theme-op hover:text-theme"
           @click="commentRef?.scrollToComments"
         >
-          <Icon icon="mingcute:chat-1-fill" />
+          <Icon icon="mingcute:chat-1-fill" class="size-4" />
           <span id="twikoo_comments" class="artalk-comment-count">0</span>
         </span>
       </div>
     </div>
-    <div class="post-content gap-4 min-w-0">
-      <article class="post-article w-full lg:w-[calc(100%-336px)] card">
+    <div class="flex animate-fade-up duration-600 delay-300 gap-4">
+      <article class="py-4 px-8 space-y-8 w-full lg:w-[calc(100%-336px)] card">
         <!-- 过期提醒 -->
-        <div v-if="postMetaData?.expired >= 180" class="expired card">
+        <div v-if="postMetaData?.expired >= 180" class="mt-4 mb-8 py-3 px-5 border-l-6 border-warning rounded-l-md card">
           本文发表于
-          <strong>{{ postMetaData?.expired }}</strong>
+          <strong class="text-warning">{{ postMetaData?.expired }}</strong>
           天前，其中的信息可能已经事过境迁
         </div>
         <!-- AI 摘要 -->
@@ -120,21 +126,21 @@ onMounted(() => {
           :post-data="postMetaData"
         />
         <!-- 其他信息 -->
-        <div class="other-meta">
-          <div class="all-tags">
+        <div class="flex items-center gap-3 opacity-80 max-md:flex-col">
+          <div class="flex items-center space-x-3 max-md:flex-wrap">
             <a
               v-for="(item, index) in postMetaData.tags"
               :key="index"
               :href="`/pages/tags/${item}`"
-              class="tag-item"
+              class="flex items-center px-3 py-1.5 gap-1 text-sm font-bold rounded-lg bg-card-border hover:text-theme hover:bg-theme-op"
             >
-              <Icon icon="mingcute:hashtag-fill" />
-              <span class="name">{{ item }}</span>
+              <Icon icon="mingcute:hashtag-fill" class="opacity-60" />
+              {{ item }}
             </a>
           </div>
           <a
             href="https://eqnxweimkr5.feishu.cn/share/base/form/shrcnCXCPmxCKKJYI3RKUfefJre"
-            class="report"
+            class="flex items-center gap-1.5 px-3 py-1.5 text-sm rounded-lg font-bold bg-card-border hover:text-font-color hover:bg-error"
             target="_blank"
           >
             <Icon icon="mingcute:report-line" />
@@ -153,263 +159,3 @@ onMounted(() => {
     </div>
   </div>
 </template>
-
-<style scoped>
-@import '../style/post.css';
-
-.post {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  animation: fade-up 0.6s 0.1s backwards;
-
-  .post-meta {
-    padding: 2rem 0 3rem 18px;
-    width: 100%;
-
-    .meta {
-      display: flex;
-      flex-direction: row;
-      align-items: center;
-      gap: 12px;
-
-      .cat-item {
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        padding: 6px 12px;
-        font-size: 14px;
-        font-weight: bold;
-        border-radius: 8px;
-        background-color: var(--main-mask-Inverse-background);
-        opacity: 0.8;
-
-        svg {
-          margin-right: 6px;
-        }
-
-        &:hover {
-          color: var(--main-color);
-          background-color: var(--main-color-bg);
-        }
-      }
-
-      .tags {
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-
-        .tag-item {
-          display: flex;
-          flex-direction: row;
-          align-items: center;
-          padding: 6px 12px;
-          font-size: 14px;
-          font-weight: bold;
-          border-radius: 8px;
-          opacity: 0.8;
-
-          svg {
-            margin-right: 4px;
-            opacity: 0.6;
-          }
-
-          &:hover {
-            color: var(--main-color);
-            background-color: var(--main-color-bg);
-          }
-        }
-      }
-    }
-
-    .title {
-      font-size: 2.2rem;
-      line-height: 1.2;
-      color: var(--main-font-color);
-      margin: 1.4rem 0;
-    }
-
-    .other-meta {
-      display: flex;
-      flex-direction: row;
-      align-items: center;
-
-      .meta-item {
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        padding: 6px 12px;
-        font-size: 14px;
-        border-radius: 8px;
-        opacity: 0.8;
-
-        svg {
-          margin-right: 6px;
-          transition: color 0.3s;
-        }
-
-        &.date {
-          padding-left: 0;
-        }
-
-        &.hot svg {
-          width: 18px;
-          height: 18px;
-        }
-
-        &.hover {
-          transition:
-            color 0.3s,
-            background-color 0.3s;
-          cursor: pointer;
-
-          &:hover {
-            color: var(--main-color);
-            background-color: var(--main-color-bg);
-          }
-        }
-      }
-    }
-  }
-
-  .post-content {
-    display: flex;
-    animation: fade-up 0.6s 0.3s backwards;
-
-    .post-article {
-      padding: 1rem 2.2rem 2.2rem 2.2rem;
-
-      &:hover {
-        border-color: var(--main-card-border);
-      }
-
-      .expired {
-        margin: 1.2rem 0 2rem 0;
-        padding: 0.8rem 1.2rem;
-        border-left: 6px solid var(--main-warning-color);
-        border-radius: 6px 16px 16px 6px;
-        user-select: none;
-
-        strong {
-          color: var(--main-warning-color);
-        }
-      }
-
-      .other-meta {
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        justify-content: space-between;
-        margin: 2rem 0;
-        opacity: 0.8;
-
-        .all-tags {
-          display: flex;
-          flex-direction: row;
-          align-items: center;
-
-          .tag-item {
-            display: flex;
-            flex-direction: row;
-            align-items: center;
-            padding: 6px 12px;
-            font-size: 14px;
-            font-weight: bold;
-            border-radius: 8px;
-            background-color: var(--main-card-border);
-            margin-right: 12px;
-
-            svg {
-              margin-right: 4px;
-              opacity: 0.6;
-              font-weight: normal;
-            }
-
-            &:hover {
-              color: var(--main-color);
-              background-color: var(--main-color-bg);
-            }
-          }
-        }
-
-        .report {
-          display: flex;
-          flex-direction: row;
-          align-items: center;
-          padding: 6px 12px;
-          font-size: 14px;
-          font-weight: bold;
-          border-radius: 8px;
-          background-color: var(--main-card-border);
-
-          svg {
-            margin-right: 6px;
-          }
-
-          &:hover {
-            color: #efefef;
-            background-color: var(--main-error-color);
-          }
-        }
-      }
-    }
-  }
-
-  svg {
-    width: 1rem;
-    height: 1rem;
-  }
-
-  @media (max-width: 768px) {
-    .post-meta {
-      padding: 4rem 1.5rem;
-
-      .meta {
-        justify-content: center;
-
-        .categories {
-          margin-right: 0;
-        }
-
-        .tags {
-          display: none;
-        }
-      }
-
-      .title {
-        font-size: 1.6rem;
-        text-align: center;
-        line-height: 40px;
-      }
-
-      .other-meta {
-        justify-content: center;
-      }
-    }
-
-    .post-content {
-      .post-article {
-        border: none;
-        padding: 20px 30px;
-
-        .other-meta {
-          margin: 1rem 0 2rem 0;
-          flex-direction: column;
-
-          .all-tags {
-            flex-wrap: wrap;
-
-            .tag-item {
-              margin-top: 12px;
-            }
-          }
-
-          .report {
-            margin-top: 20px;
-          }
-        }
-      }
-    }
-  }
-}
-</style>

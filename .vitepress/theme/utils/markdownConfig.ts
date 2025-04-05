@@ -43,7 +43,7 @@ function markdownConfig(md: MarkdownRenderer, themeConfig: ThemeConfig) {
   })
   // button
   md.use(container, 'button', {
-    render: (tokens, idx, _options) => {
+    render: (tokens, idx) => {
       const token = tokens[idx]
       const check = token.info.trim().slice('button'.length).trim()
       if (token.nesting === 1) {
@@ -56,7 +56,7 @@ function markdownConfig(md: MarkdownRenderer, themeConfig: ThemeConfig) {
   })
   // card
   md.use(container, 'card', {
-    render: (tokens, idx, _options) => {
+    render: (tokens, idx) => {
       const token = tokens[idx]
       if (token.nesting === 1) {
         return `<div class="card">`
@@ -76,7 +76,8 @@ function markdownConfig(md: MarkdownRenderer, themeConfig: ThemeConfig) {
   // 图片
   md.renderer.rules.image = (tokens, idx) => {
     const token = tokens[idx]
-    const src = token.attrs[token.attrIndex('src')][1]
+    // 获取图片的src和alt属性
+    const src = token.attrs?.[token.attrIndex('src')][1]
     const alt = token.content
     if (!themeConfig.fancybox.enable) {
       return `<img src="${src}" alt="${alt}" loading="lazy">`
@@ -112,7 +113,7 @@ function markdownConfig(md: MarkdownRenderer, themeConfig: ThemeConfig) {
         danger: 'danger',
       }
 
-      const className = admonitionTypes[type] || 'info'
+      const className = admonitionTypes[type as keyof typeof admonitionTypes] || 'info'
       const title = type.toUpperCase()
 
       return `<div class="${className} custom-block">

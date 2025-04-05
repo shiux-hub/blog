@@ -1,4 +1,4 @@
-/// <reference types="vite/client" />
+/// <reference types="vitepress/client" />
 /// <reference types="vite-plugin-pwa/client" />
 import type { Message } from './types/site'
 

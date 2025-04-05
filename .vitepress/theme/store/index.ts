@@ -57,15 +57,15 @@ export const mainStore = defineStore('main', {
   getters: {},
   actions: {
     // 切换应用状态
-    changeShowStatus(value: any, blur = true) {
+    changeShowStatus(value: keyof MainState, blur = true) {
       this[value] = !this[value]
       // 阻止滚动
       document.body.style.overflowY = this[value] ? 'hidden' : ''
       // 全局模糊
       const globalApp = document.getElementById('app')
       this[value] && this.backgroundBlur && blur
-        ? globalApp.classList.add('blur')
-        : globalApp.classList.remove('blur')
+        ? globalApp?.classList.add('blur')
+        : globalApp?.classList.remove('blur')
     },
     // 更改字体大小
     changeFontSize(isAdd = false) {
@@ -114,7 +114,7 @@ export const mainStore = defineStore('main', {
   persist: [
     {
       key: 'siteData',
-      paths: [
+      pick: [
         'themeType',
         'bannerType',
         'useRightMenu',

@@ -1,3 +1,6 @@
+import type { CatOrTagData } from '@/utils/getPostData'
+import type { PostDataItem } from './post'
+
 export interface ThemeConfig {
   siteMeta: {
     title: string
@@ -133,5 +136,15 @@ export interface ThemeConfig {
   }
   tongji: {
     '51la': string
+  }
+}
+
+export type ThemeData = ThemeConfig & {
+  postData: PostDataItem[]
+  tagsData: CatOrTagData
+  categoriesData: CatOrTagData
+  archivesData: {
+    data: CatOrTagData
+    year: string[]
   }
 }

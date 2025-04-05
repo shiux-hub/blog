@@ -15,117 +15,44 @@ const { theme } = useData()
 </script>
 
 <template>
-  <div class="cat-or-tag">
-    <div class="title">
-      <h1 class="title-name">
+  <div>
+    <div class="flex flex-col items-center">
+      <h1 class="text-3xl">
         {{ type === 'categories' ? '全部分类' : '全部标签' }}
       </h1>
-      <span v-if="type === 'categories'" class="title-num">
+      <span v-if="type === 'categories'" class="text-lg opacity-60">
         共有 {{ Object.keys(theme.categoriesData)?.length || 0 }} 个分类
       </span>
-      <span v-else class="title-num">
+      <span v-else class="text-lg opacity-60">
         共有 {{ Object.keys(theme.tagsData)?.length || 0 }} 个标签
       </span>
     </div>
-    <div v-if="type === 'categories'" class="type-lists">
+    <div
+      v-if="type === 'categories'"
+      class="flex flex-wrap gap-2 items-center justify-center mt-8 mb-12"
+    >
       <a
         v-for="(item, key, index) in theme.categoriesData"
         :key="index"
         :href="`/pages/categories/${key}`"
-        class="type-item card"
+        class="text-lg flex items-center card gap-2 group hover:scale-105 hover:bg-theme"
       >
-        <Icon icon="mingcute:classify-2-fill" />
-        <span class="name">{{ key }}</span>
-        <span class="num">{{ item.count }}</span>
+        <Icon icon="mingcute:classify-2-fill" class="font-bold transition-[color] duration-300 opacity-60 size-5 group-hover:text-card-background group-hover:opacity-100" />
+        <span class="font-bold transition-[color,opacity] duration-300 group-hover:text-card-background">{{ key }}</span>
+        <span class="flex items-center justify-center size-7 rounded-lg text-sm bg-card-border">{{ item.count }}</span>
       </a>
     </div>
-    <div v-else class="type-lists">
+    <div v-else class="flex flex-wrap gap-2 items-center justify-center mt-8 mb-12">
       <a
         v-for="(item, key, index) in theme.tagsData"
         :key="index"
         :href="`/pages/tags/${key}`"
-        class="type-item card"
+        class="text-lg flex items-center card gap-2 group hover:scale-105 hover:bg-theme"
       >
-        <Icon icon="mingcute:hashtag-fill" />
-        <span class="name">{{ key }}</span>
-        <span class="num">{{ item.count }}</span>
+        <Icon icon="mingcute:hashtag-fill" class="font-bold transition-[color] duration-300 opacity-60 size-5 group-hover:text-card-background group-hover:opacity-100" />
+        <span class="font-bold transition-[color,opacity] duration-300 group-hover:text-card-background">{{ key }}</span>
+        <span class="flex items-center justify-center size-7 rounded-lg text-sm bg-card-border">{{ item.count }}</span>
       </a>
     </div>
   </div>
 </template>
-
-<style scoped>
-.cat-or-tag {
-  min-height: 400px;
-
-  .title {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-
-    .title-name {
-      font-size: 1.875rem;
-      margin-bottom: 0;
-    }
-
-    .title-num {
-      margin-top: 20px;
-      font-size: 1.125rem;
-      opacity: 0.6;
-    }
-  }
-
-  .type-lists {
-    padding: 2rem 0 3rem;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    flex-direction: row;
-    align-items: center;
-
-    .type-item {
-      font-size: 1.25rem;
-      display: flex;
-      flex-direction: row;
-      align-items: center;
-      margin: 0.5em;
-
-      .name {
-        font-weight: bold;
-        transition: color 0.3s;
-      }
-
-      svg {
-        margin-right: 8px;
-        width: 1.25rem;
-        height: 1.25rem;
-        opacity: 0.6;
-        transition: color 0.3s;
-      }
-
-      .num {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 14px;
-        padding: 6px 4px;
-        margin-left: 8px;
-        min-width: 35px;
-        border-radius: 8px;
-        background-color: var(--main-card-border);
-      }
-
-      &:hover {
-        transform: scale(1.05);
-        background-color: var(--main-color);
-
-        .name,
-        svg {
-          color: var(--main-card-background);
-        }
-      }
-    }
-  }
-}
-</style>

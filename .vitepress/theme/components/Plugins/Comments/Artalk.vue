@@ -3,8 +3,8 @@ import { useData } from '@/composables/data'
 import { jumpRedirect } from '@/utils/commonTools'
 import initComments from '@/utils/initComments'
 
-const {fill = false} = defineProps<{
-  fill?: string | boolean,
+const { fill = false } = defineProps<{
+  fill?: string | boolean
 }>()
 const route = useRoute()
 const { theme } = useData()

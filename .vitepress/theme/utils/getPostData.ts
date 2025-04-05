@@ -107,13 +107,18 @@ export async function getAllPosts(): Promise<PostDataItem[]> {
   }
 }
 
+export type CatOrTagData = Record<string, {
+  count: number
+  articles: PostDataItem[]
+}>
+
 /**
  * 获取所有标签及其相关文章的统计信息
  * @param {object[]} postData - 包含文章信息的数组
- * @returns {object} - 包含标签统计信息的对象
+ * @returns - 包含标签统计信息的对象
  */
 export function getAllType(postData: PostDataItem[]) {
-  const tagData = {}
+  const tagData: CatOrTagData = {}
   // 遍历数据
   postData.map((item) => {
     // 检查是否有 tags 属性
@@ -139,6 +144,7 @@ export function getAllType(postData: PostDataItem[]) {
         tagData[tag].articles.push(item)
       }
     })
+    return null
   })
   return tagData
 }
@@ -149,11 +155,11 @@ export function getAllType(postData: PostDataItem[]) {
  * @returns 包含标签统计信息的对象
  */
 export function getAllCategories(postData: PostDataItem[]) {
-  const catData = {}
+  const catData: CatOrTagData = {}
   // 遍历数据
   postData.map((item) => {
     if (!item.categories || item.categories.length === 0)
-      return
+      return null
     // 处理标签
     if (typeof item.categories === 'string') {
       // 以逗号分隔
@@ -174,6 +180,7 @@ export function getAllCategories(postData: PostDataItem[]) {
         catData[tag].articles.push(item)
       }
     })
+    return null
   })
   return catData
 }
@@ -184,7 +191,7 @@ export function getAllCategories(postData: PostDataItem[]) {
  * @returns 包含归档统计信息的对象
  */
 export function getAllArchives(postData: PostDataItem[]) {
-  const archiveData = {}
+  const archiveData: CatOrTagData = {}
   // 遍历数据
   postData.forEach((item) => {
     // 检查是否有 date 属性

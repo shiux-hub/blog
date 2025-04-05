@@ -1,3 +1,4 @@
+import type { PostDataItem } from '@/types/post'
 import { mainStore } from '@/store'
 import { isNumber, isString, isUndefined, random, throttle } from 'radashi'
 
@@ -126,7 +127,7 @@ export function daysFromNow(dateStr: string) {
  * @param postData - 文章数据
  */
 let lastIndex = -1
-export function shufflePost(postData) {
+export function shufflePost(postData: PostDataItem[]) {
   let randomIndex
   do {
     // 随机生成一个索引值

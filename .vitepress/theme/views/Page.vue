@@ -8,13 +8,18 @@ const { frontmatter } = useData()
 <template>
   <div
     :class="[
-      frontmatter.layout || 'page',
+      frontmatter.layout || 'flex space-x-4 animate-fade-up delay-100 duration-600',
       {
-        'animate-fade-up delay-300 duration-600': frontmatter.aside
-      }
+        'animate-fade-up delay-300 duration-600': frontmatter.aside,
+      },
     ]"
   >
-    <div class="page-content w-full lg:w-[calc(100%-336px)]">
+    <div
+      class="w-full"
+      :class="{
+        'transition-[width] duration-300 delay-100 lg:w-[calc(100%-336px)]': frontmatter.aside,
+      }"
+    >
       <!-- 页面内容 -->
       <Content
         id="page-content"
@@ -29,38 +34,24 @@ const { frontmatter } = useData()
 </template>
 
 <style scoped>
-@import '../style/post.css';
-
-.page {
+:deep(#main-comment) {
   width: 100%;
-  display: flex;
-  flex-direction: row;
-  animation: fade-up 0.6s 0.1s backwards;
 
-  .page-content {
-    width: 100%;
-    transition: width 0.3s;
+  .comment-content {
+    .atk-list {
+      .atk-list-header {
+        margin-bottom: 8px;
+      }
 
-    :deep(#main-comment) {
-      width: 100%;
-
-      .comment-content {
-        .atk-list {
-          .atk-list-header {
-            margin-bottom: 8px;
-          }
-
-          .atk-list-comments-wrap {
-            > .atk-comment-wrap {
-              padding: 0.8rem;
-              margin-bottom: 1rem;
-              border-bottom: none;
-              border-radius: 16px;
-              background-color: var(--main-card-background);
-              border: 1px solid var(--main-card-border);
-              box-shadow: 0 8px 16px -4px var(--main-border-shadow);
-            }
-          }
+      .atk-list-comments-wrap {
+        > .atk-comment-wrap {
+          padding: 0.8rem;
+          margin-bottom: 1rem;
+          border-bottom: none;
+          border-radius: 16px;
+          background-color: var(--main-card-background);
+          border: 1px solid var(--main-card-border);
+          box-shadow: 0 8px 16px -4px var(--main-border-shadow);
         }
       }
     }

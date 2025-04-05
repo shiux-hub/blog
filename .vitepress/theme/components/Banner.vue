@@ -26,11 +26,11 @@ const props = withDefaults(defineProps<{
 })
 const store = mainStore()
 const { theme } = useData()
-const hitokotoData = ref<Hitokoto | null>(null)
+const hitokotoData = ref<Hitokoto>()
 let hitokotoTimeOut: number | null = null
 
 // banner
-const bannerType = ref<string | null>(null)
+const bannerType = ref<string>()
 
 // 获取一言数据
 async function getHitokotoData() {
@@ -109,7 +109,7 @@ onBeforeUnmount(() => {
   </div>
   <div
     v-else-if="type === 'page'"
-    class="banner-page card cursor-pointer"
+    class="banner-page card"
     :class="{ image }"
     :style="{
       backgroundImage: image ? `url(${image})` : '',

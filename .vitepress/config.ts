@@ -1,4 +1,4 @@
-import type { ThemeConfig } from '@/types/theme'
+import type { ThemeData } from '@/types/theme'
 import path from 'node:path'
 import tailwindcss from '@tailwindcss/vite'
 import { withPwa } from '@vite-pwa/vitepress'
@@ -27,7 +27,7 @@ const themeConfig = await getThemeConfig()
 
 // https://vitepress.dev/reference/site-config
 export default withPwa(
-  defineConfigWithTheme<ThemeConfig>({
+  defineConfigWithTheme<ThemeData>({
     title: themeConfig.siteMeta.title,
     description: themeConfig.siteMeta.description,
     lang: themeConfig.siteMeta.lang,
