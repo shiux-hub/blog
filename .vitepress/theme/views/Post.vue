@@ -126,7 +126,7 @@ onMounted(() => {
           :post-data="postMetaData"
         />
         <!-- 其他信息 -->
-        <div class="flex items-center gap-3 opacity-80 max-md:flex-col">
+        <div class="flex items-center justify-between gap-3 opacity-80 max-md:flex-col">
           <div class="flex items-center space-x-3 max-md:flex-wrap">
             <a
               v-for="(item, index) in postMetaData.tags"

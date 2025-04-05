@@ -12,38 +12,38 @@ const route = useRoute()
 </script>
 
 <template>
-  <div class="copyright card relative">
+  <div class="bg-card-second-background space-y-3 p-5 overflow-hidden card relative">
     <Icon
       icon="mingcute:copyright-line"
-      class="absolute -top-16 -right-16 size-64 rotate-[334deg] opacity-10"
+      class="absolute -top-16 -right-16 m-0 size-64 rotate-[334deg] opacity-10"
     />
-    <div class="title">
-      <span class="post-name">{{ postData?.title || '未命名文章' }}</span>
+    <div class="flex flex-col gap-0.5">
+      {{ postData?.title || '未命名文章' }}
       <a
         :href="theme.siteMeta.site + route.path"
-        class="post-link"
+        class="text-sm opacity-60 hover:opacity-100"
         target="_blank"
       >
         {{ theme.siteMeta.site + route.path }}
       </a>
     </div>
-    <div class="post-meta">
-      <div class="meta-item">
-        <span class="tip">作者</span>
-        <span class="name">{{ theme.siteMeta.author.name }}</span>
+    <div class="flex items-center gap-8 max-md:hidden">
+      <div class="flex flex-col gap-1">
+        作者
+        <span class="opacity-60 text-sm">{{ theme.siteMeta.author.name }}</span>
       </div>
-      <div v-if="postData?.date" class="meta-item">
-        <span class="tip">发布于</span>
-        <span class="name">{{ formatTimestamp(postData.date) }}</span>
+      <div v-if="postData?.date" class="flex flex-col gap-1">
+        发布于
+        <span class="opacity-60 text-sm">{{ formatTimestamp(postData.date) }}</span>
       </div>
-      <div v-if="postData?.lastModified" class="meta-item">
-        <span class="tip">更新于</span>
-        <span class="name">{{ formatTimestamp(postData.lastModified) }}</span>
+      <div v-if="postData?.lastModified" class="flex flex-col gap-1">
+        更新于
+        <span class="opacity-60 text-sm">{{ formatTimestamp(postData.lastModified) }}</span>
       </div>
-      <div class="meta-item cc">
-        <span class="tip">许可协议</span>
+      <div class="flex flex-col gap-1">
+        许可协议
         <a
-          class="name"
+          class="opacity-60 text-sm transition-[color,opacity] duration-300 cursor-pointer hover:opacity-100 hover:text-theme"
           href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh-hans"
           target="_blank"
         >
@@ -51,79 +51,8 @@ const route = useRoute()
         </a>
       </div>
     </div>
-    <span class="meta-tip">署名-非商业性使用-相同方式共享 4.0 国际</span>
+    <div class="opacity-40 max-md:text-sm">
+      署名-非商业性使用-相同方式共享 4.0 国际
+    </div>
   </div>
 </template>
-
-<style scoped>
-.copyright {
-  position: relative;
-  background-color: var(--main-card-second-background);
-  padding: 18px;
-  margin-top: 2rem;
-  overflow: hidden;
-
-  .title {
-    display: flex;
-    flex-direction: column;
-
-    .post-link {
-      margin-top: 2px;
-      font-size: 14px;
-      opacity: 0.6;
-
-      &:hover {
-        opacity: 1;
-      }
-    }
-  }
-
-  .post-meta {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    margin: 1rem 0;
-
-    .meta-item {
-      display: flex;
-      flex-direction: column;
-      margin-right: 2rem;
-
-      .name {
-        margin-top: 4px;
-        font-size: 14px;
-        opacity: 0.6;
-        transition:
-          color 0.3s,
-          opacity 0.3s;
-        cursor: pointer;
-      }
-
-      &.cc {
-        .name {
-          &:hover {
-            opacity: 1;
-            color: var(--main-color);
-          }
-        }
-      }
-    }
-  }
-
-  .meta-tip {
-    opacity: 0.4;
-  }
-
-  @media (max-width: 768px) {
-    .post-meta {
-      display: none;
-    }
-
-    .meta-tip {
-      display: inline-block;
-      margin-top: 12px;
-      font-size: 14px;
-    }
-  }
-}
-</style>
