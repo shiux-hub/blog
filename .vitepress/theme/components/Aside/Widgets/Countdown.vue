@@ -29,7 +29,7 @@ onBeforeUnmount(() => {
 
 <template>
   <!-- 倒计时 -->
-  <div class="count-down card">
+  <div class="count-down card cursor-pointer">
     <div class="count-left">
       <span class="text"> 距离 </span>
       <span class="name">{{ theme.aside.countDown.data.name }}</span>

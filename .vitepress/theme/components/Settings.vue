@@ -156,6 +156,7 @@ const {
     padding: 0;
     border-radius: 25px;
     box-shadow: 0 6px 10px -4px var(--main-dark-shadow);
+    cursor: pointer;
 
     svg {
       margin-left: 10px;

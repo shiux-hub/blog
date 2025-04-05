@@ -3,7 +3,7 @@ title: 我的项目
 aside: false
 ---
 
-<script setup>
+<script lang="ts" setup>
 import Project from "@/views/Project.vue"
 </script>
 

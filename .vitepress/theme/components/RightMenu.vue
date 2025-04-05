@@ -257,7 +257,7 @@ defineExpose({ openRightMenu })
             left: `${rightMenuX}px`,
             top: `${rightMenuY}px`,
           }"
-          class="absolute w-45 space-y-3 animate-fade-up card hover"
+          class="absolute w-45 space-y-3 animate-fade-up card cursor-pointer hover"
           @contextmenu.stop="closeRightMenu"
         >
           <div class="flex items-center w-full justify-between">

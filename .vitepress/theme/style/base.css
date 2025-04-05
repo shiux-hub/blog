@@ -65,10 +65,10 @@ html.dark {
     }
 
     &.image {
-      --main-card-border: #3d3d3f63;
-      --main-font-second-color: #c6c6c6;
-      --main-card-background: #1b1c20de;
-      --main-card-second-background: #21232ab5;
+      --card-border: #3d3d3f63;
+      --font-second-color: #c6c6c6;
+      --card-background: #1b1c20de;
+      --card-second-background: #21232ab5;
 
       .main-nav {
         backdrop-filter: blur(20px);
@@ -102,18 +102,9 @@ html.dark {
     scroll-behavior: smooth;
     -webkit-text-size-adjust: 100%;
 
-    /* 特殊情况 */
-    &.dark {
-      /** 代码高亮 */
-      pre {
-        code {
-          .line {
-            span {
-              color: var(--shiki-dark) !important;
-            }
-          }
-        }
-      }
+    /** 代码高亮 */
+    &.dark pre code .line span {
+      color: var(--shiki-dark) !important;
     }
 
     /* 全站置灰 */
@@ -124,7 +115,7 @@ html.dark {
 
   body {
     @apply text-font-color;
-    background-color: var(--main-site-background);
+    background-color: var(--color-site-background);
     animation: show forwards 0.5s;
     overflow-x: hidden;
     transition:
@@ -134,17 +125,17 @@ html.dark {
 
   a {
     text-decoration: none;
-    color: var(--main-font-color);
+    color: var(--color-font-color);
     transition: all 0.3s;
 
     &:hover {
-      color: var(--main-color);
+      color: var(--color-theme);
     }
   }
 
   #app {
     width: 100dvw;
-    /** height: 100vh; **/
+    /* height: 100vh; */
     transition: filter 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 
     /* 滚动条 */
@@ -152,7 +143,7 @@ html.dark {
       &::before {
         right: 0;
         left: 4px;
-        background: var(--main-scrolling-bar);
+        background: var(--color-scrollbar-bar);
         transition:
           background 0.3s,
           left 0.3s;
@@ -162,7 +153,7 @@ html.dark {
       &:hover {
         &::before {
           left: 2px;
-          background: var(--main-color);
+          background: var(--color-theme);
         }
       }
     }
@@ -175,18 +166,17 @@ html.dark {
 
   /** 滚动条 */
   ::-webkit-scrollbar {
-    width: 6px;
-    height: 6px;
+    @apply size-1.5;
   }
 
   ::-webkit-scrollbar-thumb {
-    background-color: var(--main-scrollbar-bar);
+    background-color: var(--color-scrollbar-bar);
     border-radius: 8px;
     cursor: pointer;
+  }
 
-    &:hover {
-      background-color: var(--main-color);
-    }
+  ::-webkit-scrollbar-thumb:hover {
+    background-color: var(--color-theme);
   }
 
   /** 选中文本 */
@@ -245,13 +235,14 @@ html.dark {
 @layer components {
   /* 通用卡片 */
   .card {
-    @apply p-3 rounded-2xl bg-card-background border border-card-border shadow-lg shadow-border-shadow transition duration-300;
+    @apply p-3 rounded-2xl bg-card-background border border-card-border shadow-xm shadow-border-shadow transition-all duration-300;
 
     &.hover:hover {
       @apply border-theme shadow-theme-op;
     }
   }
 
+  /* 通用按钮 */
   .btn {
     @apply flex items-center p-2 gap-2 justify-center rounded-lg transition duration-300 cursor-pointer select-none;
 
@@ -264,6 +255,7 @@ html.dark {
     }
   }
 
+  /* 通用分割线 */
   .separator {
     @apply w-full h-px bg-card-border;
 

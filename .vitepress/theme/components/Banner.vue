@@ -109,8 +109,8 @@ onBeforeUnmount(() => {
   </div>
   <div
     v-else-if="type === 'page'"
-    class="banner-page card"
-    :class="[{ image }]"
+    class="banner-page card cursor-pointer"
+    :class="{ image }"
     :style="{
       backgroundImage: image ? `url(${image})` : '',
     }"
@@ -259,22 +259,22 @@ onBeforeUnmount(() => {
   }
 
   &.image {
-    color: #fff !important;
+    color: white !important;
 
     .top {
       .title-small {
-        color: #fff;
+        color: white;
         opacity: 0.6;
       }
     }
 
     .footer {
       .footer-left {
-        color: #fff;
+        color: white;
       }
 
       :deep(svg) {
-        color: #fff !important;
+        color: white !important;
       }
     }
   }

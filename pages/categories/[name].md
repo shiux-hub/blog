@@ -4,16 +4,16 @@ aside: false
 padding: false
 ---
 
-<script setup>
+<script lang="ts" setup>
 import { onMounted } from "vue";
-import { useData } from "vitepress"
+import { useData } from "@/composables/data"
 import Home from "@/views/Home.vue"
 
-const { params, site } = useData();
+const { params, site } = useData()
 
 onMounted(() => {
-  document.title = `分类：${params.value.name} | ${site.value.title}`;
+  document.title = `分类：${params.value.name} | ${site.value.title}`
 });
 </script>
 
-<Home :showHeader="false" :showCategories="params.name" />
+<Home :showHeader="false" :category="params.name" />

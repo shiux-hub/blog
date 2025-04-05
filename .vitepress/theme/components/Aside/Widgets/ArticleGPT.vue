@@ -79,7 +79,7 @@ onBeforeUnmount(() => {
 </script>
 
 <template>
-  <div v-if="frontmatter.articleGPT" class="article-gpt card">
+  <div v-if="frontmatter.articleGPT" class="article-gpt card cursor-pointer">
     <div class="title">
       <span class="name" @click="router.go('/posts/2024/0218')">
         <Icon class="icon-robot" icon="mingcute:openai-fill" />
@@ -90,7 +90,7 @@ onBeforeUnmount(() => {
         FakeGPT
       </span>
     </div>
-    <div class="content card">
+    <div class="content card cursor-pointer">
       <span class="text">{{
         abstractData === '' ? '加载中...' : abstractData
       }}</span>

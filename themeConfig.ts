@@ -1,8 +1,5 @@
+import type { DeepPartial } from '.vitepress/init'
 import type { ThemeConfig } from './.vitepress/theme/types/theme'
-
-type DeepPartial<T> = {
-  [P in keyof T]?: T[P] extends object ? DeepPartial<T[P]> : T[P];
-}
 
 export const themeConfig: DeepPartial<ThemeConfig> = {
   // 站点信息
@@ -142,7 +139,7 @@ export const themeConfig: DeepPartial<ThemeConfig> = {
           link: '/pages/project',
           icon: 'mingcute:code-fill',
         },
-        { text: '效率工具', link: '/pages/tools', icon: 'mingcute:tool-fill' },
+        // { text: '效率工具', link: '/pages/tools', icon: 'mingcute:tool-fill' },
       ],
     },
     {
@@ -155,16 +152,6 @@ export const themeConfig: DeepPartial<ThemeConfig> = {
     {
       text: '我的',
       items: [
-        {
-          text: '畅所欲言',
-          link: '/pages/message',
-          icon: 'mingcute:comment-fill',
-        },
-        {
-          text: '致谢名单',
-          link: '/pages/thanks',
-          icon: 'mingcute:certificate-fill',
-        },
         {
           text: '关于本站',
           link: '/pages/about',
@@ -417,11 +404,11 @@ export const themeConfig: DeepPartial<ThemeConfig> = {
   },
   // 搜索
   // https://www.algolia.com/
-  search: {
-    enable: false,
-    appId: '',
-    apiKey: '',
-  },
+  // search: {
+  //   enable: false,
+  //   appId: '',
+  //   apiKey: '',
+  // },
   // 打赏
   rewardData: {
     enable: true,

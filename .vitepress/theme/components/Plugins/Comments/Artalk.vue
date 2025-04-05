@@ -3,13 +3,9 @@ import { useData } from '@/composables/data'
 import { jumpRedirect } from '@/utils/commonTools'
 import initComments from '@/utils/initComments'
 
-const props = defineProps({
-  // 填充评论区
-  fill: {
-    type: [Boolean, String],
-    default: false,
-  },
-})
+const {fill = false} = defineProps<{
+  fill?: string | boolean,
+}>()
 const route = useRoute()
 const { theme } = useData()
 const { comment } = theme.value
@@ -33,8 +29,8 @@ async function initArtalk() {
     // Event
     artalk.value?.on('created', () => {
       // 若有数据填充
-      if (props.fill)
-        fillComments(props.fill)
+      if (fill)
+        fillComments(fill)
     })
     artalk.value?.on('list-loaded', () => {
       console.log('评论已加载完毕')
@@ -95,7 +91,7 @@ onUnmounted(() => {
     id="comment-dom"
     ref="commentRef"
     class="comment-content artalk"
-    :class="[{ fill }]"
+    :class="{ fill }"
   />
 </template>
 

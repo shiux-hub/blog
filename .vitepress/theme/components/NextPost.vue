@@ -80,7 +80,7 @@ onBeforeUnmount(() => {
 <template>
   <div
     v-if="nextPostData"
-    class="next-post card"
+    class="next-post card cursor-pointer"
     :class="[
       {
         fixed: infoPosition === 'fixed',
@@ -104,6 +104,7 @@ onBeforeUnmount(() => {
   display: flex;
   flex-direction: column;
   padding: 20px;
+  cursor: pointer;
   background-color: var(--main-card-background);
 
   .post-tip {

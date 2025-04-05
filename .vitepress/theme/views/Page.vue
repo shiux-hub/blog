@@ -7,19 +7,24 @@ const { frontmatter } = useData()
 
 <template>
   <div
-    :class="[frontmatter.layout || 'page', { 'has-aside': frontmatter.aside }]"
+    :class="[
+      frontmatter.layout || 'page',
+      {
+        'animate-fade-up delay-300 duration-600': frontmatter.aside
+      }
+    ]"
   >
-    <div class="page-content">
+    <div class="page-content w-full lg:w-[calc(100%-336px)]">
       <!-- 页面内容 -->
       <Content
         id="page-content"
         class="markdown-main-style"
-        :class="{ card: frontmatter.card }"
+        :class="{ 'px-8 py-4': frontmatter.card }"
       />
       <!-- 评论 -->
       <Comments v-if="frontmatter.comment" />
     </div>
-    <Aside v-if="frontmatter.aside" />
+    <Aside v-if="frontmatter.aside" class="w-xs hidden lg:flex" />
   </div>
 </template>
 
@@ -58,33 +63,6 @@ const { frontmatter } = useData()
           }
         }
       }
-    }
-
-    .card {
-      padding: 1rem 2rem;
-    }
-  }
-
-  &.has-aside {
-    animation: fade-up 0.6s 0.3s backwards;
-
-    .page-content {
-      width: calc(100% - 300px);
-    }
-
-    .main-aside {
-      width: 300px;
-      padding-left: 1rem;
-    }
-  }
-
-  @media (max-width: 1200px) {
-    .page-content {
-      width: 100% !important;
-    }
-
-    .main-aside {
-      display: none;
     }
   }
 }

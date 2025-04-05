@@ -4,17 +4,20 @@ import { useData } from '@/composables/data'
 import { generateId } from '@/utils/commonTools'
 import { shufflePost } from '@/utils/helper'
 import { Icon } from '@iconify/vue'
+import { isEmpty } from 'radashi'
 
 const router = useRouter()
 const { theme, page, frontmatter } = useData()
 
 // 文章信息
-const relatedData = ref(null)
+const relatedData = ref<[]>()
 
 // 获取同一分类的文章
 function getRelatedData() {
   // 分类名
   const catName = frontmatter.value.categories?.[0]
+  if (!catName)
+    return
   // 指定分类数据
   const postData = theme.value.categoriesData?.[catName]?.articles
   // 本篇索引
@@ -23,8 +26,8 @@ function getRelatedData() {
   const filteredPosts = postData.filter(post => post.id !== postId)
   // 取出两篇文章
   relatedData.value = filteredPosts.slice(0, 2)
-  if (relatedData.value.length === 0) {
-    relatedData.value = null
+  if (isEmpty(relatedData.value)) {
+    relatedData.value = undefined
   }
 }
 
@@ -41,13 +44,13 @@ onMounted(() => {
 </script>
 
 <template>
-  <div v-if="relatedData" class="related-post">
-    <div class="title">
-      <span class="name">
-        <Icon icon="mingcute:ai-fill" />
+  <div v-if="relatedData" class="space-y-4">
+    <div class="flex items-center justify-between w-full px-1.5">
+      <span class="flex items-center gap-2 text-2xl font-bold">
+        <Icon icon="mingcute:ai-fill" class="size-7" />
         相关推荐
       </span>
-      <span class="shuffle" @click="router.go(shufflePost(theme.postData))">
+      <span class="opacity-60 text-sm transition-[color,opacity] cursor-pointer hover:opacity-100 hover:text-theme" @click="router.go(shufflePost(theme.postData))">
         随便逛逛
       </span>
     </div>
@@ -55,46 +58,3 @@ onMounted(() => {
     <PostList :list-data="relatedData" simple />
   </div>
 </template>
-
-<style scoped>
-.related-post {
-  margin-top: 1rem;
-
-  .title {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-    width: 100%;
-    margin: 3rem 0 1rem 0;
-    padding: 0 6px;
-
-    .name {
-      display: flex;
-      align-items: center;
-      font-size: 24px;
-      font-weight: bold;
-
-      svg {
-        width: 26px;
-        height: 26px;
-        margin-right: 8px;
-      }
-    }
-
-    .shuffle {
-      opacity: 0.6;
-      font-size: 14px;
-      transition:
-        color 0.3s,
-        opacity 0.3s;
-      cursor: pointer;
-
-      &:hover {
-        opacity: 1;
-        color: var(--main-color);
-      }
-    }
-  }
-}
-</style>

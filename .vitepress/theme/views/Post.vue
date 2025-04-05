@@ -100,8 +100,8 @@ onMounted(() => {
         </span>
       </div>
     </div>
-    <div class="post-content">
-      <article class="post-article card">
+    <div class="post-content gap-4 min-w-0">
+      <article class="post-article w-full lg:w-[calc(100%-336px)] card">
         <!-- 过期提醒 -->
         <div v-if="postMetaData?.expired >= 180" class="expired card">
           本文发表于
@@ -145,11 +145,11 @@ onMounted(() => {
         <!-- 下一篇 -->
         <NextPost />
         <!-- 相关文章 -->
-        <RelatedPost />
+        <RelatedPost class="mt-12" />
         <!-- 评论 -->
         <Comments ref="commentRef" />
       </article>
-      <Aside show-toc />
+      <Aside show-toc class="w-xs hidden lg:flex" />
     </div>
   </div>
 </template>
@@ -273,16 +273,11 @@ onMounted(() => {
   }
 
   .post-content {
-    width: 100%;
     display: flex;
-    flex-direction: row;
     animation: fade-up 0.6s 0.3s backwards;
 
     .post-article {
-      width: calc(100% - 300px);
       padding: 1rem 2.2rem 2.2rem 2.2rem;
-      user-select: text;
-      cursor: auto;
 
       &:hover {
         border-color: var(--main-card-border);
@@ -356,21 +351,6 @@ onMounted(() => {
             background-color: var(--main-error-color);
           }
         }
-      }
-    }
-
-    .main-aside {
-      width: 300px;
-      padding-left: 1rem;
-    }
-
-    @media (max-width: 1200px) {
-      .post-article {
-        width: 100%;
-      }
-
-      .main-aside {
-        display: none;
       }
     }
   }

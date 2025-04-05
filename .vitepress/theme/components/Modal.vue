@@ -57,7 +57,7 @@ watch(
           :style="{
             maxWidth: typeof maxWidth === 'string' ? maxWidth : `${maxWidth}px`,
           }"
-          class="modal-main card"
+          class="modal-main card cursor-pointer"
           @click.stop
         >
           <!-- 标题 -->

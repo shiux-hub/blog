@@ -1,56 +1,66 @@
 /* 文章内容样式 */
 :deep(.markdown-main-style) {
   /* 标题 */
-  div > {
-    h1 {
-      font-size: 2rem;
-      text-align: center;
-      border-bottom: 1px dashed var(--main-color-bg);
-      padding-bottom: 1rem;
+  h1 {
+    font-size: var(--text-2xl);
+    text-align: center;
+    margin-block-start: 0.83em;
+    margin-block-end: 0.83em;
+    border-bottom: 1px dashed var(--color-theme-op);
+    padding-bottom: 1rem;
 
+    .header-anchor {
+      &::before {
+        display: none;
+      }
+    }
+  }
+
+  h2 {
+    font-size: var(--text-xl);
+    line-height: 1.6;
+    border-bottom: 1px dashed var(--color-theme-op);
+    padding-bottom: 0.5rem;
+    margin-block-start: 0.83em;
+    margin-block-end: 0.83em;
+  }
+
+  h3 {
+    width: fit-content;
+    font-size: var(--text-lg);
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    z-index: 0;
+
+    &::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 100%;
+      height: 8px;
+      border-radius: 3px;
+      background-color: var(--main-card-border);
+      z-index: -1;
+    }
+  }
+
+  h4 {
+    margin-block-start: 1.33em;
+    margin-block-end: 1.33em;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    position: relative;
+    cursor: pointer;
+    font-weight: bold;
+
+    &:hover {
       .header-anchor {
-        &::before {
-          display: none;
-        }
-      }
-    }
-
-    h2 {
-      font-size: 1.6rem;
-      line-height: 1.6;
-      border-bottom: 1px dashed var(--main-color-bg);
-      padding-bottom: 0.5rem;
-    }
-
-    h3 {
-      width: fit-content;
-      font-size: 1.2rem;
-      z-index: 0;
-
-      &::after {
-        content: '';
-        position: absolute;
-        left: 0;
-        bottom: 0;
-        width: 100%;
-        height: 8px;
-        border-radius: 3px;
-        background-color: var(--main-card-border);
-        z-index: -1;
-      }
-    }
-
-    h1,
-    h2,
-    h3,
-    h4 {
-      position: relative;
-      cursor: pointer;
-
-      &:hover {
-        .header-anchor {
-          opacity: 1;
-        }
+        opacity: 1;
       }
     }
   }
@@ -70,11 +80,7 @@
     }
   }
 
-  /* 文本 */
-  p {
-    font-size: 1.1rem;
-  }
-
+  /* 段落 */
   p,
   ul,
   li,
@@ -85,7 +91,7 @@
     line-height: 2;
 
     /* 行内代码 */
-    code {
+    & code:not(pre > code) {
       display: inline-flex;
       font-size: 0.8rem;
       padding: 0 6px;
@@ -145,6 +151,10 @@
     }
   }
 
+  p {
+    line-height: 1.7;
+  }
+
   /* 图片 */
   img {
     width: 100%;
@@ -193,150 +203,142 @@
   }
 
   /* 代码块 */
-  div {
-    &[class*='language-'] {
-      position: relative;
+  [class*='language-'] {
+    position: relative;
+    display: flex;
+    flex-direction: row-reverse;
+    border-radius: 12px;
+    background-color: var(--main-card-background);
+    border: 1px solid var(--main-card-border);
+    padding-top: 36px;
+    margin: 1rem 0;
+    overflow: hidden;
+
+    .copy,
+    .lang {
+      position: absolute;
+    }
+
+    .lang {
+      width: 100%;
+      height: 36px;
+      top: 0;
+      left: 0;
       display: flex;
-      flex-direction: row-reverse;
-      border-radius: 12px;
-      background-color: var(--main-card-background);
-      border: 1px solid var(--main-card-border);
-      padding-top: 36px;
-      margin: 1rem 0;
+      flex-direction: row;
+      align-items: center;
+      background-color: var(--main-card-second-background);
+      border-bottom: 1px solid var(--main-card-border);
+      padding-left: 16px;
+      font-weight: bold;
+      font-size: 18px;
+    }
+
+    .copy {
+      top: 0;
+      right: 0;
+      width: 36px;
+      height: 36px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: transparent;
       overflow: hidden;
+      border: none;
+      font-size: 20px;
+      font-style: normal;
+      z-index: 1;
+      cursor: pointer;
 
-      .copy,
-      .lang {
+      svg {
+        width: 20px;
+        height: 20px;
+        transition: color 0.3s;
+      }
+
+      &::before {
+        content: '复制成功';
         position: absolute;
+        left: -60px;
+        font-size: 14px;
+        white-space: nowrap;
+        opacity: 0;
+        transform: translateX(5px);
+        transition:
+          color 0.3s,
+          opacity 0.3s,
+          transform 0.3s;
       }
 
-      .lang {
-        width: 100%;
-        height: 36px;
-        top: 0;
-        left: 0;
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        background-color: var(--main-card-second-background);
-        border-bottom: 1px solid var(--main-card-border);
-        padding-left: 16px;
-        font-weight: bold;
-        font-size: 18px;
+      &.copied {
+        &::before {
+          opacity: 1;
+          transform: translateX(0);
+        }
       }
 
-      .copy {
-        top: 0;
-        right: 0;
-        width: 36px;
-        height: 36px;
+      &:hover {
+        &::before,
+        svg {
+          color: var(--color-theme);
+        }
+      }
+    }
+
+    .line-numbers-wrapper {
+      padding: 6px 10px;
+      opacity: 0.6;
+      text-align: center;
+      user-select: none;
+      color: var(--main-font-second-color);
+      background-color: var(--main-card-second-background);
+
+      .line-number {
         display: flex;
         align-items: center;
         justify-content: center;
-        background-color: transparent;
-        border: none;
-        font-size: 20px;
-        font-style: normal;
-        z-index: 1;
-        color: var(--main-font-color);
-        cursor: pointer;
-
-        svg {
-          width: 20px;
-          height: 20px;
-          transition: color 0.3s;
-        }
-
-        &::before {
-          content: '复制成功';
-          position: absolute;
-          left: -60px;
-          font-size: 14px;
-          white-space: nowrap;
-          opacity: 0;
-          transform: translateX(5px);
-          transition:
-            color 0.3s,
-            opacity 0.3s,
-            transform 0.3s;
-        }
-
-        &.copied {
-          &::before {
-            opacity: 1;
-            transform: translateX(0);
-          }
-        }
-
-        &:hover {
-          &::before,
-          svg {
-            color: var(--main-color);
-          }
-        }
+        height: 22px;
+        font-size: 14px;
       }
 
-      .line-numbers-wrapper {
-        padding: 6px 10px;
-        opacity: 0.6;
-        text-align: center;
-        user-select: none;
-        color: var(--main-font-second-color);
-        background-color: var(--main-card-second-background);
+      br {
+        display: none;
+      }
+    }
 
-        .line-number {
-          display: flex;
-          align-items: center;
-          justify-content: center;
+    pre {
+      margin: 0;
+      padding: 6px 10px;
+      width: 100%;
+      overflow-y: auto;
+      user-select: text;
+      border-left: 1px solid var(--main-card-border);
+
+      code {
+        font-family: 'Fira Code', var(--font-custom), monospace;
+        font-optical-sizing: auto;
+
+        .line {
+          display: inline-block;
           height: 22px;
-          font-size: 14px;
-        }
 
-        br {
-          display: none;
-        }
-      }
+          span {
+            color: var(--shiki-light);
+            transition: color 0.3s;
+          }
 
-      pre {
-        margin: 0;
-        padding: 6px 10px;
-        width: 100%;
-        overflow-y: auto;
-        user-select: text;
-        border-left: 1px solid var(--main-card-border);
+          &.highlighted {
+            width: 100%;
+            background-color: var(--main-card-border);
+            border-radius: 6px;
+          }
 
-        code {
-          font-family: 'Fira Code', var(--font-custom), monospace;
-          font-optical-sizing: auto;
-
-          .line {
-            display: inline-block;
-            height: 22px;
-
-            span {
-              color: var(--shiki-light);
-              transition: color 0.3s;
-            }
-
-            &.highlighted {
-              width: 100%;
-              background-color: var(--main-card-border);
-              border-radius: 6px;
-            }
-
-            &:empty {
-              height: 17px;
-            }
+          &:empty {
+            height: 17px;
           }
         }
       }
     }
-  }
-
-  pre {
-    width: 100%;
-    overflow-y: auto;
-    user-select: text;
   }
 
   /* blockquote */
@@ -352,6 +354,7 @@
 
     p {
       margin: 0.5rem 0;
+      line-height: 2;
     }
   }
 
@@ -390,12 +393,46 @@
   }
 
   ol {
-    padding-left: 2rem;
+    counter-reset: li 0;
+    list-style: none;
+    padding-left: 1rem;
+
+    > li {
+      padding: 0.2em 0.2em 0.2em 1.8em;
+      position: relative;
+
+      &::before {
+        width: 1.45em;
+        height: 1.45em;
+        border-radius: 0.725em;
+        content: counter(li);
+        counter-increment: li 1;
+        text-align: center;
+        font-size: 0.85em;
+        line-height: 1.45em;
+      }
+    }
 
     li {
-      &::marker {
-        color: var(--main-color);
-        font-weight: bold;
+      margin: 0.2rem 0;
+
+      &::before {
+        position: absolute;
+        top: 0.8em;
+        left: 0;
+        background: #307af6;
+        color: #fff;
+        cursor: pointer;
+        transition: all 0.3s ease-out 0s;
+      }
+
+      > * {
+        &:first-child {
+          margin-top: 0;
+        }
+        &:last-child {
+          margin-bottom: 0;
+        }
       }
     }
   }

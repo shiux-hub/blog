@@ -117,7 +117,7 @@ export function loadCSS(
  * @param isDom - 是否为 DOM 对象
  */
 export function jumpRedirect(
-  html: string | null,
+  html: string,
   themeConfig: ThemeConfig,
   isDom = false,
 ) {
@@ -125,7 +125,7 @@ export function jumpRedirect(
     // 是否为开发环境
     const isDev = process.env.NODE_ENV === 'development'
     if (isDev)
-      return false
+      return
     // 是否启用
     if (!themeConfig.jumpRedirect?.enable)
       return html
@@ -135,11 +135,11 @@ export function jumpRedirect(
     const excludeClass = themeConfig.jumpRedirect.exclude
     if (isDom) {
       if (typeof window === 'undefined' || typeof document === 'undefined')
-        return false
+        return
       // 所有链接
       const allLinks = [...document.getElementsByTagName('a')]
       if (allLinks?.length === 0)
-        return false
+        return
       allLinks.forEach((link) => {
         // 检查链接是否包含 target="_blank" 属性
         if (link.getAttribute('target') === '_blank') {
@@ -147,7 +147,7 @@ export function jumpRedirect(
           if (
             excludeClass.some(className => link.classList.contains(className))
           ) {
-            return false
+            return
           }
           const linkHref = link.getAttribute('href')
           // 存在链接且非中转页

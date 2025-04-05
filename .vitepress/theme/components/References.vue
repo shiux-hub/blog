@@ -10,7 +10,7 @@ const references = frontmatter.value?.references
 </script>
 
 <template>
-  <div v-if="references" class="references card">
+  <div v-if="references" class="references card cursor-pointer">
     <div class="title">
       <Icon icon="mingcute:quote-left-fill" />
       <span class="title-text">参考资料</span>

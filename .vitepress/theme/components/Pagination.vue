@@ -124,7 +124,7 @@ onMounted(() => {
   >
     <div
       v-if="currentPage > 1"
-      class="group bg-card-background border-card-border shadow-border-shadow max-md:hover:bg-theme md:hover:shadow-theme-none md:hover:text-theme md:hover:border-theme flex h-12.5 shrink-0 cursor-pointer items-center justify-center space-x-1 overflow-hidden rounded-lg border shadow-md transition duration-300 max-md:flex-1 max-md:hover:text-white md:h-10 md:w-20"
+      class="group bg-card-background border-card-border shadow-border-shadow max-md:hover:bg-theme md:hover:shadow-theme-none md:hover:text-theme md:hover:border-theme flex h-12.5 shrink-0 cursor-pointer items-center justify-center space-x-1 overflow-hidden rounded-lg border shadow-xm transition duration-300 max-md:flex-1 max-md:hover:text-white md:h-10 md:w-20"
       @click="
         jumpPage(
           currentPage === 2
@@ -148,9 +148,9 @@ onMounted(() => {
         :class="cn(
           'flex size-10 shrink-0 items-center justify-center overflow-hidden rounded-lg transition-colors duration-300',
           {
-            'border-card-border cursor-pointer hover:border-theme bg-card-background hover:shadow-theme-op hover:text-theme border shadow-md':
+            'border-card-border shadow-border-shadow cursor-pointer hover:border-theme bg-card-background hover:shadow-theme-op hover:text-theme border shadow-xm':
               item !== 'more',
-            'text-card-background hover:text-card-background border-theme bg-theme shadow-theme-op shadow-md':
+            'text-card-background hover:text-card-background border-theme bg-theme shadow-theme-op shadow-xm':
               item === currentPage,
           })"
         @click="
@@ -163,7 +163,9 @@ onMounted(() => {
           class="size-7"
           icon="mingcute:more-1-fill"
         />
-        <span v-else>{{ item }}</span>
+        <template v-else>
+          {{ item }}
+        </template>
       </div>
       <!-- 快速跳转 -->
       <div
@@ -176,7 +178,7 @@ onMounted(() => {
           v-model.number="jumpInput"
           :min="1"
           :max="totalPages"
-          class="outline-none rounded-lg size-10 px-2 bg-card-background border border-card-border shadow-lg shadow-border-shadow transition-all duration-300"
+          class="outline-none rounded-lg size-10 px-2 bg-card-background border border-card-border shadow-xm shadow-border-shadow transition-all duration-300"
           @focus="inputFocus = true"
           @blur="fastJump"
           @input="validateInput"
@@ -192,7 +194,7 @@ onMounted(() => {
     </div>
     <div
       v-if="currentPage * limit < total"
-      class="group bg-card-background border-card-border shadow-border-shadow max-md:hover:bg-theme md:hover:shadow-theme-none md:hover:text-theme md:hover:border-theme flex h-12.5 shrink-0 cursor-pointer items-center justify-center space-x-1 overflow-hidden rounded-lg border shadow-md transition duration-300 max-md:flex-1 max-md:hover:text-white md:h-10 md:w-20"
+      class="group bg-card-background border-card-border shadow-border-shadow max-md:hover:bg-theme md:hover:shadow-theme-none md:hover:text-theme md:hover:border-theme flex h-12.5 shrink-0 cursor-pointer items-center justify-center space-x-1 overflow-hidden rounded-lg border shadow-xm transition duration-300 max-md:flex-1 max-md:hover:text-white md:h-10 md:w-20"
       @click="jumpPage(`${routePath}/page/${currentPage + 1}`, currentPage + 1)"
     >
       <span

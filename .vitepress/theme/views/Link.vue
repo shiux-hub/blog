@@ -40,11 +40,11 @@ function randomJump() {
     <Banner v-tippy type="page" title="友情链接" desc="与各位博主无限进步">
       <template #header-slot>
         <div class="flex justify-end items-start gap-5 max-md:hidden">
-          <div class="btn hover:bg-theme px-4 py-3 border rounded-xl border-card-border shadow-lg shadow-border-shadow text-theme bg-card-second-background hover:text-card-background hover:shadow-theme-op" @click="randomJump">
+          <div class="btn hover:bg-theme px-4 py-3 border rounded-xl border-card-border shadow-xm shadow-border-shadow text-theme bg-card-second-background hover:text-card-background hover:shadow-theme-op" @click="randomJump">
             <Icon icon="mingcute:shuffle-2-fill" class="size-5" />
             <span class="name">随机访问</span>
           </div>
-          <div class="btn hover:bg-theme px-4 py-3 border rounded-xl border-card-border hover:text-white text-card-second-background shadow-lg bg-font-color hover:shadow-theme-op" @click="smoothScrolling('#友情链接申请')">
+          <div class="btn hover:bg-theme px-4 py-3 border rounded-xl border-card-border hover:text-white text-card-second-background shadow-xm bg-font-color hover:shadow-theme-op" @click="smoothScrolling('#友情链接申请')">
             <Icon
               icon="mingcute:arrow-right-circle-fill"
               class="size-5"

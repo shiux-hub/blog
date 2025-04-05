@@ -4,50 +4,36 @@ import type { SiteInfo } from '@/types/site'
 import { getSiteInfo } from '@/api'
 import { Icon } from '@iconify/vue'
 
-const props = defineProps({
+const {url,title,desc,icon} = defineProps<{
   // 地址
-  url: {
-    type: String,
-    default: '',
-  },
+  url?: string
   // 标题
-  title: {
-    type: String,
-    default: '',
-  },
+  title?: string
   // 描述
-  desc: {
-    type: String,
-    default: '',
-  },
+  desc?: string
   // 图标
-  icon: {
-    type: String,
-    default: '',
-  },
-})
+  icon?: string
+}>()
 
 // 站点数据
 const siteInfo = ref<SiteInfo | null>(null)
 
 // 是否为站内链接
 const isOutLink = computed(() => {
-  const link = props.url
-  if (!link)
+  if (!url)
     return false
   // 是否为站内链接
   return (
-    !link.startsWith('/')
-    && (link.startsWith('http://') || link.startsWith('https://'))
+    !url.startsWith('/')
+    && (url.startsWith('http://') || url.startsWith('https://'))
   )
 })
 
 // 获取站点数据
 async function getSiteInfoData() {
-  const url = props.url
   if (!url)
     return false
-  if (props.title || props.desc || props.icon)
+  if (title || desc || icon)
     return false
   // 获取数据
   const result = await getSiteInfo(url)

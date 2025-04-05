@@ -82,14 +82,14 @@ onBeforeUnmount(() => {
               <div
                 v-for="(item, index) in formatSearchData(items)"
                 :key="index"
-                class="search-item card hover"
+                class="search-item card cursor-pointer hover"
                 @click="jumpSearch(item.url)"
               >
                 <p class="title" v-html="item.title" />
                 <p v-if="item?.anchor" class="anchor" v-html="item.anchor" />
                 <p
                   v-if="item?.content"
-                  class="content card"
+                  class="content card cursor-pointer"
                   v-html="item.content"
                 />
               </div>

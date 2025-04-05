@@ -1,11 +1,11 @@
 import type { ThemeConfig } from '@/types/theme'
-import type MarkdownIt from 'markdown-it'
+import type { MarkdownRenderer } from 'vitepress'
 import markdownItAttrs from 'markdown-it-attrs'
 import container from 'markdown-it-container'
 import { tabsMarkdownPlugin } from 'vitepress-plugin-tabs'
 
 // markdown-it
-function markdownConfig(md: MarkdownIt, themeConfig: ThemeConfig) {
+function markdownConfig(md: MarkdownRenderer, themeConfig: ThemeConfig) {
   // 插件
   md.use(markdownItAttrs)
   md.use(tabsMarkdownPlugin)

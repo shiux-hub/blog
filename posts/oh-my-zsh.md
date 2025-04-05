@@ -78,7 +78,7 @@ z w in
 
 ### zsh-syntax-highlighting
 
-#### 作用
+- 作用
 
 平常用的`ls`、`cd` 等命令输入正确会绿色高亮显示，输入错误会显示其他的颜色。
 
@@ -86,31 +86,31 @@ z w in
 
 **官网** - <https://github.com/zsh-users/zsh-syntax-highlighting>
 
-#### 安装
+- 安装
 
-##### 克隆项目
+1. 克隆项目
 
-```bash
-git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
-```
+   ```bash
+   git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
+   ```
 
-**在 `~/.zshrc` 中配置**
+   **在 `~/.zshrc` 中配置**
 
-```bash
-plugins=( [plugins...] zsh-syntax-highlighting)
-```
+   ```bash
+   plugins=( [plugins...] zsh-syntax-highlighting)
+   ```
 
-##### 使配置生效
+2. 使配置生效
 
-```bash
-source ~/.zshrc
-```
+   ```bash
+   source ~/.zshrc
+   ```
 
 ### zsh-autosuggestions
 
 **官网** - <https://github.com/zsh-users/zsh-autosuggestions>
 
-#### 作用
+- 作用
 
 效率神器 👍
 
@@ -126,22 +126,22 @@ bindkey ',' autosuggest-accept
 
 在 `.zshrc` 文件添加这句话即可。
 
-#### 安装
+- 安装
 
-##### 克隆项目
+1. 克隆项目
 
-```bash
-git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
-```
+   ```bash
+   git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+   ```
 
-**在 `~/.zshrc` 中配置**
+   **在 `~/.zshrc` 中配置**
 
-```bash
-plugins=( [plugins...] zsh-syntax-highlighting)
-```
+   ```bash
+   plugins=( [plugins...] zsh-autosuggestions)
+   ```
 
-##### 使配置生效
+2. 使配置生效
 
-```bash
-source ~/.zshrc
-```
+   ```bash
+   source ~/.zshrc
+   ```

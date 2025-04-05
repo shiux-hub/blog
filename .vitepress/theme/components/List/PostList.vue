@@ -79,7 +79,7 @@ function toPost(path: string) {
     <div
       v-for="(item, index) in listData"
       :key="index"
-      class="post-item card hover"
+      class="post-item card hover cursor-pointer"
       :class="[
         { simple, cover: showCover, [`cover-${layoutType}`]: showCover },
       ]"

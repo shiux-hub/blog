@@ -27,7 +27,7 @@ const router = useRouter()
           <div
             v-for="(post, postIndex) in theme.archivesData.data[year].articles"
             :key="postIndex"
-            class="posts-item card hover:border hover:border-theme hover:shadow-lg hover:shadow-theme-op"
+            class="posts-item cursor-pointer card hover:border hover:border-theme hover:shadow-xm hover:shadow-theme-op"
             @click="router.go(post.regularPath)"
           >
             <span class="title">{{ post.title }}</span>

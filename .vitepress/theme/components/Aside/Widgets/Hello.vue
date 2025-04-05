@@ -11,6 +11,7 @@ const { theme } = useData()
 const helloClick = ref(0)
 const helloTimeOut = ref<number>()
 const helloText = ref(getGreetings())
+const router = useRouter()
 
 // 恢复问候语
 function resetHello() {
@@ -78,21 +79,25 @@ onBeforeUnmount(() => {
       <span class="site-desc" v-html="theme.aside.hello.text" />
     </div>
     <div class="info">
-      <div class="name">
+      <div class="name" @click="router.go('/pages/about')">
         <span class="author">{{ theme.siteMeta.author.name }}</span>
         <span class="desc">{{ theme.siteMeta.description }}</span>
       </div>
       <div class="link">
         <a
+          v-tippy
           href="https://github.com/shiux-lab/"
           target="_blank"
           class="social-link"
+          title="GitHub"
         >
           <Icon icon="ri:github-line" />
         </a>
         <a
+          v-tippy
           href="mailto:dropout.cn@gmail.com"
           target="_blank"
+          title="发邮件给我"
           class="social-link"
         >
           <Icon icon="mdi:email-outline" />
@@ -110,6 +115,7 @@ onBeforeUnmount(() => {
   background-color: var(--main-color);
   color: var(--main-card-background);
   border: none;
+
   .tip {
     display: inline-block;
     min-width: 140px;
@@ -120,6 +126,7 @@ onBeforeUnmount(() => {
     font-weight: bold;
     background-color: var(--main-color-opacity);
     margin-bottom: 12px;
+    cursor: pointer;
     transition:
       color 0.3s,
       transform 0.3s,
@@ -165,16 +172,25 @@ onBeforeUnmount(() => {
     justify-content: space-between;
     width: 100%;
     margin-top: 20px;
+
     .name {
       display: flex;
       flex-direction: column;
+      cursor: pointer;
+      transition: opacity 0.3s;
+
       .author {
         font-weight: bold;
         font-size: 20px;
       }
+
       .desc {
         font-size: 12px;
         opacity: 0.6;
+      }
+
+      &:hover {
+        opacity: 0.9;
       }
     }
     .link {
