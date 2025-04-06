@@ -11,10 +11,10 @@ function markdownConfig(md: MarkdownRenderer, themeConfig: ThemeConfig) {
   md.use(tabsMarkdownPlugin)
   // timeline
   md.use(container, 'timeline', {
-    validate: params => params.trim().match(/^timeline\s+(.*)$/),
+    validate: params => /^timeline\s+\S.*$/.test(params.trim()),
     render: (tokens, idx) => {
-      const m = tokens[idx].info.trim().match(/^timeline\s+(.*)$/)
-      if (tokens[idx].nesting === 1) {
+      const m = tokens[idx].info.trim().match(/^timeline\s+\S.*$/)
+      if (tokens[idx].nesting === 1 && m) {
         return `<div class="timeline">
                     <span class="timeline-title">${md.utils.escapeHtml(m[1])}</span>
                     <div class="timeline-content">`
@@ -23,7 +23,7 @@ function markdownConfig(md: MarkdownRenderer, themeConfig: ThemeConfig) {
         return '</div></div>\n'
       }
     },
-  })
+  } as container.ContainerOpts)
   // radio
   md.use(container, 'radio', {
     render: (tokens, idx, _options, env) => {
@@ -40,7 +40,7 @@ function markdownConfig(md: MarkdownRenderer, themeConfig: ThemeConfig) {
         return '</div>'
       }
     },
-  })
+  } as container.ContainerOpts)
   // button
   md.use(container, 'button', {
     render: (tokens, idx) => {
@@ -53,7 +53,7 @@ function markdownConfig(md: MarkdownRenderer, themeConfig: ThemeConfig) {
         return '</button>'
       }
     },
-  })
+  } as container.ContainerOpts)
   // card
   md.use(container, 'card', {
     render: (tokens, idx) => {
@@ -65,7 +65,7 @@ function markdownConfig(md: MarkdownRenderer, themeConfig: ThemeConfig) {
         return '</div>'
       }
     },
-  })
+  } as container.ContainerOpts)
   // 表格
   md.renderer.rules.table_open = () => {
     return '<div class="table-container"><table>'

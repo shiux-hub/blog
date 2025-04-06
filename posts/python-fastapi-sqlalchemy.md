@@ -59,7 +59,7 @@ CREATE TABLE `items`  (
 
 对于这些示例，假设你有一个名为sql_app的目录，其结构如下：
 
-```tree
+```shell
 sql_app
 ├── crud.py
 ├── database.py

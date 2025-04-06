@@ -181,7 +181,7 @@ export function jumpRedirect(
         // 存在链接且非中转页
         if (href && !href.includes(redirectPage)) {
           // Base64 编码 href
-          const encodedHref = Buffer.from(href, 'utf-8').toString('base64')
+          const encodedHref = btoa(encodeURIComponent(href))
           // 获取所有属性
           const attributes = el.attribs
           // 重构属性字符串，保留原有属性

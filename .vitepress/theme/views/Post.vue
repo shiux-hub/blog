@@ -112,7 +112,7 @@ onMounted(() => {
         <div v-if="postMetaData?.expired >= 180" class="mt-4 mb-8 py-3 px-5 border-l-6 border-warning rounded-l-md card">
           本文发表于
           <strong class="text-warning">{{ postMetaData?.expired }}</strong>
-          天前，其中的信息可能已经事过境迁
+          天前，其中的信息可能已经时过境迁
         </div>
         <!-- AI 摘要 -->
         <ArticleGPT />
