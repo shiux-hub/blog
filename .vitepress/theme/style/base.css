@@ -187,7 +187,7 @@
 @layer components {
   /* 通用卡片 */
   .card {
-    @apply p-3 rounded-2xl bg-card-background border border-card-border shadow-xm shadow-border-shadow transition-all duration-300;
+    @apply bg-card-background border-card-border shadow-xm shadow-border-shadow rounded-2xl border p-3 transition-all duration-300;
 
     &.hover:hover {
       @apply border-theme shadow-theme-op;
@@ -196,7 +196,7 @@
 
   /* 通用按钮 */
   .btn {
-    @apply flex items-center p-2 gap-2 justify-center rounded-lg transition duration-300 cursor-pointer select-none;
+    @apply flex cursor-pointer items-center justify-center gap-2 rounded-lg p-2 transition duration-300 select-none;
 
     svg {
       @apply size-5;
@@ -209,7 +209,7 @@
 
   /* 通用分割线 */
   .separator {
-    @apply w-full h-px bg-card-border;
+    @apply bg-card-border h-px w-full;
 
     &.vertical {
       @apply h-full w-px;

@@ -12,7 +12,9 @@ const route = useRoute()
 </script>
 
 <template>
-  <div class="bg-card-second-background space-y-3 p-5 overflow-hidden card relative">
+  <div
+    class="bg-card-second-background card relative space-y-3 overflow-hidden p-5"
+  >
     <Icon
       icon="mingcute:copyright-line"
       class="absolute -top-16 -right-16 m-0 size-64 rotate-[334deg] opacity-10"
@@ -30,20 +32,24 @@ const route = useRoute()
     <div class="flex items-center gap-8 max-md:hidden">
       <div class="flex flex-col gap-1">
         作者
-        <span class="opacity-60 text-sm">{{ theme.siteMeta.author.name }}</span>
+        <span class="text-sm opacity-60">{{ theme.siteMeta.author.name }}</span>
       </div>
       <div v-if="postData?.date" class="flex flex-col gap-1">
         发布于
-        <span class="opacity-60 text-sm">{{ formatTimestamp(postData.date) }}</span>
+        <span class="text-sm opacity-60">{{
+          formatTimestamp(postData.date)
+        }}</span>
       </div>
       <div v-if="postData?.lastModified" class="flex flex-col gap-1">
         更新于
-        <span class="opacity-60 text-sm">{{ formatTimestamp(postData.lastModified) }}</span>
+        <span class="text-sm opacity-60">{{
+          formatTimestamp(postData.lastModified)
+        }}</span>
       </div>
       <div class="flex flex-col gap-1">
         许可协议
         <a
-          class="opacity-60 text-sm transition-[color,opacity] duration-300 cursor-pointer hover:opacity-100 hover:text-theme"
+          class="hover:text-theme cursor-pointer text-sm opacity-60 transition-[color,opacity] duration-300 hover:opacity-100"
           href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh-hans"
           target="_blank"
         >

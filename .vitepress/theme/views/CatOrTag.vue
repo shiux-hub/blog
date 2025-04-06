@@ -29,29 +29,46 @@ const { theme } = useData()
     </div>
     <div
       v-if="type === 'categories'"
-      class="flex flex-wrap gap-2 items-center justify-center mt-8 mb-12"
+      class="mt-8 mb-12 flex flex-wrap items-center justify-center gap-2"
     >
       <a
         v-for="(item, key, index) in theme.categoriesData"
         :key="index"
         :href="`/pages/categories/${key}`"
-        class="text-lg flex items-center card gap-2 group hover:scale-105 hover:bg-theme"
+        class="card group hover:bg-theme flex items-center gap-2 text-lg hover:scale-105"
       >
-        <Icon icon="mingcute:classify-2-fill" class="font-bold transition-[color] duration-300 opacity-60 size-5 group-hover:text-card-background group-hover:opacity-100" />
-        <span class="font-bold transition-[color,opacity] duration-300 group-hover:text-card-background">{{ key }}</span>
-        <span class="flex items-center justify-center size-7 rounded-lg text-sm bg-card-border">{{ item.count }}</span>
+        <Icon
+          icon="mingcute:classify-2-fill"
+          class="group-hover:text-card-background size-5 font-bold opacity-60 transition-[color] duration-300 group-hover:opacity-100"
+        />
+        <span
+          class="group-hover:text-card-background font-bold transition-[color,opacity] duration-300"
+        >{{ key }}</span>
+        <span
+          class="bg-card-border flex size-7 items-center justify-center rounded-lg text-sm"
+        >{{ item.count }}</span>
       </a>
     </div>
-    <div v-else class="flex flex-wrap gap-2 items-center justify-center mt-8 mb-12">
+    <div
+      v-else
+      class="mt-8 mb-12 flex flex-wrap items-center justify-center gap-2"
+    >
       <a
         v-for="(item, key, index) in theme.tagsData"
         :key="index"
         :href="`/pages/tags/${key}`"
-        class="text-lg flex items-center card gap-2 group hover:scale-105 hover:bg-theme"
+        class="card group hover:bg-theme flex items-center gap-2 text-lg hover:scale-105"
       >
-        <Icon icon="mingcute:hashtag-fill" class="font-bold transition-[color] duration-300 opacity-60 size-5 group-hover:text-card-background group-hover:opacity-100" />
-        <span class="font-bold transition-[color,opacity] duration-300 group-hover:text-card-background">{{ key }}</span>
-        <span class="flex items-center justify-center size-7 rounded-lg text-sm bg-card-border">{{ item.count }}</span>
+        <Icon
+          icon="mingcute:hashtag-fill"
+          class="group-hover:text-card-background size-5 font-bold opacity-60 transition-[color] duration-300 group-hover:opacity-100"
+        />
+        <span
+          class="group-hover:text-card-background font-bold transition-[color,opacity] duration-300"
+        >{{ key }}</span>
+        <span
+          class="bg-card-border flex size-7 items-center justify-center rounded-lg text-sm"
+        >{{ item.count }}</span>
       </a>
     </div>
   </div>

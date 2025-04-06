@@ -73,11 +73,7 @@ const socialLinkData = computed(() => {
       </a>
     </div>
     <div class="footer-sitemap">
-      <div
-        v-for="(item, index) in sitemap"
-        :key="index"
-        class="sitemap-item"
-      >
+      <div v-for="(item, index) in sitemap" :key="index" class="sitemap-item">
         <span class="title">{{ item.text }}</span>
         <div class="links">
           <a

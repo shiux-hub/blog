@@ -3,7 +3,12 @@
 import { useData } from '@/composables/data'
 import { mainStore } from '@/store'
 
-const { showHeader, category, tag, page = 1 } = defineProps<{
+const {
+  showHeader,
+  category,
+  tag,
+  page = 1,
+} = defineProps<{
   // 显示首页头部
   showHeader: boolean
   // 当前页数
@@ -92,7 +97,9 @@ watch(
   <div class="home">
     <Banner v-if="showHeader" :height="store.bannerType" />
     <div class="flex space-x-4">
-      <div class="transition-[width] duration-300 w-full lg:w-[calc(100%-336px)]">
+      <div
+        class="w-full transition-[width] duration-300 lg:w-[calc(100%-336px)]"
+      >
         <!-- 分类总览 -->
         <TypeBar :type="tag ? 'tags' : 'categories'" />
         <!-- 文章列表 -->
@@ -113,7 +120,7 @@ watch(
         />
       </div>
       <!-- 侧边栏 -->
-      <Aside class="w-xs hidden lg:flex" />
+      <Aside class="hidden w-xs lg:flex" />
     </div>
   </div>
 </template>

@@ -124,7 +124,7 @@ onMounted(() => {
   >
     <div
       v-if="currentPage > 1"
-      class="group bg-card-background border-card-border shadow-border-shadow max-md:hover:bg-theme md:hover:shadow-theme-none md:hover:text-theme md:hover:border-theme flex h-12.5 shrink-0 cursor-pointer items-center justify-center space-x-1 overflow-hidden rounded-lg border shadow-xm transition duration-300 max-md:flex-1 max-md:hover:text-white md:h-10 md:w-20"
+      class="group bg-card-background border-card-border shadow-border-shadow max-md:hover:bg-theme md:hover:shadow-theme-none md:hover:text-theme md:hover:border-theme shadow-xm flex h-12.5 shrink-0 cursor-pointer items-center justify-center space-x-1 overflow-hidden rounded-lg border transition duration-300 max-md:flex-1 max-md:hover:text-white md:h-10 md:w-20"
       @click="
         jumpPage(
           currentPage === 2
@@ -139,20 +139,21 @@ onMounted(() => {
         class="mr-0 transition-[opacity,margin] duration-300 md:-mr-8 md:opacity-0 md:group-hover:mr-0 md:group-hover:opacity-100"
       >上页</span>
     </div>
-    <div
-      class="hidden w-full items-center justify-center gap-2 md:flex"
-    >
+    <div class="hidden w-full items-center justify-center gap-2 md:flex">
       <div
         v-for="(item, index) in pageNumber"
         :key="index"
-        :class="cn(
-          'flex size-10 shrink-0 items-center justify-center overflow-hidden rounded-lg transition-colors duration-300',
-          {
-            'border-card-border shadow-border-shadow cursor-pointer hover:border-theme bg-card-background hover:shadow-theme-op hover:text-theme border shadow-xm':
-              item !== 'more',
-            'text-card-background hover:text-card-background border-theme bg-theme shadow-theme-op shadow-xm':
-              item === currentPage,
-          })"
+        :class="
+          cn(
+            'flex size-10 shrink-0 items-center justify-center overflow-hidden rounded-lg transition-colors duration-300',
+            {
+              'border-card-border shadow-border-shadow hover:border-theme bg-card-background hover:shadow-theme-op hover:text-theme shadow-xm cursor-pointer border':
+                item !== 'more',
+              'text-card-background hover:text-card-background border-theme bg-theme shadow-theme-op shadow-xm':
+                item === currentPage,
+            },
+          )
+        "
         @click="
           item !== 'more'
             && jumpPage(item === 1 ? routePath : `${routePath}/page/${item}`, item)
@@ -178,7 +179,7 @@ onMounted(() => {
           v-model.number="jumpInput"
           :min="1"
           :max="totalPages"
-          class="outline-none rounded-lg size-10 px-2 bg-card-background border border-card-border shadow-xm shadow-border-shadow transition-all duration-300"
+          class="bg-card-background border-card-border shadow-xm shadow-border-shadow size-10 rounded-lg border px-2 transition-all duration-300 outline-none"
           @focus="inputFocus = true"
           @blur="fastJump"
           @input="validateInput"
@@ -186,7 +187,7 @@ onMounted(() => {
         >
         <Icon
           icon="mingcute:arrows-right-line"
-          class="absolute size-7 rounded-md -translate-y-1/2 top-1/2 right-1.5 transition duration-300 cursor-pointer hover:text-card-background hover:bg-theme"
+          class="hover:text-card-background hover:bg-theme absolute top-1/2 right-1.5 size-7 -translate-y-1/2 cursor-pointer rounded-md transition duration-300"
           :class="{ click: jumpInput }"
           @click.stop="fastJump"
         />
@@ -194,7 +195,7 @@ onMounted(() => {
     </div>
     <div
       v-if="currentPage * limit < total"
-      class="group bg-card-background border-card-border shadow-border-shadow max-md:hover:bg-theme md:hover:shadow-theme-none md:hover:text-theme md:hover:border-theme flex h-12.5 shrink-0 cursor-pointer items-center justify-center space-x-1 overflow-hidden rounded-lg border shadow-xm transition duration-300 max-md:flex-1 max-md:hover:text-white md:h-10 md:w-20"
+      class="group bg-card-background border-card-border shadow-border-shadow max-md:hover:bg-theme md:hover:shadow-theme-none md:hover:text-theme md:hover:border-theme shadow-xm flex h-12.5 shrink-0 cursor-pointer items-center justify-center space-x-1 overflow-hidden rounded-lg border transition duration-300 max-md:flex-1 max-md:hover:text-white md:h-10 md:w-20"
       @click="jumpPage(`${routePath}/page/${currentPage + 1}`, currentPage + 1)"
     >
       <span

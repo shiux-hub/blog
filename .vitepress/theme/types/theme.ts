@@ -2,10 +2,8 @@ import type { CatOrTagData } from '@/utils/getPostData'
 import type { DefaultTheme } from 'vitepress/theme'
 import type { PostDataItem } from './post'
 
-export interface ThemeConfig extends Pick<
-  DefaultTheme.Config,
-  'search' | 'socialLinks'
-> {
+export interface ThemeConfig
+  extends Pick<DefaultTheme.Config, 'search' | 'socialLinks'> {
   siteMeta: {
     title: string
     description: string

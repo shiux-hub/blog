@@ -77,7 +77,7 @@ function toRewardList() {
         </div>
         <div
           v-if="showJump"
-          class="all-list card cursor-pointer hover"
+          class="all-list card hover cursor-pointer"
           @click="toRewardList"
         >
           <span class="title">全部赞赏者名单</span>

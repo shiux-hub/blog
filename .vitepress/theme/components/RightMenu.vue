@@ -257,10 +257,10 @@ defineExpose({ openRightMenu })
             left: `${rightMenuX}px`,
             top: `${rightMenuY}px`,
           }"
-          class="absolute w-45 space-y-3 animate-fade-up card cursor-pointer transition-[opacity,border-color,box-shadow,background-color] hover"
+          class="animate-fade-up card hover absolute w-45 cursor-pointer space-y-3 transition-[opacity,border-color,box-shadow,background-color]"
           @contextmenu.stop="closeRightMenu"
         >
-          <div class="flex items-center w-full justify-between">
+          <div class="flex w-full items-center justify-between">
             <div
               v-tippy
               class="btn hover:bg-theme size-8"
@@ -378,7 +378,7 @@ defineExpose({ openRightMenu })
                   && isLink(clickedTypeData)
               "
               :href="`${isLink(clickedTypeData)}`"
-              class="btn hover:bg-theme justify-start right-menu-link"
+              class="btn hover:bg-theme right-menu-link justify-start"
               target="_blank"
             >
               <Icon icon="mingcute:external-link-fill" />
@@ -387,7 +387,7 @@ defineExpose({ openRightMenu })
             <a
               v-if="clickedType === 'text' || clickedType === 'input'"
               :href="`https://www.baidu.com/s?wd=${encodeURIComponent(clickedTypeData)}`"
-              class="btn hover:bg-theme justify-start right-menu-link"
+              class="btn hover:bg-theme right-menu-link justify-start"
               target="_blank"
             >
               <Icon icon="ri:baidu-fill" />
@@ -396,7 +396,7 @@ defineExpose({ openRightMenu })
             <a
               v-if="clickedType === 'text' || clickedType === 'input'"
               :href="`https://cn.bing.com/search?q=${encodeURIComponent(clickedTypeData)}`"
-              class="btn hover:bg-theme justify-start right-menu-link"
+              class="btn hover:bg-theme right-menu-link justify-start"
               target="_blank"
             >
               <Icon icon="mdi:microsoft-bing" />
@@ -427,12 +427,18 @@ defineExpose({ openRightMenu })
           <!-- 通用菜单 -->
           <div class="general space-y-1.5">
             <!-- 版权协议 -->
-            <div class="btn hover:bg-theme justify-start" @click="router.go('/pages/cc')">
+            <div
+              class="btn hover:bg-theme justify-start"
+              @click="router.go('/pages/cc')"
+            >
               <Icon icon="tabler:accessible-filled" />
               <span class="name">版权协议</span>
             </div>
             <!-- 隐私政策 -->
-            <div class="btn hover:bg-theme justify-start" @click="router.go('/pages/privacy')">
+            <div
+              class="btn hover:bg-theme justify-start"
+              @click="router.go('/pages/privacy')"
+            >
               <Icon icon="mingcute:safety-certificate-fill" />
               <span class="name">隐私政策</span>
             </div>
@@ -440,12 +446,18 @@ defineExpose({ openRightMenu })
           <div class="separator" />
           <div class="general space-y-1.5">
             <!-- 复制地址 -->
-            <div class="btn hover:bg-theme justify-start" @click="rightMenuFunc('copy-link')">
+            <div
+              class="btn hover:bg-theme justify-start"
+              @click="rightMenuFunc('copy-link')"
+            >
               <Icon icon="mingcute:copy-fill" />
               <span class="name">复制本页地址</span>
             </div>
             <!-- 明暗模式 -->
-            <div class="btn hover:bg-theme justify-start" @click.stop="store.changeThemeType">
+            <div
+              class="btn hover:bg-theme justify-start"
+              @click.stop="store.changeThemeType"
+            >
               <Icon
                 :icon="
                   themeType === 'auto'
@@ -473,10 +485,13 @@ defineExpose({ openRightMenu })
               <span class="name">{{ playerData.name }}</span>
               <span class="artist">{{ playerData.artist }}</span>
             </div>
-            <div class="flex items-center justify-between p-1.5 mt-4 w-full" @click.stop>
+            <div
+              class="mt-4 flex w-full items-center justify-between p-1.5"
+              @click.stop
+            >
               <Icon
                 icon="material-symbols:volume-down-rounded"
-                class="size-5 shrink-0 text-font-second-color cursor-pointer hover:text-theme"
+                class="text-font-second-color hover:text-theme size-5 shrink-0 cursor-pointer"
                 @click="playerVolume = Math.max(0, playerVolume - 0.1)"
               />
 
@@ -486,7 +501,7 @@ defineExpose({ openRightMenu })
               />
               <Icon
                 icon="material-symbols:volume-up-rounded"
-                class="size-5 shrink-0 text-font-second-color cursor-pointer hover:text-theme"
+                class="text-font-second-color hover:text-theme size-5 shrink-0 cursor-pointer"
                 @click="playerVolume = Math.min(1, playerVolume + 0.1)"
               />
             </div>
@@ -497,7 +512,10 @@ defineExpose({ openRightMenu })
                 title="上一曲"
                 @click="playerControl('prev')"
               >
-                <Icon icon="material-symbols:skip-previous-rounded" class="size-6.5" />
+                <Icon
+                  icon="material-symbols:skip-previous-rounded"
+                  class="size-6.5"
+                />
               </div>
               <div
                 v-if="playState"
@@ -515,7 +533,10 @@ defineExpose({ openRightMenu })
                 title="播放"
                 @click="playerControl('toggle')"
               >
-                <Icon icon="material-symbols:play-arrow-rounded" class="size-6.5" />
+                <Icon
+                  icon="material-symbols:play-arrow-rounded"
+                  class="size-6.5"
+                />
               </div>
               <div
                 v-tippy
@@ -523,7 +544,10 @@ defineExpose({ openRightMenu })
                 title="下一曲"
                 @click="playerControl('next')"
               >
-                <Icon icon="material-symbols:skip-next-rounded" class="size-6.5" />
+                <Icon
+                  icon="material-symbols:skip-next-rounded"
+                  class="size-6.5"
+                />
               </div>
             </div>
           </div>

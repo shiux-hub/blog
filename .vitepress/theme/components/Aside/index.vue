@@ -12,13 +12,29 @@ const { theme } = useData()
 </script>
 
 <template>
-  <aside :class="cn('flex-col animate-fade-up duration-600 delay-300 space-y-4', $props.class)">
+  <aside
+    :class="
+      cn(
+        'animate-fade-up flex-col space-y-4 delay-300 duration-600',
+        $props.class,
+      )
+    "
+  >
     <Hello v-if="theme.aside.hello.enable" />
     <div class="sticky top-[calc(60px+1rem)] space-y-4">
-      <Toc v-if="theme.aside.toc.enable && showToc" class="animate-fade-up duration-600 delay-400" />
-      <Countdown class="animate-fade-up duration-600 delay-400" />
-      <Tags v-if="theme.aside.tags.enable" class="animate-fade-up duration-600 delay-400" />
-      <SiteData v-if="theme.aside.siteData.enable" class="animate-fade-up duration-600 delay-400" />
+      <Toc
+        v-if="theme.aside.toc.enable && showToc"
+        class="animate-fade-up delay-400 duration-600"
+      />
+      <Countdown class="animate-fade-up delay-400 duration-600" />
+      <Tags
+        v-if="theme.aside.tags.enable"
+        class="animate-fade-up delay-400 duration-600"
+      />
+      <SiteData
+        v-if="theme.aside.siteData.enable"
+        class="animate-fade-up delay-400 duration-600"
+      />
     </div>
   </aside>
 </template>

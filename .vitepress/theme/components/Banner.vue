@@ -5,25 +5,28 @@ import { useData } from '@/composables/data'
 import { mainStore } from '@/store'
 import { Icon } from '@iconify/vue'
 
-const props = withDefaults(defineProps<{
-  // 类型
-  type?: string
-  // 高度
-  height?: string
-  // 标题
-  title?: string
-  // 简介
-  desc?: string
-  // 注释
-  footer?: string
-  // 背景
-  image?: string
-}>(), {
-  type: 'text',
-  height: 'half',
-  title: '这里是标题',
-  desc: '这里是简介',
-})
+const props = withDefaults(
+  defineProps<{
+    // 类型
+    type?: string
+    // 高度
+    height?: string
+    // 标题
+    title?: string
+    // 简介
+    desc?: string
+    // 注释
+    footer?: string
+    // 背景
+    image?: string
+  }>(),
+  {
+    type: 'text',
+    height: 'half',
+    title: '这里是标题',
+    desc: '这里是简介',
+  },
+)
 const store = mainStore()
 const { theme } = useData()
 const hitokotoData = ref<Hitokoto>()

@@ -8,7 +8,8 @@ const { frontmatter } = useData()
 <template>
   <div
     :class="[
-      frontmatter.layout || 'flex space-x-4 animate-fade-up delay-100 duration-600',
+      frontmatter.layout
+        || 'animate-fade-up flex space-x-4 delay-100 duration-600',
       {
         'animate-fade-up delay-300 duration-600': frontmatter.aside,
       },
@@ -17,7 +18,8 @@ const { frontmatter } = useData()
     <div
       class="w-full"
       :class="{
-        'transition-[width] duration-300 delay-100 lg:w-[calc(100%-336px)]': frontmatter.aside,
+        'transition-[width] delay-100 duration-300 lg:w-[calc(100%-336px)]':
+          frontmatter.aside,
       }"
     >
       <!-- 页面内容 -->
@@ -29,7 +31,7 @@ const { frontmatter } = useData()
       <!-- 评论 -->
       <Comments v-if="frontmatter.comment" />
     </div>
-    <Aside v-if="frontmatter.aside" class="w-xs hidden lg:flex" />
+    <Aside v-if="frontmatter.aside" class="hidden w-xs lg:flex" />
   </div>
 </template>
 

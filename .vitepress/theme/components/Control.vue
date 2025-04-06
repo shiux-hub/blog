@@ -35,18 +35,21 @@ function rightMenuSwitch() {
     <Transition name="fade" mode="out-in" @before-enter="changeCloseStyle">
       <div
         v-if="store.controlShow"
-        class="fixed inset-0 flex items-center bg-mask-background-deep justify-center w-svw h-svh z-1100"
+        class="bg-mask-background-deep fixed inset-0 z-1100 flex h-svh w-svw items-center justify-center"
         @click="store.changeShowStatus('controlShow')"
       >
         <!-- 关闭按钮 -->
-        <div ref="closeControlRef" class="absolute p-2 opacity-0 transition-[opacity,background-color,color] hover:bg-theme hover:text-card-background duration-300 rounded-full cursor-pointer">
+        <div
+          ref="closeControlRef"
+          class="hover:bg-theme hover:text-card-background absolute cursor-pointer rounded-full p-2 opacity-0 transition-[opacity,background-color,color] duration-300"
+        >
           <Icon icon="mingcute:close-fill" class="size-5" />
         </div>
         <!-- 功能菜单 -->
         <div class="flex items-center gap-3">
           <div
             v-tippy
-            class="p-4 bg-theme text-white rounded-full cursor-pointer border border-card-border transition-[background-color,scale] duration-300 hover:scale-105 active:scale-100"
+            class="bg-theme border-card-border cursor-pointer rounded-full border p-4 text-white transition-[background-color,scale] duration-300 hover:scale-105 active:scale-100"
             title="显示模式切换"
             @click.stop="store.changeThemeType"
           >
@@ -63,10 +66,12 @@ function rightMenuSwitch() {
           </div>
           <div
             v-tippy
-            :class="cn(
-              'p-4 bg-card-background rounded-full cursor-pointer border border-card-border transition-[background-color,scale] duration-300 hover:scale-105 active:scale-100',
-              { 'bg-theme text-white': store.useRightMenu },
-            )"
+            :class="
+              cn(
+                'bg-card-background border-card-border cursor-pointer rounded-full border p-4 transition-[background-color,scale] duration-300 hover:scale-105 active:scale-100',
+                { 'bg-theme text-white': store.useRightMenu },
+              )
+            "
             title="右键菜单开关"
             @click.stop="rightMenuSwitch"
           >
@@ -74,10 +79,12 @@ function rightMenuSwitch() {
           </div>
           <div
             v-tippy
-            :class="cn(
-              'p-4 bg-card-background rounded-full cursor-pointer border border-card-border transition-[background-color,scale] duration-300 hover:scale-105 active:scale-100',
-              { 'bg-theme text-white': store.playerShow },
-            )"
+            :class="
+              cn(
+                'bg-card-background border-card-border cursor-pointer rounded-full border p-4 transition-[background-color,scale] duration-300 hover:scale-105 active:scale-100',
+                { 'bg-theme text-white': store.playerShow },
+              )
+            "
             title="播放器开关"
             @click.stop="store.changeShowStatus('playerShow')"
           >
@@ -85,10 +92,12 @@ function rightMenuSwitch() {
           </div>
           <div
             v-tippy
-            :class="cn(
-              'p-4 bg-card-background border-card-border rounded-full cursor-pointer border transition-[background-color,scale] duration-300 hover:scale-105 active:scale-100',
-              { 'bg-theme text-white': store.backgroundBlur },
-            )"
+            :class="
+              cn(
+                'bg-card-background border-card-border cursor-pointer rounded-full border p-4 transition-[background-color,scale] duration-300 hover:scale-105 active:scale-100',
+                { 'bg-theme text-white': store.backgroundBlur },
+              )
+            "
             title="背景模糊开关"
             @click.stop="store.changeShowStatus('backgroundBlur')"
           >

@@ -45,12 +45,15 @@ onMounted(() => {
 
 <template>
   <div v-if="relatedData" class="space-y-4">
-    <div class="flex items-center justify-between w-full px-1.5">
+    <div class="flex w-full items-center justify-between px-1.5">
       <span class="flex items-center gap-2 text-2xl font-bold">
         <Icon icon="mingcute:ai-fill" class="size-7" />
         相关推荐
       </span>
-      <span class="opacity-60 text-sm transition-[color,opacity] cursor-pointer hover:opacity-100 hover:text-theme" @click="router.go(shufflePost(theme.postData))">
+      <span
+        class="hover:text-theme cursor-pointer text-sm opacity-60 transition-[color,opacity] hover:opacity-100"
+        @click="router.go(shufflePost(theme.postData))"
+      >
         随便逛逛
       </span>
     </div>

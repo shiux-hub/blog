@@ -13,7 +13,9 @@ export type DeepPartial<T> = {
  */
 export async function getThemeConfig(): Promise<ThemeConfig> {
   try {
-    const configPath = fileURLToPath(new URL('../themeConfig.ts', import.meta.url))
+    const configPath = fileURLToPath(
+      new URL('../themeConfig.ts', import.meta.url),
+    )
 
     if (existsSync(configPath)) {
       const userConfig = await import('../themeConfig')
@@ -39,8 +41,7 @@ export async function getThemeConfig(): Promise<ThemeConfig> {
           }
 
           // 处理对象
-          if (isObject(existing) && isObject(value)
-            && !isArray(existing)) {
+          if (isObject(existing) && isObject(value) && !isArray(existing)) {
             // 递归合并
             merged[key] = deepMerge(existing, value)
             continue

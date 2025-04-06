@@ -113,7 +113,8 @@ function markdownConfig(md: MarkdownRenderer, themeConfig: ThemeConfig) {
         danger: 'danger',
       }
 
-      const className = admonitionTypes[type as keyof typeof admonitionTypes] || 'info'
+      const className
+        = admonitionTypes[type as keyof typeof admonitionTypes] || 'info'
       const title = type.toUpperCase()
 
       return `<div class="${className} custom-block">

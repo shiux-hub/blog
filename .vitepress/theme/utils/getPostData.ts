@@ -107,10 +107,13 @@ export async function getAllPosts(): Promise<PostDataItem[]> {
   }
 }
 
-export type CatOrTagData = Record<string, {
-  count: number
-  articles: PostDataItem[]
-}>
+export type CatOrTagData = Record<
+  string,
+  {
+    count: number
+    articles: PostDataItem[]
+  }
+>
 
 /**
  * 获取所有标签及其相关文章的统计信息

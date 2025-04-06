@@ -1,14 +1,10 @@
 <!-- 全局搜索 -->
 <script lang="ts" setup>
-import { useData } from '@/composables/data'
 import { mainStore } from '@/store'
 import { liteClient } from 'algoliasearch/lite'
 
 const store = mainStore()
 const router = useRouter()
-
-const { theme } = useData()
-const { appId, apiKey } = theme.value.search
 
 const searchClient = liteClient(appId, apiKey)
 
@@ -82,7 +78,7 @@ onBeforeUnmount(() => {
               <div
                 v-for="(item, index) in formatSearchData(items)"
                 :key="index"
-                class="search-item card cursor-pointer hover"
+                class="search-item card hover cursor-pointer"
                 @click="jumpSearch(item.url)"
               >
                 <p class="title" v-html="item.title" />
@@ -133,17 +129,16 @@ onBeforeUnmount(() => {
       border-radius: 8px;
       font-size: 16px;
       padding: 0.6rem 1rem;
-      color: var(--main-font-color);
-      font-family: var(--main-font-family);
-      border: 1px solid var(--main-card-border);
-      background-color: var(--main-card-second-background);
+      color: var(--color-font-color);
+      border: 1px solid var(--color-card-border);
+      background-color: var(--color-card-second-background);
       transition:
         border-color 0.3s,
         box-shadow 0.3s;
 
       &:focus {
-        border-color: var(--main-color);
-        box-shadow: 0 8px 16px -4px var(--main-color-bg);
+        border-color: var(--color-theme);
+        box-shadow: 0 8px 16px -4px var(--color-theme-op);
       }
 
       &::-webkit-search-cancel-button {
@@ -194,7 +189,7 @@ onBeforeUnmount(() => {
 
         .anchor {
           margin-top: 6px;
-          color: var(--main-font-second-color);
+          color: var(--color-font-second-color);
           font-size: 14px;
 
           &::before {
@@ -203,7 +198,7 @@ onBeforeUnmount(() => {
         }
 
         .content {
-          color: var(--main-font-second-color);
+          color: var(--color-font-second-color);
           margin-top: 0.8rem;
           font-size: 12px;
           padding: 8px;
@@ -215,7 +210,7 @@ onBeforeUnmount(() => {
 
           mark {
             background-color: transparent;
-            color: var(--main-color);
+            color: var(--color-theme);
           }
         }
 
@@ -254,25 +249,25 @@ onBeforeUnmount(() => {
           height: 100%;
 
           &:hover {
-            color: var(--main-font-color);
+            color: var(--color-font-color);
           }
         }
 
         &:hover {
-          color: var(--main-font-color);
-          background-color: var(--main-color);
+          color: var(--color-font-color);
+          background-color: var(--color-theme);
 
           .ais-Pagination-link {
-            color: var(--main-card-border);
+            color: var(--color-card-border);
           }
         }
 
         &.ais-Pagination-item--selected {
           font-weight: bold;
-          background-color: var(--main-color);
+          background-color: var(--color-theme);
 
           .ais-Pagination-link {
-            color: var(--main-card-border);
+            color: var(--color-card-border);
           }
         }
 
@@ -317,7 +312,7 @@ onBeforeUnmount(() => {
 
       &:hover {
         opacity: 1;
-        color: var(--main-color);
+        color: var(--color-theme);
       }
     }
 
