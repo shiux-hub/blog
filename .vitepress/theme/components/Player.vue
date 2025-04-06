@@ -166,11 +166,10 @@ onBeforeUnmount(() => {
     width: fit-content;
     border-radius: 50px;
     overflow: hidden;
-    color: var(--main-font-color);
-    font-family: var(--main-font-family);
-    background-color: var(--main-card-background);
-    border: 1px solid var(--main-card-border);
-    box-shadow: 0 6px 10px -4px var(--main-dark-shadow);
+    color: var(--color-font-color);
+    background-color: var(--color-card-background);
+    border: 1px solid var(--color-card-border);
+    box-shadow: 0 6px 10px -4px var(--color-dark-shadow);
     transition: all 0.3s;
 
     :deep(.aplayer-body) {
@@ -187,7 +186,7 @@ onBeforeUnmount(() => {
         min-width: 30px;
         border-radius: 50%;
         margin-right: 8px;
-        outline: 1px solid var(--main-card-border);
+        outline: 1px solid var(--color-card-border);
         animation: rotate 20s linear infinite;
         animation-play-state: paused;
         z-index: 2;
@@ -246,7 +245,7 @@ onBeforeUnmount(() => {
           .aplayer-lrc-contents {
             p {
               text-align: center;
-              color: var(--main-card-background);
+              color: var(--color-card-background);
               filter: blur(0.8px);
               transition:
                 filter 0.3s,
@@ -287,7 +286,7 @@ onBeforeUnmount(() => {
 
               .aplayer-played {
                 height: 100%;
-                background: var(--main-color-white) !important;
+                background: var(--color-white) !important;
                 transition: width 0.3s;
               }
             }
@@ -317,16 +316,16 @@ onBeforeUnmount(() => {
       height: 100%;
       font-size: 14px;
       opacity: 0;
-      color: var(--main-card-background);
-      background-color: var(--main-color);
+      color: var(--color-card-background);
+      background-color: var(--color-theme);
       pointer-events: none;
       transition: opacity 0.3s;
       z-index: 3;
     }
 
     &:hover {
-      border-color: var(--main-color);
-      box-shadow: 0 8px 16px -4px var(--main-color-bg);
+      border-color: var(--color-theme);
+      box-shadow: 0 8px 16px -4px var(--color-theme-op);
 
       &::after {
         opacity: 1;
@@ -336,9 +335,9 @@ onBeforeUnmount(() => {
 
   &.playing {
     .player-content {
-      color: var(--main-card-background);
-      background-color: var(--main-color);
-      border: 1px solid var(--main-color);
+      color: var(--color-card-background);
+      background-color: var(--color-theme);
+      border: 1px solid var(--color-theme);
 
       :deep(.aplayer-body) {
         .aplayer-pic {

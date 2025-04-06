@@ -87,7 +87,7 @@ onMounted(() => {
   width: 100%;
   margin: 1rem 0;
   padding: 1rem;
-  background-color: var(--main-card-second-background);
+  background-color: var(--color-card-second-background);
   .link-tip {
     display: inline-block;
     width: 100%;
@@ -95,7 +95,7 @@ onMounted(() => {
     opacity: 0.6;
     padding-bottom: 0.8rem;
     margin-bottom: 0.8rem;
-    border-bottom: 2px dashed var(--main-card-border);
+    border-bottom: 2px dashed var(--color-card-border);
   }
   .link-data {
     height: 100%;
@@ -116,7 +116,7 @@ onMounted(() => {
       svg {
         width: 30px;
         height: 30px;
-        background-color: var(--main-card-border);
+        background-color: var(--color-card-border);
       }
     }
     .link-desc {
@@ -133,7 +133,7 @@ onMounted(() => {
         overflow-wrap: break-word;
       }
       .link-description {
-        color: var(--main-font-second-color);
+        color: var(--color-font-second-color);
         font-size: 14px;
         overflow: hidden;
         display: -webkit-box;
@@ -152,17 +152,17 @@ onMounted(() => {
     }
   }
   &:hover {
-    color: var(--main-card-background);
-    background-color: var(--main-color);
+    color: var(--color-card-background);
+    background-color: var(--color-theme);
     .link-data {
       .link-desc {
         .link-description {
-          color: var(--main-card-background);
+          color: var(--color-card-background);
           opacity: 0.6;
         }
       }
       .link-go {
-        color: var(--main-card-background);
+        color: var(--color-card-background);
       }
     }
   }

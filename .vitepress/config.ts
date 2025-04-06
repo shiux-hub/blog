@@ -107,13 +107,6 @@ export default withPwa(
           '@': path.resolve(__dirname, './theme'),
         },
       },
-      css: {
-        preprocessorOptions: {
-          scss: {
-            silenceDeprecations: ['legacy-js-api'],
-          },
-        },
-      },
       // 服务器
       server: {
         port: 9877,

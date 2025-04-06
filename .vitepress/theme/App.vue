@@ -160,7 +160,7 @@ onBeforeUnmount(() => {
   <footer
     class="to-card-background max-md:from-card-background mt-12 flex flex-col items-center gap-8 bg-linear-180 from-transparent to-25% max-md:z-999 max-md:mt-0"
   >
-    <FooterLink
+    <FooterLinks
       v-show="!loadingStatus"
       class="mb-8"
       :show-bar="isPostPage && !page.isNotFound"

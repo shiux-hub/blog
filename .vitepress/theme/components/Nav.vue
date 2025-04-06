@@ -109,13 +109,13 @@ const { site, theme, frontmatter, page } = useData()
           </div>
           <!-- 搜索 -->
           <div
-            v-if="theme.search.enable"
+            v-if="theme.search"
             v-tippy
             class="menu-btn nav-btn"
             title="全站搜索"
             @click="store.changeShowStatus('searchShow')"
           >
-            <Icon icon="mingcute:search-line" />
+            <Icon icon="mingcute:search-fill" />
           </div>
           <!-- 中控台 -->
           <div
@@ -166,9 +166,7 @@ const { site, theme, frontmatter, page } = useData()
     <!-- 移动端菜单 -->
     <MobileMenu />
     <!-- 全局搜索 -->
-    <ClientOnly>
-      <Search v-if="theme.search.enable" />
-    </ClientOnly>
+    <NavbarSearch v-if="theme.search" />
   </header>
 </template>
 
@@ -191,7 +189,7 @@ const { site, theme, frontmatter, page } = useData()
     left: 0;
     width: 100vw;
     height: 60px;
-    background-color: var(--main-card-background);
+    background-color: var(--color-card-background);
     transition:
       background-color 0.3s,
       backdrop-filter 0.3s;
@@ -203,7 +201,7 @@ const { site, theme, frontmatter, page } = useData()
       width: 100%;
       left: 0;
       bottom: 0;
-      background-color: var(--main-card-border);
+      background-color: var(--color-card-border);
       transition: opacity 0.3s;
     }
 
@@ -283,7 +281,7 @@ const { site, theme, frontmatter, page } = useData()
             .more-name {
               font-size: 14px;
               display: inline-block;
-              color: var(--main-font-second-color);
+              color: var(--color-font-second-color);
               margin-bottom: 0.6rem;
             }
 
@@ -307,8 +305,8 @@ const { site, theme, frontmatter, page } = useData()
                 }
 
                 &:hover {
-                  color: var(--main-card-background);
-                  background-color: var(--main-color);
+                  color: var(--color-card-background);
+                  background-color: var(--color-theme);
                 }
               }
             }
@@ -325,7 +323,7 @@ const { site, theme, frontmatter, page } = useData()
           }
 
           &:hover {
-            border-color: var(--main-color);
+            border-color: var(--color-theme);
           }
         }
 
@@ -414,9 +412,9 @@ const { site, theme, frontmatter, page } = useData()
             display: flex;
             flex-direction: row;
             align-items: center;
-            background-color: var(--main-card-background);
-            border: 1px solid var(--main-color);
-            box-shadow: 0 8px 12px -3px var(--main-color-bg);
+            background-color: var(--color-card-background);
+            border: 1px solid var(--color-theme);
+            box-shadow: 0 8px 12px -3px var(--color-theme-op);
             border-radius: 50px;
             transform: translateY(-10px) scale(0.8);
             opacity: 0;
@@ -455,9 +453,9 @@ const { site, theme, frontmatter, page } = useData()
               }
 
               &:hover {
-                color: var(--main-card-background);
-                background-color: var(--main-color);
-                box-shadow: 0 8px 12px -3px var(--main-color-bg);
+                color: var(--color-card-background);
+                background-color: var(--color-theme);
+                box-shadow: 0 8px 12px -3px var(--color-theme-op);
                 padding: 0.6rem 1rem;
               }
             }
@@ -491,8 +489,8 @@ const { site, theme, frontmatter, page } = useData()
 
           &:hover {
             .link-btn {
-              color: var(--main-card-background);
-              background-color: var(--main-color);
+              color: var(--color-card-background);
+              background-color: var(--color-theme);
             }
 
             .link-child {
@@ -536,8 +534,8 @@ const { site, theme, frontmatter, page } = useData()
           height: 35px;
           font-size: 16px;
           border-radius: 50px;
-          color: var(--main-card-background);
-          background-color: var(--main-color);
+          color: var(--color-card-background);
+          background-color: var(--color-theme);
           opacity: 0;
           transition: opacity 0.3s;
           z-index: 1;
@@ -604,7 +602,7 @@ const { site, theme, frontmatter, page } = useData()
           width: 25px;
           height: 25px;
           border-radius: 40px;
-          background-color: var(--main-font-color);
+          background-color: var(--color-font-color);
           transition:
             width 0.3s,
             height 0.3s,
@@ -613,7 +611,7 @@ const { site, theme, frontmatter, page } = useData()
           .num {
             position: absolute;
             font-size: 12px;
-            color: var(--main-card-background);
+            color: var(--color-card-background);
             transition: opacity 0.1s;
           }
         }
@@ -637,7 +635,8 @@ const { site, theme, frontmatter, page } = useData()
           .to-top-btn {
             width: 35px;
             height: 35px;
-            background-color: var(--main-color);
+            background-color: var(--color-theme);
+            color: var(--color-card-background);
 
             .num {
               opacity: 0;
@@ -675,8 +674,8 @@ const { site, theme, frontmatter, page } = useData()
         position: absolute;
         top: 0;
         left: 0;
-        background-color: var(--main-card-background);
-        border-bottom: 1px solid var(--main-card-border);
+        background-color: var(--color-card-background);
+        border-bottom: 1px solid var(--color-card-border);
         z-index: 100;
 
         .site-title {
@@ -708,10 +707,10 @@ const { site, theme, frontmatter, page } = useData()
     }
 
     &:hover {
-      background-color: var(--main-color);
+      background-color: var(--color-theme);
 
       svg {
-        color: var(--main-card-background);
+        color: var(--color-card-background);
       }
     }
   }

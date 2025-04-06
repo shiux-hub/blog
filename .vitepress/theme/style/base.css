@@ -1,51 +1,3 @@
-:root {
-  --main-color: #425aef;
-  --main-color-bg: #4259ef0d;
-  --main-site-background: #f7f9fe;
-  --main-card-background: #fff;
-  --main-card-second-background: #f7f7f9;
-  --main-font-color: #363636;
-  --main-font-second-color: #3c3c43cc;
-  --main-card-border: #e3e8f7;
-  --main-border-shadow: #2c2d300c;
-  --main-scrollbar-bar: rgba(60, 60, 67, 0.4);
-  --main-mask-background: rgba(255, 255, 255, 0.95);
-  --main-mask-Inverse-background: rgba(0, 0, 0, 0.08);
-  --main-mask-second-background: rgba(255, 255, 255, 0.45);
-  --main-color-opacity: rgba(255, 255, 255, 0.15);
-  --main-dark-opacity: rgba(255, 255, 255, 0.15);
-  --main-dark-shadow: #0000006e;
-  --main-info-color: #50bfff;
-  --main-info-color-gray: #50bfff60;
-  --main-warning-color: #ffa500;
-  --main-warning-color-gray: #f7ba2a60;
-  --main-success-color: #13ce66;
-  --main-success-color-gray: #13ce6660;
-  --main-error-color: #ff3842;
-  --main-error-color-gray: #ff38423b;
-  --main-color-blue: #0084ff;
-  --main-color-white: #ffffff40;
-  --main-color-gray: #999;
-  --main-color-red: #ff3842;
-}
-
-html.dark {
-  --main-color: #dfac46;
-  --main-color-bg: #f2b94b23;
-  --main-site-background: #18171d;
-  --main-card-background: #1b1c20;
-  --main-card-second-background: #21232a;
-  --main-font-color: #f7f7fa;
-  --main-font-second-color: #a1a2b8;
-  --main-card-border: #3d3d3f;
-  --main-border-shadow: #00000050;
-  --main-scrollbar-bar: rgba(200, 200, 223, 0.4);
-  --main-mask-background: rgba(0, 0, 0, 0.95);
-  --main-mask-Inverse-background: rgba(255, 255, 255, 0.08);
-  --main-mask-second-background: rgba(0, 0, 0, 0.45);
-  --main-color-opacity: rgba(0, 0, 0, 0.15);
-}
-
 @layer base {
   html,
   body,
@@ -181,20 +133,20 @@ html.dark {
 
   /** 选中文本 */
   ::selection {
-    background-color: var(--main-color);
+    background-color: var(--color-theme);
     color: #efefef;
   }
 
   /** fancybox */
   .fancybox__container {
     .fancybox__progress {
-      background: var(--main-color) !important;
+      background: var(--color-theme) !important;
     }
 
     .fancybox__thumb {
       &::after {
         border-width: 2px !important;
-        border-color: var(--main-color) !important;
+        border-color: var(--color-theme) !important;
       }
     }
   }
@@ -206,7 +158,7 @@ html.dark {
       ul,
       ol,
       li {
-        color: var(--main-font-color) !important;
+        color: var(--color-font-color) !important;
       }
     }
 
@@ -220,7 +172,7 @@ html.dark {
         ul,
         ol,
         li {
-          color: var(--main-font-color) !important;
+          color: var(--color-font-color) !important;
         }
       }
     }

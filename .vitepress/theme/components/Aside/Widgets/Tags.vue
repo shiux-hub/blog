@@ -46,8 +46,8 @@ const { theme } = useData()
         opacity: 0.6;
       }
       &:hover {
-        color: var(--main-color);
-        background-color: var(--main-color-bg);
+        color: var(--color-theme);
+        background-color: var(--color-theme-op);
       }
     }
     &::after {
@@ -58,7 +58,7 @@ const { theme } = useData()
       right: 0;
       height: 48%;
       max-height: 150px;
-      background-image: linear-gradient(to top, var(--main-card-background), transparent);
+      background-image: linear-gradient(to top, var(--color-card-background), transparent);
       pointer-events: none;
     }
   }
@@ -70,12 +70,12 @@ const { theme } = useData()
     height: 40px;
     border-radius: 8px;
     font-size: 14px;
-    border: 1px solid var(--main-card-border);
-    background-color: var(--main-card-second-background);
+    border: 1px solid var(--color-card-border);
+    background-color: var(--color-card-second-background);
     &:hover {
-      color: var(--main-color);
-      border-color: var(--main-color-bg);
-      background-color: var(--main-color-bg);
+      color: var(--color-theme);
+      border-color: var(--color-theme-op);
+      background-color: var(--color-theme-op);
     }
   }
 }

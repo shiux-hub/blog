@@ -300,9 +300,9 @@ onMounted(() => {
       width: 100%;
       padding: 1.2rem 2rem;
       border-radius: 12px;
-      background-color: var(--main-card-background);
-      border: 1px solid var(--main-card-border);
-      box-shadow: 0 8px 12px -4px var(--main-border-shadow);
+      background-color: var(--color-card-background);
+      border: 1px solid var(--color-card-border);
+      box-shadow: 0 8px 12px -4px var(--color-border-shadow);
       overflow: hidden;
 
       .tip {
@@ -376,10 +376,10 @@ onMounted(() => {
         .more {
           margin-top: auto;
           font-size: 14px;
-          color: var(--main-color-gray);
+          color: var(--color-gray);
 
           a {
-            color: var(--main-color-gray);
+            color: var(--color-gray);
 
             &:hover {
               color: var(--color);
@@ -422,9 +422,9 @@ onMounted(() => {
             margin-top: 10px;
             padding: 8px 12px 8px 8px;
             border-radius: 40px;
-            background-color: var(--main-site-background);
-            border: 1px solid var(--main-card-border);
-            box-shadow: 0 8px 12px -4px var(--main-border-shadow);
+            background-color: var(--color-site-background);
+            border: 1px solid var(--color-card-border);
+            box-shadow: 0 8px 12px -4px var(--color-border-shadow);
             transition: background-color 0.3s;
             cursor: pointer;
 
@@ -451,7 +451,7 @@ onMounted(() => {
             }
 
             &:hover {
-              background-color: var(--main-card-background);
+              background-color: var(--color-card-background);
             }
           }
         }
@@ -473,7 +473,7 @@ onMounted(() => {
             flex-direction: row;
             align-items: center;
             margin-bottom: 12px;
-            color: var(--main-font-second-color);
+            color: var(--color-font-second-color);
 
             &::before {
               content: '';
@@ -544,7 +544,7 @@ onMounted(() => {
                 color: #eee;
 
                 &:hover {
-                  color: var(--main-color);
+                  color: var(--color-theme);
                 }
               }
             }
@@ -635,7 +635,7 @@ onMounted(() => {
           .info-name {
             font-size: 14px;
             margin-bottom: 8px;
-            color: var(--main-font-second-color);
+            color: var(--color-font-second-color);
           }
 
           .info-num {

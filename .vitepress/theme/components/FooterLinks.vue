@@ -3,6 +3,7 @@
 import { useData } from '@/composables/data'
 import { smoothScrolling } from '@/utils/helper'
 import { Icon } from '@iconify/vue'
+import { isObject } from 'radashi'
 
 withDefaults(
   defineProps<{
@@ -14,12 +15,12 @@ withDefaults(
   },
 )
 const { theme, site } = useData()
-const { footer, siteMeta } = theme.value
+const { sitemap, socialLinks, siteMeta } = theme.value
 // 社交链接数据
 const socialLinkData = computed(() => {
-  const halfLength = Math.ceil(footer.social.length / 2)
-  const firstHalf = footer.social.slice(0, halfLength)
-  const secondHalf = footer.social.slice(halfLength)
+  const halfLength = Math.ceil((socialLinks?.length ?? 0) / 2)
+  const firstHalf = socialLinks?.slice(0, halfLength)
+  const secondHalf = socialLinks?.slice(halfLength)
   return { first: firstHalf, second: secondHalf }
 })
 </script>
@@ -35,14 +36,16 @@ const socialLinkData = computed(() => {
       class="footer-social mt-12 mb-4 flex w-full flex-wrap items-center justify-center gap-x-8 gap-y-13"
     >
       <a
-        v-for="({ link, icon, title }, index) in socialLinkData.first"
+        v-for="({ link, icon, ariaLabel }, index) in socialLinkData.first"
         :key="index"
-        v-tippy="title"
+        v-tippy="ariaLabel"
         :href="link"
+        :aria-label
         target="_blank"
         class="social-link"
       >
-        <Icon :icon />
+        <component :is="icon.svg" v-if="isObject(icon)" />
+        <Icon v-else :icon />
       </a>
       <div
         v-tippy
@@ -57,19 +60,21 @@ const socialLinkData = computed(() => {
         >
       </div>
       <a
-        v-for="({ link, icon, title }, index) in socialLinkData.second"
+        v-for="({ link, icon, ariaLabel }, index) in socialLinkData.second"
         :key="index"
-        v-tippy="title"
+        v-tippy="ariaLabel"
         :href="link"
+        :aria-label
         target="_blank"
         class="social-link"
       >
-        <Icon :icon />
+        <component :is="icon.svg" v-if="isObject(icon)" />
+        <Icon v-else :icon />
       </a>
     </div>
     <div class="footer-sitemap">
       <div
-        v-for="(item, index) in footer.sitemap"
+        v-for="(item, index) in sitemap"
         :key="index"
         class="sitemap-item"
       >
@@ -118,7 +123,7 @@ const socialLinkData = computed(() => {
       margin: 0.6rem 0;
       font-weight: bold;
       font-size: 18px;
-      color: var(--main-font-second-color);
+      color: var(--color-font-second-color);
     }
 
     .to-home {
@@ -126,9 +131,9 @@ const socialLinkData = computed(() => {
       border-radius: 25px;
       margin-top: 8px;
       font-size: 14px;
-      color: var(--main-font-color);
-      background-color: var(--main-card-second-background);
-      border: 1px solid var(--main-card-border);
+      color: var(--color-font-color);
+      background-color: var(--color-card-second-background);
+      border: 1px solid var(--color-card-border);
       transition:
         color 0.3s,
         transform 0.3s,
@@ -137,10 +142,10 @@ const socialLinkData = computed(() => {
       cursor: pointer;
 
       &:hover {
-        color: var(--main-card-background);
-        background-color: var(--main-color);
+        color: var(--color-card-background);
+        background-color: var(--color-theme);
         transform: scale(1.1);
-        border-color: var(--main-color);
+        border-color: var(--color-theme);
       }
     }
   }
@@ -153,11 +158,11 @@ const socialLinkData = computed(() => {
     height: 32px;
     border-radius: 50%;
     contain: layout paint;
-    background-color: var(--main-font-color);
+    background-color: var(--color-font-color);
     transition:
       transform 0.3s,
       background-color 0.3s;
-    color: var(--main-card-background);
+    color: var(--color-card-background);
 
     svg {
       width: 20px;
@@ -166,7 +171,7 @@ const socialLinkData = computed(() => {
 
     &:hover {
       transform: scale(1.15);
-      background-color: var(--main-color);
+      background-color: var(--color-theme);
     }
 
     &:active {
@@ -194,7 +199,7 @@ const socialLinkData = computed(() => {
         font-size: 16px;
         font-weight: bold;
         /* margin-left: 8px; */
-        color: var(--main-font-second-color);
+        color: var(--color-font-second-color);
 
         &.friends {
           display: flex;
@@ -205,11 +210,11 @@ const socialLinkData = computed(() => {
           svg {
             font-weight: normal;
             margin-left: 6px;
-            color: var(--main-font-second-color);
+            color: var(--color-font-second-color);
             transition: color 0.3s;
 
             &:hover {
-              color: var(--main-color);
+              color: var(--color-theme);
             }
           }
         }
@@ -221,7 +226,7 @@ const socialLinkData = computed(() => {
         align-items: center;
 
         .link-text {
-          color: var(--main-font-color);
+          color: var(--color-font-color);
           display: inline-block;
           max-width: 120px;
           width: max-content;
@@ -238,8 +243,8 @@ const socialLinkData = computed(() => {
           cursor: pointer;
 
           &:hover {
-            color: var(--main-color);
-            background-color: var(--main-color-bg);
+            color: var(--color-theme);
+            background-color: var(--color-theme-op);
           }
         }
       }

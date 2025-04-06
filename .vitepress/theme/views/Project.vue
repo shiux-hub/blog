@@ -30,7 +30,7 @@ import { Icon } from '@iconify/vue'
   justify-content: center;
   border-radius: 50px;
   color: #fff;
-  background-color: var(--main-dark-opacity);
+  background-color: var(--color-dark-opacity);
   backdrop-filter: blur(20px);
   transition:
     color 0.3s,
@@ -42,8 +42,8 @@ import { Icon } from '@iconify/vue'
   }
 
   &:hover {
-    color: var(--main-card-background);
-    background-color: var(--main-color);
+    color: var(--color-card-background);
+    background-color: var(--color-theme);
   }
 }
 </style>

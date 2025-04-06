@@ -22,7 +22,7 @@
   --mask-background-deep: hsla(0, 0%, 100%, 0.85);
   --mask-inverse-background: hsla(0, 0%, 0%, 0.08);
   --mask-second-background: hsla(0, 0%, 100%, 0.45);
-  --color-opacity: hsla(0, 0%, 100%, 0.15);
+  --opacity: hsla(0, 0%, 100%, 0.15);
   --dark-opacity: hsla(0, 0%, 100%, 0.15);
   --dark-shadow: hsla(0, 0%, 0%, 0.431);
   --info: hsl(202, 100%, 66%);
@@ -76,7 +76,7 @@
   --color-mask-background-deep: var(--mask-background-deep);
   --color-mask-inverse-background: var(--mask-inverse-background);
   --color-mask-second-background: var(--mask-second-background);
-  --color-color-opacity: var(--color-opacity);
+  --color-opacity: var(--opacity);
   --color-dark-opacity: var(--dark-opacity);
   --color-dark-shadow: var(--dark-shadow);
   --color-info: var(--info);

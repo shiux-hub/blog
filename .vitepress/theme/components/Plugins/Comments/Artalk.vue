@@ -99,18 +99,18 @@ onUnmounted(() => {
 #comment-dom,
 .atk-layer-wrap,
 .comment-content {
-  --at-color-font: var(--main-font-color) !important;
-  --at-color-deep: var(--main-font-second-color) !important;
-  --at-color-grey: var(--main-font-second-color) !important;
-  --at-color-meta: var(--main-font-second-color) !important;
-  --at-color-border: var(--main-card-border) !important;
-  --at-color-main: var(--main-color) !important;
-  --at-color-light: var(--main-color) !important;
-  --at-color-bg: var(--main-card-background) !important;
-  --at-color-bg-grey: var(--main-card-border) !important;
-  --at-color-bg-grey-transl: var(--main-card-border) !important;
-  --at-color-bg-transl: var(--main-card-second-background) !important;
-  --at-color-gradient: linear-gradient(180deg, transparent, var(--main-card-background)) !important;
+  --at-color-font: var(--color-font-color) !important;
+  --at-color-deep: var(--color-font-second-color) !important;
+  --at-color-grey: var(--color-font-second-color) !important;
+  --at-color-meta: var(--color-font-second-color) !important;
+  --at-color-border: var(--color-card-border) !important;
+  --at-color-main: var(--color-theme) !important;
+  --at-color-light: var(--color-theme) !important;
+  --at-color-bg: var(--color-card-background) !important;
+  --at-color-bg-grey: var(--color-card-border) !important;
+  --at-color-bg-grey-transl: var(--color-card-border) !important;
+  --at-color-bg-transl: var(--color-card-second-background) !important;
+  --at-color-gradient: linear-gradient(180deg, transparent, var(--color-card-background)) !important;
 }
 .atk-layer-wrap {
   .atk-layer-mask {
@@ -173,7 +173,7 @@ onUnmounted(() => {
     }
     .atk-list-comments-wrap {
       > .atk-comment-wrap {
-        border-bottom: 1px dashed var(--main-card-border);
+        border-bottom: 1px dashed var(--color-card-border);
         .atk-header {
           .atk-badge {
             color: var(--at-color-bg);
@@ -190,7 +190,7 @@ onUnmounted(() => {
             margin: 4px;
             vertical-align: inherit;
             border-radius: 6px;
-            font-family: 'Fira Code', var(--main-font-family), monospace;
+            font-family: 'Fira Code', var(--font-custom), monospace;
           }
           pre {
             code {
@@ -198,8 +198,8 @@ onUnmounted(() => {
             }
           }
           blockquote {
-            border-left: 8px solid var(--main-card-border);
-            background-color: var(--main-card-second-background);
+            border-left: 8px solid var(--color-card-border);
+            background-color: var(--color-card-second-background);
             border-radius: 4px 8px 8px 4px;
           }
         }
@@ -221,8 +221,8 @@ onUnmounted(() => {
           color 0.3s,
           background-color 0.3s;
         &:hover {
-          color: var(--main-card-background);
-          background-color: var(--main-color);
+          color: var(--color-card-background);
+          background-color: var(--color-theme);
         }
       }
       &::after {
@@ -238,19 +238,19 @@ onUnmounted(() => {
         height: 40px;
         border-radius: 8px;
         overflow: hidden;
-        background-color: var(--main-card-background);
-        border: 1px solid var(--main-card-border);
-        box-shadow: 0 8px 16px -4px var(--main-border-shadow);
+        background-color: var(--color-card-background);
+        border: 1px solid var(--color-card-border);
+        box-shadow: 0 8px 16px -4px var(--color-border-shadow);
         transition:
           width 0.3s,
           border-color 0.3s,
           box-shadow 0.3s;
         cursor: pointer;
         &:hover {
-          border-color: var(--main-color);
-          box-shadow: 0 8px 16px -4px var(--main-color-bg);
+          border-color: var(--color-theme);
+          box-shadow: 0 8px 16px -4px var(--color-theme-op);
           svg {
-            color: var(--main-color);
+            color: var(--color-theme);
           }
         }
       }
@@ -259,8 +259,8 @@ onUnmounted(() => {
         &:hover,
         &:focus {
           width: 200px;
-          border-color: var(--main-color);
-          box-shadow: 0 8px 16px -4px var(--main-color-bg);
+          border-color: var(--color-theme);
+          box-shadow: 0 8px 16px -4px var(--color-theme-op);
         }
       }
     }

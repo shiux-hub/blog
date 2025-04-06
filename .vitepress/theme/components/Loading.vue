@@ -56,7 +56,7 @@ onBeforeUnmount(() => {
   justify-content: center;
   width: 100vw;
   height: 100vh;
-  background-color: var(--main-card-background);
+  background-color: var(--color-card-background);
   z-index: 9999;
 
   .logo {

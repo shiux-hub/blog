@@ -47,17 +47,17 @@ watch(
   padding: 0 4px !important;
   :deep(.vue-slider-rail) {
     height: 8px;
-    background-color: var(--main-color-bg);
+    background-color: var(--color-theme-op);
     border-radius: 25px;
     .vue-slider-process {
       border-radius: 25px;
-      background-color: var(--main-color);
+      background-color: var(--color-theme);
     }
     .vue-slider-dot {
       width: 16px;
       height: 16px;
-      border: 1px solid var(--main-color-bg);
-      background-color: var(--main-color);
+      border: 1px solid var(--color-theme-op);
+      background-color: var(--color-theme);
       box-shadow: 0.5px 0.5px 2px 1px rgba(0, 0, 0, 0.32);
       border-radius: 50%;
       cursor: pointer;

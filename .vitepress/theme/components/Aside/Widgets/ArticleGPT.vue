@@ -112,7 +112,7 @@ onBeforeUnmount(() => {
 <style scoped>
 .article-gpt {
   margin-top: 1.2rem;
-  background-color: var(--main-card-second-background);
+  background-color: var(--color-card-second-background);
   user-select: none;
   cursor: auto;
   .title {
@@ -125,7 +125,7 @@ onBeforeUnmount(() => {
     .name {
       display: flex;
       align-items: center;
-      color: var(--main-color);
+      color: var(--color-theme);
       font-weight: bold;
       cursor: pointer;
       .icon-robot {
@@ -136,8 +136,8 @@ onBeforeUnmount(() => {
         font-weight: normal;
         width: 26px;
         height: 26px;
-        color: var(--main-card-background);
-        background-color: var(--main-color);
+        color: var(--color-card-background);
+        background-color: var(--color-theme);
         border-radius: 50%;
         margin-right: 8px;
       }
@@ -146,15 +146,15 @@ onBeforeUnmount(() => {
         font-size: 12px;
         margin-left: 6px;
         opacity: 0.6;
-        color: var(--main-color);
+        color: var(--color-theme);
         transform: rotate(90deg);
       }
     }
     .logo {
       padding: 4px 10px;
       font-size: 12px;
-      color: var(--main-card-background);
-      background-color: var(--main-color);
+      color: var(--color-card-background);
+      background-color: var(--color-theme);
       border-radius: 25px;
       font-weight: bold;
       cursor: pointer;
@@ -167,7 +167,7 @@ onBeforeUnmount(() => {
   .content {
     cursor: auto;
     .point {
-      color: var(--main-color);
+      color: var(--color-theme);
       font-weight: bold;
       margin-left: 4px;
       animation: loading 0.8s infinite;

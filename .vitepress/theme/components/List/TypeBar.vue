@@ -109,23 +109,23 @@ const currentTypeName = computed(() => {
         font-weight: normal;
         padding: 2px 6px;
         font-size: 0.75rem;
-        color: var(--main-font-color);
-        background-color: var(--main-card-border);
+        color: var(--color-font-color);
+        background-color: var(--color-card-border);
         border-radius: 8px;
       }
       &.choose {
-        color: var(--main-card-background);
-        background-color: var(--main-color);
+        color: var(--color-card-background);
+        background-color: var(--color-theme);
         .num {
-          color: var(--main-color);
+          color: var(--color-theme);
         }
       }
       &.hidden {
         display: none;
       }
       &:hover {
-        color: var(--main-card-background);
-        background-color: var(--main-color);
+        color: var(--color-card-background);
+        background-color: var(--color-theme);
       }
     }
   }
@@ -142,7 +142,7 @@ const currentTypeName = computed(() => {
       margin-right: 8px;
     }
     &:hover {
-      color: var(--main-color);
+      color: var(--color-theme);
     }
   }
 }

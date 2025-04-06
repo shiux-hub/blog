@@ -74,7 +74,7 @@ const router = useRouter()
           left: 0;
           width: 4px;
           height: 70%;
-          background-color: var(--main-color);
+          background-color: var(--color-theme);
           border-radius: 8px;
         }
       }
@@ -117,7 +117,7 @@ const router = useRouter()
               &:hover {
                 .name,
                 svg {
-                  color: var(--main-color);
+                  color: var(--color-theme);
                 }
               }
             }
@@ -129,7 +129,7 @@ const router = useRouter()
 
           &:hover {
             .title {
-              color: var(--main-color);
+              color: var(--color-theme);
             }
           }
         }

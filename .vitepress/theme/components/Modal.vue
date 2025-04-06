@@ -18,9 +18,6 @@ const props = withDefaults(
     maxHeight?: number
   }>(),
   {
-    show: false,
-    title: '',
-    titleIcon: '',
     showClose: true,
     maxWidth: 800,
     maxHeight: 80,
@@ -28,16 +25,12 @@ const props = withDefaults(
 )
 
 // 发射事件
-const emit = defineEmits<{
+defineEmits<{
   // 遮罩层点击事件
   maskClick: []
   // 关闭事件
   modalClose: []
 }>()
-
-// 遮罩层事件
-const maskClick = () => emit('maskClick')
-const modalClose = () => emit('modalClose')
 
 // 监听开启
 watch(
@@ -52,7 +45,7 @@ watch(
   <Teleport to="body">
     <Transition name="fade" mode="out-in">
       <div v-if="show" class="modal">
-        <div class="modal-mask" @click.stop="maskClick" />
+        <div class="modal-mask" @click.stop="$emit('maskClick')" />
         <div
           :style="{
             maxWidth: typeof maxWidth === 'string' ? maxWidth : `${maxWidth}px`,
@@ -71,7 +64,7 @@ watch(
               v-if="showClose"
               icon="mingcute:close-fill"
               class="close"
-              @click="modalClose"
+              @click="$emit('modalClose')"
             />
           </div>
           <!-- 弹窗内容 -->
@@ -121,8 +114,8 @@ watch(
       font-size: 1.125rem;
       padding: 20px;
       height: 64px;
-      background-color: var(--main-card-background);
-      border-bottom: 1px solid var(--main-card-border);
+      background-color: var(--color-card-background);
+      border-bottom: 1px solid var(--color-card-border);
 
       .title-left {
         width: 100%;
@@ -146,7 +139,7 @@ watch(
         cursor: pointer;
 
         &:hover {
-          background-color: var(--main-card-border);
+          background-color: var(--color-card-border);
         }
       }
     }

@@ -8,8 +8,6 @@ import { createPinia } from 'pinia'
 import piniaPluginPersistedstate from 'pinia-plugin-persistedstate'
 
 import { enhanceAppWithTabs } from 'vitepress-plugin-tabs/client'
-// InstantSearch
-import InstantSearch from 'vue-instantsearch/vue3/es'
 
 import VueTippy from 'vue-tippy'
 
@@ -29,7 +27,6 @@ const Theme = {
   enhanceApp({ app, router }: { app: App, router: Router }) {
     // 挂载
     app.use(pinia)
-    app.use(InstantSearch)
     app.use(VueTippy, {
       defaultProps: {
         allowHTML: true,

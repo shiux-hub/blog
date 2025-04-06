@@ -83,7 +83,7 @@ onBeforeUnmount(() => {
     margin-right: 0.8rem;
     .text {
       font-size: 14px;
-      color: var(--main-font-second-color);
+      color: var(--color-font-second-color);
     }
     .name {
       font-weight: bold;
@@ -94,7 +94,7 @@ onBeforeUnmount(() => {
       font-size: 30px;
       font-weight: bold;
       margin: 4px 0;
-      color: var(--main-color);
+      color: var(--color-theme);
     }
     .date {
       font-size: 12px;
@@ -106,7 +106,7 @@ onBeforeUnmount(() => {
       right: -0.8rem;
       width: 2px;
       height: 80%;
-      background-color: var(--main-card-border);
+      background-color: var(--color-card-border);
     }
   }
   .count-right {
@@ -123,7 +123,7 @@ onBeforeUnmount(() => {
         font-size: 14px;
         margin-right: 0.8rem;
         white-space: nowrap;
-        color: var(--main-font-second-color);
+        color: var(--color-font-second-color);
       }
       .item-progress {
         position: relative;
@@ -134,12 +134,12 @@ onBeforeUnmount(() => {
         height: 100%;
         width: 100%;
         border-radius: 8px;
-        background-color: var(--main-color-bg);
+        background-color: var(--color-theme-op);
         overflow: hidden;
         .progress-bar {
           height: 100%;
           border-radius: 8px;
-          background-color: var(--main-color);
+          background-color: var(--color-theme);
         }
         .percentage,
         .remaining {

@@ -224,8 +224,8 @@ onBeforeUnmount(() => {
       }
       &.active {
         opacity: 1;
-        color: var(--main-color);
-        background-color: var(--main-color-bg);
+        color: var(--color-theme);
+        background-color: var(--color-theme-op);
         &.H2 {
           font-size: 18px;
         }
@@ -235,8 +235,8 @@ onBeforeUnmount(() => {
       }
       &:hover {
         opacity: 1;
-        color: var(--main-color);
-        background-color: var(--main-color-bg);
+        color: var(--color-theme);
+        background-color: var(--color-theme-op);
       }
     }
     &::after {
@@ -247,7 +247,7 @@ onBeforeUnmount(() => {
       width: 4px;
       height: 20px;
       margin: 8px 0;
-      background-color: var(--main-color);
+      background-color: var(--color-theme);
       border-radius: 8px;
       transition: top 0.3s;
     }
@@ -259,7 +259,7 @@ onBeforeUnmount(() => {
     bottom: 20px;
     width: 4px;
     height: calc(100% - 78px);
-    background-color: var(--main-card-border);
+    background-color: var(--color-card-border);
     border-radius: 8px;
   }
 }

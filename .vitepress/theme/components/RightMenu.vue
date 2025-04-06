@@ -573,7 +573,7 @@ defineExpose({ openRightMenu })
       .artist {
         font-size: 14px;
         margin-top: 4px;
-        color: var(--main-font-second-color);
+        color: var(--color-font-second-color);
       }
     }
 
@@ -597,10 +597,10 @@ defineExpose({ openRightMenu })
   margin-top: -4px;
   margin-bottom: 1rem;
   display: block;
-  color: var(--main-font-second-color);
-  border-left: 4px solid var(--main-card-border);
+  color: var(--color-font-second-color);
+  border-left: 4px solid var(--color-card-border);
   border-radius: 4px;
   padding: 8px 0 8px 12px;
-  background-color: var(--main-card-second-background);
+  background-color: var(--color-card-second-background);
 }
 </style>

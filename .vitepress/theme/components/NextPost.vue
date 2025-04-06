@@ -105,14 +105,14 @@ onBeforeUnmount(() => {
   flex-direction: column;
   padding: 20px;
   cursor: pointer;
-  background-color: var(--main-card-background);
+  background-color: var(--color-card-background);
 
   .post-tip {
     font-size: 14px;
-    color: var(--main-font-second-color);
+    color: var(--color-font-second-color);
     padding-bottom: 8px;
     margin-bottom: 12px;
-    border-bottom: 1px dashed var(--main-card-border);
+    border-bottom: 1px dashed var(--color-card-border);
     transition: color 0.3s;
   }
 
@@ -140,14 +140,14 @@ onBeforeUnmount(() => {
   }
 
   &:hover {
-    background-color: var(--main-color);
-    border-color: var(--main-color);
-    color: var(--main-card-background);
-    box-shadow: 0 8px 16px -4px var(--main-color-bg);
+    background-color: var(--color-theme);
+    border-color: var(--color-theme);
+    color: var(--color-card-background);
+    box-shadow: 0 8px 16px -4px var(--color-theme-op);
 
     .post-tip {
       opacity: 0.8;
-      color: var(--main-card-background);
+      color: var(--color-card-background);
     }
   }
 

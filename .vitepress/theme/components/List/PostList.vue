@@ -165,7 +165,7 @@ function toPost(path: string) {
         display: flex;
         flex-wrap: wrap;
         width: 100%;
-        color: var(--main-font-second-color);
+        color: var(--color-font-second-color);
         font-size: 14px;
         .cat-name {
           display: flex;
@@ -178,7 +178,7 @@ function toPost(path: string) {
         }
         .top {
           margin-left: 12px;
-          color: var(--main-color);
+          color: var(--color-theme);
           svg {
             opacity: 0.8;
           }
@@ -214,7 +214,7 @@ function toPost(path: string) {
         flex-direction: row;
         align-items: center;
         justify-content: space-between;
-        color: var(--main-font-second-color);
+        color: var(--color-font-second-color);
         .post-tags {
           display: flex;
           flex-wrap: wrap;
@@ -234,7 +234,7 @@ function toPost(path: string) {
               margin-right: 4px;
             }
             &:hover {
-              color: var(--main-color);
+              color: var(--color-theme);
             }
           }
           @media (max-width: 768px) {
@@ -251,7 +251,7 @@ function toPost(path: string) {
     &.simple {
       animation: none;
       padding: 0.5rem 1.4rem;
-      background-color: var(--main-card-second-background);
+      background-color: var(--color-card-second-background);
       height: auto;
     }
     &:last-child {
@@ -264,7 +264,7 @@ function toPost(path: string) {
       }
       .post-content {
         .post-title {
-          color: var(--main-color);
+          color: var(--color-theme);
         }
       }
     }

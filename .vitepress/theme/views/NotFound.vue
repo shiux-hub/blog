@@ -39,8 +39,8 @@ const router = useRouter()
     margin-top: 2rem;
     padding: 12px 26px;
     font-size: 20px;
-    color: var(--main-font-color);
-    background-color: var(--main-card-border);
+    color: var(--color-font-color);
+    background-color: var(--color-card-border);
     border-radius: 12px;
     outline: none;
     border: none;
@@ -50,8 +50,8 @@ const router = useRouter()
     cursor: pointer;
 
     &:hover {
-      color: var(--main-card-background);
-      background-color: var(--main-color);
+      color: var(--color-card-background);
+      background-color: var(--color-theme);
     }
   }
 }

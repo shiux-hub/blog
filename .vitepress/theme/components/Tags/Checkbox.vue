@@ -39,12 +39,12 @@ function checkboxClick() {
     height: 20px;
     border-radius: 4px;
     margin-right: 8px;
-    border: 1.5px solid var(--main-card-border);
+    border: 1.5px solid var(--color-card-border);
     transition:
       border 0.3s,
       background-color 0.3s;
     &.check {
-      background-color: var(--main-color);
+      background-color: var(--color-theme);
       svg {
         opacity: 1;
         transform: scale(1);
@@ -53,7 +53,7 @@ function checkboxClick() {
   }
   &:hover {
     .checkbox-box {
-      border-color: var(--main-color);
+      border-color: var(--color-theme);
     }
   }
 }

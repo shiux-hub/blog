@@ -94,11 +94,11 @@ withDefaults(
       border-bottom: none;
       margin-bottom: 4px;
       .name-count {
-        color: var(--main-font-second-color);
+        color: var(--color-font-second-color);
       }
     }
     .tip {
-      color: var(--main-font-second-color);
+      color: var(--color-font-second-color);
     }
   }
   .all-link {
@@ -127,9 +127,9 @@ withDefaults(
         overflow: hidden;
         background: linear-gradient(
           90deg,
-          var(--main-card-border) 25%,
-          var(--main-card-background) 37%,
-          var(--main-card-border) 63%
+          var(--color-card-border) 25%,
+          var(--color-card-background) 37%,
+          var(--color-card-border) 63%
         );
         background-size: 400% 100%;
         animation: skeleton-loading 1.4s ease infinite;
@@ -137,7 +137,7 @@ withDefaults(
         .cover-img {
           width: 100%;
           height: 100%;
-          background-color: var(--main-card-background);
+          background-color: var(--color-card-background);
           opacity: 0;
           filter: blur(10px);
           transition:
@@ -170,7 +170,7 @@ withDefaults(
           font-size: 15px;
           margin-top: 4px;
           line-height: 1.2;
-          color: var(--main-font-second-color);
+          color: var(--color-font-second-color);
           overflow: hidden;
           text-overflow: ellipsis;
           display: -webkit-box;
@@ -183,10 +183,10 @@ withDefaults(
         }
       }
       &:hover {
-        color: var(--main-card-background);
-        background-color: var(--main-color);
-        border-color: var(--main-color);
-        box-shadow: 0 0 16px 6px var(--main-color-bg);
+        color: var(--color-card-background);
+        background-color: var(--color-theme);
+        border-color: var(--color-theme);
+        box-shadow: 0 0 16px 6px var(--color-theme-op);
         .cover {
           margin-right: 6px;
           min-width: 0;
@@ -197,7 +197,7 @@ withDefaults(
         .data {
           .desc {
             opacity: 0.7;
-            color: var(--main-card-background);
+            color: var(--color-card-background);
           }
         }
       }

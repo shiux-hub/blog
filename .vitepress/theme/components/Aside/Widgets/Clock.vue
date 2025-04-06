@@ -60,8 +60,8 @@ onBeforeUnmount(() => {
   width: 160px;
   height: 160px;
   border-radius: 50%;
-  border: 6px solid var(--main-card-background);
-  box-shadow: 0 8px 16px -4px var(--main-border-shadow);
+  border: 6px solid var(--color-card-background);
+  box-shadow: 0 8px 16px -4px var(--color-border-shadow);
   background-image: linear-gradient(to bottom, #505152, #2e2f30);
   overflow: hidden;
   .clock-content {

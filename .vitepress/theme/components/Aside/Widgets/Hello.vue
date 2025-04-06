@@ -112,8 +112,8 @@ onBeforeUnmount(() => {
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: var(--main-color);
-  color: var(--main-card-background);
+  background-color: var(--color-theme);
+  color: var(--color-card-background);
   border: none;
 
   .tip {
@@ -124,7 +124,7 @@ onBeforeUnmount(() => {
     border-radius: 25px;
     font-size: 14px;
     font-weight: bold;
-    background-color: var(--main-color-opacity);
+    background-color: var(--color-opacity);
     margin-bottom: 12px;
     cursor: pointer;
     transition:
@@ -133,8 +133,8 @@ onBeforeUnmount(() => {
       background-color 0.3s;
     &:hover {
       transform: scale(1.1);
-      color: var(--main-font-color);
-      background-color: var(--main-card-background);
+      color: var(--color-font-color);
+      background-color: var(--color-card-background);
     }
     &:active {
       transform: scale(1);
@@ -205,21 +205,21 @@ onBeforeUnmount(() => {
         width: 40px;
         height: 40px;
         margin-left: 12px;
-        background-color: var(--main-color-opacity);
+        background-color: var(--color-opacity);
         border-radius: 50%;
         svg {
           width: 22px;
           height: 22px;
-          color: var(--main-card-background);
+          color: var(--color-card-background);
         }
         &:first-child {
           margin-left: 0;
         }
         &:hover {
           transform: scale(1.1);
-          background-color: var(--main-card-background);
+          background-color: var(--color-card-background);
           svg {
-            color: var(--main-font-color);
+            color: var(--color-font-color);
           }
         }
       }

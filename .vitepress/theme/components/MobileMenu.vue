@@ -130,17 +130,17 @@ function pageJump(url: string) {
         width: 18px;
         height: 18px;
         line-height: 1;
-        color: var(--main-font-second-color);
+        color: var(--color-font-second-color);
         transition:
           color 0.3s,
           opacity 0.3s;
       }
 
       &:hover {
-        background-color: var(--main-color);
+        background-color: var(--color-theme);
 
         svg {
-          color: var(--main-card-background);
+          color: var(--color-card-background);
         }
       }
     }
@@ -160,7 +160,7 @@ function pageJump(url: string) {
         font-size: 14px;
         margin-bottom: 12px;
         display: inline-block;
-        color: var(--main-font-second-color);
+        color: var(--color-font-second-color);
       }
 
       .link-child-btn {
@@ -170,9 +170,9 @@ function pageJump(url: string) {
         align-items: center;
         border-radius: 8px;
         padding: 10px 12px;
-        background-color: var(--main-card-background);
-        border: 1px solid var(--main-card-border);
-        box-shadow: 0 8px 16px -4px var(--main-border-shadow);
+        background-color: var(--color-card-background);
+        border: 1px solid var(--color-card-border);
+        box-shadow: 0 8px 16px -4px var(--color-border-shadow);
         font-size: 15px;
 
         svg {
@@ -189,7 +189,7 @@ function pageJump(url: string) {
     hr {
       margin: 1rem 0;
       opacity: 0.4;
-      border: 1px dashed var(--main-font-second-color);
+      border: 1px dashed var(--color-font-second-color);
     }
   }
 }

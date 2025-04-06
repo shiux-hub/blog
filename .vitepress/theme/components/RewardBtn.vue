@@ -109,7 +109,7 @@ function toRewardList() {
     width: 120px;
     border-radius: 8px;
     color: #fff;
-    background-color: var(--main-color-red);
+    background-color: var(--color-red);
     transition: box-shadow 0.5s;
 
     svg {
@@ -128,7 +128,7 @@ function toRewardList() {
     justify-content: center;
     margin-bottom: 1rem;
     width: 100%;
-    color: var(--main-color);
+    color: var(--color-theme);
     font-weight: bold;
   }
 
@@ -164,7 +164,7 @@ function toRewardList() {
 
       &:hover {
         svg {
-          color: var(--main-color);
+          color: var(--color-theme);
         }
       }
     }
@@ -175,7 +175,7 @@ function toRewardList() {
     display: flex;
     align-items: center;
     flex-direction: column;
-    background-color: var(--main-card-second-background);
+    background-color: var(--color-card-second-background);
 
     .title {
       font-size: 18px;
@@ -192,7 +192,7 @@ function toRewardList() {
 
     &:hover {
       .title {
-        color: var(--main-color);
+        color: var(--color-theme);
       }
     }
   }

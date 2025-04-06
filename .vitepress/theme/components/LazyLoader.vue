@@ -71,9 +71,9 @@ onBeforeUnmount(() => observer && box.value && observer.unobserve(box.value))
 .loading {
   background: linear-gradient(
     90deg,
-    var(--main-card-border) 25%,
-    var(--main-card-background) 37%,
-    var(--main-card-border) 63%
+    var(--color-card-border) 25%,
+    var(--color-card-background) 37%,
+    var(--color-card-border) 63%
   );
   background-size: 400% 100%;
   animation: skeleton-loading 1.4s ease infinite;

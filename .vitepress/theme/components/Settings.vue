@@ -155,7 +155,7 @@ const {
     height: 42px;
     padding: 0;
     border-radius: 25px;
-    box-shadow: 0 6px 10px -4px var(--main-dark-shadow);
+    box-shadow: 0 6px 10px -4px var(--color-dark-shadow);
     cursor: pointer;
 
     svg {
@@ -176,9 +176,9 @@ const {
 
     &:hover {
       width: 140px;
-      color: var(--main-card-background);
-      border-color: var(--main-color);
-      background-color: var(--main-color);
+      color: var(--color-card-background);
+      border-color: var(--color-theme);
+      background-color: var(--color-theme);
 
       .set-text {
         opacity: 1;
@@ -194,9 +194,9 @@ const {
     margin: 1rem 0;
     font-size: 16px;
     font-weight: bold;
-    border-left: 4px solid var(--main-color);
+    border-left: 4px solid var(--color-theme);
     border-radius: 4px 8px 8px 4px;
-    background-color: var(--main-border-shadow);
+    background-color: var(--color-border-shadow);
     padding: 6px 0 6px 12px;
 
     &:first-child {
@@ -227,16 +227,16 @@ const {
         margin: 4px 8px;
         padding: 6px 8px;
         min-width: 30px;
-        background-color: var(--main-card-border);
+        background-color: var(--color-card-border);
         transition:
           color 0.3s,
           background-color 0.3s;
 
         &.choose,
         &:hover {
-          color: var(--main-card-background);
-          background-color: var(--main-color);
-          box-shadow: 0 8px 16px -4px var(--main-border-shadow);
+          color: var(--color-card-background);
+          background-color: var(--color-theme);
+          box-shadow: 0 8px 16px -4px var(--color-border-shadow);
         }
 
         &:last-child {
@@ -252,9 +252,8 @@ const {
         border: none;
         outline: none;
         border-radius: 8px;
-        color: var(--main-font-color);
-        font-family: var(--main-font-family);
-        background-color: var(--main-border-shadow);
+        color: var(--color-font-color);
+        background-color: var(--color-border-shadow);
         height: 100%;
         padding: 0 1rem;
         font-size: 14px;

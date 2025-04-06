@@ -49,9 +49,9 @@ const { frontmatter } = useData()
           margin-bottom: 1rem;
           border-bottom: none;
           border-radius: 16px;
-          background-color: var(--main-card-background);
-          border: 1px solid var(--main-card-border);
-          box-shadow: 0 8px 16px -4px var(--main-border-shadow);
+          background-color: var(--color-card-background);
+          border: 1px solid var(--color-card-border);
+          box-shadow: 0 8px 16px -4px var(--color-border-shadow);
         }
       }
     }

@@ -34,13 +34,13 @@ const references = frontmatter.value?.references
   margin: 1rem 0;
   padding: 18px;
   margin-top: 2rem;
-  background-color: var(--main-card-second-background);
+  background-color: var(--color-card-second-background);
 
   .title {
     display: flex;
     flex-direction: row;
     align-items: center;
-    color: var(--main-font-second-color);
+    color: var(--color-font-second-color);
     font-size: 15px;
     margin-bottom: 0.8rem;
 
@@ -48,7 +48,7 @@ const references = frontmatter.value?.references
       margin-right: 4px;
       width: 18px;
       height: 18px;
-      color: var(--main-font-second-color);
+      color: var(--color-font-second-color);
       opacity: 0.6;
     }
   }
@@ -86,7 +86,7 @@ const references = frontmatter.value?.references
         width: 8px;
         height: 8px;
         opacity: 0.6;
-        background-color: var(--main-font-color);
+        background-color: var(--color-font-color);
         border-radius: 50%;
         transition: background-color 0.3s;
       }
@@ -99,15 +99,15 @@ const references = frontmatter.value?.references
         height: 2px;
         width: 0;
         margin-left: 1rem;
-        background-color: var(--main-color);
+        background-color: var(--color-theme);
         transition: width 0.3s;
       }
 
       &:hover {
-        color: var(--main-color);
+        color: var(--color-theme);
 
         &::before {
-          background-color: var(--main-color);
+          background-color: var(--color-theme);
         }
 
         &::after {

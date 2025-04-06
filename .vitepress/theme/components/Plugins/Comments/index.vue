@@ -81,7 +81,7 @@ defineExpose({ scrollToComments })
         color 0.3s;
       &:hover {
         opacity: 1;
-        color: var(--main-color);
+        color: var(--color-theme);
       }
     }
   }

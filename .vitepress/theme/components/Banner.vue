@@ -231,7 +231,7 @@ onBeforeUnmount(() => {
       flex-direction: column;
 
       .title-small {
-        color: var(--main-font-second-color);
+        color: var(--color-font-second-color);
         font-size: 0.875rem;
       }
 
@@ -253,7 +253,7 @@ onBeforeUnmount(() => {
 
     .footer-left {
       margin-top: auto;
-      color: var(--main-font-second-color);
+      color: var(--color-font-second-color);
       opacity: 0.8;
     }
   }

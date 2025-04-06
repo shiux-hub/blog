@@ -114,7 +114,7 @@ onMounted(() => {
   height: 60px;
   width: 100%;
   width: 100vw;
-  background-color: var(--main-color);
+  background-color: var(--color-theme);
   z-index: 3000;
 
   .message-content {
@@ -125,7 +125,7 @@ onMounted(() => {
     font-weight: bold;
 
     .text {
-      color: var(--main-card-background);
+      color: var(--color-card-background);
     }
 
     .close {
@@ -141,13 +141,13 @@ onMounted(() => {
       svg {
         width: 14px;
         height: 14px;
-        color: var(--main-card-background);
+        color: var(--color-card-background);
         opacity: 0.6;
         transition: opacity 0.3s;
       }
 
       &:hover {
-        background-color: var(--main-color-white);
+        background-color: var(--color-white);
 
         svg {
           opacity: 1;
@@ -157,19 +157,19 @@ onMounted(() => {
   }
 
   &.success {
-    background-color: var(--main-success-color);
+    background-color: var(--color-success);
   }
 
   &.warning {
-    background-color: var(--main-warning-color);
+    background-color: var(--color-warning);
   }
 
   &.error {
-    background-color: var(--main-error-color);
+    background-color: var(--color-error);
   }
 
   &.info {
-    background-color: var(--main-info-color);
+    background-color: var(--color-info);
   }
 
   &::after {
@@ -180,7 +180,7 @@ onMounted(() => {
     width: 0;
     height: 100%;
     z-index: -1;
-    background-color: var(--main-color-white);
+    background-color: var(--color-white);
     transition: width 0.3s;
     animation: loading-width var(--duration) linear forwards;
   }
