@@ -1,7 +1,11 @@
 import type { CatOrTagData } from '@/utils/getPostData'
+import type { DefaultTheme } from 'vitepress/theme'
 import type { PostDataItem } from './post'
 
-export interface ThemeConfig {
+export interface ThemeConfig extends Pick<
+  DefaultTheme.Config,
+  'search' | 'socialLinks'
+> {
   siteMeta: {
     title: string
     description: string
@@ -46,24 +50,14 @@ export interface ThemeConfig {
       defaultCover: string[]
     }
   }
-  footer: {
-    social: Array<{
-      /**
-       * 使用 https://icon-sets.iconify.design/
-       */
-      icon: string
-      link: string
-      title: string
-    }>
-    sitemap: Array<{
+  sitemap: Array<{
+    text: string
+    items: Array<{
       text: string
-      items: Array<{
-        text: string
-        link: string
-        newTab?: boolean
-      }>
+      link: string
+      newTab?: boolean
     }>
-  }
+  }>
   comment: {
     enable: boolean
     type: string
@@ -114,11 +108,6 @@ export interface ThemeConfig {
     id: number
     server: string
     type: string
-  }
-  search: {
-    enable: boolean
-    appId: string
-    apiKey: string
   }
   rewardData: {
     enable: boolean

@@ -22,9 +22,13 @@
     "build": "vitepress build",
     "preview": "vitepress preview",
     "deploy:vercel": "vercel deploy",
+    "test:unit": "vitest",
+    "test:watch": "vitest watch",
+    "test:ui": "vitest ui",
     "typecheck": "vue-tsc -b"
   },
   "dependencies": {
+    "@docsearch/js": "^3.9.0",
     "@vueuse/core": "^13.0.0",
     "algoliasearch": "^5.23.2",
     "aplayer": "^1.10.1",
@@ -60,17 +64,19 @@
     "markdown-it-attrs": "^4.3.1",
     "markdown-it-container": "^4.0.0",
     "markdown-it-mathjax3": "^4.3.2",
+    "minisearch": "^7.1.2",
     "prettier": "^3.5.3",
     "prettier-plugin-tailwindcss": "^0.6.11",
     "tailwindcss": "^4.1.3",
     "terser": "^5.39.0",
-    "typescript": "^5.8.2",
+    "typescript": "^5.8.3",
     "unplugin-auto-import": "^19.1.2",
     "unplugin-vue-components": "^28.4.1",
     "vercel": "^41.4.1",
     "vite-plugin-vue-devtools": "^7.7.2",
     "vitepress": "^2.0.0-alpha.4",
     "vitepress-plugin-tabs": "^0.6.0",
+    "vitest": "^3.1.1",
     "vue-tsc": "^2.2.8"
   },
   "pnpm": {
@@ -78,6 +84,9 @@
       "@parcel/watcher",
       "esbuild",
       "vue-demi"
-    ]
+    ],
+    "patchedDependencies": {
+      "vue-slider-component@4.1.0-beta.7": "patches/vue-slider-component.patch"
+    }
   }
 }

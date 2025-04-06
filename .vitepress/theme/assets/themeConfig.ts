@@ -261,113 +261,110 @@ export const themeConfig: ThemeConfig = {
       ],
     },
   },
-  // 页脚信息
-  footer: {
-    // 社交链接（请确保为偶数个）
-    social: [
-      {
-        icon: 'mdi:email-outline',
-        link: 'mailto:one@imsyy.top',
-        title: '给我发邮件',
-      },
-      {
-        icon: 'ri:github-line',
-        link: 'https://www.github.com/imsyy/',
-        title: 'GitHub',
-      },
-      {
-        icon: 'ri:telegram-2-line',
-        link: 'https://t.me/bottom_user',
-        title: 'Telegram',
-      },
-      {
-        icon: 'ri:bilibili-line',
-        link: 'https://space.bilibili.com/98544142',
-        title: 'BiliBili',
-      },
-      {
-        icon: 'ri:qq-line',
-        link: 'https://res.abeim.cn/api/qq/?qq=1539250352',
-        title: 'QQ',
-      },
-      {
-        icon: 'ri:twitter-x-line',
-        link: 'https://twitter.com/iimmsyy',
-        title: 'X',
-      },
-    ],
-    // sitemap
-    sitemap: [
-      {
-        text: '博客',
-        items: [
-          { text: '近期文章', link: '/' },
-          { text: '全部分类', link: '/pages/categories' },
-          { text: '全部标签', link: '/pages/tags' },
-          { text: '文章归档', link: '/pages/archives', newTab: true },
-        ],
-      },
-      {
-        text: '项目',
-        items: [
-          {
-            text: 'Home',
-            link: 'https://github.com/imsyy/home/',
-            newTab: true,
-          },
-          {
-            text: 'SPlayer',
-            link: 'https://github.com/imsyy/SPlayer/',
-            newTab: true,
-          },
-          {
-            text: 'DailyHotApi',
-            link: 'https://github.com/imsyy/DailyHotApi/',
-            newTab: true,
-          },
-          {
-            text: 'Snavigation',
-            link: 'https://github.com/imsyy/Snavigation/',
-            newTab: true,
-          },
-        ],
-      },
-      {
-        text: '专栏',
-        items: [
-          { text: '技术分享', link: '/pages/categories/技术分享' },
-          { text: '我的项目', link: '/pages/project' },
-          { text: '效率工具', link: '/pages/tools' },
-        ],
-      },
-      {
-        text: '页面',
-        items: [
-          { text: '畅所欲言', link: '/pages/message' },
-          { text: '关于本站', link: '/pages/about' },
-          { text: '隐私政策', link: '/pages/privacy' },
-          { text: '版权协议', link: '/pages/cc' },
-        ],
-      },
-      {
-        text: '服务',
-        items: [
-          { text: '站点状态', link: 'https://status.imsyy.top/', newTab: true },
-          { text: '一个导航', link: 'https://nav.imsyy.top/', newTab: true },
-          {
-            text: '站点订阅',
-            link: 'https://blog.imsyy.top/rss.xml',
-            newTab: true,
-          },
-          {
-            text: '反馈投诉',
-            link: 'https://eqnxweimkr5.feishu.cn/share/base/form/shrcnCXCPmxCKKJYI3RKUfefJre',
-            newTab: true,
-          },
-        ],
-      },
-    ],
-  },
+  // 社交链接（请确保为偶数个）
+  socialLinks: [
+    {
+      icon: 'mdi:email-outline',
+      link: 'mailto:one@imsyy.top',
+      ariaLabel: '给我发邮件',
+    },
+    {
+      icon: 'ri:github-line',
+      link: 'https://www.github.com/imsyy/',
+      ariaLabel: 'GitHub',
+    },
+    {
+      icon: 'ri:telegram-2-line',
+      link: 'https://t.me/bottom_user',
+      ariaLabel: 'Telegram',
+    },
+    {
+      icon: 'ri:bilibili-line',
+      link: 'https://space.bilibili.com/98544142',
+      ariaLabel: 'BiliBili',
+    },
+    {
+      icon: 'ri:qq-line',
+      link: 'https://res.abeim.cn/api/qq/?qq=1539250352',
+      ariaLabel: 'QQ',
+    },
+    {
+      icon: 'ri:twitter-x-line',
+      link: 'https://twitter.com/iimmsyy',
+      ariaLabel: 'X',
+    },
+  ],
+  // sitemap
+  sitemap: [
+    {
+      text: '博客',
+      items: [
+        { text: '近期文章', link: '/' },
+        { text: '全部分类', link: '/pages/categories' },
+        { text: '全部标签', link: '/pages/tags' },
+        { text: '文章归档', link: '/pages/archives', newTab: true },
+      ],
+    },
+    {
+      text: '项目',
+      items: [
+        {
+          text: 'Home',
+          link: 'https://github.com/imsyy/home/',
+          newTab: true,
+        },
+        {
+          text: 'SPlayer',
+          link: 'https://github.com/imsyy/SPlayer/',
+          newTab: true,
+        },
+        {
+          text: 'DailyHotApi',
+          link: 'https://github.com/imsyy/DailyHotApi/',
+          newTab: true,
+        },
+        {
+          text: 'Snavigation',
+          link: 'https://github.com/imsyy/Snavigation/',
+          newTab: true,
+        },
+      ],
+    },
+    {
+      text: '专栏',
+      items: [
+        { text: '技术分享', link: '/pages/categories/技术分享' },
+        { text: '我的项目', link: '/pages/project' },
+        { text: '效率工具', link: '/pages/tools' },
+      ],
+    },
+    {
+      text: '页面',
+      items: [
+        { text: '畅所欲言', link: '/pages/message' },
+        { text: '关于本站', link: '/pages/about' },
+        { text: '隐私政策', link: '/pages/privacy' },
+        { text: '版权协议', link: '/pages/cc' },
+      ],
+    },
+    {
+      text: '服务',
+      items: [
+        { text: '站点状态', link: 'https://status.imsyy.top/', newTab: true },
+        { text: '一个导航', link: 'https://nav.imsyy.top/', newTab: true },
+        {
+          text: '站点订阅',
+          link: 'https://blog.imsyy.top/rss.xml',
+          newTab: true,
+        },
+        {
+          text: '反馈投诉',
+          link: 'https://eqnxweimkr5.feishu.cn/share/base/form/shrcnCXCPmxCKKJYI3RKUfefJre',
+          newTab: true,
+        },
+      ],
+    },
+  ],
   // 评论
   comment: {
     enable: false,
@@ -446,11 +443,14 @@ export const themeConfig: ThemeConfig = {
   },
   // 搜索
   // https://www.algolia.com/
-  search: {
-    enable: false,
-    appId: '',
-    apiKey: '',
-  },
+  // search: {
+  //   provider: 'algolia',
+  //   options: {
+  //     appId: '',
+  //     apiKey: '',
+  //     indexName: '',
+  //   },
+  // },
   // 打赏
   rewardData: {
     enable: true,
