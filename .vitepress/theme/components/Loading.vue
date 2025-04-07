@@ -35,46 +35,23 @@ onBeforeUnmount(() => {
 <template>
   <Teleport to="body">
     <Transition name="fade" mode="out-in">
-      <div v-if="loadingStatus" class="loading" @click="loadingStatus = false">
-        <img :src="theme.siteMeta.logo" class="logo" alt="loading-logo">
-        <span class="tip" :class="[{ show: showTip }]">
+      <div
+        v-if="loadingStatus"
+        class="bg-card-background fixed inset-0 z-9999 flex h-dvh w-dvw flex-col items-center justify-center"
+        @click="loadingStatus = false"
+      >
+        <img
+          :src="theme.siteMeta.logo"
+          class="animate-loading size-25 duration-2000"
+          alt="loading-logo"
+        >
+        <span
+          v-show="showTip"
+          class="absolute bottom-8 text-sm opacity-60 transition-opacity duration-300"
+        >
           一直显示？点击任意区域即可关闭
         </span>
       </div>
     </Transition>
   </Teleport>
 </template>
-
-<style scoped>
-.loading {
-  position: fixed;
-  top: 0;
-  left: 0;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  width: 100vw;
-  height: 100vh;
-  background-color: var(--color-card-background);
-  z-index: 9999;
-
-  .logo {
-    width: 100px;
-    height: 100px;
-    animation: loading 2s infinite;
-  }
-
-  .tip {
-    position: absolute;
-    bottom: 2rem;
-    font-size: 14px;
-    opacity: 0;
-    transition: opacity 0.3s;
-
-    &.show {
-      opacity: 0.6;
-    }
-  }
-}
-</style>

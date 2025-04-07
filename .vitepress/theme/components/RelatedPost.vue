@@ -1,5 +1,6 @@
 <!-- 相关文章 -->
 <script lang="ts" setup>
+import type { PostDataItem } from '@/types/post'
 import { useData } from '@/composables/data'
 import { generateId } from '@/utils/commonTools'
 import { shufflePost } from '@/utils/helper'
@@ -10,7 +11,7 @@ const router = useRouter()
 const { theme, page, frontmatter } = useData()
 
 // 文章信息
-const relatedData = ref<[]>()
+const relatedData = ref<PostDataItem[]>()
 
 // 获取同一分类的文章
 function getRelatedData() {

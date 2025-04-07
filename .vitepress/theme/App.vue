@@ -141,8 +141,8 @@ onBeforeUnmount(() => {
   <Nav />
   <!-- 主内容 -->
   <main
-    class="main-layout"
-    :class="[{ 'loading': loadingStatus, 'is-post': isPostPage }]"
+    class="animate-show container mx-auto w-full px-6 py-4 duration-500"
+    :class="{ 'hidden': loadingStatus, 'max-md:py-0': isPostPage }"
   >
     <!-- 404 -->
     <NotFound v-if="page.isNotFound" />
@@ -158,19 +158,21 @@ onBeforeUnmount(() => {
   </main>
   <!-- 页脚 -->
   <footer
-    class="to-card-background max-md:from-card-background mt-12 flex flex-col items-center gap-8 bg-linear-180 from-transparent to-25% max-md:z-999 max-md:mt-0"
+    class="to-card-background max-md:from-card-background mt-12 flex flex-col items-center gap-12 bg-linear-180 from-transparent to-25% max-md:z-999 max-md:mt-0"
   >
     <FooterLinks
       v-show="!loadingStatus"
-      class="mb-8"
       :show-bar="isPostPage && !page.isNotFound"
     />
-    <Footer v-show="!loadingStatus" class="mt-4" />
+    <Footer v-show="!loadingStatus" />
   </footer>
   <!-- 悬浮菜单 -->
   <Teleport to="body">
     <!-- 左侧菜单 -->
-    <div class="left-menu" :class="[{ hidden: footerIsShow }]">
+    <div
+      class="fixed bottom-5 left-5 z-1002 transition-[opacity,transform] duration-300"
+      :class="{ 'translate-y-25 opacity-0': footerIsShow }"
+    >
       <!-- 全局设置 -->
       <Settings />
       <!-- 全局播放器 -->
@@ -182,43 +184,3 @@ onBeforeUnmount(() => {
   <!-- 全局消息 -->
   <Message />
 </template>
-
-<style scoped>
-.main-layout {
-  width: 100%;
-  max-width: 1400px;
-  margin: 0 auto;
-  padding: 1rem 2rem;
-  /** 手动实现加载动画 */
-  animation: show 0.5s forwards;
-  animation-duration: 0.5s;
-  display: block;
-
-  &.loading {
-    display: none;
-  }
-
-  @media (max-width: 768px) {
-    padding: 1rem 1.5rem;
-
-    &.is-post {
-      padding: 0;
-    }
-  }
-}
-
-.left-menu {
-  position: fixed;
-  left: 20px;
-  bottom: 20px;
-  z-index: 1002;
-  transition:
-    opacity 0.3s,
-    transform 0.3s;
-
-  &.hidden {
-    opacity: 0;
-    transform: translateY(100px);
-  }
-}
-</style>

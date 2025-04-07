@@ -78,8 +78,4 @@ onBeforeUnmount(() => observer && box.value && observer.unobserve(box.value))
   background-size: 400% 100%;
   animation: skeleton-loading 1.4s ease infinite;
 }
-
-.hidden {
-  display: none;
-}
 </style>

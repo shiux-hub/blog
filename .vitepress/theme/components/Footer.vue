@@ -47,7 +47,7 @@ onBeforeUnmount(() => {
     class="bg-card-second-background border-card-border animate-show flex w-full overflow-hidden border transition duration-300"
   >
     <div
-      class="text-font-color flex min-h-8 w-full flex-wrap items-center justify-between gap-2 px-6 py-4 max-md:justify-center max-md:gap-2 max-md:text-sm"
+      class="text-font-color container mx-auto flex min-h-8 w-full flex-wrap items-center justify-between gap-2 px-6 py-4 max-md:justify-center max-md:gap-2 max-md:text-sm"
     >
       <div
         class="flex flex-wrap items-center gap-1 max-md:justify-center max-md:gap-2"
