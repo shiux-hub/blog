@@ -44,31 +44,31 @@ watch(
 <template>
   <Teleport to="body">
     <Transition name="fade" mode="out-in">
-      <div v-if="show" class="modal">
-        <div class="modal-mask" @click.stop="$emit('maskClick')" />
+      <div v-if="show" class="fixed inset-0 flex items-center justify-center w-dvw h-dvh z-2000">
+        <div class="absolute inset-0 size-full -z-1 bg-mask-background-deep" @click.stop="$emit('maskClick')" />
         <div
           :style="{
             maxWidth: typeof maxWidth === 'string' ? maxWidth : `${maxWidth}px`,
           }"
-          class="modal-main card cursor-pointer"
+          class="absolute p-0 animate-[fade-up_0.5s_forwards] duration-500 card cursor-pointer"
           @click.stop
         >
           <!-- 标题 -->
-          <div v-if="title" class="title">
-            <div class="title-left">
-              <Icon v-if="titleIcon" :icon="titleIcon" />
+          <div v-if="title" class="flex items-center justify-center text-lg p-5 h-16 bg-card-background border-b border-card-border">
+            <div class="w-full space-x-2">
+              <Icon v-if="titleIcon" :icon="titleIcon" class="size-5" />
               <span class="title-text">{{ title }}</span>
             </div>
             <!-- 关闭按钮 -->
             <Icon
               v-if="showClose"
               icon="mingcute:close-fill"
-              class="close"
+              class="absolute right-5 size-4 mr-0 rounded-lg p-2 cursor-pointer transition-[background-color] duration-300 hover:bg-card-border"
               @click="$emit('modalClose')"
             />
           </div>
           <!-- 弹窗内容 -->
-          <div class="modal-content" :style="{ '--height': `${maxHeight}vh` }">
+          <div class=" max-h-[calc(var(--height)-46px)] p-5 overflow-auto" :style="{ '--height': `${maxHeight}vh` }">
             <slot />
           </div>
         </div>
@@ -76,79 +76,3 @@ watch(
     </Transition>
   </Teleport>
 </template>
-
-<style scoped>
-.modal {
-  position: fixed;
-  top: 0;
-  left: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 100vw;
-  height: 100vh;
-  z-index: 2000;
-
-  .modal-mask {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: -1;
-    background-color: var(--color-mask-background-deep);
-  }
-
-  .modal-main {
-    position: absolute;
-    padding: 0;
-    animation: fade-up 0.5s forwards;
-    width: calc(100% - 40px);
-    overflow: hidden;
-
-    .title {
-      display: flex;
-      flex-direction: row;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.125rem;
-      padding: 20px;
-      height: 64px;
-      background-color: var(--color-card-background);
-      border-bottom: 1px solid var(--color-card-border);
-
-      .title-left {
-        width: 100%;
-
-        svg {
-          width: 1.25rem;
-          height: 1.25rem;
-          margin-right: 8px;
-        }
-      }
-
-      .close {
-        position: absolute;
-        right: 20px;
-        margin-right: 0;
-        width: 1rem;
-        height: 1rem;
-        border-radius: 8px;
-        padding: 8px;
-        transition: background-color 0.3s;
-        cursor: pointer;
-
-        &:hover {
-          background-color: var(--color-card-border);
-        }
-      }
-    }
-
-    .modal-content {
-      max-height: calc(var(--height) - 46px);
-      padding: 20px;
-      overflow: auto;
-    }
-  }
-}
-</style>

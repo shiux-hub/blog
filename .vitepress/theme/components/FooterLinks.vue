@@ -49,7 +49,7 @@ const socialLinkData = computed(() => {
         :href="link"
         :aria-label
         target="_blank"
-        class="bg-font-color text-card-background hover:bg-theme flex size-8 items-center justify-center rounded-full transition-[scale,background-color] duration-300 contain-layout hover:scale-115 active:scale-100"
+        class="bg-font-color text-card-background hover:bg-theme flex size-8 items-center justify-center rounded-full transition-[scale,background-color] duration-300 contain-layout contain-paint hover:scale-115 active:scale-100"
       >
         <component
           :is="isObject(icon) ? 'div' : Icon"

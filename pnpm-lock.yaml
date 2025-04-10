@@ -16,8 +16,8 @@ importers:
         specifier: ^3.9.0
         version: 3.9.0(@algolia/client-search@5.23.2)(search-insights@2.17.3)
       '@vueuse/core':
-        specifier: ^13.0.0
-        version: 13.0.0(vue@3.5.13(typescript@5.8.3))
+        specifier: ^13.1.0
+        version: 13.1.0(vue@3.5.13(typescript@5.8.3))
       aplayer:
         specifier: ^1.10.1
         version: 1.10.1
@@ -129,13 +129,13 @@ importers:
         version: 5.8.3
       unplugin-auto-import:
         specifier: ^19.1.2
-        version: 19.1.2(@nuxt/kit@3.16.1)(@vueuse/core@13.0.0(vue@3.5.13(typescript@5.8.3)))
+        version: 19.1.2(@nuxt/kit@3.16.1)(@vueuse/core@13.1.0(vue@3.5.13(typescript@5.8.3)))
       unplugin-vue-components:
         specifier: ^28.4.1
         version: 28.4.1(@babel/parser@7.27.0)(@nuxt/kit@3.16.1)(vue@3.5.13(typescript@5.8.3))
       vercel:
-        specifier: ^41.4.1
-        version: 41.4.1(rollup@2.79.2)
+        specifier: ^41.5.0
+        version: 41.5.0(rollup@2.79.2)
       vite-plugin-vue-devtools:
         specifier: ^7.7.2
         version: 7.7.2(@nuxt/kit@3.16.1)(rollup@2.79.2)(vite@6.2.4(@types/node@22.14.0)(jiti@2.4.2)(lightningcss@1.29.2)(sass@1.86.3)(terser@5.39.0)(yaml@2.7.1))(vue@3.5.13(typescript@5.8.3))
@@ -2839,10 +2839,10 @@ packages:
         integrity: sha512-kdZp8cTVLoNmnu24wtoQPu9ZO+uB00zvDMTOXlQmNdq/V3k0mQa/Q5k2B8nliBQ3BMiBasoXxMKv59+F8rYvDw==,
       }
 
-  '@vercel/next@4.7.4':
+  '@vercel/next@4.7.6':
     resolution:
       {
-        integrity: sha512-8CzSxN4rOjABoF+6KBEpxlWnTaXpBNDiuNGRfJ3LWBMj/mtlnsucHpd/8Y7ReS9QheICWf9McC7gqA2Alrpmwg==,
+        integrity: sha512-rrujYVMzt1j43n6CSLyVgmt7wdi7Z/h8baup3XsrL74T99LWWj1UdMmZKUC79UXsDRZVom6t90Clhrrn+fB7AQ==,
       }
 
   '@vercel/nft@0.27.10':
@@ -2859,10 +2859,10 @@ packages:
         integrity: sha512-kLXAR4ZtNSXJw5ffIzKPDAVHD4/Dwxw/287ZCnQlqtOQzY3IH1E5QM3nxn0LGfTkYxXpQFFOOcXL7fZW7MjC6A==,
       }
 
-  '@vercel/python@4.7.1':
+  '@vercel/python@4.7.2':
     resolution:
       {
-        integrity: sha512-H4g/5e8unII4oQ+KN5IUvTZSzHmj+lLYDkAK15QGYgAxBtE/mHUvEZpPPo7DPUDIyfq8ybWB1bmk7H5kEahubQ==,
+        integrity: sha512-i2QBNMvNxUZQ2e5vLIL7mUkLg5Qkl9nqxUNXCYezdyvk2Ql6xYKjg7tMhpK/uiy094KfZSOECpDbDxkIN0jUSw==,
       }
 
   '@vercel/redwood@2.3.0':
@@ -3153,10 +3153,10 @@ packages:
         integrity: sha512-HbvCmZdzAu3VGi/pWYm5Ut+Kd9mn1ZHnn4L5G8kOQTPs/IwIAmJoBrmYk2ckLArgMXZj0AW3n5CAejLUO+PhdQ==,
       }
 
-  '@vueuse/core@13.0.0':
+  '@vueuse/core@13.1.0':
     resolution:
       {
-        integrity: sha512-rkgb4a8/0b234lMGCT29WkCjPfsX0oxrIRR7FDndRoW3FsaC9NBzefXg/9TLhAgwM11f49XnutshM4LzJBrQ5g==,
+        integrity: sha512-PAauvdRXZvTWXtGLg8cPUFjiZEddTqmogdwYpnn60t08AA5a8Q4hZokBnpTOnVNqySlFlTcRYIC8OqreV4hv3Q==,
       }
     peerDependencies:
       vue: ^3.5.0
@@ -3211,10 +3211,10 @@ packages:
         integrity: sha512-rAyLGEuoBJ/Il5AmFHiziCPdQzRt88VxR+Y/A/QhJ1EWtWqPBBAxTAFaSkviwEuOEZNtW8pvkPgoCZQ+HxqW1A==,
       }
 
-  '@vueuse/metadata@13.0.0':
+  '@vueuse/metadata@13.1.0':
     resolution:
       {
-        integrity: sha512-TRNksqmvtvqsuHf7bbgH9OSXEV2b6+M3BSN4LR5oxWKykOFT9gV78+C2/0++Pq9KCp9KQ1OQDPvGlWNQpOb2Mw==,
+        integrity: sha512-+TDd7/a78jale5YbHX9KHW3cEDav1lz1JptwDvep2zSG8XjCsVE+9mHIzjTOaPbHUAk5XiE4jXLz51/tS+aKQw==,
       }
 
   '@vueuse/shared@12.8.2':
@@ -3223,10 +3223,10 @@ packages:
         integrity: sha512-dznP38YzxZoNloI0qpEfpkms8knDtaoQ6Y/sfS0L7Yki4zh40LFHEhur0odJC6xTHG5dxWVPiUWBXn+wCG2s5w==,
       }
 
-  '@vueuse/shared@13.0.0':
+  '@vueuse/shared@13.1.0':
     resolution:
       {
-        integrity: sha512-9MiHhAPw+sqCF/RLo8V6HsjRqEdNEWVpDLm2WBRW2G/kSQjb8X901sozXpSCaeLG0f7TEfMrT4XNaA5m1ez7Dg==,
+        integrity: sha512-IVS/qRRjhPTZ6C2/AM3jieqXACGwFZwWTdw5sNTSKk2m/ZpkuuN+ri+WCVUP8TqaKwJYt/KuMwmXspMAw8E6ew==,
       }
     peerDependencies:
       vue: ^3.5.0
@@ -8664,10 +8664,10 @@ packages:
         integrity: sha512-DpKm2Ui/xN7/HQKCtpZxoRWBhZ9Z0kqtygG8XCgNQ8ZlDnxuQmWhj566j8fN4Cu3/JmbhsDo7fcAJq4s9h27Ew==,
       }
 
-  vercel@41.4.1:
+  vercel@41.5.0:
     resolution:
       {
-        integrity: sha512-o7zsdAuFls+gMotvzoXFIe6pdsxsWmkdeQx7sAw4qbNgmDe80e0/C8hLEUs3wLO8NRI5E1AlwS2MM8vYs+ljOg==,
+        integrity: sha512-FWewxxoNcKhDOVlBQO+h8CA0xOvMDgTcbx3z59jZmqH3GUaaAxHCwiyy4NAmXiNeHViVeaOqMs4TBDoPi/KTPw==,
       }
     engines: { node: '>= 18' }
     hasBin: true
@@ -11033,7 +11033,7 @@ snapshots:
       '@vercel/static-config': 3.0.0
       ts-morph: 12.0.0
 
-  '@vercel/next@4.7.4(rollup@2.79.2)':
+  '@vercel/next@4.7.6(rollup@2.79.2)':
     dependencies:
       '@vercel/nft': 0.27.10(rollup@2.79.2)
     transitivePeerDependencies:
@@ -11090,7 +11090,7 @@ snapshots:
       - rollup
       - supports-color
 
-  '@vercel/python@4.7.1': {}
+  '@vercel/python@4.7.2': {}
 
   '@vercel/redwood@2.3.0(rollup@2.79.2)':
     dependencies:
@@ -11357,11 +11357,11 @@ snapshots:
     transitivePeerDependencies:
       - typescript
 
-  '@vueuse/core@13.0.0(vue@3.5.13(typescript@5.8.3))':
+  '@vueuse/core@13.1.0(vue@3.5.13(typescript@5.8.3))':
     dependencies:
       '@types/web-bluetooth': 0.0.21
-      '@vueuse/metadata': 13.0.0
-      '@vueuse/shared': 13.0.0(vue@3.5.13(typescript@5.8.3))
+      '@vueuse/metadata': 13.1.0
+      '@vueuse/shared': 13.1.0(vue@3.5.13(typescript@5.8.3))
       vue: 3.5.13(typescript@5.8.3)
 
   '@vueuse/integrations@12.8.2(focus-trap@7.6.4)(typescript@5.8.3)':
@@ -11376,7 +11376,7 @@ snapshots:
 
   '@vueuse/metadata@12.8.2': {}
 
-  '@vueuse/metadata@13.0.0': {}
+  '@vueuse/metadata@13.1.0': {}
 
   '@vueuse/shared@12.8.2(typescript@5.8.3)':
     dependencies:
@@ -11384,7 +11384,7 @@ snapshots:
     transitivePeerDependencies:
       - typescript
 
-  '@vueuse/shared@13.0.0(vue@3.5.13(typescript@5.8.3))':
+  '@vueuse/shared@13.1.0(vue@3.5.13(typescript@5.8.3))':
     dependencies:
       vue: 3.5.13(typescript@5.8.3)
 
@@ -14694,7 +14694,7 @@ snapshots:
 
   unpipe@1.0.0: {}
 
-  unplugin-auto-import@19.1.2(@nuxt/kit@3.16.1)(@vueuse/core@13.0.0(vue@3.5.13(typescript@5.8.3))):
+  unplugin-auto-import@19.1.2(@nuxt/kit@3.16.1)(@vueuse/core@13.1.0(vue@3.5.13(typescript@5.8.3))):
     dependencies:
       local-pkg: 1.1.1
       magic-string: 0.30.17
@@ -14704,7 +14704,7 @@ snapshots:
       unplugin-utils: 0.2.4
     optionalDependencies:
       '@nuxt/kit': 3.16.1
-      '@vueuse/core': 13.0.0(vue@3.5.13(typescript@5.8.3))
+      '@vueuse/core': 13.1.0(vue@3.5.13(typescript@5.8.3))
 
   unplugin-utils@0.2.4:
     dependencies:
@@ -14784,15 +14784,15 @@ snapshots:
       spdx-correct: 3.2.0
       spdx-expression-parse: 3.0.1
 
-  vercel@41.4.1(rollup@2.79.2):
+  vercel@41.5.0(rollup@2.79.2):
     dependencies:
       '@vercel/build-utils': 10.5.1
       '@vercel/fun': 1.1.5
       '@vercel/go': 3.2.1
       '@vercel/hydrogen': 1.2.0
-      '@vercel/next': 4.7.4(rollup@2.79.2)
+      '@vercel/next': 4.7.6(rollup@2.79.2)
       '@vercel/node': 5.1.14(rollup@2.79.2)
-      '@vercel/python': 4.7.1
+      '@vercel/python': 4.7.2
       '@vercel/redwood': 2.3.0(rollup@2.79.2)
       '@vercel/remix-builder': 5.4.3(rollup@2.79.2)
       '@vercel/ruby': 2.2.0
