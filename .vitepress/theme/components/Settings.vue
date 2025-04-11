@@ -18,16 +18,16 @@ const {
 
 <template>
   <div class="settings">
-    <div class="set-btn card" @click="store.changeShowStatus('showSeetings')">
+    <div class="set-btn card" @click="store.changeShowStatus('showSettings')">
       <Icon icon="mingcute:palette-2-fill" class="size-5.5 shrink-0" />
       <span class="set-text">个性化配置</span>
     </div>
     <!-- 设置面板 -->
     <Modal
-      :show="store.showSeetings"
+      :show="store.showSettings"
       title-icon="style"
-      @mask-click="store.changeShowStatus('showSeetings')"
-      @modal-close="store.changeShowStatus('showSeetings')"
+      @mask-click="store.changeShowStatus('showSettings')"
+      @modal-close="store.changeShowStatus('showSettings')"
     >
       <div class="set-list">
         <span class="title">字体</span>
@@ -106,14 +106,14 @@ const {
           <div class="set-options">
             <span
               class="options"
-              :class="[{ choose: bannerType === 'half' }]"
+              :class="{ choose: bannerType === 'half' }"
               @click="bannerType = 'half'"
             >
               半屏
             </span>
             <span
               class="options"
-              :class="[{ choose: bannerType === 'full' }]"
+              :class="{ choose: bannerType === 'full' }"
               @click="bannerType = 'full'"
             >
               全屏

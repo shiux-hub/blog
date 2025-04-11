@@ -257,7 +257,7 @@ defineExpose({ openRightMenu })
             left: `${rightMenuX}px`,
             top: `${rightMenuY}px`,
           }"
-          class="animate-fade-up card hover absolute w-45 cursor-pointer space-y-3 transition-[opacity,border-color,box-shadow,background-color]"
+          class="animate-fade-up card hover absolute w-45 space-y-3 transition-[opacity,border-color,box-shadow,background-color]"
           @contextmenu.stop="closeRightMenu"
         >
           <div class="flex w-full items-center justify-between">
@@ -478,9 +478,9 @@ defineExpose({ openRightMenu })
               </span>
             </div>
           </div>
-          <div class="separator" />
           <!-- 播放器控制 -->
           <div v-if="playerShow" class="general player">
+            <div class="separator" />
             <div class="data">
               <span class="name">{{ playerData.name }}</span>
               <span class="artist">{{ playerData.artist }}</span>

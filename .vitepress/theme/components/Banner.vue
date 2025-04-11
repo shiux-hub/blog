@@ -3,6 +3,7 @@ import type { Hitokoto } from '@/types/hitokoto'
 import { getHitokoto } from '@/api'
 import { useData } from '@/composables/data'
 import { mainStore } from '@/store'
+import { cn } from '@/utils'
 import { Icon } from '@iconify/vue'
 
 const props = withDefaults(
@@ -27,13 +28,12 @@ const props = withDefaults(
     desc: '这里是简介',
   },
 )
+
 const store = mainStore()
+
 const { theme } = useData()
 const hitokotoData = ref<Hitokoto>()
 let hitokotoTimeOut: number | null = null
-
-// banner
-const bannerType = ref<string>()
 
 // 获取一言数据
 async function getHitokotoData() {
@@ -58,21 +58,12 @@ function scrollToHome() {
   })
 }
 
-watch(
-  () => store.bannerType,
-  (val) => {
-    bannerType.value = val
-  },
-)
-
 onMounted(() => {
   if (props.type === 'text') {
     hitokotoTimeOut = setTimeout(() => {
       getHitokotoData()
     }, 2000)
   }
-  // 更改 banner 类型
-  bannerType.value = store.bannerType
 })
 
 onBeforeUnmount(() => {
@@ -85,15 +76,31 @@ onBeforeUnmount(() => {
   <div
     v-if="type === 'text'"
     id="main-banner"
-    class="banner"
-    :class="bannerType"
+    class="flex h-75 animate-[fade-up_0.6s_0.1s_backwards] flex-col items-center justify-center transition-[height] duration-300 max-md:h-60 max-md:items-start"
+    :class="{
+      'h-[calc(100vh-70px)] animate-[fade-up_0.6s_0.5_forwards] pb-25 opacity-0':
+        store.bannerType === 'full',
+    }"
   >
-    <h1 class="title">
+    <h1 class="my-7 font-[Site_Title] text-5xl font-bold max-md:text-4xl">
       你好，欢迎来到{{ theme.siteMeta.title }}
     </h1>
-    <div class="subtitle">
+    <div
+      :class="
+        cn(
+          'w-4/5 animate-[fade-up-opacity_0.6s_0.1s_forwards] text-xl opacity-80 max-md:ml-2 max-md:h-12 max-md:text-lg',
+          {
+            'animate-[fade-up-opacity_0.8s_0.5s_forwards] opacity-0':
+              store.bannerType === 'full',
+          },
+        )
+      "
+    >
       <Transition name="fade" mode="out-in">
-        <span :key="hitokotoData?.hitokoto" class="text">
+        <span
+          :key="hitokotoData?.hitokoto"
+          class="line-clamp-2 text-center text-ellipsis max-md:text-left"
+        >
           {{
             hitokotoData?.hitokoto
               ? hitokotoData?.hitokoto
@@ -105,6 +112,7 @@ onBeforeUnmount(() => {
     <Transition v-if="height === 'full'" name="fade" mode="out-in">
       <Icon
         v-if="height === 'full'"
+        class="animate-move-down absolute bottom-15 left-[calc(50%-10px)] size-5 rotate-180 cursor-pointer"
         icon="mingcute:arrow-up-fill"
         @click="scrollToHome"
       />
@@ -112,187 +120,39 @@ onBeforeUnmount(() => {
   </div>
   <div
     v-else-if="type === 'page'"
-    class="banner-page card"
-    :class="{ image }"
+    class="card relative flex min-h-95 flex-col overflow-hidden bg-cover p-16 max-xl:min-h-75 max-md:min-h-65"
+    :class="{ 'dark:text-white': image }"
     :style="{
       backgroundImage: image ? `url(${image})` : '',
     }"
   >
-    <div class="top">
-      <div class="title">
-        <span class="title-small">{{ title }}</span>
-        <span class="title-big">{{ desc }}</span>
+    <div class="bg-mask-second-background absolute inset-0 backdrop-blur-sm" />
+    <div class="relative mb-8 flex items-center justify-between">
+      <div class="flex flex-col">
+        <span
+          :class="
+            cn('text-font-second-color text-sm', {
+              'opacity-60': image,
+            })
+          "
+        >{{ title }}</span>
+        <span class="mt-3 text-4xl leading-[1.2] font-bold">{{ desc }}</span>
       </div>
-      <div class="top-right">
+      <div class="max-md:hidden">
         <slot name="header-slot" />
       </div>
     </div>
     <slot />
-    <div class="footer">
-      <div class="footer-left">
+    <div
+      class="mt-auto flex items-center justify-between"
+      :class="{ 'text-white': image }"
+    >
+      <div class="text-font-second-color mt-auto opacity-80">
         {{ footer }}
       </div>
-      <div class="footer-right">
+      <div class="max-md:hidden">
         <slot name="footer-slot" />
       </div>
     </div>
   </div>
 </template>
-
-<style scoped>
-.banner {
-  height: 300px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  animation: fade-up 0.6s 0.1s backwards;
-  transition: height 0.3s;
-
-  &.full {
-    opacity: 0;
-    height: calc(100vh - 70px);
-    padding-bottom: 100px;
-    animation: fade-up 0.6s 0.5s forwards;
-
-    .subtitle {
-      opacity: 0;
-      animation: fade-up-opacity 0.8s 0.5s forwards;
-    }
-  }
-
-  .title {
-    font-family: 'Site Title';
-    font-weight: bold;
-    font-size: 2.75rem;
-  }
-
-  .subtitle {
-    width: 80%;
-    font-size: 1.25rem;
-    opacity: 0.8;
-    animation: fade-up-opacity 0.6s 0.1s backwards;
-
-    .text {
-      text-align: center;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      display: -webkit-box;
-      line-clamp: 2;
-      -webkit-line-clamp: 2;
-      -webkit-box-orient: vertical;
-    }
-  }
-
-  .icon-up {
-    font-size: 20px;
-    position: absolute;
-    bottom: 60px;
-    left: calc(50% - 10px);
-    transform: rotate(180deg);
-    animation: moveDown 2s ease-in-out infinite;
-    cursor: pointer;
-  }
-
-  @media (max-width: 768px) {
-    align-items: flex-start;
-    height: 240px;
-
-    .title {
-      font-size: 2.25rem;
-    }
-
-    .subtitle {
-      height: 50px;
-      font-size: 1.125rem;
-      margin-left: 8px;
-
-      .text {
-        text-align: left;
-      }
-    }
-  }
-}
-
-.banner-page {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  padding: 2rem;
-  min-height: 380px;
-  background-size: cover;
-
-  .top {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-    margin-bottom: 2rem;
-
-    .title {
-      display: flex;
-      flex-direction: column;
-
-      .title-small {
-        color: var(--color-font-second-color);
-        font-size: 0.875rem;
-      }
-
-      .title-big {
-        font-size: 2.25rem;
-        font-weight: bold;
-        line-height: 1.2;
-        margin-top: 12px;
-      }
-    }
-  }
-
-  .footer {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-    margin-top: auto;
-
-    .footer-left {
-      margin-top: auto;
-      color: var(--color-font-second-color);
-      opacity: 0.8;
-    }
-  }
-
-  &.image {
-    color: white !important;
-
-    .top {
-      .title-small {
-        color: white;
-        opacity: 0.6;
-      }
-    }
-
-    .footer {
-      .footer-left {
-        color: white;
-      }
-
-      :deep(svg) {
-        color: white !important;
-      }
-    }
-  }
-
-  @media (max-width: 1200px) {
-    min-height: 300px;
-  }
-
-  @media (max-width: 768px) {
-    min-height: 260px;
-
-    .top-right,
-    .footer-right {
-      display: none;
-    }
-  }
-}
-</style>

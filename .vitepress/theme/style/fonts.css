@@ -1,5 +1,5 @@
 @font-face {
   font-family: 'Site Title';
   font-display: swap;
-  src: url('/fonts/title.ttf');
+  src: url('/fonts/title.woff2') format('woff2');
 }

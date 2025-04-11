@@ -17,7 +17,7 @@ const { site, theme, frontmatter, page } = useData()
       class="main-nav"
       :class="[scrollData.direction, { top: scrollData.height === 0 }]"
     >
-      <div class="nav-all">
+      <div class="nav-all container">
         <!-- 导航栏左侧 -->
         <div class="left-nav">
           <div v-tippy class="more-menu nav-btn" title="更多内容">
@@ -208,18 +208,16 @@ const { site, theme, frontmatter, page } = useData()
 
   &.top,
   &.up {
-    .nav-all {
-      .site-menu {
-        transform: translateY(0);
-        scale: 1;
-        opacity: 1;
-      }
+    .site-menu {
+      transform: translateY(0);
+      scale: 1;
+      opacity: 1;
+    }
 
-      .site-title {
-        transform: translateY(50px);
-        scale: 1.1;
-        opacity: 0;
-      }
+    .site-title {
+      transform: translateY(50px);
+      scale: 1.1;
+      opacity: 0;
     }
 
     @media (max-width: 768px) {
@@ -232,9 +230,7 @@ const { site, theme, frontmatter, page } = useData()
 
 .nav-all {
   position: relative;
-  width: 100%;
   height: 100%;
-  max-width: 1400px;
   padding: 0 2rem;
   display: grid;
   grid-template-columns: minmax(200px, 1fr) auto minmax(200px, 1fr);

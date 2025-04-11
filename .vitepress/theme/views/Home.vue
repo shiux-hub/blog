@@ -96,7 +96,7 @@ watch(
 <template>
   <div class="home">
     <Banner v-if="showHeader" :height="store.bannerType" />
-    <div class="flex space-x-4">
+    <div class="flex lg:space-x-4">
       <div
         class="w-full transition-[width] duration-300 lg:w-[calc(100%-336px)]"
       >
