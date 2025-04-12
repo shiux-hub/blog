@@ -44,17 +44,26 @@ watch(
 <template>
   <Teleport to="body">
     <Transition name="fade" mode="out-in">
-      <div v-if="show" class="fixed inset-0 flex items-center justify-center w-dvw h-dvh z-2000">
-        <div class="absolute inset-0 size-full -z-1 bg-mask-background-deep" @click.stop="$emit('maskClick')" />
+      <div
+        v-if="show"
+        class="fixed inset-0 z-2000 flex h-dvh w-dvw items-center justify-center"
+      >
+        <div
+          class="bg-mask-background-deep absolute inset-0 -z-1 size-full"
+          @click.stop="$emit('maskClick')"
+        />
         <div
           :style="{
             maxWidth: typeof maxWidth === 'string' ? maxWidth : `${maxWidth}px`,
           }"
-          class="absolute p-0 animate-[fade-up_0.5s_forwards] duration-500 card cursor-pointer"
+          class="card absolute animate-[fade-up_0.5s_forwards] cursor-pointer p-0 duration-500"
           @click.stop
         >
           <!-- 标题 -->
-          <div v-if="title" class="flex items-center justify-center text-lg p-5 h-16 bg-card-background border-b border-card-border">
+          <div
+            v-if="title"
+            class="bg-card-background border-card-border flex h-16 items-center justify-center border-b p-5 text-lg"
+          >
             <div class="w-full space-x-2">
               <Icon v-if="titleIcon" :icon="titleIcon" class="size-5" />
               <span class="title-text">{{ title }}</span>
@@ -63,12 +72,15 @@ watch(
             <Icon
               v-if="showClose"
               icon="mingcute:close-fill"
-              class="absolute right-5 size-4 mr-0 rounded-lg p-2 cursor-pointer transition-[background-color] duration-300 hover:bg-card-border"
+              class="hover:bg-card-border absolute right-5 mr-0 size-4 cursor-pointer rounded-lg p-2 transition-[background-color] duration-300"
               @click="$emit('modalClose')"
             />
           </div>
           <!-- 弹窗内容 -->
-          <div class=" max-h-[calc(var(--height)-46px)] p-5 overflow-auto" :style="{ '--height': `${maxHeight}vh` }">
+          <div
+            class="max-h-[calc(var(--height)-46px)] overflow-auto p-5"
+            :style="{ '--height': `${maxHeight}vh` }"
+          >
             <slot />
           </div>
         </div>

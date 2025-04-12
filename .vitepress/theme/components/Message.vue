@@ -1,6 +1,7 @@
 <!-- 全局消息 -->
 <script lang="ts" setup>
 import type { Message } from '@/types/site'
+import { cn } from '@/utils'
 import { Icon } from '@iconify/vue'
 
 // 消息数据
@@ -86,15 +87,33 @@ onMounted(() => {
     <Transition name="fadeDown" mode="out-in">
       <div
         v-if="messageShow"
-        class="message"
-        :class="[messageType, { always: messageAlways }]"
+        :class="
+          cn(
+            'message bg-theme fixed inset-0 z-3000 flex h-15 w-dvw items-center justify-center',
+            {
+              'bg-success': messageType === 'success',
+              'bg-warning': messageType === 'warning',
+              'bg-error': messageType === 'error',
+              'bg-info': messageType === 'info',
+              'always': messageAlways,
+            },
+          )
+        "
         :style="{ '--duration': `${messageDuration}ms` }"
         @click="closeMessage"
       >
-        <div class="message-content">
-          <span class="text">{{ messageContent || '默认消息内容' }}</span>
-          <span v-if="messageClose" class="close">
-            <Icon icon="mingcute:close-fill" />
+        <div class="flex items-center gap-3 text-lg font-bold">
+          <span class="text-card-background">{{
+            messageContent || '默认消息内容'
+          }}</span>
+          <span
+            v-if="messageClose"
+            class="group flex cursor-pointer items-center justify-center rounded-full p-2.5 transition-colors duration-300 hover:bg-white"
+          >
+            <Icon
+              icon="mingcute:close-fill"
+              class="text-card-background size-3.5 opacity-60 transition-opacity duration-300 group-hover:opacity-100"
+            />
           </span>
         </div>
       </div>
@@ -104,74 +123,6 @@ onMounted(() => {
 
 <style scoped>
 .message {
-  position: relative;
-  position: fixed;
-  top: 0;
-  left: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 60px;
-  width: 100%;
-  width: 100vw;
-  background-color: var(--color-theme);
-  z-index: 3000;
-
-  .message-content {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    font-size: 18px;
-    font-weight: bold;
-
-    .text {
-      color: var(--color-card-background);
-    }
-
-    .close {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      margin-left: 12px;
-      padding: 10px;
-      border-radius: 50%;
-      transition: background-color 0.3s;
-      cursor: pointer;
-
-      svg {
-        width: 14px;
-        height: 14px;
-        color: var(--color-card-background);
-        opacity: 0.6;
-        transition: opacity 0.3s;
-      }
-
-      &:hover {
-        background-color: var(--color-white);
-
-        svg {
-          opacity: 1;
-        }
-      }
-    }
-  }
-
-  &.success {
-    background-color: var(--color-success);
-  }
-
-  &.warning {
-    background-color: var(--color-warning);
-  }
-
-  &.error {
-    background-color: var(--color-error);
-  }
-
-  &.info {
-    background-color: var(--color-info);
-  }
-
   &::after {
     content: '';
     position: absolute;

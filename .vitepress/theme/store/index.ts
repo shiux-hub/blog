@@ -58,7 +58,7 @@ export const mainStore = defineStore('main', {
   actions: {
     // 切换应用状态
     changeShowStatus(value: keyof MainState, blur = true) {
-      this[value] = !this[value]
+      (this as any)[value] = !(this as any)[value]
       // 阻止滚动
       document.body.style.overflowY = this[value] ? 'hidden' : ''
       // 全局模糊

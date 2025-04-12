@@ -165,7 +165,7 @@ onMounted(() => {
         </div>
         <RewardBtn />
         <!-- 下一篇 -->
-        <NextPost />
+        <NextPost class="mb-0" />
         <!-- 相关文章 -->
         <RelatedPost class="mt-12" />
         <!-- 评论 -->

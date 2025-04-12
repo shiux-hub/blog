@@ -2,6 +2,7 @@
 <script lamg="ts" setup>
 import { useData } from '@/composables/data'
 import { mainStore } from '@/store'
+import { cn } from '@/utils'
 import { generateId } from '@/utils/commonTools'
 import { storeToRefs } from 'pinia'
 
@@ -80,80 +81,26 @@ onBeforeUnmount(() => {
 <template>
   <div
     v-if="nextPostData"
-    class="next-post card cursor-pointer"
-    :class="[
-      {
-        fixed: infoPosition === 'fixed',
-        show: infoPosition === 'fixed' && nextPostShow && !footerIsShow,
-      },
-    ]"
+    :class="
+      cn(
+        'card hover:bg-theme hover:border-theme hover:text-card-background hover:shadow-theme-op flex w-full cursor-pointer flex-col p-5 max-md:hidden',
+        {
+          'fixed right-5 bottom-5 z-100 w-75 translate-y-45 opacity-0':
+            infoPosition === 'fixed',
+          'translate-y-0 opacity-100':
+            infoPosition === 'fixed' && nextPostShow && !footerIsShow,
+        },
+      )
+    "
     @click="router.go(nextPostData?.regularPath)"
   >
-    <span class="post-tip">
+    <span
+      class="border-card-border mb-3 border-b border-dashed pb-2 text-sm opacity-80 transition-colors duration-300"
+    >
       {{ isNextPost ? '下一篇阅读' : '阅读上一篇' }}
     </span>
-    <span class="post-title">
+    <span class="line-clamp-2 text-ellipsis">
       {{ nextPostData?.title || '暂无标题' }}
     </span>
   </div>
 </template>
-
-<style scoped>
-.next-post {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  padding: 20px;
-  cursor: pointer;
-  background-color: var(--color-card-background);
-
-  .post-tip {
-    font-size: 14px;
-    color: var(--color-font-second-color);
-    padding-bottom: 8px;
-    margin-bottom: 12px;
-    border-bottom: 1px dashed var(--color-card-border);
-    transition: color 0.3s;
-  }
-
-  .post-title {
-    overflow: hidden;
-    text-overflow: ellipsis;
-    display: -webkit-box;
-    line-clamp: 2;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
-  }
-
-  &.fixed {
-    position: fixed;
-    right: 20px;
-    bottom: 20px;
-    opacity: 0;
-    z-index: 100;
-    width: 300px;
-    transform: translateY(180px);
-  }
-
-  &.show {
-    opacity: 1;
-    transform: translateY(0);
-  }
-
-  &:hover {
-    background-color: var(--color-theme);
-    border-color: var(--color-theme);
-    color: var(--color-card-background);
-    box-shadow: 0 8px 16px -4px var(--color-theme-op);
-
-    .post-tip {
-      opacity: 0.8;
-      color: var(--color-card-background);
-    }
-  }
-
-  @media (max-width: 768px) {
-    display: none;
-  }
-}
-</style>

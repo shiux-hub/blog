@@ -7,9 +7,6 @@ const store = mainStore()
 const router = useRouter()
 const { theme } = useData()
 
-// 菜单数据
-const { nav, tagsData } = theme.value
-
 // 页面跳转
 function pageJump(url: string) {
   if (!url)
@@ -23,50 +20,126 @@ function pageJump(url: string) {
   <Teleport to="body">
     <!-- 移动端菜单 -->
     <Transition name="fade" mode="out-in">
-      <div v-show="store.mobileMenuShow" class="mobile-menu">
+      <div
+        v-show="store.mobileMenuShow"
+        class="fixed inset-0 z-3000 h-dvh w-dvw"
+      >
         <!-- 背景遮罩 -->
         <div
-          class="menu-mask"
+          class="bg-mask-background-deep absolute inset-0 -z-1 size-full"
           @click="store.changeShowStatus('mobileMenuShow')"
         />
         <Transition name="toLeft" mode="out-in">
           <div
             v-show="store.mobileMenuShow"
-            class="menu-content card bg-mask-background-deep rounded-none"
+            class="card bg-mask-background-deep absolute top-0 right-0 size-full max-w-75 space-y-2 overflow-auto rounded-none p-5"
           >
-            <!-- 关闭按钮 -->
-            <div
-              class="close-control"
-              @click="store.changeShowStatus('mobileMenuShow')"
-            >
-              <Icon icon="mingcute:close-fill" />
+            <!-- 站点数据 -->
+            <div class="flex items-center gap-3">
+              <img
+                class="h-10 w-10 rounded-full"
+                :src="theme.siteMeta.logo"
+                :alt="theme.siteMeta.title"
+              >
+              <div class="flex-1 space-x-1">
+                <span class="text-lg font-bold">{{
+                  theme.siteMeta.title
+                }}</span>
+                <span class="text-font-second-color text-sm">{{
+                  theme.siteMeta.description
+                }}</span>
+              </div>
             </div>
-            <!-- 菜单 -->
-            <div class="menu-list">
-              <div v-for="(item, index) in nav" :key="index" class="menu-item">
-                <span class="link-title"> {{ item.text }}</span>
-                <div v-if="item.items" class="grid grid-cols-2 gap-3">
-                  <div
-                    v-for="{ link, icon, text } in item.items"
-                    :key="text"
-                    class="link-child-btn"
-                    @click="pageJump(link)"
-                  >
-                    <Icon v-if="icon" :icon />
-                    <span class="max-w-20 truncate">{{ text }}</span>
-                  </div>
+            <div class="flex items-center gap-3">
+              <Icon class="text-lg" icon="mdi:email-outline" />
+              <span class="text-font-second-color text-sm">{{
+                theme.siteMeta.author.email
+              }}</span>
+            </div>
+            <div class="flex items-center gap-4 py-3">
+              <div>
+                <div class="text-font-second-color text-xs">
+                  文章
+                </div>
+                <div class="truncate text-xl font-bold">
+                  {{ theme.postData.length }}
+                </div>
+              </div>
+              <div>
+                <div class="text-font-second-color text-xs">
+                  分类
+                </div>
+                <div class="truncate text-xl font-bold">
+                  {{
+                    Object.values(theme.categoriesData).reduce(
+                      (sum, item) => sum + item.count,
+                      0,
+                    )
+                  }}
+                </div>
+              </div>
+              <div>
+                <div class="text-font-second-color text-xs">
+                  标签
+                </div>
+                <div class="truncate text-xl font-bold">
+                  {{
+                    Object.values(theme.tagsData).reduce(
+                      (sum, item) => sum + item.count,
+                      0,
+                    )
+                  }}
                 </div>
               </div>
             </div>
-            <hr>
+            <!-- 功能 -->
+            <div class="space-y-2">
+              <span class="text-font-second-color inline-block text-xs">功能</span>
+              <div
+                class="hover:bg-theme bg-card-background border-card-border shadow-xm shadow-border-shadow flex cursor-pointer items-center rounded-lg border px-3 py-2 text-sm transition-colors duration-300 hover:text-white"
+                @click.stop="store.changeThemeType"
+              >
+                <Icon
+                  class="mr-1.5 opacity-60"
+                  :icon="
+                    store.themeType === 'auto'
+                      ? 'mingcute:history-anticlockwise-fill'
+                      : store.themeType === 'dark'
+                        ? 'mingcute:moon-fill'
+                        : 'mingcute:sun-fill'
+                  "
+                />
+                <span class="max-w-20 truncate">切换主题</span>
+              </div>
+            </div>
+            <!-- 菜单 -->
+            <div
+              v-for="(item, index) in theme.nav"
+              :key="index"
+              class="space-y-2"
+            >
+              <span class="text-font-second-color inline-block text-xs">
+                {{ item.text }}</span>
+              <div v-if="item.items" class="grid grid-cols-2 gap-2">
+                <div
+                  v-for="{ link, icon, text } in item.items"
+                  :key="text"
+                  class="bg-card-background border-card-border flex cursor-pointer items-center rounded-lg border px-3 py-2.5"
+                  @click="pageJump(link)"
+                >
+                  <Icon v-if="icon" class="mr-1.5 opacity-60" :icon />
+                  <span class="max-w-20 truncate">{{ text }}</span>
+                </div>
+              </div>
+            </div>
             <!-- 标签 -->
-            <div class="menu-item">
-              <span class="link-title">标签</span>
+            <div class="space-y-2">
+              <span class="text-font-second-color inline-block text-xs">标签</span>
               <div class="flex flex-wrap gap-1 text-sm">
                 <div
-                  v-for="(item, tag) in tagsData"
+                  v-for="(item, tag) in theme.tagsData"
                   :key="tag"
-                  class="border-card-border bg-card-background space-x-1 rounded-lg border px-2 py-0.5 transition-colors duration-300"
+                  class="border-card-border bg-card-background cursor-pointer space-x-1 rounded-lg border px-2 py-0.5 transition-colors duration-300"
                   @click="pageJump(`/pages/tags/${tag}`)"
                 >
                   <span class="max-w-20 truncate">{{ tag }}</span>
@@ -80,117 +153,3 @@ function pageJump(url: string) {
     </Transition>
   </Teleport>
 </template>
-
-<style scoped>
-.mobile-menu {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  z-index: 3000;
-
-  .menu-mask {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: -1;
-    background-color: var(--color-mask-background-deep);
-  }
-
-  .menu-content {
-    position: absolute;
-    top: 0;
-    right: 0;
-    height: 100%;
-    width: 100%;
-    max-width: 300px;
-    padding: 20px;
-    overflow: auto;
-
-    .close-control {
-      position: absolute;
-      top: 10px;
-      right: 20px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      width: 35px;
-      height: 35px;
-      padding: 0;
-      transition:
-        background-color 0.3s,
-        opacity 0.3s;
-      border-radius: 50%;
-      cursor: pointer;
-
-      svg {
-        width: 18px;
-        height: 18px;
-        line-height: 1;
-        color: var(--color-font-second-color);
-        transition:
-          color 0.3s,
-          opacity 0.3s;
-      }
-
-      &:hover {
-        background-color: var(--color-theme);
-
-        svg {
-          color: var(--color-card-background);
-        }
-      }
-    }
-
-    .menu-list {
-      margin-bottom: 20px;
-
-      &:last-child {
-        margin-bottom: 0;
-      }
-    }
-
-    .menu-item {
-      margin-bottom: 12px;
-
-      .link-title {
-        font-size: 14px;
-        margin-bottom: 12px;
-        display: inline-block;
-        color: var(--color-font-second-color);
-      }
-
-      .link-child-btn {
-        display: flex;
-        flex-direction: row;
-        justify-content: flex-start;
-        align-items: center;
-        border-radius: 8px;
-        padding: 10px 12px;
-        background-color: var(--color-card-background);
-        border: 1px solid var(--color-card-border);
-        box-shadow: 0 8px 16px -4px var(--color-border-shadow);
-        font-size: 15px;
-
-        svg {
-          margin-right: 6px;
-          opacity: 0.6;
-        }
-      }
-
-      &:last-child {
-        margin-bottom: 0;
-      }
-    }
-
-    hr {
-      margin: 1rem 0;
-      opacity: 0.4;
-      border: 1px dashed var(--color-font-second-color);
-    }
-  }
-}
-</style>

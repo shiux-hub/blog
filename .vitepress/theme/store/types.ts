@@ -1,5 +1,4 @@
 export interface MainState {
-  [key: string]: any
   themeType: 'auto' | 'light' | 'dark'
   themeValue: 'light' | 'dark'
   bannerType: 'half' | 'full'

@@ -559,6 +559,7 @@ const { site, theme, frontmatter, page } = useData()
 
       &.mobile {
         display: none;
+        border-radius: 8px;
       }
 
       @media (max-width: 768px) {
