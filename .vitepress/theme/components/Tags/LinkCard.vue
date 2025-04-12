@@ -49,122 +49,40 @@ onMounted(() => {
   <a
     :href="url"
     :target="isOutLink ? '_blank' : undefined"
-    class="link-card card hover"
+    class="block w-full my-4 p-4 bg-card-second-background card hover group hover:text-card-background hover:bg-theme"
   >
-    <span v-if="isOutLink" class="link-tip">引用站外地址，请注意甄别链接安全性</span>
-    <div class="link-data">
-      <div class="link-icon">
-        <img v-if="icon" class="link-img" :src="icon" alt="link-img">
+    <span v-if="isOutLink" class="inline-block w-full text-sm pb-3 mb-3 border-b-2 border-dashed border-card-border">引用站外地址，请注意甄别链接安全性</span>
+    <div class="h-full flex items-center">
+      <div class="size-15 min-w-15 mr-3 rounded-xl overflow-hidden">
+        <img v-if="icon" class="size-full" :src="icon" alt="link-img">
         <img
           v-else-if="siteInfo?.iconUrl"
           :src="siteInfo.iconUrl"
-          class="link-img"
+          class="size-full"
           alt="link-img"
           @error="siteInfo.iconUrl = null"
         >
-        <Icon icon="mingcute:link-2-fill" />
+        <Icon
+          icon="mingcute:link-2-fill"
+          class="size-8 bg-card-border"
+        />
       </div>
-      <div class="link-desc">
+      <div class="w-full flex flex-col overflow-hidden">
         <!-- 标题 -->
-        <span v-if="title" class="link-title">{{ title }}</span>
-        <span v-else class="link-title">{{
+        <span v-if="title" class="mb-1 text-lg truncate">{{ title }}</span>
+        <span v-else class="mb-1 text-lg truncate">{{
           siteInfo?.title || '暂无标题'
         }}</span>
         <!-- 描述 -->
-        <span v-if="desc" class="link-description">{{ desc }}</span>
-        <span v-else class="link-description">{{
+        <span v-if="desc" class="text-font-second-color text-sm line-clamp-2 text-ellipsis transition-colors duration-300 group-hover:text-card-background group-hover:opacity-60">{{ desc }}</span>
+        <span v-else class="text-font-second-color text-sm line-clamp-2 text-ellipsis transition-colors duration-300 group-hover:text-card-background group-hover:opacity-60">{{
           siteInfo?.description || '暂无站点描述'
         }}</span>
       </div>
-      <Icon icon="mingcute:up-fill" />
+      <Icon
+        icon="mingcute:up-fill"
+        class="flex ml-3 rotate-90 transition-colors duration-300 group-hover:text-card-background"
+      />
     </div>
   </a>
 </template>
-
-<style scoped>
-.link-card {
-  display: block;
-  width: 100%;
-  margin: 1rem 0;
-  padding: 1rem;
-  background-color: var(--color-card-second-background);
-  .link-tip {
-    display: inline-block;
-    width: 100%;
-    font-size: 14px;
-    opacity: 0.6;
-    padding-bottom: 0.8rem;
-    margin-bottom: 0.8rem;
-    border-bottom: 2px dashed var(--color-card-border);
-  }
-  .link-data {
-    height: 100%;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    .link-icon {
-      width: 60px;
-      height: 60px;
-      min-width: 60px;
-      margin-right: 0.8rem;
-      border-radius: 12px;
-      overflow: hidden;
-      .link-img {
-        width: 100%;
-        height: 100%;
-      }
-      svg {
-        width: 30px;
-        height: 30px;
-        background-color: var(--color-card-border);
-      }
-    }
-    .link-desc {
-      width: 100%;
-      display: flex;
-      flex-direction: column;
-      overflow: hidden;
-      .link-title {
-        margin-bottom: 4px;
-        font-size: 18px;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        white-space: nowrap;
-        overflow-wrap: break-word;
-      }
-      .link-description {
-        color: var(--color-font-second-color);
-        font-size: 14px;
-        overflow: hidden;
-        display: -webkit-box;
-        line-clamp: 2;
-        -webkit-line-clamp: 2;
-        -webkit-box-orient: vertical;
-        text-overflow: ellipsis;
-        transition: color 0.3s;
-      }
-    }
-    .link-go {
-      display: flex;
-      margin-left: 12px;
-      transform: rotate(90deg);
-      transition: color 0.3s;
-    }
-  }
-  &:hover {
-    color: var(--color-card-background);
-    background-color: var(--color-theme);
-    .link-data {
-      .link-desc {
-        .link-description {
-          color: var(--color-card-background);
-          opacity: 0.6;
-        }
-      }
-      .link-go {
-        color: var(--color-card-background);
-      }
-    }
-  }
-}
-</style>
