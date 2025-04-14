@@ -17,12 +17,12 @@ export const calculateScroll = throttle(
         = document.documentElement.scrollHeight - window.innerHeight
       const scrollPercentage = ((scrollY / totalHeight) * 100).toFixed(0)
       // 判断滚动方向
-      const scrollDirection = scrollY > store.scrollData.height ? 'down' : 'up'
+      const isScrollDown = scrollY > store.scrollData.height
       // 储存计算结果
       store.scrollData = {
         height: Number(scrollY.toFixed(0)),
         percentage: Number(scrollPercentage),
-        direction: scrollDirection,
+        isScrollDown,
       }
     }
     catch (error) {

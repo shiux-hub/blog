@@ -1,6 +1,7 @@
 <script lang="ts" setup>
 import { useData } from '@/composables/data'
 import { mainStore } from '@/store'
+import { cn } from '@/utils'
 import { shufflePost, smoothScrolling } from '@/utils/helper'
 import { Icon } from '@iconify/vue'
 import { storeToRefs } from 'pinia'
@@ -15,14 +16,14 @@ const { site, theme, frontmatter, page } = useData()
   <header class="animate-show relative z-1000 h-15 w-full overflow-hidden">
     <nav
       class="main-nav"
-      :class="[scrollData.direction, { top: scrollData.height === 0 }]"
+      :class="[scrollData.isScrollDown ? 'down' : 'up', { top: scrollData.height === 0 }]"
     >
-      <div class="nav-all container">
+      <div class="relative h-full items-center grid grid-cols-[minmax(200px,1fr)_auto_minmax(200px,1fr)] max-md:flex justify-between max-md:py-4 px-6 container">
         <!-- 导航栏左侧 -->
-        <div class="left-nav">
-          <div v-tippy class="more-menu nav-btn" title="更多内容">
+        <div class="flex items-center min-w-50 max-md:min-w-auto">
+          <div v-tippy class="relative mr-1 max-sm:hidden group nav-btn" title="更多内容">
             <Icon icon="mingcute:classify-3-fill" />
-            <div class="more-card card cursor-pointer">
+            <div class="more-card group-hover:opacity-100 group-hover:scale-100 group-hover:translate-y-0 group-hover:visible card cursor-pointer">
               <div
                 v-for="(item, index) in theme.navMore"
                 :key="index"
@@ -59,7 +60,7 @@ const { site, theme, frontmatter, page } = useData()
           </div>
         </div>
         <!-- 导航栏菜单 -->
-        <div class="nav-center">
+        <div class="nav-center max-md:absolute max-md:inset-0 max-md:bg-card-background max-md:border-b max-md:border-card-border max-md:z-100">
           <div class="site-menu">
             <div
               v-for="(item, index) in theme.nav"
@@ -74,20 +75,20 @@ const { site, theme, frontmatter, page } = useData()
                   class="link-child-btn"
                   @click="router.go(link)"
                 >
-                  <Icon v-if="icon" :icon />
+                  <Icon v-if="icon" :icon class="contain-layout contain-paint" />
                   {{ text }}
                 </span>
               </div>
             </div>
           </div>
-          <span class="site-title" @click="smoothScrolling()">
+          <span class="site-title max-md:after:hidden max-md:h-auto" @click="smoothScrolling()">
             {{
               (frontmatter.home ? site.description : page.title)
                 || site.description
             }}
           </span>
         </div>
-        <div class="right-nav">
+        <div class="right-nav gap-2 min-w-50 max-md:min-w-auto">
           <!-- 开往 -->
           <a
             v-tippy
@@ -129,25 +130,31 @@ const { site, theme, frontmatter, page } = useData()
           </div>
           <!-- 返回顶部 -->
           <div
-            v-show="scrollData.height !== 0"
             v-tippy
-            class="to-top menu-btn"
+            class="group relative active:scale-90 shrink-0 flex items-center size-9 transition-all duration-300 ease-in-out justify-center cursor-pointer menu-btn"
             :class="{
-              hidden: scrollData.height === 0,
-              long: scrollData.percentage > 90,
+              'w-0 opacity-0 scale-0 m-0': scrollData.height === 0,
+              'w-20': scrollData.percentage > 90,
             }"
             title="返回顶部"
             @click="smoothScrolling()"
           >
-            <div class="to-top-btn">
-              <span class="num">
+            <div
+              :class="cn(
+                'absolute group-hover:size-9 group-hover:bg-theme group-hover:text-card-background flex items-center justify-center bg-font-color size-6.25 transition-all duration-300 rounded-full',
+                {
+                  'w-17.5 group-hover:w-20': scrollData.percentage > 90,
+                },
+              )"
+            >
+              <Icon icon="mingcute:arrow-up-fill" class="absolute opacity-0 group-hover:opacity-100" />
+              <span class="text-xs text-card-background transition-all group-hover:opacity-0 duration-300">
                 {{
-                  scrollData.percentage <= 90
-                    ? scrollData.percentage
-                    : '返回顶部'
+                  scrollData.percentage > 90
+                    ? '返回顶部'
+                    : scrollData.percentage
                 }}
               </span>
-              <Icon icon="mingcute:arrow-up-fill" />
             </div>
           </div>
 
@@ -171,174 +178,86 @@ const { site, theme, frontmatter, page } = useData()
 </template>
 
 <style scoped>
-.main-nav {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 60px;
-  background-color: var(--color-card-background);
-  transition:
-    background-color 0.3s,
-    backdrop-filter 0.3s;
-
-  &::after {
-    content: '';
+@layer base {
+  .more-card {
     position: absolute;
-    height: 1px;
-    width: 100%;
     left: 0;
-    bottom: 0;
-    background-color: var(--color-card-border);
-    transition: opacity 0.3s;
-  }
+    top: 46px;
+    opacity: 0;
+    visibility: hidden;
+    transform-origin: left top;
+    transform: scale(0.8) translateY(-5px);
 
-  &.top {
-    background-color: transparent;
-    outline: 0px;
+    .more-item {
+      margin-top: 0.8rem;
+
+      &:first-child {
+        margin-top: 0;
+      }
+
+      .more-name {
+        font-size: 14px;
+        display: inline-block;
+        color: var(--color-font-second-color);
+        margin-bottom: 0.6rem;
+      }
+
+      .more-list {
+        display: grid;
+        gap: 0.8rem;
+        grid-template-columns: 1fr 1fr;
+
+        .more-link {
+          display: flex;
+          align-items: center;
+          width: 150px;
+          padding: 6px 8px;
+          border-radius: 8px;
+
+          .link-icon {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            margin-right: 8px;
+          }
+
+          &:hover {
+            color: var(--color-card-background);
+            background-color: var(--color-theme);
+          }
+        }
+      }
+    }
 
     &::after {
-      opacity: 0;
+      content: '';
+      position: absolute;
+      top: -20px;
+      left: 0;
+      width: 100%;
+      height: 30px;
+      z-index: 1;
+    }
+
+    &:hover {
+      border-color: var(--color-theme);
     }
   }
 
-  &.top,
-  &.up {
-    .site-menu {
-      transform: translateY(0);
-      scale: 1;
-      opacity: 1;
-    }
-
-    .site-title {
-      transform: translateY(50px);
-      scale: 1.1;
-      opacity: 0;
-    }
-
-    @media (max-width: 768px) {
-      .nav-center {
-        top: -80px;
-      }
-    }
-  }
-}
-
-.nav-all {
-  position: relative;
-  height: 100%;
-  padding: 0 2rem;
-  display: grid;
-  grid-template-columns: minmax(200px, 1fr) auto minmax(200px, 1fr);
-  align-items: center;
-
-  .left-nav {
+  .site-name {
+    position: relative;
     display: flex;
-    flex-direction: row;
     align-items: center;
-    min-width: 200px;
-
-    .more-menu {
-      position: relative;
-      margin-right: 4px;
-
-      @media (max-width: 512px) {
-        display: none;
-      }
-
-      .more-card {
-        position: absolute;
-        left: 0;
-        top: 46px;
-        opacity: 0;
-        visibility: hidden;
-        transform-origin: left top;
-        transform: scale(0.8) translateY(-5px);
-
-        .more-item {
-          margin-top: 0.8rem;
-
-          &:first-child {
-            margin-top: 0;
-          }
-
-          .more-name {
-            font-size: 14px;
-            display: inline-block;
-            color: var(--color-font-second-color);
-            margin-bottom: 0.6rem;
-          }
-
-          .more-list {
-            display: grid;
-            gap: 0.8rem;
-            grid-template-columns: 1fr 1fr;
-
-            .more-link {
-              display: flex;
-              align-items: center;
-              width: 150px;
-              padding: 6px 8px;
-              border-radius: 8px;
-
-              .link-icon {
-                width: 24px;
-                height: 24px;
-                border-radius: 50%;
-                margin-right: 8px;
-              }
-
-              &:hover {
-                color: var(--color-card-background);
-                background-color: var(--color-theme);
-              }
-            }
-          }
-        }
-
-        &::after {
-          content: '';
-          position: absolute;
-          top: -20px;
-          left: 0;
-          width: 100%;
-          height: 30px;
-          z-index: 1;
-        }
-
-        &:hover {
-          border-color: var(--color-theme);
-        }
-      }
-
-      &:hover {
-        .more-card {
-          opacity: 1;
-          transform: scale(1) translateY(0);
-          visibility: visible;
-        }
-      }
-    }
-
-    .site-name {
-      position: relative;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 18px;
-      font-weight: bold;
-      height: 34px;
-      padding: 0 6px;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      transition: transform 0.3s;
-      cursor: pointer;
-    }
+    justify-content: center;
+    font-size: 18px;
+    font-weight: bold;
+    height: 34px;
+    padding: 0 6px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    transition: transform 0.3s;
+    cursor: pointer;
   }
 
   .nav-center {
@@ -375,7 +294,6 @@ const { site, theme, frontmatter, page } = useData()
         flex-direction: column;
         align-items: center;
         margin: auto;
-        cursor: pointer;
 
         .link-btn {
           display: flex;
@@ -428,6 +346,7 @@ const { site, theme, frontmatter, page } = useData()
             margin: 0 4px;
             padding: 0.6rem 0.8rem;
             white-space: nowrap;
+            cursor: pointer;
             transition:
               color 0.3s,
               padding 0.3s,
@@ -538,12 +457,6 @@ const { site, theme, frontmatter, page } = useData()
       &:active {
         transform: scale(0.95);
       }
-
-      @media (max-width: 768px) {
-        &::after {
-          display: none;
-        }
-      }
     }
   }
 
@@ -555,8 +468,6 @@ const { site, theme, frontmatter, page } = useData()
     min-width: 200px;
 
     .menu-btn {
-      margin-left: 0.5rem;
-
       &.mobile {
         display: none;
         border-radius: 8px;
@@ -572,134 +483,91 @@ const { site, theme, frontmatter, page } = useData()
         }
       }
     }
-
-    .to-top {
-      position: relative;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      width: 35px;
-      height: 35px;
-      transition: all 0.3s;
-      cursor: pointer;
-
-      .to-top-btn {
-        position: absolute;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        width: 25px;
-        height: 25px;
-        border-radius: 40px;
-        background-color: var(--color-font-color);
-        transition:
-          width 0.3s,
-          height 0.3s,
-          background-color 0.3s;
-
-        .num {
-          position: absolute;
-          font-size: 12px;
-          color: var(--color-card-background);
-          transition: opacity 0.1s;
-        }
-      }
-
-      &.hidden {
-        width: 0;
-        opacity: 0;
-        transform: scale(0);
-        margin: 0;
-      }
-
-      &.long {
-        width: 80px;
-
-        .to-top-btn {
-          width: 70px;
-        }
-      }
-
-      &:hover {
-        .to-top-btn {
-          width: 35px;
-          height: 35px;
-          background-color: var(--color-theme);
-          color: var(--color-card-background);
-
-          .num {
-            opacity: 0;
-          }
-        }
-
-        &.long {
-          width: 80px;
-
-          .to-top-btn {
-            width: 80px;
-            height: 35px;
-          }
-        }
-      }
-
-      &:active {
-        transform: scale(0.9);
-      }
-    }
   }
 
-  @media (max-width: 768px) {
+  .main-nav {
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
-    padding: 1rem 1.5rem;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 60px;
+    background-color: var(--color-card-background);
+    transition:
+      background-color 0.3s,
+      backdrop-filter 0.3s;
 
-    .left-nav,
-    .right-nav {
-      min-width: auto;
+    &::after {
+      content: '';
+      position: absolute;
+      height: 1px;
+      width: 100%;
+      left: 0;
+      bottom: 0;
+      background-color: var(--color-card-border);
+      transition: opacity 0.3s;
     }
 
-    .nav-center {
-      position: absolute;
-      top: 0;
-      left: 0;
-      background-color: var(--color-card-background);
-      border-bottom: 1px solid var(--color-card-border);
-      z-index: 100;
+    &.top {
+      background-color: transparent;
+      outline: 0px;
+
+      &::after {
+        opacity: 0;
+      }
+    }
+
+    &.top,
+    &.up {
+      .site-menu {
+        transform: translateY(0);
+        scale: 1;
+        opacity: 1;
+      }
 
       .site-title {
-        font-size: 15px;
-        height: auto;
+        transform: translateY(50px);
+        scale: 1.1;
+        opacity: 0;
+      }
+
+      @media (max-width: 768px) {
+        .nav-center {
+          top: -80px;
+        }
       }
     }
   }
-}
 
-.nav-btn {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 35px;
-  height: 35px;
-  padding: 0;
-  transition: background-color 0.3s;
-  border-radius: 50%;
-  cursor: pointer;
-
-  svg {
-    width: 1.25rem;
-    height: 1.25rem;
-    line-height: 1;
-    transition:
-      color 0.3s,
-      opacity 0.3s;
-  }
-
-  &:hover {
-    background-color: var(--color-theme);
+  .nav-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 35px;
+    height: 35px;
+    padding: 0;
+    transition: background-color 0.3s;
+    border-radius: 50%;
+    cursor: pointer;
 
     svg {
-      color: var(--color-card-background);
+      width: 1.25rem;
+      height: 1.25rem;
+      line-height: 1;
+      transition:
+        color 0.3s,
+        opacity 0.3s;
+    }
+
+    &:hover {
+      background-color: var(--color-theme);
+
+      svg {
+        color: var(--color-card-background);
+      }
     }
   }
 }

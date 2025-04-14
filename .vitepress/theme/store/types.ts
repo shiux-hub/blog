@@ -6,7 +6,7 @@ export interface MainState {
   scrollData: {
     height: number
     percentage: number
-    direction: 'up' | 'down'
+    isScrollDown: boolean
   }
   footerIsShow: boolean
   controlShow: boolean

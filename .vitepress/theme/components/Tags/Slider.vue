@@ -29,9 +29,9 @@ watch(
   <ClientOnly>
     <VueSlider
       v-model="sliderValue"
-      :min="min"
-      :max="max"
-      :interval="interval"
+      :min
+      :max
+      :interval
       tooltip="none"
       class="slider"
       @change="$emit('update', $event)"

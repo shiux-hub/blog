@@ -17,7 +17,7 @@ export const mainStore = defineStore('main', {
       // 滚动百分比
       percentage: 0,
       // 滚动方向
-      direction: 'down',
+      isScrollDown: false,
     },
     // 页脚可见性
     footerIsShow: false,
