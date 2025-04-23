@@ -120,7 +120,7 @@ onMounted(() => {
 <template>
   <div
     v-if="total > 0"
-    class="animate-fade-up mt-5 flex w-full items-center justify-center gap-2 delay-100 duration-600"
+    class="animate-fade-up flex w-full items-center justify-center gap-2 delay-100 duration-600"
   >
     <div
       v-if="currentPage > 1"

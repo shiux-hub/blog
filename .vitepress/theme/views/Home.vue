@@ -98,7 +98,7 @@ watch(
     <Banner v-if="showHeader" :height="store.bannerType" />
     <div class="flex lg:space-x-4">
       <div
-        class="w-full transition-[width] duration-300 lg:w-[calc(100%-336px)]"
+        class="w-full space-y-5 transition-[width] duration-300 lg:w-[calc(100%-336px)]"
       >
         <!-- 分类总览 -->
         <TypeBar :type="tag ? 'tags' : 'categories'" />

@@ -20,8 +20,11 @@ const currentTypeName = computed(() => {
 </script>
 
 <template>
-  <div v-if="type === 'categories'" class="type-bar card hover">
-    <div class="all-type">
+  <div
+    v-if="type === 'categories'"
+    class="card hover relative flex animate-[fade-up_0.6s_0.3s_backwards] items-center justify-between p-2 font-bold"
+  >
+    <div class="all-type mr-3 flex w-full items-center overflow-hidden">
       <a
         v-if="currentTypeName"
         :href="`/pages/categories/${currentTypeName}`"
@@ -40,13 +43,16 @@ const currentTypeName = computed(() => {
         {{ key }}
       </a>
     </div>
-    <a href="/pages/categories" class="more-type">
-      <Icon icon="mingcute:arrows-right-line" />
+    <a
+      href="/pages/categories"
+      class="hover:text-theme mr-1 ml-2 flex items-center gap-2 whitespace-nowrap"
+    >
+      <Icon icon="mingcute:arrows-right-line" class="size-5" />
       更多
     </a>
   </div>
   <div v-else-if="type === 'tags'" class="type-bar card hover">
-    <div class="all-type">
+    <div class="all-type mr-3 flex w-full items-center overflow-hidden">
       <a
         v-if="currentTypeName"
         :href="`/pages/tags/${currentTypeName}`"
@@ -68,81 +74,51 @@ const currentTypeName = computed(() => {
         <span class="num">{{ item.count }}</span>
       </a>
     </div>
-    <a href="/pages/tags" class="more-type">
-      <Icon icon="mingcute:arrows-right-line" />
+    <a
+      href="/pages/tags"
+      class="hover:text-theme mr-1 ml-2 flex items-center gap-2 whitespace-nowrap"
+    >
+      <Icon icon="mingcute:arrows-right-line" class="size-5" />
       更多
     </a>
   </div>
 </template>
 
 <style scoped>
-.type-bar {
-  position: relative;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 1rem;
-  padding: 0.6rem;
-  font-weight: bold;
-  animation: fade-up 0.6s 0.3s backwards;
-  .all-type {
-    width: 100%;
+.all-type {
+  mask: linear-gradient(90deg, #fff 0, #fff 90%, hsla(0, 0%, 100%, 0.6) 95%, hsla(0, 0%, 100%, 0) 100%);
+  .type-item {
     display: flex;
-    flex-direction: row;
     align-items: center;
-    margin-right: 12px;
-    overflow: hidden;
-    mask: linear-gradient(90deg, #fff 0, #fff 90%, hsla(0, 0%, 100%, 0.6) 95%, hsla(0, 0%, 100%, 0) 100%);
-    .type-item {
-      display: flex;
-      align-items: center;
-      padding: 0.1rem 0.5rem;
-      margin-right: 6px;
-      font-weight: bold;
+    padding: 0.1rem 0.5rem;
+    margin-right: 6px;
+    font-weight: bold;
+    border-radius: 8px;
+    white-space: nowrap;
+    height: 30px;
+    cursor: pointer;
+    .num {
+      margin-left: 4px;
+      font-weight: normal;
+      padding: 2px 6px;
+      font-size: 0.75rem;
+      color: var(--color-font-color);
+      background-color: var(--color-card-border);
       border-radius: 8px;
-      white-space: nowrap;
-      height: 30px;
-      cursor: pointer;
+    }
+    &.choose {
+      color: var(--color-card-background);
+      background-color: var(--color-theme);
       .num {
-        margin-left: 4px;
-        font-weight: normal;
-        padding: 2px 6px;
-        font-size: 0.75rem;
-        color: var(--color-font-color);
-        background-color: var(--color-card-border);
-        border-radius: 8px;
-      }
-      &.choose {
-        color: var(--color-card-background);
-        background-color: var(--color-theme);
-        .num {
-          color: var(--color-theme);
-        }
-      }
-      &.hidden {
-        display: none;
-      }
-      &:hover {
-        color: var(--color-card-background);
-        background-color: var(--color-theme);
+        color: var(--color-theme);
       }
     }
-  }
-  .more-type {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    white-space: nowrap;
-    margin-right: 4px;
-    margin-left: 8px;
-    svg {
-      width: 0.9375rem;
-      height: 0.9375rem;
-      margin-right: 8px;
+    &.hidden {
+      display: none;
     }
     &:hover {
-      color: var(--color-theme);
+      color: var(--color-card-background);
+      background-color: var(--color-theme);
     }
   }
 }

@@ -16,14 +16,25 @@ const { site, theme, frontmatter, page } = useData()
   <header class="animate-show relative z-1000 h-15 w-full overflow-hidden">
     <nav
       class="main-nav"
-      :class="[scrollData.isScrollDown ? 'down' : 'up', { top: scrollData.height === 0 }]"
+      :class="[
+        scrollData.isScrollDown ? 'down' : 'up',
+        { top: scrollData.height === 0 },
+      ]"
     >
-      <div class="relative h-full items-center grid grid-cols-[minmax(200px,1fr)_auto_minmax(200px,1fr)] max-md:flex justify-between max-md:py-4 px-6 container">
+      <div
+        class="relative container grid h-full grid-cols-[minmax(200px,1fr)_auto_minmax(200px,1fr)] items-center justify-between px-6 max-md:flex max-md:py-4"
+      >
         <!-- 导航栏左侧 -->
-        <div class="flex items-center min-w-50 max-md:min-w-auto">
-          <div v-tippy class="relative mr-1 max-sm:hidden group nav-btn" title="更多内容">
+        <div class="flex min-w-50 items-center max-md:min-w-auto">
+          <div
+            v-tippy
+            class="group nav-btn relative mr-1 max-sm:hidden"
+            title="更多内容"
+          >
             <Icon icon="mingcute:classify-3-fill" />
-            <div class="more-card group-hover:opacity-100 group-hover:scale-100 group-hover:translate-y-0 group-hover:visible card cursor-pointer">
+            <div
+              class="more-card card cursor-pointer group-hover:visible group-hover:translate-y-0 group-hover:scale-100 group-hover:opacity-100"
+            >
               <div
                 v-for="(item, index) in theme.navMore"
                 :key="index"
@@ -60,7 +71,9 @@ const { site, theme, frontmatter, page } = useData()
           </div>
         </div>
         <!-- 导航栏菜单 -->
-        <div class="nav-center max-md:absolute max-md:inset-0 max-md:bg-card-background max-md:border-b max-md:border-card-border max-md:z-100">
+        <div
+          class="nav-center max-md:bg-card-background max-md:border-card-border max-md:absolute max-md:inset-0 max-md:z-100 max-md:border-b"
+        >
           <div class="site-menu">
             <div
               v-for="(item, index) in theme.nav"
@@ -75,20 +88,27 @@ const { site, theme, frontmatter, page } = useData()
                   class="link-child-btn"
                   @click="router.go(link)"
                 >
-                  <Icon v-if="icon" :icon class="contain-layout contain-paint" />
+                  <Icon
+                    v-if="icon"
+                    :icon
+                    class="contain-layout contain-paint"
+                  />
                   {{ text }}
                 </span>
               </div>
             </div>
           </div>
-          <span class="site-title max-md:after:hidden max-md:h-auto" @click="smoothScrolling()">
+          <span
+            class="site-title max-md:h-auto max-md:after:hidden"
+            @click="smoothScrolling()"
+          >
             {{
               (frontmatter.home ? site.description : page.title)
                 || site.description
             }}
           </span>
         </div>
-        <div class="right-nav gap-2 min-w-50 max-md:min-w-auto">
+        <div class="right-nav min-w-50 gap-2 max-md:min-w-auto">
           <!-- 开往 -->
           <a
             v-tippy
@@ -131,24 +151,31 @@ const { site, theme, frontmatter, page } = useData()
           <!-- 返回顶部 -->
           <div
             v-tippy
-            class="group relative active:scale-90 shrink-0 flex items-center size-9 transition-all duration-300 ease-in-out justify-center cursor-pointer menu-btn"
+            class="group menu-btn relative flex size-9 shrink-0 cursor-pointer items-center justify-center transition-all duration-300 ease-in-out active:scale-90"
             :class="{
-              'w-0 opacity-0 scale-0 m-0': scrollData.height === 0,
+              'm-0 w-0 scale-0 opacity-0': scrollData.height === 0,
               'w-20': scrollData.percentage > 90,
             }"
             title="返回顶部"
             @click="smoothScrolling()"
           >
             <div
-              :class="cn(
-                'absolute group-hover:size-9 group-hover:bg-theme group-hover:text-card-background flex items-center justify-center bg-font-color size-6.25 transition-all duration-300 rounded-full',
-                {
-                  'w-17.5 group-hover:w-20': scrollData.percentage > 90,
-                },
-              )"
+              :class="
+                cn(
+                  'group-hover:bg-theme group-hover:text-card-background bg-font-color absolute flex size-6.25 items-center justify-center rounded-full transition-all duration-300 group-hover:size-9',
+                  {
+                    'w-17.5 group-hover:w-20': scrollData.percentage > 90,
+                  },
+                )
+              "
             >
-              <Icon icon="mingcute:arrow-up-fill" class="absolute opacity-0 group-hover:opacity-100" />
-              <span class="text-xs text-card-background transition-all group-hover:opacity-0 duration-300">
+              <Icon
+                icon="mingcute:arrow-up-fill"
+                class="absolute opacity-0 group-hover:opacity-100"
+              />
+              <span
+                class="text-card-background text-xs transition-all duration-300 group-hover:opacity-0"
+              >
                 {{
                   scrollData.percentage > 90
                     ? '返回顶部'

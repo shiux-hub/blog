@@ -10,16 +10,19 @@ function checkboxClick() {
 </script>
 
 <template>
-  <div class="flex items-center cursor-pointer space-x-2 group" @click="checkboxClick">
+  <div
+    class="group flex cursor-pointer items-center space-x-2"
+    @click="checkboxClick"
+  >
     <div
-      class="relative items-center justify-center size-5 rounded-sm border-2 border-card-border transition-[border,background-color] group-hover:border-theme duration-300"
+      class="border-card-border group-hover:border-theme relative size-5 items-center justify-center rounded-sm border-2 transition-[border,background-color] duration-300"
       :class="{ 'bg-theme': model }"
     >
       <Icon
         icon="mingcute:check-fill"
         class="text-card-background absolute size-3 scale-0 opacity-0 transition-[opacity,scale]"
         :class="{
-          'opacity-100 scale-100': model,
+          'scale-100 opacity-100': model,
         }"
       />
     </div>

@@ -49,11 +49,14 @@ onMounted(() => {
   <a
     :href="url"
     :target="isOutLink ? '_blank' : undefined"
-    class="block w-full my-4 p-4 bg-card-second-background card hover group hover:text-card-background hover:bg-theme"
+    class="bg-card-second-background card hover group hover:text-card-background hover:bg-theme my-4 block w-full p-4"
   >
-    <span v-if="isOutLink" class="inline-block w-full text-sm pb-3 mb-3 border-b-2 border-dashed border-card-border">引用站外地址，请注意甄别链接安全性</span>
-    <div class="h-full flex items-center">
-      <div class="size-15 min-w-15 mr-3 rounded-xl overflow-hidden">
+    <span
+      v-if="isOutLink"
+      class="border-card-border mb-3 inline-block w-full border-b-2 border-dashed pb-3 text-sm"
+    >引用站外地址，请注意甄别链接安全性</span>
+    <div class="flex h-full items-center">
+      <div class="mr-3 size-15 min-w-15 overflow-hidden rounded-xl">
         <img v-if="icon" class="size-full" :src="icon" alt="link-img">
         <img
           v-else-if="siteInfo?.iconUrl"
@@ -62,26 +65,27 @@ onMounted(() => {
           alt="link-img"
           @error="siteInfo.iconUrl = null"
         >
-        <Icon
-          icon="mingcute:link-2-fill"
-          class="size-8 bg-card-border"
-        />
+        <Icon icon="mingcute:link-2-fill" class="bg-card-border size-8" />
       </div>
-      <div class="w-full flex flex-col overflow-hidden">
+      <div class="flex w-full flex-col overflow-hidden">
         <!-- 标题 -->
-        <span v-if="title" class="mb-1 text-lg truncate">{{ title }}</span>
-        <span v-else class="mb-1 text-lg truncate">{{
+        <span v-if="title" class="mb-1 truncate text-lg">{{ title }}</span>
+        <span v-else class="mb-1 truncate text-lg">{{
           siteInfo?.title || '暂无标题'
         }}</span>
         <!-- 描述 -->
-        <span v-if="desc" class="text-font-second-color text-sm line-clamp-2 text-ellipsis transition-colors duration-300 group-hover:text-card-background group-hover:opacity-60">{{ desc }}</span>
-        <span v-else class="text-font-second-color text-sm line-clamp-2 text-ellipsis transition-colors duration-300 group-hover:text-card-background group-hover:opacity-60">{{
-          siteInfo?.description || '暂无站点描述'
-        }}</span>
+        <span
+          v-if="desc"
+          class="text-font-second-color group-hover:text-card-background line-clamp-2 text-sm text-ellipsis transition-colors duration-300 group-hover:opacity-60"
+        >{{ desc }}</span>
+        <span
+          v-else
+          class="text-font-second-color group-hover:text-card-background line-clamp-2 text-sm text-ellipsis transition-colors duration-300 group-hover:opacity-60"
+        >{{ siteInfo?.description || '暂无站点描述' }}</span>
       </div>
       <Icon
         icon="mingcute:up-fill"
-        class="flex ml-3 rotate-90 transition-colors duration-300 group-hover:text-card-background"
+        class="group-hover:text-card-background ml-3 flex rotate-90 transition-colors duration-300"
       />
     </div>
   </a>
