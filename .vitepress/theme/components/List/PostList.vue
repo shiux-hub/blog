@@ -87,7 +87,7 @@ function toPost(path: string) {
       @click="toPost(item.regularPath)"
     >
       <div v-if="!simple && showCover" class="post-cover">
-        <img :src="getCover(item.cover)" :alt="item.title">
+        <ImageWithLoader :src="getCover(item.cover)" :alt="item.title" />
       </div>
 
       <div class="post-content">
