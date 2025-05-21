@@ -26,14 +26,10 @@ const { site, theme, frontmatter, page } = useData()
       >
         <!-- 导航栏左侧 -->
         <div class="flex min-w-50 items-center max-md:min-w-auto">
-          <div
-            v-tippy
-            class="group nav-btn relative mr-1 max-sm:hidden"
-            title="更多内容"
-          >
+          <div class="group nav-btn relative mr-1 max-sm:hidden">
             <Icon icon="mingcute:classify-3-fill" />
             <div
-              class="more-card card cursor-pointer group-hover:visible group-hover:translate-y-0 group-hover:scale-100 group-hover:opacity-100"
+              class="absolute left-0 top-12 opacity-0 invisible origin-top-left scale-80 -translate-y-1 card group-hover:visible group-hover:translate-y-0 group-hover:scale-100 group-hover:opacity-100 after:absolute after:-top-5 after:w-full after:h-8 after:z-1 hover:border-theme"
             >
               <div
                 v-for="(item, index) in theme.navMore"
@@ -206,68 +202,45 @@ const { site, theme, frontmatter, page } = useData()
 
 <style scoped>
 @layer base {
-  .more-card {
-    position: absolute;
-    left: 0;
-    top: 46px;
-    opacity: 0;
-    visibility: hidden;
-    transform-origin: left top;
-    transform: scale(0.8) translateY(-5px);
+  .more-item {
+    margin-top: 0.8rem;
 
-    .more-item {
-      margin-top: 0.8rem;
+    &:first-child {
+      margin-top: 0;
+    }
 
-      &:first-child {
-        margin-top: 0;
-      }
+    .more-name {
+      font-size: 14px;
+      display: inline-block;
+      color: var(--color-font-second-color);
+      margin-bottom: 0.6rem;
+    }
 
-      .more-name {
-        font-size: 14px;
-        display: inline-block;
-        color: var(--color-font-second-color);
-        margin-bottom: 0.6rem;
-      }
+    .more-list {
+      display: grid;
+      gap: 0.8rem;
+      grid-template-columns: 1fr 1fr;
 
-      .more-list {
-        display: grid;
-        gap: 0.8rem;
-        grid-template-columns: 1fr 1fr;
+      .more-link {
+        display: flex;
+        align-items: center;
+        width: 150px;
+        padding: 6px 8px;
+        border-radius: 8px;
+        cursor: pointer;
 
-        .more-link {
-          display: flex;
-          align-items: center;
-          width: 150px;
-          padding: 6px 8px;
-          border-radius: 8px;
+        .link-icon {
+          width: 24px;
+          height: 24px;
+          border-radius: 50%;
+          margin-right: 8px;
+        }
 
-          .link-icon {
-            width: 24px;
-            height: 24px;
-            border-radius: 50%;
-            margin-right: 8px;
-          }
-
-          &:hover {
-            color: var(--color-card-background);
-            background-color: var(--color-theme);
-          }
+        &:hover {
+          color: var(--color-card-background);
+          background-color: var(--color-theme);
         }
       }
-    }
-
-    &::after {
-      content: '';
-      position: absolute;
-      top: -20px;
-      left: 0;
-      width: 100%;
-      height: 30px;
-      z-index: 1;
-    }
-
-    &:hover {
-      border-color: var(--color-theme);
     }
   }
 
@@ -578,7 +551,6 @@ const { site, theme, frontmatter, page } = useData()
     padding: 0;
     transition: background-color 0.3s;
     border-radius: 50%;
-    cursor: pointer;
 
     svg {
       width: 1.25rem;
