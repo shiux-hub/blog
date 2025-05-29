@@ -1,15 +1,15 @@
 import type { Router } from 'vitepress'
 import type { App } from 'vue'
-// 根组件
-import RootApp from '@/App.vue'
-import LazyLoader from '@/components/LazyLoader.vue'
-import { routeChange } from '@/utils/initTools'
 import { createPinia } from 'pinia'
 import piniaPluginPersistedstate from 'pinia-plugin-persistedstate'
-
 import { enhanceAppWithTabs } from 'vitepress-plugin-tabs/client'
-
 import VueTippy from 'vue-tippy'
+// 根组件
+import RootApp from '@/App.vue'
+
+import LazyLoader from '@/components/LazyLoader.vue'
+
+import { routeChange } from '@/utils/initTools'
 
 // 全局样式
 import '@/style/main.css'

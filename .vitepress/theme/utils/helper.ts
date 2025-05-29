@@ -1,6 +1,6 @@
 import type { PostDataItem } from '@/types/post'
-import { mainStore } from '@/store'
 import { isNumber, isString, isUndefined, random, throttle } from 'radashi'
+import { mainStore } from '@/store'
 
 /**
  * 计算滚动高度和滚动百分比

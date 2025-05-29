@@ -1,7 +1,7 @@
 <!-- 参考资料 -->
 <script lang="ts" setup>
-import { useData } from '@/composables/data'
 import { Icon } from '@iconify/vue'
+import { useData } from '@/composables/data'
 
 const { frontmatter } = useData()
 

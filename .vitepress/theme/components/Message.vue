@@ -1,8 +1,8 @@
 <!-- 全局消息 -->
 <script lang="ts" setup>
 import type { Message } from '@/types/site'
-import { cn } from '@/utils'
 import { Icon } from '@iconify/vue'
+import { cn } from '@/utils'
 
 // 消息数据
 const messageType = ref('info')

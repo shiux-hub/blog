@@ -1,8 +1,8 @@
 <!-- 全局设置 -->
 <script lang="ts" setup>
-import { mainStore } from '@/store'
 import { Icon } from '@iconify/vue'
 import { storeToRefs } from 'pinia'
+import { mainStore } from '@/store'
 
 const store = mainStore()
 const {

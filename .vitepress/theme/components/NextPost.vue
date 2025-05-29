@@ -1,10 +1,10 @@
 <!-- 下一篇文章 -->
 <script lamg="ts" setup>
+import { storeToRefs } from 'pinia'
 import { useData } from '@/composables/data'
 import { mainStore } from '@/store'
 import { cn } from '@/utils'
 import { generateId } from '@/utils/commonTools'
-import { storeToRefs } from 'pinia'
 
 const router = useRouter()
 const store = mainStore()

@@ -1,5 +1,5 @@
-import type { ThemeConfig } from '@/types/theme'
 import type { SiteConfig } from 'vitepress'
+import type { ThemeConfig } from '@/types/theme'
 import { writeFileSync } from 'node:fs'
 import path from 'node:path'
 import { Feed } from 'feed'

@@ -1,7 +1,7 @@
 <script lang="ts" setup>
-import { mainStore } from '@/store'
 import { Icon } from '@iconify/vue'
 import { throttle } from 'radashi'
+import { mainStore } from '@/store'
 
 const route = useRoute()
 const store = mainStore()

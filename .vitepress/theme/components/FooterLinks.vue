@@ -1,9 +1,9 @@
 <!-- 页脚 - 链接 -->
 <script lang="ts" setup>
-import { useData } from '@/composables/data'
-import { smoothScrolling } from '@/utils/helper'
 import { Icon } from '@iconify/vue'
 import { isObject } from 'radashi'
+import { useData } from '@/composables/data'
+import { smoothScrolling } from '@/utils/helper'
 
 withDefaults(
   defineProps<{

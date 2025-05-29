@@ -1,7 +1,7 @@
 <script lang="ts" setup>
+import { storeToRefs } from 'pinia'
 import { useData } from '@/composables/data'
 import { mainStore } from '@/store'
-import { storeToRefs } from 'pinia'
 
 const store = mainStore()
 const { theme } = useData()

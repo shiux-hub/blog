@@ -1,9 +1,9 @@
 <!-- 侧边栏 - 站点数据 -->
 <script lang="ts" setup>
+import { Icon } from '@iconify/vue'
 import { useData } from '@/composables/data'
 import { loadScript } from '@/utils/commonTools'
 import { daysFromNow } from '@/utils/helper'
-import { Icon } from '@iconify/vue'
 
 const { theme } = useData()
 

@@ -1,7 +1,7 @@
 <!-- 分页 -->
 <script lang="ts" setup>
-import { cn } from '@/utils'
 import { Icon } from '@iconify/vue'
+import { cn } from '@/utils'
 
 // 分页数据
 const { page, total, limit, routePath, useParams } = defineProps<{

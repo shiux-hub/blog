@@ -1,7 +1,7 @@
 <!-- 侧边栏 - 标签 -->
 <script lang="ts" setup>
-import { useData } from '@/composables/data'
 import { Icon } from '@iconify/vue'
+import { useData } from '@/composables/data'
 
 const { theme } = useData()
 </script>

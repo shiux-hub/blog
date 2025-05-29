@@ -1,6 +1,6 @@
 <script lang="ts" setup>
-import Banner from '@/components/Banner.vue'
 import { Icon } from '@iconify/vue'
+import Banner from '@/components/Banner.vue'
 </script>
 
 <template>

@@ -1,6 +1,6 @@
 <script lang="ts" setup>
-import { mainStore } from '@/store'
 import { storeToRefs } from 'pinia'
+import { mainStore } from '@/store'
 
 const store = mainStore()
 const { backgroundType, backgroundUrl } = storeToRefs(store)

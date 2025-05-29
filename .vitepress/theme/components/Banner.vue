@@ -1,10 +1,10 @@
 <script lang="ts" setup>
 import type { Hitokoto } from '@/types/hitokoto'
+import { Icon } from '@iconify/vue'
 import { getHitokoto } from '@/api'
 import { useData } from '@/composables/data'
 import { mainStore } from '@/store'
 import { cn } from '@/utils'
-import { Icon } from '@iconify/vue'
 
 const props = withDefaults(
   defineProps<{

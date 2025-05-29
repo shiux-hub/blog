@@ -1,8 +1,8 @@
 <!-- 链接卡片 -->
 <script lang="ts" setup>
 import type { SiteInfo } from '@/types/site'
-import { getSiteInfo } from '@/api'
 import { Icon } from '@iconify/vue'
+import { getSiteInfo } from '@/api'
 
 const { url, title, desc, icon } = defineProps<{
   // 地址

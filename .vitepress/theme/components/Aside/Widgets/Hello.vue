@@ -1,9 +1,9 @@
 <!-- 侧边栏 - 欢迎 -->
 <script lang="ts" setup>
-import { useData } from '@/composables/data'
-import { getGreetings } from '@/utils/helper'
 import { Icon } from '@iconify/vue'
 import { random } from 'radashi'
+import { useData } from '@/composables/data'
+import { getGreetings } from '@/utils/helper'
 
 const { theme } = useData()
 

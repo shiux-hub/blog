@@ -1,7 +1,7 @@
 <!-- 分类导航条 -->
 <script lang="ts" setup>
-import { useData } from '@/composables/data'
 import { Icon } from '@iconify/vue'
+import { useData } from '@/composables/data'
 
 withDefaults(
   defineProps<{

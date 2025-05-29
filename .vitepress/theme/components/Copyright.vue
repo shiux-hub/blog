@@ -1,8 +1,8 @@
 <script lang="ts" setup>
 import type { PostDataItem } from '@/types/post'
+import { Icon } from '@iconify/vue'
 import { useData } from '@/composables/data'
 import { formatTimestamp } from '@/utils/helper'
-import { Icon } from '@iconify/vue'
 
 defineProps<{
   postData?: PostDataItem

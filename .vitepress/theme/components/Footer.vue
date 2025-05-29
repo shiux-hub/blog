@@ -1,8 +1,8 @@
 <script lang="ts" setup>
-import { useData } from '@/composables/data'
-import { mainStore } from '@/store'
 import { Icon } from '@iconify/vue'
 import { storeToRefs } from 'pinia'
+import { useData } from '@/composables/data'
+import { mainStore } from '@/store'
 
 const store = mainStore()
 const { theme } = useData()

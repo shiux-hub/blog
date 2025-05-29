@@ -1,11 +1,11 @@
 <!-- 相关文章 -->
 <script lang="ts" setup>
 import type { PostDataItem } from '@/types/post'
+import { Icon } from '@iconify/vue'
+import { isEmpty } from 'radashi'
 import { useData } from '@/composables/data'
 import { generateId } from '@/utils/commonTools'
 import { shufflePost } from '@/utils/helper'
-import { Icon } from '@iconify/vue'
-import { isEmpty } from 'radashi'
 
 const router = useRouter()
 const { theme, page, frontmatter } = useData()

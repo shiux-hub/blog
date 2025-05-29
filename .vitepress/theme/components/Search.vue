@@ -1,7 +1,7 @@
 <!-- 全局搜索 -->
 <script lang="ts" setup>
-import { mainStore } from '@/store'
 import { liteClient } from 'algoliasearch/lite'
+import { mainStore } from '@/store'
 
 const store = mainStore()
 const router = useRouter()

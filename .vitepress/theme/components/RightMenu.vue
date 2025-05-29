@@ -1,4 +1,7 @@
 <script lang="ts" setup>
+import { Icon } from '@iconify/vue'
+import { useClipboard } from '@vueuse/core'
+import { storeToRefs } from 'pinia'
 import { useData } from '@/composables/data'
 import { mainStore } from '@/store'
 import {
@@ -7,9 +10,6 @@ import {
   shufflePost,
   smoothScrolling,
 } from '@/utils/helper'
-import { Icon } from '@iconify/vue'
-import { useClipboard } from '@vueuse/core'
-import { storeToRefs } from 'pinia'
 
 const router = useRouter()
 const store = mainStore()

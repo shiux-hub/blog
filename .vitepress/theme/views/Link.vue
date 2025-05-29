@@ -1,8 +1,8 @@
 <!-- 友情链接 -->
 <script lang="ts" setup>
+import { Icon } from '@iconify/vue'
 import linkData from '@/assets/linkData'
 import { smoothScrolling } from '@/utils/helper'
-import { Icon } from '@iconify/vue'
 
 // 全部友链
 const allLinkData = computed(() => {

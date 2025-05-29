@@ -1,5 +1,5 @@
-import type { ThemeConfig } from '@/types/theme'
 import type { MarkdownRenderer } from 'vitepress'
+import type { ThemeConfig } from '@/types/theme'
 import markdownItAttrs from 'markdown-it-attrs'
 import container from 'markdown-it-container'
 import { tabsMarkdownPlugin } from 'vitepress-plugin-tabs'
