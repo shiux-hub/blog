@@ -1,7 +1,7 @@
 import type { PostDataItem } from '@/types/post'
 import { isNumber } from 'es-toolkit/compat'
 import { throttle } from 'es-toolkit/function'
-import { random } from 'es-toolkit/math'
+import { randomInt } from 'es-toolkit/math'
 import { isString, isUndefined } from 'es-toolkit/predicate'
 import { mainStore } from '@/store'
 
@@ -135,7 +135,7 @@ export function shufflePost(postData: PostDataItem[]) {
   let randomIndex
   do {
     // 随机生成一个索引值
-    randomIndex = random(0, postData.length - 1)
+    randomIndex = randomInt(postData.length - 1)
   } while (randomIndex === lastIndex && postData.length > 1)
   // 更新上一次的索引值
   lastIndex = randomIndex
@@ -232,7 +232,7 @@ export function getGreetings() {
 // 打乱数组 - Fisher-Yates 洗牌算法
 export function shuffleArray(array: unknown[]) {
   for (let i = array.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
+    const j = randomInt(i + 1);
     // 解构赋值进行元素互换
     [array[i], array[j]] = [array[j], array[i]]
   }

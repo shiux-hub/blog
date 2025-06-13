@@ -1,6 +1,7 @@
 <!-- AI 摘要（假） -->
 <script lang="ts" setup>
 import { Icon } from '@iconify/vue'
+import { randomInt } from 'es-toolkit/math'
 import { useData } from '@/composables/data'
 
 const { frontmatter } = useData()
@@ -22,7 +23,7 @@ function typeWriter(text?: string) {
     if (showIndex.value < data.length) {
       abstractData.value += data.charAt(showIndex.value++)
       // 生成字符延迟
-      const delay = Math.random() * (150 - 30) + 30
+      const delay = randomInt(121) + 30
       setTimeout(() => {
         typeWriter(text)
       }, delay)
@@ -45,7 +46,7 @@ function initAbstract() {
     () => {
       typeWriter()
     },
-    Math.random() * (3800 - 2500) + 2500,
+    randomInt(1301) + 2500,
   )
 }
 

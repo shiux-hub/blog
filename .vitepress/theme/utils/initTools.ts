@@ -1,3 +1,4 @@
+import { randomInt } from 'es-toolkit/math'
 import { mainStore } from '@/store'
 
 // 必要数据
@@ -80,6 +81,6 @@ function changeLoading(
       if (loadingTimer)
         clearTimeout(loadingTimer)
     },
-    Math.floor(Math.random() * (800 - 260 + 1)) + 260,
+    randomInt(541) + 260,
   )
 }
