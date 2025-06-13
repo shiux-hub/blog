@@ -1,7 +1,7 @@
 import type { ThemeConfig } from '@/types/theme'
 import { existsSync } from 'node:fs'
 import { fileURLToPath } from 'node:url'
-import { isArray, isObject } from 'radashi'
+import { isObject } from 'es-toolkit/compat'
 import { themeConfig } from './theme/assets/themeConfig'
 
 export type DeepPartial<T> = {
@@ -35,13 +35,13 @@ export async function getThemeConfig(): Promise<ThemeConfig> {
           const existing = merged[key]
 
           // 处理数组（直接替换而不是合并）
-          if (isArray(value)) {
+          if (Array.isArray(value)) {
             merged[key] = [...value] as any
             continue
           }
 
           // 处理对象
-          if (isObject(existing) && isObject(value) && !isArray(existing)) {
+          if (isObject(existing) && isObject(value) && !Array.isArray(existing)) {
             // 递归合并
             merged[key] = deepMerge(existing, value)
             continue

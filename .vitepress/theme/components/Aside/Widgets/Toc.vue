@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import { Icon } from '@iconify/vue'
-import { throttle } from 'radashi'
+import { throttle } from 'es-toolkit/function'
 import { mainStore } from '@/store'
 
 const route = useRoute()
@@ -55,7 +55,7 @@ function generateDirData() {
 }
 
 // 高亮对应目录项
-const activeTocItem = throttle({ interval: 100 }, () => {
+const activeTocItem = throttle(() => {
   if (!tocData.value)
     return false
   // 所有标题
@@ -73,7 +73,7 @@ const activeTocItem = throttle({ interval: 100 }, () => {
       activeHeader.value = header.id
     }
   }
-})
+}, 100)
 
 // 滚动标题至指定位置
 function scrollToHeader(id: string) {

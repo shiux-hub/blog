@@ -1,7 +1,7 @@
 <!-- 侧边栏 - 欢迎 -->
 <script lang="ts" setup>
 import { Icon } from '@iconify/vue'
-import { random } from 'radashi'
+import { random } from 'es-toolkit/compat'
 import { useData } from '@/composables/data'
 import { getGreetings } from '@/utils/helper'
 

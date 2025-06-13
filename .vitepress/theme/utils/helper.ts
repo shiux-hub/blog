@@ -1,12 +1,14 @@
 import type { PostDataItem } from '@/types/post'
-import { isNumber, isString, isUndefined, random, throttle } from 'radashi'
+import { isNumber } from 'es-toolkit/compat'
+import { throttle } from 'es-toolkit/function'
+import { random } from 'es-toolkit/math'
+import { isString, isUndefined } from 'es-toolkit/predicate'
 import { mainStore } from '@/store'
 
 /**
  * 计算滚动高度和滚动百分比
  */
 export const calculateScroll = throttle(
-  { interval: 300, trailing: true },
   () => {
     try {
       if (isUndefined(window) || isUndefined(document))
@@ -29,6 +31,8 @@ export const calculateScroll = throttle(
       console.error('计算滚动时出现错误：', error)
     }
   },
+  300,
+  { edges: ['trailing'] },
 )
 
 /**

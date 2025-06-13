@@ -1,7 +1,7 @@
 <!-- 页脚 - 链接 -->
 <script lang="ts" setup>
 import { Icon } from '@iconify/vue'
-import { isObject } from 'radashi'
+import { isObject } from 'es-toolkit/compat'
 import { useData } from '@/composables/data'
 import { smoothScrolling } from '@/utils/helper'
 

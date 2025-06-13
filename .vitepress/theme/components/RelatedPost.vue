@@ -2,7 +2,7 @@
 <script lang="ts" setup>
 import type { PostDataItem } from '@/types/post'
 import { Icon } from '@iconify/vue'
-import { isEmpty } from 'radashi'
+import { isEmpty } from 'es-toolkit/compat'
 import { useData } from '@/composables/data'
 import { generateId } from '@/utils/commonTools'
 import { shufflePost } from '@/utils/helper'
