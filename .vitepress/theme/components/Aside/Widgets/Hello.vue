@@ -1,7 +1,7 @@
 <!-- 侧边栏 - 欢迎 -->
 <script lang="ts" setup>
 import { Icon } from '@iconify/vue'
-import { random } from 'es-toolkit/compat'
+import { randomInt } from 'es-toolkit/math'
 import { useData } from '@/composables/data'
 import { getGreetings } from '@/utils/helper'
 
@@ -56,7 +56,7 @@ function isHasUser() {
   const { nick } = JSON.parse(userData)
   const hello = ['很高兴见到你', '好久不见', '欢迎回来']
   // 随机问候语
-  helloText.value = `${hello[random(0, hello.length - 1)]}，${nick}`
+  helloText.value = `${hello[randomInt(hello.length - 1)]}，${nick}`
   return true
 }
 
