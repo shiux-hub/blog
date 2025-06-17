@@ -5,7 +5,7 @@ import { withPwa } from '@vite-pwa/vitepress'
 import autoImport from 'unplugin-auto-import/vite'
 import components from 'unplugin-vue-components/vite'
 import vueDevTools from 'vite-plugin-vue-devtools'
-import { defineConfigWithTheme } from 'vitepress'
+import { defineConfig } from 'vitepress'
 import { getThemeConfig } from './init'
 import { jumpRedirect } from './theme/utils/commonTools'
 import { createRssFile } from './theme/utils/generateRSS'
@@ -27,7 +27,7 @@ const themeConfig = await getThemeConfig()
 
 // https://vitepress.dev/reference/site-config
 export default withPwa(
-  defineConfigWithTheme<ThemeData>({
+  defineConfig<ThemeData>({
     title: themeConfig.siteMeta.title,
     description: themeConfig.siteMeta.description,
     lang: themeConfig.siteMeta.lang,
