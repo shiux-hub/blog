@@ -63,12 +63,12 @@ const activeTocItem = throttle(() => {
   if (!headers)
     return false
   // 容错高度
-  const bufferheight = 120
+  const bufferHeight = 120
   // 遍历所有标题
   for (const header of headers) {
     const rect = header.getBoundingClientRect()
     // 检查标题是否在视口中
-    if (rect.top - bufferheight <= 0 && rect.bottom + bufferheight >= 0) {
+    if (rect.top - bufferHeight <= 0 && rect.bottom + bufferHeight >= 0) {
       // 高亮对应标题
       activeHeader.value = header.id
     }

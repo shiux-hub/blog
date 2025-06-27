@@ -50,13 +50,10 @@ export async function getThemeConfig(): Promise<ThemeConfig> {
           // 基本类型直接赋值
           merged[key] = value as T[Extract<keyof T, string>]
         }
-
         return merged
       }
-
       return deepMerge(themeConfig, userConfig.themeConfig || {})
     }
-
     return themeConfig
   }
   catch (error) {

@@ -1,38 +1,43 @@
 import type { PostDataItem } from '@/types/post'
+import dayjs from 'dayjs'
+import { sample, without } from 'es-toolkit/array'
 import { isNumber } from 'es-toolkit/compat'
 import { throttle } from 'es-toolkit/function'
-import { randomInt } from 'es-toolkit/math'
 import { isString, isUndefined } from 'es-toolkit/predicate'
 import { mainStore } from '@/store'
 
 /**
- * 计算滚动高度和滚动百分比
+ * 计算并存储滚动数据（高度、百分比、方向）
+ * 使用节流优化性能，默认300ms间隔
  */
 export const calculateScroll = throttle(
   () => {
+    if (isUndefined(window) || isUndefined(document))
+      return false
+
     try {
-      if (isUndefined(window) || isUndefined(document))
-        return false
       const store = mainStore()
-      const scrollY = window.scrollY || window.scrollY
-      const totalHeight
-        = document.documentElement.scrollHeight - window.innerHeight
-      const scrollPercentage = ((scrollY / totalHeight) * 100).toFixed(0)
-      // 判断滚动方向
-      const isScrollDown = scrollY > store.scrollData.height
-      // 储存计算结果
+      const scrollY = window.scrollY
+      const totalHeight = document.documentElement.scrollHeight - window.innerHeight
+
+      // 仅在页面有足够高度时计算百分比
+      const scrollPercentage = totalHeight > 0
+        ? Math.round((scrollY / totalHeight) * 100)
+        : 0
+
       store.scrollData = {
-        height: Number(scrollY.toFixed(0)),
-        percentage: Number(scrollPercentage),
-        isScrollDown,
+        height: Math.round(scrollY),
+        percentage: scrollPercentage,
+        isScrollDown: scrollY > store.scrollData.height,
       }
     }
     catch (error) {
       console.error('计算滚动时出现错误：', error)
+      return false
     }
   },
   300,
-  { edges: ['trailing'] },
+  { edges: ['trailing', 'leading'] },
 )
 
 /**
@@ -40,34 +45,36 @@ export const calculateScroll = throttle(
  * @param target - 目标高度或元素
  */
 export function smoothScrolling(target: HTMLElement | string | number = 0) {
+  if (isUndefined(window))
+    return false
+
   try {
-    if (isUndefined(window))
-      return false
+    let scrollTop = 0
+
     if (isNumber(target)) {
-      // 滚动至指定高度
-      window.scrollTo({ top: target, behavior: 'smooth' })
+      scrollTop = target
     }
     else if (target instanceof HTMLElement) {
-      // 滚动至元素
-      const top = target.getBoundingClientRect().top - 80
-      window.scrollTo({ top, behavior: 'smooth' })
+      scrollTop = target.getBoundingClientRect().top + window.scrollY - 80
     }
     else if (isString(target) && target.startsWith('#')) {
-      // 滚动至 ID
       const element = document.querySelector(target)
       if (element) {
-        const top = element.getBoundingClientRect().top - 80
-        window.scrollTo({ top, behavior: 'smooth' })
+        scrollTop = element.getBoundingClientRect().top + window.scrollY - 80
       }
     }
-    else {
-      // 滚动至顶部
-      window.scrollTo({ top: 0, behavior: 'smooth' })
-    }
+
+    window.scrollTo({
+      top: scrollTop,
+      behavior: 'smooth',
+    })
   }
   catch (error) {
     console.error('平滑滚动出错：', error)
+    return false
   }
+
+  return true
 }
 
 /**
@@ -75,79 +82,50 @@ export function smoothScrolling(target: HTMLElement | string | number = 0) {
  * 如果时间戳表示的时间为7天内，则返回 'n天内'
  * 如果时间戳表示的时间为7天之后但在当年，则返回 '月/日'
  * 如果时间戳表示的时间在当年之前，则返回 '年/月/日'
- * @param {number} timestamp - 时间戳（以毫秒为单位）
+ * @param timestamp - 时间戳（以毫秒为单位）
  * @return 返回日期格式的字符串
  */
 export function formatTimestamp(timestamp: number) {
-  const now = new Date()
-  // 获取今天0点
-  const today = new Date(now.getFullYear(), now.getMonth(), now.getDate())
-  // 获取昨天0点
-  const yesterday = new Date(today.getTime() - 1000 * 60 * 60 * 24)
-  const targetDate = new Date(timestamp)
-  // 是否为昨天
-  if (targetDate >= yesterday && targetDate < today) {
-    return '1天前'
-  }
-  else {
-    const difference = Math.floor(
-      (+today - +targetDate) / (1000 * 60 * 60 * 24),
-    )
-    if (difference <= 0) {
-      return '今日内'
-    }
-    else if (difference < 7) {
-      return `${difference}天前`
-    }
-    else {
-      const year = targetDate.getFullYear()
-      const month = targetDate.getMonth() + 1
-      const day = targetDate.getDate()
-      if (year === now.getFullYear()) {
-        return `${month}/${day}`
-      }
-      else {
-        return `${year}/${month}/${day}`
-      }
-    }
-  }
-}
+  const now = dayjs()
+  const targetDate = dayjs(timestamp)
+  const diffDays = now.startOf('day').diff(targetDate, 'day')
 
-/**
- * 计算给定日期与当前日期相差的天数
- * @param {string} dateStr - 要计算差值的日期，为字符串形式
- * @returns 天数差值
- */
-export function daysFromNow(dateStr: string) {
-  const currentDate = +new Date()
-  const inputDate = +new Date(dateStr)
-  const timeDiff = currentDate - inputDate
-  const dayDiff = Math.floor(timeDiff / (1000 * 60 * 60 * 24))
-  return dayDiff
+  if (diffDays === 1)
+    return '1天前'
+  if (diffDays <= 0)
+    return '今日内'
+  if (diffDays < 7)
+    return `${diffDays}天前`
+
+  return targetDate.year() === now.year()
+    ? targetDate.format('M/D')
+    : targetDate.format('YYYY/M/D')
 }
 
 /**
  * 随机前往一篇文章
  * @param postData - 文章数据
  */
-let lastIndex = -1
+let lastPost: PostDataItem | null = null
 export function shufflePost(postData: PostDataItem[]) {
-  let randomIndex
-  do {
-    // 随机生成一个索引值
-    randomIndex = randomInt(postData.length - 1)
-  } while (randomIndex === lastIndex && postData.length > 1)
-  // 更新上一次的索引值
-  lastIndex = randomIndex
-  // 随机文章
-  const randomPost = postData[randomIndex]
-  // 跳转到随机文章
+  // 如果只有一篇文章，直接返回
+  if (postData.length === 1)
+    return postData[0].regularPath
+
+  // 使用lodash的sample方法从剩余文章中随机选择一篇
+  const availablePosts = lastPost ? without(postData, lastPost) : postData
+  const randomPost = sample(availablePosts)
+
+  // 记录上次选择的文章
+  lastPost = randomPost
+
+  // 返回随机文章的路径
   return randomPost.regularPath
 }
 
 /**
  * 图片 URL 复制到剪贴板
- * @param {string} imageURL 要复制到剪贴板的图片的URL
+ * @param imageURL 要复制到剪贴板的图片的URL
  */
 export async function copyImage(imageURL: string) {
   if (!navigator.clipboard) {
@@ -172,7 +150,7 @@ export async function copyImage(imageURL: string) {
 
 /**
  * 下载图片
- * @param {string} imageUrl 要下载的图片的URL地址
+ * @param imageUrl 要下载的图片的URL地址
  */
 export function downloadImage(imageUrl: string) {
   try {
@@ -227,16 +205,6 @@ export function getGreetings() {
     hello = '夜深了，明天继续加油！'
   }
   return hello
-}
-
-// 打乱数组 - Fisher-Yates 洗牌算法
-export function shuffleArray(array: unknown[]) {
-  for (let i = array.length - 1; i > 0; i--) {
-    const j = randomInt(i + 1);
-    // 解构赋值进行元素互换
-    [array[i], array[j]] = [array[j], array[i]]
-  }
-  return array
 }
 
 // 特殊纪念日置灰

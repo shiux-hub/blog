@@ -1,9 +1,9 @@
 <!-- 侧边栏 - 站点数据 -->
 <script lang="ts" setup>
 import { Icon } from '@iconify/vue'
+import dayjs from 'dayjs'
 import { useData } from '@/composables/data'
 import { loadScript } from '@/utils/commonTools'
-import { daysFromNow } from '@/utils/helper'
 
 const { theme } = useData()
 
@@ -37,7 +37,7 @@ onMounted(() => {
           <Icon icon="mingcute:calendar-2-fill" />
           建站天数
         </span>
-        <span class="num">{{ daysFromNow(theme.since) }} 天</span>
+        <span class="num">{{ dayjs().diff(theme.since, 'day') }} 天</span>
       </div>
       <div class="data-item">
         <span class="name">

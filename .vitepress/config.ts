@@ -88,7 +88,7 @@ export default withPwa(
     // vite
     vite: {
       plugins: [
-        tailwindcss() as any,
+        tailwindcss(),
         autoImport({
           imports: ['vue', 'vitepress'],
           dts: '.vitepress/auto-imports.d.ts',
@@ -111,14 +111,9 @@ export default withPwa(
       server: {
         port: 9877,
       },
-      // 构建
-      build: {
-        minify: 'terser',
-        terserOptions: {
-          compress: {
-            pure_funcs: ['console.log'],
-          },
-        },
+      esbuild: {
+        pure: ['console.log'], // 删除 console.log
+        drop: ['debugger'], // 删除 debugger
       },
     },
     // PWA

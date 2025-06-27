@@ -1,6 +1,5 @@
 import type { ThemeConfig } from '@/types/theme'
 import process from 'node:process'
-import { load } from 'cheerio'
 
 /**
  * 从文件名生成数字 ID
@@ -117,7 +116,7 @@ export function loadCSS(
  * @param isDom - 是否为 DOM 对象
  */
 export function jumpRedirect(
-  html: string,
+  html: string | null,
   themeConfig: ThemeConfig,
   isDom = false,
 ) {
@@ -166,38 +165,48 @@ export function jumpRedirect(
     else {
       if (!html)
         return
-      const $ = load(html)
-      // 替换符合条件的标签
-      $('a[target=\'_blank\']').each((_, el) => {
-        const $a = $(el)
-        const href = $a.attr('href')
-        const classesStr = $a.attr('class')
-        const innerText = $a.text()
+
+      // 使用DOMParser解析HTML
+      const parser = new DOMParser()
+      const doc = parser.parseFromString(html, 'text/html')
+
+      // 获取所有target='_blank'的a标签
+      const links = doc.querySelectorAll('a[target="_blank"]')
+
+      console.log(links)
+
+      links.forEach((el) => {
+        const href = el.getAttribute('href')
+        const classesStr = el.getAttribute('class')
+        const innerText = el.textContent
+
         // 检查是否包含排除的类
         const classes = classesStr ? classesStr.trim().split(' ') : []
         if (excludeClass.some(className => classes.includes(className))) {
           return
         }
+
         // 存在链接且非中转页
         if (href && !href.includes(redirectPage)) {
           // Base64 编码 href
           const encodedHref = btoa(encodeURIComponent(href))
+
           // 获取所有属性
-          const attributes = el.attribs
-          // 重构属性字符串，保留原有属性
           let attributesStr = ''
-          for (const attr in attributes) {
-            if (Object.prototype.hasOwnProperty.call(attributes, attr)) {
-              attributesStr += ` ${attr}="${attributes[attr]}"`
-            }
+          for (const attr of el.attributes) {
+            attributesStr += ` ${attr.name}="${attr.value}"`
           }
+
           // 构造新标签
           const newLink = `<a href="${redirectPage}?url=${encodedHref}" original-href="${href}" ${attributesStr}>${innerText}</a>`
+
           // 替换原有标签
-          $a.replaceWith(newLink)
+          el.outerHTML = newLink
         }
       })
-      return $.html()
+
+      // 返回处理后的HTML
+      return doc.documentElement.innerHTML
     }
   }
   catch (error) {

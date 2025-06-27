@@ -1,7 +1,7 @@
 <!-- 文章列表 -->
 <script lang="ts" setup>
 import { Icon } from '@iconify/vue'
-import { randomInt } from 'es-toolkit/math'
+import { sample } from 'es-toolkit/array'
 import { useData } from '@/composables/data'
 import { mainStore } from '@/store'
 import { formatTimestamp } from '@/utils/helper'
@@ -52,9 +52,7 @@ function getCover(postCover: string) {
     return postCover
 
   return Array.isArray(cover.showCover.defaultCover)
-    ? cover.showCover.defaultCover[
-      randomInt(cover.showCover.defaultCover.length - 1)
-    ]
+    ? sample(cover.showCover.defaultCover)
     : undefined
 }
 

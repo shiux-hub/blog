@@ -1,6 +1,6 @@
 import type { Frontmatter, PostDataItem } from '@/types/post'
+import fg from 'fast-glob'
 import fs from 'fs-extra'
-import { globby } from 'globby'
 import matter from 'gray-matter'
 import { generateId } from './commonTools'
 
@@ -11,7 +11,7 @@ import { generateId } from './commonTools'
 async function getPostMDFilePaths() {
   try {
     // 获取所有 md 文件路径
-    const paths = await globby(['**.md'], {
+    const paths = await fg('**.md', {
       ignore: ['node_modules', 'pages', '.vitepress', 'README.md'],
     })
     // 过滤路径，只包括 'posts' 目录下的文件

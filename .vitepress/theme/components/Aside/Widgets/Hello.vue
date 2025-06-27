@@ -1,15 +1,15 @@
 <!-- 侧边栏 - 欢迎 -->
 <script lang="ts" setup>
 import { Icon } from '@iconify/vue'
-import { randomInt } from 'es-toolkit/math'
+import { sample } from 'es-toolkit/array'
 import { useData } from '@/composables/data'
 import { getGreetings } from '@/utils/helper'
 
 const { theme } = useData()
 
 // 问候数据
+let helloTimeOut: number | undefined
 const helloClick = ref(0)
-const helloTimeOut = ref<number>()
 const helloText = ref(getGreetings())
 const router = useRouter()
 
@@ -23,7 +23,7 @@ function resetHello() {
 
 // 更改问候语
 function changeHello() {
-  clearTimeout(helloTimeOut.value)
+  clearTimeout(helloTimeOut)
   helloClick.value++
   if (helloClick.value === 1) {
     helloText.value = '点这里干什么？'
@@ -41,9 +41,7 @@ function changeHello() {
     helloText.value = `x ${helloClick.value - 3}`
   }
   // 恢复默认
-  helloTimeOut.value = setTimeout(() => {
-    resetHello()
-  }, 3000)
+  helloTimeOut = setTimeout(() => resetHello(), 3000)
 }
 
 // 是否具有用户
@@ -56,7 +54,7 @@ function isHasUser() {
   const { nick } = JSON.parse(userData)
   const hello = ['很高兴见到你', '好久不见', '欢迎回来']
   // 随机问候语
-  helloText.value = `${hello[randomInt(hello.length - 1)]}，${nick}`
+  helloText.value = `${sample(hello)}，${nick}`
   return true
 }
 
@@ -65,176 +63,46 @@ onMounted(() => {
 })
 
 onBeforeUnmount(() => {
-  clearTimeout(helloTimeOut.value)
+  clearTimeout(helloTimeOut)
 })
 </script>
 
 <template>
-  <div class="hello card" @mouseleave="resetHello">
-    <span class="tip" @click="changeHello">{{ helloText }}</span>
-    <div class="content">
-      <div class="site-logo">
+  <div class="flex flex-col items-center bg-theme text-card-background border-0 group card gap-5" @mouseleave="resetHello">
+    <div class="min-w-35 text-center py-1.5 px-3 rounded-full text-sm font-bold bg-opacity cursor-pointer transition-[color,scale,background-color] duration-300 hover:bg-card-background hover:text-font-color hover:scale-110 active:scale-100" @click="changeHello">
+      {{ helloText }}
+    </div>
+    <div class="relative flex items-center justify-center min-h-45">
+      <div class="absolute size-40 origin-bottom duration-300 transition-[scale,opacity] ease-[cubic-bezier(0.69,0.39,0,1.21)] group-hover:opacity-0 group-hover:scale-0">
         <Clock />
       </div>
-      <span class="site-desc" v-html="theme.aside.hello.text" />
+      <div class="h-full text-lg leading-[1.5] opacity-0 transition-opacity duration-300 group-hover:opacity-100" v-html="theme.aside.hello.text" />
     </div>
-    <div class="info">
-      <div class="name" @click="router.go('/pages/about')">
-        <span class="author">{{ theme.siteMeta.author.name }}</span>
-        <span class="desc">{{ theme.siteMeta.description }}</span>
+    <div class="flex items-center justify-between w-full">
+      <div class="flex flex-col cursor-pointer transition-opacity duration-300 hover:opacity-90" @click="router.go('/pages/about')">
+        <span class="font-bold text-lg">{{ theme.siteMeta.author.name }}</span>
+        <span class="text-xs opacity-60">{{ theme.siteMeta.description }}</span>
       </div>
-      <div class="link">
+      <div class="flex items-center ml-5">
         <a
           v-tippy
           href="https://github.com/shiux-lab/"
           target="_blank"
-          class="social-link"
+          class="flex items-center justify-center text-card-background size-10 bg-opacity rounded-full hover:scale-110 hover:bg-card-background hover:text-font-color"
           title="GitHub"
         >
-          <Icon icon="ri:github-line" />
+          <Icon icon="ri:github-line" class="size-5" />
         </a>
         <a
           v-tippy
           href="mailto:dropout.cn@gmail.com"
           target="_blank"
           title="发邮件给我"
-          class="social-link"
+          class="flex items-center justify-center text-card-background size-10 ml-3 bg-opacity rounded-full hover:scale-110 hover:bg-card-background hover:text-font-color"
         >
-          <Icon icon="mdi:email-outline" />
+          <Icon icon="mdi:email-outline" class="size-5" />
         </a>
       </div>
     </div>
   </div>
 </template>
-
-<style scoped>
-.hello {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  background-color: var(--color-theme);
-  color: var(--color-card-background);
-  border: none;
-
-  .tip {
-    display: inline-block;
-    min-width: 140px;
-    text-align: center;
-    padding: 6px 12px;
-    border-radius: 25px;
-    font-size: 14px;
-    font-weight: bold;
-    background-color: var(--color-opacity);
-    margin-bottom: 12px;
-    cursor: pointer;
-    transition:
-      color 0.3s,
-      transform 0.3s,
-      background-color 0.3s;
-    &:hover {
-      transform: scale(1.1);
-      color: var(--color-font-color);
-      background-color: var(--color-card-background);
-    }
-    &:active {
-      transform: scale(1);
-    }
-  }
-  .content {
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    min-height: 180px;
-    .site-logo {
-      position: absolute;
-      width: 160px;
-      height: 160px;
-      transition:
-        transform cubic-bezier(0.69, 0.39, 0, 1.21) 0.3s,
-        opacity cubic-bezier(0.69, 0.39, 0, 1.21) 0.3s;
-      transform-origin: bottom;
-    }
-    .site-desc {
-      display: block;
-      height: 100%;
-      margin-top: 20px;
-      font-size: 1.1rem;
-      line-height: 1.5;
-      opacity: 0;
-      transition: opacity 0.3s;
-    }
-  }
-  .info {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-    width: 100%;
-    margin-top: 20px;
-
-    .name {
-      display: flex;
-      flex-direction: column;
-      cursor: pointer;
-      transition: opacity 0.3s;
-
-      .author {
-        font-weight: bold;
-        font-size: 20px;
-      }
-
-      .desc {
-        font-size: 12px;
-        opacity: 0.6;
-      }
-
-      &:hover {
-        opacity: 0.9;
-      }
-    }
-    .link {
-      display: flex;
-      flex-direction: row;
-      align-items: center;
-      margin-left: 20px;
-      .social-link {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        width: 40px;
-        height: 40px;
-        margin-left: 12px;
-        background-color: var(--color-opacity);
-        border-radius: 50%;
-        svg {
-          width: 22px;
-          height: 22px;
-          color: var(--color-card-background);
-        }
-        &:first-child {
-          margin-left: 0;
-        }
-        &:hover {
-          transform: scale(1.1);
-          background-color: var(--color-card-background);
-          svg {
-            color: var(--color-font-color);
-          }
-        }
-      }
-    }
-  }
-  &:hover {
-    .content {
-      .site-logo {
-        opacity: 0;
-        transform: scale(0);
-      }
-      .site-desc {
-        opacity: 1;
-      }
-    }
-  }
-}
-</style>

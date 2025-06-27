@@ -11,6 +11,7 @@
     ".vitepress/**/*.ts",
     ".vitepress/**/*.vue",
     ".vitepress/**/*.d.ts",
+    "vitest.config.ts",
     "pages/**/*.md",
     "page/**/*.md",
     "posts/**/*.md"
