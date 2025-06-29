@@ -80,28 +80,36 @@ onBeforeUnmount(() => {
 </script>
 
 <template>
-  <div v-if="frontmatter.articleGPT" class="article-gpt card cursor-pointer">
-    <div class="title">
-      <span class="name" @click="router.go('/posts/2024/0218')">
-        <Icon class="icon-robot" icon="mingcute:openai-fill" />
+  <div class="bg-card-second-background card space-y-3 select-none">
+    <div class="flex items-center justify-between px-2">
+      <span
+        class="text-theme flex cursor-pointer items-center font-bold"
+        @click="router.go('/posts/2024/0218')"
+      >
+        <Icon
+          class="text-card-background bg-theme mr-2 size-6.5 rounded-full"
+          icon="mingcute:openai-fill"
+        />
         文章摘要
-        <Icon class="icon-up" icon="mingcute:up-fill" />
+        <Icon class="ml-1.5 opacity-60" icon="mingcute:right-fill" />
       </span>
-      <span class="logo" :class="[{ loading }]" @click="showOther">
+      <span
+        class="text-card-background bg-theme cursor-pointer rounded-full px-2.5 py-1 text-xs font-bold"
+        :class="{ 'animate-loading cursor-not-allowed duration-1000': loading }"
+        @click="showOther"
+      >
         FakeGPT
       </span>
     </div>
-    <div class="content card cursor-pointer">
-      <span class="text">{{
-        abstractData === '' ? '加载中...' : abstractData
-      }}</span>
-      <span v-if="loading" class="point">|</span>
+    <div class="card cursor-pointer">
+      <span>{{ abstractData === '' ? '加载中...' : abstractData }}</span>
+      <span v-if="loading" class="text-theme animate-loading ml-1 font-bold">|</span>
     </div>
-    <div class="meta">
-      <span class="tip">此内容根据文章生成，并经过人工审核，仅用于文章内容的解释与总结</span>
+    <div class="flex items-center justify-between px-2 text-xs">
+      <span class="opacity-60">此内容根据文章生成，并经过人工审核，仅用于文章内容的解释与总结</span>
       <a
         href="https://eqnxweimkr5.feishu.cn/share/base/form/shrcnCXCPmxCKKJYI3RKUfefJre"
-        class="report"
+        class="ml-3 whitespace-normal opacity-80"
         target="_blank"
       >
         投诉
@@ -109,88 +117,3 @@ onBeforeUnmount(() => {
     </div>
   </div>
 </template>
-
-<style scoped>
-.article-gpt {
-  margin-top: 1.2rem;
-  background-color: var(--color-card-second-background);
-  user-select: none;
-  cursor: auto;
-  .title {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-    margin-bottom: 0.8rem;
-    padding: 0 8px;
-    .name {
-      display: flex;
-      align-items: center;
-      color: var(--color-theme);
-      font-weight: bold;
-      cursor: pointer;
-      .icon-robot {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 18px;
-        font-weight: normal;
-        width: 26px;
-        height: 26px;
-        color: var(--color-card-background);
-        background-color: var(--color-theme);
-        border-radius: 50%;
-        margin-right: 8px;
-      }
-      .icon-up {
-        font-weight: normal;
-        font-size: 12px;
-        margin-left: 6px;
-        opacity: 0.6;
-        color: var(--color-theme);
-        transform: rotate(90deg);
-      }
-    }
-    .logo {
-      padding: 4px 10px;
-      font-size: 12px;
-      color: var(--color-card-background);
-      background-color: var(--color-theme);
-      border-radius: 25px;
-      font-weight: bold;
-      cursor: pointer;
-      &.loading {
-        animation: loading 1s infinite;
-        cursor: not-allowed;
-      }
-    }
-  }
-  .content {
-    cursor: auto;
-    .point {
-      color: var(--color-theme);
-      font-weight: bold;
-      margin-left: 4px;
-      animation: loading 0.8s infinite;
-    }
-  }
-  .meta {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-    margin-top: 1rem;
-    padding: 0 8px;
-    font-size: 12px;
-
-    .tip {
-      opacity: 0.6;
-    }
-    .report {
-      white-space: nowrap;
-      margin-left: 12px;
-      opacity: 0.8;
-    }
-  }
-}
-</style>

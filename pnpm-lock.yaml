@@ -131,8 +131,8 @@ importers:
         specifier: ^19.3.0
         version: 19.3.0(@nuxt/kit@3.17.5)(@vueuse/core@13.4.0(vue@3.5.17(typescript@5.8.3)))
       unplugin-vue-components:
-        specifier: ^28.7.0
-        version: 28.7.0(@babel/parser@7.27.5)(@nuxt/kit@3.17.5)(vue@3.5.17(typescript@5.8.3))
+        specifier: ^28.8.0
+        version: 28.8.0(@babel/parser@7.27.5)(@nuxt/kit@3.17.5)(vue@3.5.17(typescript@5.8.3))
       vercel:
         specifier: ^44.2.7
         version: 44.2.7(rollup@2.79.2)
@@ -8395,15 +8395,15 @@ packages:
       }
     engines: { node: '>=18.12.0' }
 
-  unplugin-vue-components@28.7.0:
+  unplugin-vue-components@28.8.0:
     resolution:
       {
-        integrity: sha512-3SuWAHlTjOiZckqRBGXRdN/k6IMmKyt2Ch5/+DKwYaT321H0ItdZDvW4r8/YkEKQpN9TN3F/SZ0W342gQROC3Q==,
+        integrity: sha512-2Q6ZongpoQzuXDK0ZsVzMoshH0MWZQ1pzVL538G7oIDKRTVzHjppBDS8aB99SADGHN3lpGU7frraCG6yWNoL5Q==,
       }
     engines: { node: '>=14' }
     peerDependencies:
       '@babel/parser': ^7.15.8
-      '@nuxt/kit': ^3.2.2
+      '@nuxt/kit': ^3.2.2 || ^4.0.0
       vue: 2 || 3
     peerDependenciesMeta:
       '@babel/parser':
@@ -14444,7 +14444,7 @@ snapshots:
       pathe: 2.0.3
       picomatch: 4.0.2
 
-  unplugin-vue-components@28.7.0(@babel/parser@7.27.5)(@nuxt/kit@3.17.5)(vue@3.5.17(typescript@5.8.3)):
+  unplugin-vue-components@28.8.0(@babel/parser@7.27.5)(@nuxt/kit@3.17.5)(vue@3.5.17(typescript@5.8.3)):
     dependencies:
       chokidar: 3.6.0
       debug: 4.4.1

@@ -4,20 +4,17 @@ import { Icon } from '@iconify/vue'
 import { useData } from '@/composables/data'
 
 const { frontmatter } = useData()
-
-// 参考资料
-const references = frontmatter.value?.references
 </script>
 
 <template>
-  <div v-if="references" class="references card cursor-pointer">
+  <div class="references card cursor-pointer">
     <div class="title">
       <Icon icon="mingcute:quote-left-fill" />
       <span class="title-text">参考资料</span>
     </div>
     <ul class="list">
       <a
-        v-for="(item, index) in references"
+        v-for="(item, index) in frontmatter.references"
         :key="index"
         :href="item.url"
         class="list-item"

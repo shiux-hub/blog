@@ -12,6 +12,7 @@ tags:
 cover: /images/cover/lang-tag.jpg
 coverWidth:
 coverHeight:
+articleGPT: true
 ---
 
 ## 如果不设置lang属性…
