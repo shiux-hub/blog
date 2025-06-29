@@ -1,5 +1,4 @@
 import type { ThemeConfig } from '@/types/theme'
-import process from 'node:process'
 
 /**
  * 从文件名生成数字 ID
@@ -122,8 +121,7 @@ export function jumpRedirect(
 ) {
   try {
     // 是否为开发环境
-    const isDev = process.env.NODE_ENV === 'development'
-    if (isDev)
+    if (process.env.NODE_ENV === 'development')
       return
     // 是否启用
     if (!themeConfig.jumpRedirect?.enable)
@@ -166,47 +164,33 @@ export function jumpRedirect(
       if (!html)
         return
 
-      // 使用DOMParser解析HTML
-      const parser = new DOMParser()
-      const doc = parser.parseFromString(html, 'text/html')
-
-      // 获取所有target='_blank'的a标签
-      const links = doc.querySelectorAll('a[target="_blank"]')
-
-      console.log(links)
-
-      links.forEach((el) => {
-        const href = el.getAttribute('href')
-        const classesStr = el.getAttribute('class')
-        const innerText = el.textContent
-
-        // 检查是否包含排除的类
-        const classes = classesStr ? classesStr.trim().split(' ') : []
-        if (excludeClass.some(className => classes.includes(className))) {
-          return
-        }
-
-        // 存在链接且非中转页
-        if (href && !href.includes(redirectPage)) {
-          // Base64 编码 href
-          const encodedHref = btoa(encodeURIComponent(href))
-
-          // 获取所有属性
-          let attributesStr = ''
-          for (const attr of el.attributes) {
-            attributesStr += ` ${attr.name}="${attr.value}"`
+      // 使用正则表达式处理HTML
+      const processedHtml = html.replace(
+        /<a\s([^>]*)target=["']_blank["']([^>]*)href=["']([^"']*)["']([^>]*)>/g,
+        (match, p1, p2, href) => {
+          // 检查是否包含排除的类
+          const classMatch = match.match(/class=["']([^"']*)["']/)
+          if (
+            classMatch
+            && excludeClass.some(className =>
+              classMatch[1].split(' ').includes(className),
+            )
+          ) {
+            return match
           }
 
-          // 构造新标签
-          const newLink = `<a href="${redirectPage}?url=${encodedHref}" original-href="${href}" ${attributesStr}>${innerText}</a>`
+          // 存在链接且非中转页
+          if (href && !href.includes(redirectPage)) {
+            const encodedHref = btoa(encodeURIComponent(href))
+            return match
+              .replace(href, `${redirectPage}?url=${encodedHref}`)
+              .replace(/<a/, `<a original-href="${href}"`)
+          }
+          return match
+        },
+      )
 
-          // 替换原有标签
-          el.outerHTML = newLink
-        }
-      })
-
-      // 返回处理后的HTML
-      return doc.documentElement.innerHTML
+      return processedHtml
     }
   }
   catch (error) {

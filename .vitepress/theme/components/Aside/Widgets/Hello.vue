@@ -68,27 +68,41 @@ onBeforeUnmount(() => {
 </script>
 
 <template>
-  <div class="flex flex-col items-center bg-theme text-card-background border-0 group card gap-5" @mouseleave="resetHello">
-    <div class="min-w-35 text-center py-1.5 px-3 rounded-full text-sm font-bold bg-opacity cursor-pointer transition-[color,scale,background-color] duration-300 hover:bg-card-background hover:text-font-color hover:scale-110 active:scale-100" @click="changeHello">
+  <div
+    class="bg-theme text-card-background group card flex flex-col items-center gap-5 border-0"
+    @mouseleave="resetHello"
+  >
+    <div
+      class="bg-opacity hover:bg-card-background hover:text-font-color min-w-35 cursor-pointer rounded-full px-3 py-1.5 text-center text-sm font-bold transition-[color,scale,background-color] duration-300 hover:scale-110 active:scale-100"
+      @click="changeHello"
+    >
       {{ helloText }}
     </div>
-    <div class="relative flex items-center justify-center min-h-45">
-      <div class="absolute size-40 origin-bottom duration-300 transition-[scale,opacity] ease-[cubic-bezier(0.69,0.39,0,1.21)] group-hover:opacity-0 group-hover:scale-0">
+    <div class="relative flex min-h-45 items-center justify-center">
+      <div
+        class="absolute size-40 origin-bottom transition-[scale,opacity] duration-300 ease-[cubic-bezier(0.69,0.39,0,1.21)] group-hover:scale-0 group-hover:opacity-0"
+      >
         <Clock />
       </div>
-      <div class="h-full text-lg leading-[1.5] opacity-0 transition-opacity duration-300 group-hover:opacity-100" v-html="theme.aside.hello.text" />
+      <div
+        class="h-full text-lg leading-[1.5] opacity-0 transition-opacity duration-300 group-hover:opacity-100"
+        v-html="theme.aside.hello.text"
+      />
     </div>
-    <div class="flex items-center justify-between w-full">
-      <div class="flex flex-col cursor-pointer transition-opacity duration-300 hover:opacity-90" @click="router.go('/pages/about')">
-        <span class="font-bold text-lg">{{ theme.siteMeta.author.name }}</span>
+    <div class="flex w-full items-center justify-between">
+      <div
+        class="flex cursor-pointer flex-col transition-opacity duration-300 hover:opacity-90"
+        @click="router.go('/pages/about')"
+      >
+        <span class="text-lg font-bold">{{ theme.siteMeta.author.name }}</span>
         <span class="text-xs opacity-60">{{ theme.siteMeta.description }}</span>
       </div>
-      <div class="flex items-center ml-5">
+      <div class="ml-5 flex items-center">
         <a
           v-tippy
           href="https://github.com/shiux-lab/"
           target="_blank"
-          class="flex items-center justify-center text-card-background size-10 bg-opacity rounded-full hover:scale-110 hover:bg-card-background hover:text-font-color"
+          class="text-card-background bg-opacity hover:bg-card-background hover:text-font-color flex size-10 items-center justify-center rounded-full hover:scale-110"
           title="GitHub"
         >
           <Icon icon="ri:github-line" class="size-5" />
@@ -98,7 +112,7 @@ onBeforeUnmount(() => {
           href="mailto:dropout.cn@gmail.com"
           target="_blank"
           title="发邮件给我"
-          class="flex items-center justify-center text-card-background size-10 ml-3 bg-opacity rounded-full hover:scale-110 hover:bg-card-background hover:text-font-color"
+          class="text-card-background bg-opacity hover:bg-card-background hover:text-font-color ml-3 flex size-10 items-center justify-center rounded-full hover:scale-110"
         >
           <Icon icon="mdi:email-outline" class="size-5" />
         </a>

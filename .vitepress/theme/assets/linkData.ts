@@ -54,7 +54,7 @@ const linkData = [
         name: '無名小栈',
         avatar: 'https://pic.efefee.cn/uploads/2024/02/02/65bc526a940e3.png',
         desc: '分享技术与科技生活',
-        url: 'https://blog.imsyy.top/',
+        url: 'https://blog.shiux.com/',
       },
     ],
   },

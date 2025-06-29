@@ -55,7 +55,6 @@ MacOS安装MySQL的方法主要分为两种。分别是：
    ```
 
 2. Homebrew安装与启动MySQL服务
-
    - 安装mysql
 
    ```bash
@@ -76,7 +75,6 @@ MacOS安装MySQL的方法主要分为两种。分别是：
    ```
 
 4. MySQL安装测试
-
    - 查看MySQL版本
 
    ```bash

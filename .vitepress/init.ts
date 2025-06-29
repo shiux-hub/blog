@@ -41,7 +41,11 @@ export async function getThemeConfig(): Promise<ThemeConfig> {
           }
 
           // 处理对象
-          if (isObject(existing) && isObject(value) && !Array.isArray(existing)) {
+          if (
+            isObject(existing)
+            && isObject(value)
+            && !Array.isArray(existing)
+          ) {
             // 递归合并
             merged[key] = deepMerge(existing, value)
             continue

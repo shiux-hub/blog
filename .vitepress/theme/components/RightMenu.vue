@@ -362,8 +362,7 @@ defineExpose({ openRightMenu })
             <!-- 输入框 -->
             <div
               v-if="
-                clickedType === 'input'
-                  && typeof clickedTypeData === 'string'
+                clickedType === 'input' && typeof clickedTypeData === 'string'
               "
               class="btn hover:bg-theme justify-start"
               @click="rightMenuFunc('input-paste')"

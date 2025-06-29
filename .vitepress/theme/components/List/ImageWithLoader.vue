@@ -21,16 +21,17 @@ function onError() {
 </script>
 
 <template>
-  <div class="image-loader">
-    <img
-      v-show="!isLoading && !hasError"
-      :src="src"
-      :alt="alt"
-      class="w-full h-full opacity-0 transition-opacity duration-500 ease-in-out"
-      :class="[{ 'opacity-100': !isLoading && !hasError }, $props.class]"
-      @load="onLoad"
-      @error="onError"
-    >
-    <div v-show="isLoading || hasError" class="absolute top-0 left-0 w-full h-full bg-card-second-background animate-pulse" />
-  </div>
+  <img
+    v-show="!isLoading && !hasError"
+    :src="src"
+    :alt="alt"
+    class="size-full object-cover opacity-0 transition-opacity duration-500 ease-in-out"
+    :class="[{ 'opacity-100': !isLoading && !hasError }, $props.class]"
+    @load="onLoad"
+    @error="onError"
+  >
+  <div
+    v-show="isLoading || hasError"
+    class="bg-card-second-background absolute inset-0 size-full animate-pulse"
+  />
 </template>

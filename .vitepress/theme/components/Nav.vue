@@ -18,7 +18,7 @@ const { site, theme, frontmatter, page } = useData()
       class="main-nav"
       :class="[
         scrollData.isScrollDown ? 'down' : 'up',
-        { top: scrollData.height === 0 },
+        { top: scrollData.percentage === 0 },
       ]"
     >
       <div
@@ -29,7 +29,7 @@ const { site, theme, frontmatter, page } = useData()
           <div class="group nav-btn relative mr-1 max-sm:hidden">
             <Icon icon="mingcute:classify-3-fill" />
             <div
-              class="absolute left-0 top-12 opacity-0 invisible origin-top-left scale-80 -translate-y-1 card group-hover:visible group-hover:translate-y-0 group-hover:scale-100 group-hover:opacity-100 after:absolute after:-top-5 after:w-full after:h-8 after:z-1 hover:border-theme"
+              class="card hover:border-theme invisible absolute top-12 left-0 origin-top-left -translate-y-1 scale-80 opacity-0 group-hover:visible group-hover:translate-y-0 group-hover:scale-100 group-hover:opacity-100 after:absolute after:-top-5 after:z-1 after:h-8 after:w-full"
             >
               <div
                 v-for="(item, index) in theme.navMore"
@@ -53,9 +53,8 @@ const { site, theme, frontmatter, page } = useData()
             </div>
           </div>
           <div
-            v-tippy
+            v-tippy="'返回博客主页'"
             class="site-name group active:scale-95"
-            title="返回博客主页"
             @click="router.go('/')"
           >
             {{ site.title }}
@@ -107,9 +106,8 @@ const { site, theme, frontmatter, page } = useData()
         <div class="right-nav min-w-50 gap-2 max-md:min-w-auto">
           <!-- 开往 -->
           <a
-            v-tippy
+            v-tippy="'开往-友链接力'"
             class="menu-btn nav-btn travellings"
-            title="开往-友链接力"
             href="https://www.travellings.cn/go.html"
             target="_blank"
           >
@@ -117,9 +115,8 @@ const { site, theme, frontmatter, page } = useData()
           </a>
           <!-- 随机文章 -->
           <div
-            v-tippy
+            v-tippy="'随机前往一篇文章'"
             class="menu-btn nav-btn"
-            title="随机前往一篇文章"
             @click="router.go(shufflePost(theme.postData))"
           >
             <Icon icon="mingcute:shuffle-2-fill" />
@@ -127,9 +124,8 @@ const { site, theme, frontmatter, page } = useData()
           <!-- 搜索 -->
           <div
             v-if="theme.search"
-            v-tippy
+            v-tippy="'全站搜索'"
             class="menu-btn nav-btn"
-            title="全站搜索"
             @click="store.changeShowStatus('searchShow')"
           >
             <Icon icon="mingcute:search-fill" />
@@ -137,28 +133,26 @@ const { site, theme, frontmatter, page } = useData()
           <!-- 中控台 -->
           <div
             id="open-control"
-            v-tippy
+            v-tippy="'打开中控台'"
             class="menu-btn nav-btn pc"
-            title="打开中控台"
             @click="store.changeShowStatus('controlShow')"
           >
             <Icon icon="mingcute:dashboard-3-fill" />
           </div>
           <!-- 返回顶部 -->
           <div
-            v-tippy
+            v-tippy="'返回顶部'"
             class="group menu-btn relative flex size-9 shrink-0 cursor-pointer items-center justify-center transition-all duration-300 ease-in-out active:scale-90"
             :class="{
-              'm-0 w-0 scale-0 opacity-0': scrollData.height === 0,
+              'm-0 w-0 scale-0 opacity-0': scrollData.percentage === 0,
               'w-20': scrollData.percentage > 90,
             }"
-            title="返回顶部"
             @click="smoothScrolling()"
           >
             <div
               :class="
                 cn(
-                  'group-hover:bg-theme group-hover:text-card-background bg-font-color absolute flex size-6.25 items-center justify-center rounded-full transition-all duration-300 group-hover:size-9',
+                  'group-hover:bg-theme group-hover:text-card-background bg-font-color absolute flex size-6.25 items-center justify-center overflow-hidden rounded-full transition-all duration-300 group-hover:size-9',
                   {
                     'w-17.5 group-hover:w-20': scrollData.percentage > 90,
                   },
@@ -170,7 +164,7 @@ const { site, theme, frontmatter, page } = useData()
                 class="absolute opacity-0 group-hover:opacity-100"
               />
               <span
-                class="text-card-background text-xs transition-all duration-300 group-hover:opacity-0"
+                class="text-card-background text-xs text-nowrap group-hover:opacity-0"
               >
                 {{
                   scrollData.percentage > 90
@@ -183,9 +177,8 @@ const { site, theme, frontmatter, page } = useData()
 
           <!-- 移动端菜单 -->
           <div
-            v-tippy
+            v-tippy="'打开菜单'"
             class="menu-btn nav-btn mobile"
-            title="打开菜单"
             @click="store.changeShowStatus('mobileMenuShow')"
           >
             <Icon icon="mingcute:menu-fill" />

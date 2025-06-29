@@ -9,16 +9,16 @@
 > [!TIP]
 > 近期将通过 Nuxt 重构本项目前后端，敬请期待
 
-Preview: 👻 [無名小栈](https://blog.imsyy.top/)
+Preview: 👻 [無名小栈](https://blog.shiux.com/)
 
-Docs: 📖 [主题文档](https://blog.imsyy.top/pages/categories/%E4%B8%BB%E9%A2%98%E6%96%87%E6%A1%A3)
+Docs: 📖 [主题文档](https://blog.shiux.com/pages/categories/%E4%B8%BB%E9%A2%98%E6%96%87%E6%A1%A3)
 
 > [!NOTE]
 > 该主题本意为自用，所以部分配置可能并不完善，包括评论系统的支持，目前仅支持 Artalk，如有其他需求，可提交 pr
 
 ## Hello
 
-🎉 你好啊，很高兴你选择了 [vitepress-theme-curve](https://github.com/imsyy/vitepress-theme-curve)，你可以查看 [主题文档](https://blog.imsyy.top/pages/categories/%E4%B8%BB%E9%A2%98%E6%96%87%E6%A1%A3) 以了解更多，如果你在使用本主题时遇到问题，你可以在 [GitHub](https://github.com/imsyy/vitepress-theme-curve) 中正确的提交 [issues](https://github.com/imsyy/vitepress-theme-curve/issues) 以获取社区的帮助。
+🎉 你好啊，很高兴你选择了 [vitepress-theme-curve](https://github.com/imsyy/vitepress-theme-curve)，你可以查看 [主题文档](https://blog.shiux.com/pages/categories/%E4%B8%BB%E9%A2%98%E6%96%87%E6%A1%A3) 以了解更多，如果你在使用本主题时遇到问题，你可以在 [GitHub](https://github.com/imsyy/vitepress-theme-curve) 中正确的提交 [issues](https://github.com/imsyy/vitepress-theme-curve/issues) 以获取社区的帮助。
 
 ## 快速开始
 
@@ -66,7 +66,7 @@ pnpm build
 
 ## 更多
 
-更多信息请参考：[主题文档](https://blog.imsyy.top/pages/categories/%E4%B8%BB%E9%A2%98%E6%96%87%E6%A1%A3)
+更多信息请参考：[主题文档](https://blog.shiux.com/pages/categories/%E4%B8%BB%E9%A2%98%E6%96%87%E6%A1%A3)
 
 > Powered by VitePress
 

@@ -18,11 +18,9 @@ coverHeight:
 
 打开 AdGuard -> 设置 -> 内容拦截 -> User rules
 
-{% gallery %}
 ![打开偏好设置](https://s2.loli.net/2023/01/01/CRxelVitSnzuWfb.png)
 ![自定义订阅地址](https://s2.loli.net/2023/01/01/M5IZsqjdo4U2BeF.png)
 ![输入地址](https://s2.loli.net/2023/01/01/J5D2xhrPYZUkuwX.png)
-{% endgallery %}
 
 ### EasyList
 

@@ -2,7 +2,6 @@ import type { PostDataItem } from '@/types/post'
 import dayjs from 'dayjs'
 import { sample, without } from 'es-toolkit/array'
 import { isNumber } from 'es-toolkit/compat'
-import { throttle } from 'es-toolkit/function'
 import { isString, isUndefined } from 'es-toolkit/predicate'
 import { mainStore } from '@/store'
 
@@ -10,35 +9,38 @@ import { mainStore } from '@/store'
  * 计算并存储滚动数据（高度、百分比、方向）
  * 使用节流优化性能，默认300ms间隔
  */
-export const calculateScroll = throttle(
-  () => {
-    if (isUndefined(window) || isUndefined(document))
-      return false
+export function calculateScroll() {
+  if (isUndefined(window) || isUndefined(document))
+    return false
 
-    try {
-      const store = mainStore()
-      const scrollY = window.scrollY
-      const totalHeight = document.documentElement.scrollHeight - window.innerHeight
+  try {
+    const store = mainStore()
+    const scrollY = document.documentElement.scrollTop || window.pageYOffset
+    const totalHeight
+      = Math.max(
+        document.body.scrollHeight,
+        document.documentElement.scrollHeight,
+        document.body.offsetHeight,
+        document.documentElement.offsetHeight,
+        document.body.clientHeight,
+        document.documentElement.clientHeight,
+      ) - document.documentElement.clientHeight
 
-      // 仅在页面有足够高度时计算百分比
-      const scrollPercentage = totalHeight > 0
-        ? Math.round((scrollY / totalHeight) * 100)
-        : 0
+    // 仅在页面有足够高度时计算百分比
+    const scrollPercentage
+      = totalHeight > 0 ? Math.round((scrollY / totalHeight) * 100) : 0
 
-      store.scrollData = {
-        height: Math.round(scrollY),
-        percentage: scrollPercentage,
-        isScrollDown: scrollY > store.scrollData.height,
-      }
+    store.scrollData = {
+      height: Math.round(scrollY),
+      percentage: scrollPercentage,
+      isScrollDown: scrollY > store.scrollData.height,
     }
-    catch (error) {
-      console.error('计算滚动时出现错误：', error)
-      return false
-    }
-  },
-  300,
-  { edges: ['trailing', 'leading'] },
-)
+  }
+  catch (error) {
+    console.error('计算滚动时出现错误：', error)
+    return false
+  }
+}
 
 /**
  * 平滑滚动至目标高度或元素

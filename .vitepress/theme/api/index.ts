@@ -12,7 +12,7 @@ export async function getHitokoto() {
 
 /**
  * 获取给定网址的站点图标和描述
- * @param {string} url - 站点 URL
+ * @param url - 站点 URL
  */
 export async function getSiteInfo(url: string) {
   const details: SiteInfo = {

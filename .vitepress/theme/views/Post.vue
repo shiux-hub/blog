@@ -83,7 +83,7 @@ onMounted(() => {
       <div class="flex items-center gap-6 opacity-80 max-md:justify-center">
         <span
           v-if="createdDate"
-          v-tippy="`这篇文章创建于<strong>${createdDate}</strong>`"
+          v-tippy="`这篇文章创建于 <strong>${createdDate}</strong>`"
           class="flex items-center gap-1.5 rounded-lg text-sm opacity-80"
         >
           <Icon icon="mingcute:calendar-2-line" class="size-4" />
@@ -91,7 +91,7 @@ onMounted(() => {
         </span>
         <span
           v-if="updatedDate"
-          v-tippy="`这篇文章更新于<strong>${updatedDate}</strong>`"
+          v-tippy="`这篇文章更新于 <strong>${updatedDate}</strong>`"
           class="flex items-center gap-1.5 rounded-lg text-sm opacity-80"
         >
           <Icon icon="mingcute:time-fill" class="size-4" />
