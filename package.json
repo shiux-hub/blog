@@ -70,5 +70,11 @@
     "vitepress-plugin-tabs": "^0.7.1",
     "vitest": "^3.2.4",
     "vue-tsc": "^2.2.10"
-  }
+  },
+  "patchedDependencies": {
+    "vue-slider-component@4.1.0-beta.7": "patches/vue-slider-component.patch"
+  },
+  "trustedDependencies": [
+    "@tailwindcss/oxide"
+  ]
 }

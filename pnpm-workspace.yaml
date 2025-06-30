@@ -1,6 +1,0 @@
-patchedDependencies:
-  vue-slider-component@4.1.0-beta.7: patches/vue-slider-component.patch
-
-onlyBuiltDependencies:
-  - '@tailwindcss/oxide'
-  - esbuild
