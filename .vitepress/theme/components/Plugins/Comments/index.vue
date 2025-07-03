@@ -51,37 +51,42 @@ defineExpose({ scrollToComments })
 
 <style scoped>
 .comment {
-  margin-top: 2rem;
+  margin-block-start: 2rem;
+
   .title {
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
-    width: 100%;
-    margin: 3rem 0 1rem 0;
+    inline-size: 100%;
     padding: 0 6px;
+    margin: 3rem 0 1rem;
+
     .name {
       display: flex;
       align-items: center;
       font-size: 24px;
       font-weight: bold;
+
       svg {
-        width: 26px;
-        height: 26px;
+        inline-size: 26px;
+        block-size: 26px;
+        margin-inline-end: 8px;
         font-weight: normal;
-        margin-right: 8px;
       }
     }
+
     .tool {
-      opacity: 0.6;
       font-size: 14px;
       cursor: pointer;
+      opacity: 60%;
       transition:
         opacity 0.3s,
         color 0.3s;
+
       &:hover {
-        opacity: 1;
         color: var(--color-theme);
+        opacity: 100%;
       }
     }
   }

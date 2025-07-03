@@ -156,19 +156,19 @@ onBeforeUnmount(() => {
 
 <style scoped>
 .player {
-  height: 42px;
-  margin-top: 12px;
-  transition: transform 0.3s;
+  block-size: 42px;
+  margin-block-start: 12px;
   cursor: pointer;
+  transition: transform 0.3s;
 
   .player-content {
+    inline-size: fit-content;
     margin: 0;
-    width: fit-content;
-    border-radius: 50px;
     overflow: hidden;
     color: var(--color-font-color);
     background-color: var(--color-card-background);
     border: 1px solid var(--color-card-border);
+    border-radius: 50px;
     box-shadow: 0 6px 10px -4px var(--color-dark-shadow);
     transition: all 0.3s;
 
@@ -177,19 +177,19 @@ onBeforeUnmount(() => {
       flex-direction: row;
       align-items: center;
       padding: 6px;
-      padding-right: 12px;
+      padding-inline-end: 12px;
       pointer-events: none;
 
       .aplayer-pic {
-        width: 30px;
-        height: 30px;
-        min-width: 30px;
+        z-index: 2;
+        inline-size: 30px;
+        min-inline-size: 30px;
+        block-size: 30px;
+        margin-inline-end: 8px;
         border-radius: 50%;
-        margin-right: 8px;
         outline: 1px solid var(--color-card-border);
         animation: rotate 20s linear infinite;
         animation-play-state: paused;
-        z-index: 2;
 
         .aplayer-button {
           display: none;
@@ -200,26 +200,26 @@ onBeforeUnmount(() => {
         display: flex;
         flex-direction: row;
         align-items: center;
-        height: auto;
-        margin: 0;
+        block-size: auto;
         padding: 0;
+        margin: 0;
         border: none;
 
         .aplayer-music {
-          margin: 0;
-          padding: 0;
-          height: auto;
-          display: flex;
-          line-height: normal;
           z-index: 2;
+          display: flex;
+          block-size: auto;
+          padding: 0;
+          margin: 0;
+          line-height: normal;
 
           .aplayer-title {
-            line-height: normal;
             display: inline-block;
-            white-space: nowrap;
-            max-width: 120px;
+            max-inline-size: 120px;
             overflow: hidden;
+            line-height: normal;
             text-overflow: ellipsis;
+            white-space: nowrap;
           }
 
           .aplayer-author {
@@ -228,13 +228,13 @@ onBeforeUnmount(() => {
         }
 
         .aplayer-lrc {
-          margin: 0;
-          opacity: 0;
-          margin-left: 12px;
-          width: 0;
           z-index: 2;
+          inline-size: 0;
+          margin: 0;
+          margin-inline-start: 12px;
+          opacity: 0%;
           transition:
-            width 0.3s,
+            inline-size 0.3s,
             opacity 0.3s;
 
           &::before,
@@ -244,8 +244,8 @@ onBeforeUnmount(() => {
 
           .aplayer-lrc-contents {
             p {
-              text-align: center;
               color: var(--color-card-background);
+              text-align: center;
               filter: blur(0.8px);
               transition:
                 filter 0.3s,
@@ -260,24 +260,24 @@ onBeforeUnmount(() => {
 
         .aplayer-controller {
           position: absolute;
-          top: 0;
-          left: 0;
-          width: 100%;
-          height: 100%;
+          inset-block-start: 0;
+          inset-inline-start: 0;
           z-index: 0;
+          inline-size: 100%;
+          block-size: 100%;
 
           .aplayer-time {
             display: none;
           }
 
           .aplayer-bar-wrap {
-            margin: 0;
             padding: 0;
-            opacity: 0;
+            margin: 0;
+            opacity: 0%;
             transition: opacity 0.3s;
 
             .aplayer-bar {
-              height: 100%;
+              block-size: 100%;
               background: transparent;
 
               .aplayer-loaded {
@@ -285,9 +285,9 @@ onBeforeUnmount(() => {
               }
 
               .aplayer-played {
-                height: 100%;
+                block-size: 100%;
                 background: var(--color-white) !important;
-                transition: width 0.3s;
+                transition: inline-size 0.3s;
               }
             }
           }
@@ -304,32 +304,32 @@ onBeforeUnmount(() => {
       display: none;
     }
 
-    &::after {
-      content: '播放音乐';
-      position: absolute;
-      top: 0;
-      left: 0;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      width: 100%;
-      height: 100%;
-      font-size: 14px;
-      opacity: 0;
-      color: var(--color-card-background);
-      background-color: var(--color-theme);
-      pointer-events: none;
-      transition: opacity 0.3s;
-      z-index: 3;
-    }
-
     &:hover {
       border-color: var(--color-theme);
       box-shadow: 0 8px 16px -4px var(--color-theme-op);
 
       &::after {
-        opacity: 1;
+        opacity: 100%;
       }
+    }
+
+    &::after {
+      position: absolute;
+      inset-block-start: 0;
+      inset-inline-start: 0;
+      z-index: 3;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      inline-size: 100%;
+      block-size: 100%;
+      font-size: 14px;
+      color: var(--color-card-background);
+      pointer-events: none;
+      content: '播放音乐';
+      background-color: var(--color-theme);
+      opacity: 0%;
+      transition: opacity 0.3s;
     }
   }
 
@@ -346,20 +346,20 @@ onBeforeUnmount(() => {
 
         .aplayer-info {
           .aplayer-lrc {
-            opacity: 1;
-            width: 200px;
+            inline-size: 200px;
+            opacity: 100%;
           }
 
           .aplayer-controller {
             .aplayer-bar-wrap {
-              opacity: 1;
+              opacity: 100%;
             }
           }
         }
       }
 
       &::after {
-        opacity: 0;
+        opacity: 0%;
       }
     }
   }

@@ -571,11 +571,11 @@ defineExpose({ openRightMenu })
 <style scoped>
 .right-menu {
   position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
+  inset-block-start: 0;
+  inset-inline-start: 0;
   z-index: 9999;
+  inline-size: 100vi;
+  block-size: 100vb;
   transition: opacity 0.2s;
 
   .player {
@@ -585,17 +585,17 @@ defineExpose({ openRightMenu })
       align-items: center;
 
       span {
-        width: 100%;
+        inline-size: 100%;
         padding: 0 8px;
-        text-align: center;
-        white-space: nowrap;
         overflow: hidden;
+        text-align: center;
         text-overflow: ellipsis;
+        white-space: nowrap;
       }
 
       .artist {
+        margin-block-start: 4px;
         font-size: 14px;
-        margin-top: 4px;
         color: var(--color-font-second-color);
       }
     }
@@ -605,25 +605,24 @@ defineExpose({ openRightMenu })
       flex-direction: row;
       align-items: center;
       justify-content: space-evenly;
-      margin-top: 8px;
+      margin-block-start: 8px;
 
       .btn {
         padding: 6px;
-        margin-bottom: 0;
+        margin-block-end: 0;
       }
     }
   }
 }
 
 .modal-tip {
-  font-size: 15px;
-  margin-top: -4px;
-  margin-bottom: 1rem;
   display: block;
-  color: var(--color-font-second-color);
-  border-left: 4px solid var(--color-card-border);
-  border-radius: 4px;
   padding: 8px 0 8px 12px;
+  margin-block: -4px 1rem;
+  font-size: 15px;
+  color: var(--color-font-second-color);
   background-color: var(--color-card-second-background);
+  border-inline-start: 4px solid var(--color-card-border);
+  border-radius: 4px;
 }
 </style>

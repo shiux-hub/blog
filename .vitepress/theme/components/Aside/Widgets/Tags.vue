@@ -32,50 +32,54 @@ const { theme } = useData()
   .all-tags {
     position: relative;
     display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    max-height: 500px;
+    flex-flow: row wrap;
+    max-block-size: 500px;
     overflow: hidden;
+
     .tags {
       display: inline-block;
       padding: 4px 8px;
       margin: 2px;
       border-radius: 8px;
+
       .num {
-        margin-left: 2px;
-        opacity: 0.6;
+        margin-inline-start: 2px;
+        opacity: 60%;
       }
+
       &:hover {
         color: var(--color-theme);
         background-color: var(--color-theme-op);
       }
     }
+
     &::after {
-      content: '';
       position: absolute;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      height: 48%;
-      max-height: 150px;
-      background-image: linear-gradient(to top, var(--color-card-background), transparent);
+      inset-block-end: 0;
+      inset-inline: 0;
+      block-size: 48%;
+      max-block-size: 150px;
       pointer-events: none;
+      content: '';
+      background-image: linear-gradient(to top, var(--color-card-background), transparent);
     }
   }
+
   .more-tags {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 100%;
-    height: 40px;
-    border-radius: 8px;
+    inline-size: 100%;
+    block-size: 40px;
     font-size: 14px;
-    border: 1px solid var(--color-card-border);
     background-color: var(--color-card-second-background);
+    border: 1px solid var(--color-card-border);
+    border-radius: 8px;
+
     &:hover {
       color: var(--color-theme);
-      border-color: var(--color-theme-op);
       background-color: var(--color-theme-op);
+      border-color: var(--color-theme-op);
     }
   }
 }

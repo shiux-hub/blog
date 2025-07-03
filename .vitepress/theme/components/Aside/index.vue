@@ -41,17 +41,19 @@ const { theme } = useData()
 
 <style scoped>
 :deep(.title) {
-  margin-bottom: 12px;
-  font-weight: bold;
   display: flex;
   align-items: center;
-  opacity: 0.75;
+  margin-block-end: 12px;
+  font-weight: bold;
+  opacity: 75%;
+
   svg {
-    opacity: 0.6;
-    margin-right: 6px;
+    margin-inline-end: 6px;
+    opacity: 60%;
   }
+
   .title-name {
-    opacity: 0.8;
+    opacity: 80%;
   }
 }
 </style>

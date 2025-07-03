@@ -123,24 +123,24 @@ onMounted(() => {
 
 <style scoped>
 .message {
-  &::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 0;
-    height: 100%;
-    z-index: -1;
-    background-color: var(--color-white);
-    transition: width 0.3s;
-    animation: loading-width var(--duration) linear forwards;
-  }
-
   &.always {
     &::after {
-      width: 100%;
+      inline-size: 100%;
       animation: loading 1.5s infinite;
     }
+  }
+
+  &::after {
+    position: absolute;
+    inset-block-start: 0;
+    inset-inline-start: 0;
+    z-index: -1;
+    inline-size: 0;
+    block-size: 100%;
+    content: '';
+    background-color: var(--color-white);
+    transition: inline-size 0.3s;
+    animation: loading-width var(--duration) linear forwards;
   }
 }
 </style>

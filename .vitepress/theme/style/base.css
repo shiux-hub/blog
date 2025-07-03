@@ -8,6 +8,10 @@
 
   /** 字体 */
   html {
+    user-select: none;
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+
     &.hmos {
       --font-custom: 'HarmonyOS_Regular', sans-serif;
     }
@@ -50,9 +54,6 @@
         }
       }
     }
-    user-select: none;
-    scroll-behavior: smooth;
-    -webkit-text-size-adjust: 100%;
 
     /** 代码高亮 */
     &.dark pre code .line span {
@@ -67,17 +68,17 @@
 
   body {
     @apply text-font-color;
+    overflow-inline: hidden;
     background-color: var(--color-site-background);
-    animation: show forwards 0.5s;
-    overflow-x: hidden;
     transition:
       color 0.3s,
       background-color 0.3s;
+    animation: show forwards 0.5s;
   }
 
   a {
-    text-decoration: none;
     color: var(--color-font-color);
+    text-decoration: none;
     transition: all 0.3s;
 
     &:hover {
@@ -86,27 +87,26 @@
   }
 
   #app {
-    width: 100dvw;
+    inline-size: 100dvi;
     /* height: 100vh; */
     transition: filter 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 
     /* 滚动条 */
     .simplebar-scrollbar {
+      &:hover {
+        &::before {
+          inset-inline-start: 2px;
+          background: var(--color-theme);
+        }
+      }
+
       &::before {
-        right: 0;
-        left: 4px;
+        inset-inline: 4px 0;
+        cursor: pointer;
         background: var(--color-scrollbar-bar);
         transition:
           background 0.3s,
-          left 0.3s;
-        cursor: pointer;
-      }
-
-      &:hover {
-        &::before {
-          left: 2px;
-          background: var(--color-theme);
-        }
+          inset-inline-start 0.3s;
       }
     }
 
@@ -122,9 +122,9 @@
   }
 
   ::-webkit-scrollbar-thumb {
+    cursor: pointer;
     background-color: var(--color-scrollbar-bar);
     border-radius: 8px;
-    cursor: pointer;
   }
 
   ::-webkit-scrollbar-thumb:hover {
@@ -133,8 +133,8 @@
 
   /** 选中文本 */
   ::selection {
-    background-color: var(--color-theme);
     color: #efefef;
+    background-color: var(--color-theme);
   }
 
   /** fancybox */
@@ -145,8 +145,8 @@
 
     .fancybox__thumb {
       &::after {
-        border-width: 2px !important;
         border-color: var(--color-theme) !important;
+        border-width: 2px !important;
       }
     }
   }

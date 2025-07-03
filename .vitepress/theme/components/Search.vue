@@ -117,21 +117,21 @@ onBeforeUnmount(() => {
 
 <style scoped>
 .ais-InstantSearch {
-  height: 100%;
+  block-size: 100%;
 
   .ais-SearchBox {
-    height: 40px;
-    width: 100%;
+    inline-size: 100%;
+    block-size: 40px;
 
     .ais-SearchBox-input {
-      width: 100%;
-      outline: none;
-      border-radius: 8px;
-      font-size: 16px;
+      inline-size: 100%;
       padding: 0.6rem 1rem;
+      font-size: 16px;
       color: var(--color-font-color);
-      border: 1px solid var(--color-card-border);
       background-color: var(--color-card-second-background);
+      border: 1px solid var(--color-card-border);
+      border-radius: 8px;
+      outline: none;
       transition:
         border-color 0.3s,
         box-shadow 0.3s;
@@ -154,43 +154,43 @@ onBeforeUnmount(() => {
   }
 
   .ais-Hits {
-    margin-top: 20px;
-    min-height: 300px;
-    height: 100%;
+    block-size: 100%;
+    min-block-size: 300px;
+    margin-block-start: 20px;
 
     .no-result {
-      height: 300px;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
+      block-size: 300px;
 
       svg {
-        width: 40px;
-        height: 40px;
-        margin-bottom: 12px;
+        inline-size: 40px;
+        block-size: 40px;
+        margin-block-end: 12px;
       }
 
       .text {
         font-size: 18px;
-        opacity: 0.6;
+        opacity: 60%;
       }
     }
 
     .search-list {
       .search-item {
-        margin-bottom: 12px;
+        margin-block-end: 12px;
 
         .title {
           display: inline;
+          margin-block-end: 6px;
           font-size: 16px;
-          margin-bottom: 6px;
         }
 
         .anchor {
-          margin-top: 6px;
-          color: var(--color-font-second-color);
+          margin-block-start: 6px;
           font-size: 14px;
+          color: var(--color-font-second-color);
 
           &::before {
             content: '# ';
@@ -198,10 +198,10 @@ onBeforeUnmount(() => {
         }
 
         .content {
-          color: var(--color-font-second-color);
-          margin-top: 0.8rem;
-          font-size: 12px;
           padding: 8px;
+          margin-block-start: 0.8rem;
+          font-size: 12px;
+          color: var(--color-font-second-color);
           border-radius: 8px;
         }
 
@@ -209,56 +209,47 @@ onBeforeUnmount(() => {
           margin: 0;
 
           mark {
-            background-color: transparent;
             color: var(--color-theme);
+            background-color: transparent;
           }
         }
 
         &:last-child {
-          margin-bottom: 0;
+          margin-block-end: 0;
         }
       }
     }
   }
 
   .ais-Pagination {
-    margin-top: 20px;
+    margin-block-start: 20px;
 
     .ais-Pagination-list {
-      list-style: none;
-      margin: 0;
-      padding: 0;
       display: flex;
       flex-direction: row;
       align-items: center;
       justify-content: center;
+      padding: 0;
+      margin: 0;
+      list-style: none;
 
       .ais-Pagination-item {
+        inline-size: 30px;
+        block-size: 30px;
         margin: 0 4px;
-        width: 30px;
-        height: 30px;
+        cursor: pointer;
         border-radius: 8px;
         transition: background-color 0.3s;
-        cursor: pointer;
 
         .ais-Pagination-link {
           display: flex;
           align-items: center;
           justify-content: center;
-          width: 100%;
-          height: 100%;
+          inline-size: 100%;
+          block-size: 100%;
 
           &:hover {
             color: var(--color-font-color);
-          }
-        }
-
-        &:hover {
-          color: var(--color-font-color);
-          background-color: var(--color-theme);
-
-          .ais-Pagination-link {
-            color: var(--color-card-border);
           }
         }
 
@@ -274,7 +265,16 @@ onBeforeUnmount(() => {
         &.ais-Pagination-item--disabled,
         &.ais-Pagination-item--nextPage,
         &.ais-Pagination-item--lastPage {
-          opacity: 0.8;
+          opacity: 80%;
+        }
+
+        &:hover {
+          color: var(--color-font-color);
+          background-color: var(--color-theme);
+
+          .ais-Pagination-link {
+            color: var(--color-card-border);
+          }
         }
       }
     }
@@ -282,27 +282,27 @@ onBeforeUnmount(() => {
 
   .ais-Stats {
     display: flex;
-    align-items: center;
     flex-direction: row;
+    align-items: center;
     justify-content: space-between;
-    margin-top: 20px;
-    opacity: 0.8;
+    margin-block-start: 20px;
     font-size: 14px;
+    opacity: 80%;
 
     .power {
       display: flex;
       flex-direction: row;
       align-items: center;
       font-size: 16px;
-      opacity: 0.6;
+      opacity: 60%;
       transition:
         color 0.3s,
         opacity 0.3s;
 
       svg {
-        margin-right: 4px;
-        width: 20px;
-        height: 20px;
+        inline-size: 20px;
+        block-size: 20px;
+        margin-inline-end: 4px;
         transition: color 0.3s;
       }
 
@@ -311,8 +311,8 @@ onBeforeUnmount(() => {
       }
 
       &:hover {
-        opacity: 1;
         color: var(--color-theme);
+        opacity: 100%;
       }
     }
 

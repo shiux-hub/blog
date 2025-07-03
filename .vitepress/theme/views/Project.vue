@@ -23,21 +23,21 @@ import Banner from '@/components/Banner.vue'
 
 <style scoped>
 .to-github {
-  height: 40px;
-  padding: 0 16px;
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 50px;
+  block-size: 40px;
+  padding: 0 16px;
   color: #fff;
   background-color: var(--color-dark-opacity);
   backdrop-filter: blur(20px);
+  border-radius: 50px;
   transition:
     color 0.3s,
     background-color 0.3s;
 
   svg {
-    margin-right: 8px;
+    margin-inline-end: 8px;
     transition: color 0.3s;
   }
 

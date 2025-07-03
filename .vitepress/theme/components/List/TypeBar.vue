@@ -86,36 +86,42 @@ const currentTypeName = computed(() => {
 
 <style scoped>
 .all-type {
-  mask: linear-gradient(90deg, #fff 0, #fff 90%, hsla(0, 0%, 100%, 0.6) 95%, hsla(0, 0%, 100%, 0) 100%);
+  mask: linear-gradient(90deg, #fff 0, #fff 90%, hsl(0deg 0% 100% / 60%) 95%, hsl(0deg 0% 100% / 0%) 100%);
+
   .type-item {
     display: flex;
     align-items: center;
+    block-size: 30px;
     padding: 0.1rem 0.5rem;
-    margin-right: 6px;
+    margin-inline-end: 6px;
     font-weight: bold;
-    border-radius: 8px;
     white-space: nowrap;
-    height: 30px;
     cursor: pointer;
+    border-radius: 8px;
+
     .num {
-      margin-left: 4px;
-      font-weight: normal;
       padding: 2px 6px;
+      margin-inline-start: 4px;
       font-size: 0.75rem;
+      font-weight: normal;
       color: var(--color-font-color);
       background-color: var(--color-card-border);
       border-radius: 8px;
     }
+
     &.choose {
       color: var(--color-card-background);
       background-color: var(--color-theme);
+
       .num {
         color: var(--color-theme);
       }
     }
+
     &.hidden {
       display: none;
     }
+
     &:hover {
       color: var(--color-card-background);
       background-color: var(--color-theme);

@@ -212,17 +212,17 @@ onMounted(() => {
   &:hover {
     input {
       --tw-shadow-color: var(--color-theme-op);
-      width: 100px;
+      inline-size: 100px;
       border-color: var(--color-theme);
     }
 
     svg {
-      opacity: 0.2;
       pointer-events: none;
+      opacity: 20%;
 
       &.click {
-        opacity: 1;
         pointer-events: all;
+        opacity: 100%;
       }
     }
   }

@@ -56,25 +56,25 @@ const router = useRouter()
 
   .archives-list {
     .year-list {
-      margin-bottom: 2rem;
+      margin-block-end: 2rem;
 
       .year {
         position: relative;
         display: flex;
         flex-direction: row;
         align-items: center;
-        margin-left: 6px;
-        padding-left: 12px;
+        padding-inline-start: 12px;
+        margin-block-end: 1rem;
+        margin-inline-start: 6px;
         font-size: 20px;
         font-weight: bold;
-        margin-bottom: 1rem;
 
         &::before {
-          content: '';
           position: absolute;
-          left: 0;
-          width: 4px;
-          height: 70%;
+          inset-inline-start: 0;
+          inline-size: 4px;
+          block-size: 70%;
+          content: '';
           background-color: var(--color-theme);
           border-radius: 8px;
         }
@@ -83,10 +83,10 @@ const router = useRouter()
       .posts {
         .posts-item {
           padding: 20px;
-          margin-bottom: 1rem;
+          margin-block-end: 1rem;
 
           .title {
-            margin-bottom: 16px;
+            margin-block-end: 16px;
             font-size: 18px;
             font-weight: bold;
             transition: color 0.3s;
@@ -94,24 +94,23 @@ const router = useRouter()
 
           .tags {
             display: flex;
-            flex-wrap: wrap;
-            flex-direction: row;
+            flex-flow: row wrap;
             align-items: center;
-            opacity: 0.6;
+            opacity: 60%;
 
             .type-item {
-              font-size: 14px;
               display: flex;
               flex-direction: row;
               align-items: center;
-              margin-right: 8px;
+              margin-inline-end: 8px;
+              font-size: 14px;
 
               .name {
                 transition: color 0.3s;
               }
 
               svg {
-                margin-right: 2px;
+                margin-inline-end: 2px;
                 transition: color 0.3s;
               }
 
@@ -125,7 +124,7 @@ const router = useRouter()
           }
 
           &:last-child {
-            margin-bottom: 0;
+            margin-block-end: 0;
           }
 
           &:hover {
@@ -137,7 +136,7 @@ const router = useRouter()
       }
 
       &:last-child {
-        margin-bottom: 0;
+        margin-block-end: 0;
       }
     }
   }

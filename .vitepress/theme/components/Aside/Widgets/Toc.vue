@@ -174,91 +174,106 @@ onBeforeUnmount(() => {
   position: relative;
   padding: 0 !important;
   overflow: hidden;
+
   .toc-title {
     display: flex;
     flex-direction: row;
     align-items: center;
+    block-size: 58px;
     padding: 18px;
-    height: 58px;
+
     svg {
-      margin-right: 8px;
+      margin-inline-end: 8px;
       font-weight: bold;
-      opacity: 0.6;
+      opacity: 60%;
     }
+
     .name {
       font-weight: bold;
     }
   }
+
   .toc-list {
     position: relative;
-    padding: 20px;
-    padding-top: 0;
-    padding-left: 24px;
     display: flex;
     flex-direction: column;
-    max-height: calc(70vh - 58px);
+    max-block-size: calc(70vb - 58px);
+    padding: 20px;
+    padding-block-start: 0;
+    padding-inline-start: 24px;
     overflow: auto;
+
     .toc-item {
-      margin: 4px 0;
       padding: 6px 12px;
+      margin: 4px 0;
+      cursor: pointer;
       border-radius: 8px;
-      opacity: 0.6;
+      opacity: 60%;
       transition:
         color 0.3s,
         opacity 0.3s,
         font-size 0.3s,
         background-color 0.3s;
-      cursor: pointer;
-      &:first-child {
-        margin-top: 0;
-      }
-      &:last-child {
-        margin-bottom: 0;
-      }
+
       &.H2 {
         font-weight: bold;
       }
+
       &.H3 {
+        margin-inline-start: 20px;
         font-size: 14px;
-        margin-left: 20px;
       }
+
       &.active {
-        opacity: 1;
         color: var(--color-theme);
         background-color: var(--color-theme-op);
+        opacity: 100%;
+
         &.H2 {
           font-size: 18px;
         }
+
         &.H3 {
           font-size: 16px;
         }
       }
+
+      &:first-child {
+        margin-block-start: 0;
+      }
+
+      &:last-child {
+        margin-block-end: 0;
+      }
+
       &:hover {
-        opacity: 1;
         color: var(--color-theme);
         background-color: var(--color-theme-op);
+        opacity: 100%;
       }
     }
+
     &::after {
-      content: '';
       position: absolute;
-      left: 12px;
-      top: var(--height);
-      width: 4px;
-      height: 20px;
+      inset-block-start: var(--height);
+      inset-inline-start: 12px;
+      inline-size: 4px;
+      block-size: 20px;
       margin: 8px 0;
+      content: '';
       background-color: var(--color-theme);
       border-radius: 8px;
-      transition: top 0.3s;
+      transition: inset-block-start 0.3s;
     }
   }
+
   &::before {
-    content: '';
     position: absolute;
-    left: 12px;
-    bottom: 20px;
-    width: 4px;
-    height: calc(100% - 78px);
+    inset-block-end: 20px;
+    inset-inline-start: 12px;
+    inline-size: 4px;
+    block-size: calc(100% - 78px);
+    content: '';
     background-color: var(--color-card-border);
     border-radius: 8px;
   }

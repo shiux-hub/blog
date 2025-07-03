@@ -88,42 +88,48 @@ withDefaults(
 <style scoped>
 .link-type-list {
   .title {
-    margin-left: 6px;
-    margin-bottom: 1.6rem;
+    margin-block-end: 1.6rem;
+    margin-inline-start: 6px;
+
     .name {
-      border-bottom: none;
-      margin-bottom: 4px;
+      margin-block-end: 4px;
+      border-block-end: none;
+
       .name-count {
         color: var(--color-font-second-color);
       }
     }
+
     .tip {
       color: var(--color-font-second-color);
     }
   }
+
   .all-link {
     display: grid;
-    gap: 20px;
     grid-template-columns: repeat(5, 1fr);
+    gap: 20px;
+
     .link-card {
       display: flex;
       flex-direction: row;
       align-items: center;
-      height: 90px;
-      width: 100%;
+      inline-size: 100%;
+      block-size: 90px;
       padding: 12px;
+
       &.loss {
         pointer-events: none;
       }
+
       .cover {
         display: flex;
         align-items: center;
         justify-content: center;
-        width: 60px;
-        height: 60px;
-        min-width: 60px;
-        margin-right: 20px;
-        border-radius: 50%;
+        inline-size: 60px;
+        min-inline-size: 60px;
+        block-size: 60px;
+        margin-inline-end: 20px;
         overflow: hidden;
         background: linear-gradient(
           90deg,
@@ -132,94 +138,108 @@ withDefaults(
           var(--color-card-border) 63%
         );
         background-size: 400% 100%;
-        animation: skeleton-loading 1.4s ease infinite;
+        border-radius: 50%;
         transition: all 0.6s;
+        animation: skeleton-loading 1.4s ease infinite;
+
         .cover-img {
-          width: 100%;
-          height: 100%;
+          inline-size: 100%;
+          block-size: 100%;
           background-color: var(--color-card-background);
-          opacity: 0;
           filter: blur(10px);
+          opacity: 0%;
           transition:
             filter 0.3s,
             opacity 0.3s;
+
           &.loaded {
-            opacity: 1;
             filter: blur(0);
+            opacity: 100%;
           }
         }
       }
+
       .data {
-        height: 100%;
-        width: 100%;
         display: flex;
         flex-direction: column;
         align-items: flex-start;
+        inline-size: 100%;
+        block-size: 100%;
+
         .name {
-          font-weight: bold;
-          font-size: 18px;
-          overflow: hidden;
-          text-overflow: ellipsis;
           display: -webkit-box;
-          line-clamp: 1;
+          overflow: hidden;
+          font-size: 18px;
+          font-weight: bold;
+          text-overflow: ellipsis;
           -webkit-line-clamp: 1;
-          -webkit-box-orient: vertical;
+          line-clamp: 1;
           white-space: nowrap;
+          -webkit-box-orient: block-axis;
         }
+
         .desc {
+          display: -webkit-box;
+          margin-block-start: 4px;
+          overflow: hidden;
           font-size: 15px;
-          margin-top: 4px;
           line-height: 1.2;
           color: var(--color-font-second-color);
-          overflow: hidden;
           text-overflow: ellipsis;
-          display: -webkit-box;
-          line-clamp: 2;
           -webkit-line-clamp: 2;
-          -webkit-box-orient: vertical;
+          line-clamp: 2;
           transition:
             color 0.3s,
             opacity 0.3s;
+          -webkit-box-orient: block-axis;
         }
       }
+
       &:hover {
         color: var(--color-card-background);
         background-color: var(--color-theme);
         border-color: var(--color-theme);
         box-shadow: 0 0 16px 6px var(--color-theme-op);
+
         .cover {
-          margin-right: 6px;
-          min-width: 0;
-          opacity: 0;
-          width: 0;
-          height: 0;
+          inline-size: 0;
+          min-inline-size: 0;
+          block-size: 0;
+          margin-inline-end: 6px;
+          opacity: 0%;
         }
+
         .data {
           .desc {
-            opacity: 0.7;
             color: var(--color-card-background);
+            opacity: 70%;
           }
         }
       }
     }
+
     @media (max-width: 1200px) {
       grid-template-columns: repeat(4, 1fr);
     }
+
     @media (max-width: 992px) {
       grid-template-columns: repeat(3, 1fr);
     }
+
     @media (max-width: 768px) {
       grid-template-columns: repeat(2, 1fr);
     }
+
     @media (max-width: 576px) {
       grid-template-columns: 1fr;
     }
   }
 }
+
 .no-data {
-  text-align: center;
-  margin-top: 40px;
+  margin-block-start: 40px;
   font-size: 1.4rem;
   font-weight: bold;
+  text-align: center;
 }
 </style>

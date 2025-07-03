@@ -173,7 +173,7 @@ onMounted(() => {
       <!-- 座右铭 -->
       <div class="about-item">
         <span class="tip">座右铭</span>
-        <span class="title1" style="margin-top: 20px">脚踏实地，</span>
+        <span class="title1" style="margin-block-start: 20px">脚踏实地，</span>
         <span class="title2">一丝不苟。</span>
       </div>
     </div>
@@ -197,7 +197,7 @@ onMounted(() => {
         class="about-item like image"
         style="
           --color: #7b3c25;
-          background-image: url(https://pic.efefee.cn/uploads/2024/02/27/65dd836099d16.webp);
+          background-image: url('https://pic.efefee.cn/uploads/2024/02/27/65dd836099d16.webp');
         "
       >
         <div class="image-content">
@@ -243,7 +243,7 @@ onMounted(() => {
         <div
           class="about-item map image"
           style="
-            background-image: url(https://pic.efefee.cn/uploads/2024/04/15/661cbccc56af5.webp);
+            background-image: url('https://pic.efefee.cn/uploads/2024/04/15/661cbccc56af5.webp');
           "
         >
           <span class="position">我现在住在 <strong>中国，河南省</strong></span>
@@ -291,52 +291,52 @@ onMounted(() => {
     display: grid;
     grid-template-columns: auto auto;
     gap: 20px;
-    margin-bottom: 20px;
+    margin-block-end: 20px;
 
     .about-item {
       position: relative;
       display: flex;
       flex-direction: column;
-      width: 100%;
+      inline-size: 100%;
       padding: 1.2rem 2rem;
-      border-radius: 12px;
+      overflow: hidden;
       background-color: var(--color-card-background);
       border: 1px solid var(--color-card-border);
+      border-radius: 12px;
       box-shadow: 0 8px 12px -4px var(--color-border-shadow);
-      overflow: hidden;
 
       .tip {
+        margin-block-end: 12px;
         font-size: 14px;
-        opacity: 0.8;
-        margin-bottom: 12px;
+        opacity: 80%;
       }
 
       .title1 {
         font-size: 36px;
         font-weight: bold;
-        opacity: 0.6;
+        opacity: 60%;
       }
 
       .title2 {
+        margin-inline-end: 4rem;
         font-size: 36px;
         font-weight: bold;
-        margin-right: 4rem;
       }
 
       .text {
-        font-size: 18px;
         margin: 0.6rem 0;
+        font-size: 18px;
       }
 
       &.child {
+        gap: 20px;
+        padding: 0;
         background-color: transparent;
         border: none;
         box-shadow: none;
-        padding: 0;
-        gap: 20px;
 
         .about-item {
-          height: 100%;
+          block-size: 100%;
         }
       }
 
@@ -359,22 +359,22 @@ onMounted(() => {
 
           &:last-child {
             display: inline-block;
-            background-size: 100% 100%;
-            background-clip: text;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-repeat: no-repeat;
             background-image: linear-gradient(45deg, #fa7671 50%, #f45f7f);
+            background-repeat: no-repeat;
+            -webkit-background-clip: text;
+            background-clip: text;
+            background-size: 100% 100%;
+            -webkit-text-fill-color: transparent;
           }
         }
       }
 
       &.character {
-        min-height: 220px;
+        min-block-size: 220px;
         cursor: pointer;
 
         .more {
-          margin-top: auto;
+          margin-block-start: auto;
           font-size: 14px;
           color: var(--color-gray);
 
@@ -389,15 +389,15 @@ onMounted(() => {
 
         .male {
           position: absolute;
-          top: 20px;
-          right: -10px;
-          height: 140%;
-          width: auto;
+          inset-block-start: 20px;
+          inset-inline-end: -10px;
+          inline-size: auto;
+          block-size: 140%;
           transition: transform 0.5s;
           transform-origin: top center;
 
           @media (max-width: 768px) {
-            height: 80%;
+            block-size: 80%;
           }
         }
 
@@ -410,37 +410,36 @@ onMounted(() => {
 
       &.skills {
         .skills-list {
-          margin-top: 12px;
           display: flex;
-          flex-direction: row;
-          flex-wrap: wrap;
+          flex-flow: row wrap;
+          margin-block-start: 12px;
 
           .skills-item {
             display: flex;
             align-items: center;
-            margin-right: 10px;
-            margin-top: 10px;
             padding: 8px 12px 8px 8px;
-            border-radius: 40px;
+            margin-block-start: 10px;
+            margin-inline-end: 10px;
+            cursor: pointer;
             background-color: var(--color-site-background);
             border: 1px solid var(--color-card-border);
+            border-radius: 40px;
             box-shadow: 0 8px 12px -4px var(--color-border-shadow);
             transition: background-color 0.3s;
-            cursor: pointer;
 
             .skills-logo {
               display: flex;
               align-items: center;
               justify-content: center;
-              width: 32px;
-              height: 32px;
-              margin-right: 8px;
-              border-radius: 50%;
+              inline-size: 32px;
+              block-size: 32px;
+              margin-inline-end: 8px;
               background-color: var(--color);
+              border-radius: 50%;
 
               svg {
-                width: 1rem;
-                height: 1rem;
+                inline-size: 1rem;
+                block-size: 1rem;
                 color: #fff;
               }
             }
@@ -459,39 +458,39 @@ onMounted(() => {
 
       &.career {
         .title2 {
-          letter-spacing: 0.2rem;
           font-size: 40px;
+          letter-spacing: 0.2rem;
         }
 
         .list {
-          margin-top: 12px;
           display: flex;
           flex-direction: column;
+          margin-block-start: 12px;
 
           .list-item {
             display: flex;
             flex-direction: row;
             align-items: center;
-            margin-bottom: 12px;
+            margin-block-end: 12px;
             color: var(--color-font-second-color);
 
             &::before {
-              content: '';
               display: block;
-              width: 16px;
-              height: 16px;
+              inline-size: 16px;
+              block-size: 16px;
+              margin-inline-end: 8px;
+              content: '';
               background-color: var(--color);
               border-radius: 50%;
-              margin-right: 8px;
             }
           }
         }
 
         .career-img {
           position: absolute;
-          bottom: -10px;
-          left: 0;
-          width: 100%;
+          inset-block-end: -10px;
+          inset-inline-start: 0;
+          inline-size: 100%;
 
           @media (max-width: 768px) {
             position: static;
@@ -500,45 +499,45 @@ onMounted(() => {
       }
 
       &.game {
-        min-height: 300px;
+        min-block-size: 300px;
 
         @media (max-width: 768px) {
-          min-height: 240px;
+          min-block-size: 240px;
         }
       }
 
       &.like {
-        min-height: 400px;
+        min-block-size: 400px;
 
         @media (max-width: 768px) {
-          min-height: 300px;
+          min-block-size: 300px;
         }
       }
 
       &.image {
+        background-repeat: no-repeat;
         background-position: center;
         background-size: cover;
-        background-repeat: no-repeat;
 
         .image-content {
-          flex-grow: 1;
-          display: flex;
-          flex-direction: column;
           z-index: 2;
+          display: flex;
+          flex-grow: 1;
+          flex-direction: column;
           color: #fff;
 
           .image-desc {
-            width: 100%;
             display: flex;
             flex-direction: row;
             align-items: center;
             justify-content: space-between;
-            margin-top: auto;
+            inline-size: 100%;
+            margin-block-start: auto;
 
             &.opacity {
               font-size: 14px;
               color: #eee;
-              opacity: 0.8;
+              opacity: 80%;
 
               a {
                 color: #eee;
@@ -552,22 +551,22 @@ onMounted(() => {
         }
 
         &::after {
-          content: '';
           position: absolute;
-          width: 100%;
-          height: 100%;
-          top: 0;
-          left: 0;
-          box-shadow: inset 0 -70px 204px 10px var(--color);
+          inset-block-start: 0;
+          inset-inline-start: 0;
           z-index: 0;
+          inline-size: 100%;
+          block-size: 100%;
+          content: '';
+          box-shadow: inset 0 -70px 204px 10px var(--color);
         }
       }
 
       &.static {
         .static-data {
           display: grid;
-          gap: 12px;
           grid-template-columns: 1fr 1fr;
+          gap: 12px;
           margin: 20px 0;
 
           .static-item {
@@ -576,7 +575,7 @@ onMounted(() => {
 
             .static-name {
               font-size: 15px;
-              opacity: 0.8;
+              opacity: 80%;
             }
 
             .static-num {
@@ -588,37 +587,37 @@ onMounted(() => {
       }
 
       &.map {
-        min-height: 170px;
+        min-block-size: 170px;
+        cursor: pointer;
         background-size: 100%;
         transition: background 1.5s ease-in-out;
-        cursor: pointer;
-
-        @media (max-width: 768px) {
-          background-size: cover;
-          pointer-events: none;
-        }
 
         .position {
-          display: block;
           position: absolute;
-          left: 0;
-          bottom: 0;
-          width: 100%;
+          inset-block-end: 0;
+          inset-inline-start: 0;
+          display: block;
+          inline-size: 100%;
           padding: 20px 30px;
+          font-size: 20px;
           color: #fff;
           background-color: #636352;
-          font-size: 20px;
-          transition: bottom 1s;
+          transition: inset-block-end 1s;
         }
 
         &:hover {
-          background-size: 120%;
           background-position-x: 0;
           background-position-y: 36%;
+          background-size: 120%;
 
           .position {
-            bottom: -80px;
+            inset-block-end: -80px;
           }
+        }
+
+        @media (max-width: 768px) {
+          pointer-events: none;
+          background-size: cover;
         }
       }
 
@@ -630,11 +629,11 @@ onMounted(() => {
         .info-item {
           display: flex;
           flex-direction: column;
-          margin-right: 32px;
+          margin-inline-end: 32px;
 
           .info-name {
+            margin-block-end: 8px;
             font-size: 14px;
-            margin-bottom: 8px;
             color: var(--color-font-second-color);
           }
 
@@ -648,7 +647,7 @@ onMounted(() => {
     }
 
     &:last-child {
-      margin-bottom: 0;
+      margin-block-end: 0;
     }
 
     @media (max-width: 768px) {

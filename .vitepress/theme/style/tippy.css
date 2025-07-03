@@ -1,24 +1,24 @@
 .tippy-box[data-animation='fade'][data-state='hidden'] {
-  opacity: 0;
+  opacity: 0%;
 }
 
 [data-tippy-root] {
-  max-width: calc(100vw - 10px);
+  max-inline-size: calc(100vi - 10px);
 }
 
 .tippy-box {
   position: relative;
-  background-color: var(--color-mask-background-deep);
-  border-radius: 0.75rem;
+  padding: 0.5rem 0.75rem;
   font-size: 14px;
+  line-height: 1.3;
   color: var(--color-font-color);
+  word-wrap: break-word;
+  white-space: pre-wrap;
+  background-color: var(--color-mask-background-deep);
   backdrop-filter: blur(10px);
   border: 1px solid var(--color-card-border);
-  line-height: 1.3;
-  white-space: pre-wrap;
-  word-wrap: break-word;
+  border-radius: 0.75rem;
   outline: 0;
-  padding: 0.5rem 0.75rem;
   box-shadow: 0 8px 16px -4px var(--color-border-shadow);
   transition-property: transform, visibility, opacity;
 }
@@ -33,8 +33,8 @@
 }
 
 .tippy-box[data-placement^='top'] > .tippy-backdrop {
-  transform-origin: 0 25%;
   border-radius: 40% 40% 0 0;
+  transform-origin: 0 25%;
 }
 
 .tippy-box[data-placement^='top'] > .tippy-backdrop[data-state='visible'] {
@@ -46,8 +46,8 @@
 }
 
 .tippy-box[data-placement^='bottom'] > .tippy-backdrop {
-  transform-origin: 0 -50%;
   border-radius: 0 0 30% 30%;
+  transform-origin: 0 -50%;
 }
 
 .tippy-box[data-placement^='bottom'] > .tippy-backdrop[data-state='visible'] {
@@ -59,8 +59,8 @@
 }
 
 .tippy-box[data-placement^='left'] > .tippy-backdrop {
-  transform-origin: 50% 0;
   border-radius: 50% 0 0 50%;
+  transform-origin: 50% 0;
 }
 
 .tippy-box[data-placement^='left'] > .tippy-backdrop[data-state='visible'] {
@@ -72,8 +72,8 @@
 }
 
 .tippy-box[data-placement^='right'] > .tippy-backdrop {
-  transform-origin: -50% 0;
   border-radius: 0 50% 50% 0;
+  transform-origin: -50% 0;
 }
 
 .tippy-box[data-placement^='right'] > .tippy-backdrop[data-state='visible'] {
@@ -86,22 +86,22 @@
 
 .tippy-backdrop {
   position: absolute;
-  width: calc(110% + 32px);
-  left: 50%;
-  top: 50%;
+  inset-block-start: 50%;
+  inset-inline-start: 50%;
   z-index: -1;
+  inline-size: calc(110% + 32px);
   transition: all cubic-bezier(0.46, 0.1, 0.52, 0.98);
   backface-visibility: hidden;
 }
 
 .tippy-backdrop[data-state='hidden'] {
-  opacity: 0;
+  opacity: 0%;
 }
 
-.tippy-backdrop:after {
+.tippy-backdrop::after {
+  float: inline-start;
+  padding-block-start: 100%;
   content: '';
-  float: left;
-  padding-top: 100%;
 }
 
 .tippy-backdrop + .tippy-content {
@@ -110,11 +110,11 @@
 }
 
 .tippy-backdrop + .tippy-content[data-state='hidden'] {
-  opacity: 0;
+  opacity: 0%;
 }
 
 .tippy-box[data-animation='shift-away'][data-state='hidden'] {
-  opacity: 0;
+  opacity: 0%;
 }
 
 .tippy-box[data-animation='shift-away'][data-state='hidden'][data-placement^='top'] {

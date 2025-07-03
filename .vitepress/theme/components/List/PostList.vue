@@ -126,13 +126,13 @@ function toPost(path: string) {
 <style scoped>
 .post-lists {
   .post-item {
-    padding: 0 !important;
     display: flex;
-    margin-bottom: 1rem;
-    animation: fade-up 0.6s 0.4s backwards;
-    cursor: pointer;
+    block-size: 200px;
+    padding: 0 !important;
+    margin-block-end: 1rem;
     overflow: hidden;
-    height: 200px;
+    cursor: pointer;
+    animation: fade-up 0.6s 0.4s backwards;
 
     .post-cover {
       flex: 0 0 35%;
@@ -140,144 +140,130 @@ function toPost(path: string) {
       transform: translateZ(0);
 
       img {
-        width: 100%;
-        height: 100%;
+        inline-size: 100%;
+        block-size: 100%;
         object-fit: cover;
-        transform-origin: center center;
-        will-change: transform, filter;
         transition:
           transform 0.5s ease-out,
           filter 0.5s ease-out;
+        transform-origin: center center;
+        will-change: transform, filter;
         backface-visibility: hidden;
       }
     }
 
     .post-content {
-      flex: 1;
-      padding: 1.6rem 2rem;
       display: flex;
+      flex: 1;
       flex-direction: column;
       justify-content: space-between;
+      padding: 1.6rem 2rem;
 
       .post-category {
         display: flex;
         flex-wrap: wrap;
-        width: 100%;
-        color: var(--color-font-second-color);
+        inline-size: 100%;
         font-size: 14px;
+        color: var(--color-font-second-color);
+
         .cat-name {
           display: flex;
           flex-direction: row;
           align-items: center;
+
           svg {
-            opacity: 0.8;
-            margin-right: 6px;
+            margin-inline-end: 6px;
+            opacity: 80%;
           }
         }
+
         .top {
-          margin-left: 12px;
+          margin-inline-start: 12px;
           color: var(--color-theme);
+
           svg {
-            opacity: 0.8;
+            opacity: 80%;
           }
         }
       }
+
       .post-title {
-        font-size: 20px;
-        line-height: 30px;
-        font-weight: bold;
+        display: -webkit-box;
         margin: 0.6rem 0;
-        transition: color 0.3s;
-        display: -webkit-box;
         overflow: hidden;
-        word-break: break-all;
-        line-clamp: 2;
-        -webkit-box-orient: vertical;
-        -webkit-line-clamp: 2;
-      }
-      .post-desc {
-        margin-top: -0.4rem;
-        margin-bottom: 0.8rem;
-        opacity: 0.8;
+        font-size: 20px;
+        font-weight: bold;
         line-height: 30px;
-        display: -webkit-box;
-        overflow: hidden;
-        word-break: break-all;
-        line-clamp: 2;
-        -webkit-box-orient: vertical;
         -webkit-line-clamp: 2;
+        line-clamp: 2;
+        word-break: break-all;
+        transition: color 0.3s;
+        -webkit-box-orient: block-axis;
       }
+
+      .post-desc {
+        display: -webkit-box;
+        margin-block: -0.4rem 0.8rem;
+        overflow: hidden;
+        line-height: 30px;
+        -webkit-line-clamp: 2;
+        line-clamp: 2;
+        word-break: break-all;
+        opacity: 80%;
+        -webkit-box-orient: block-axis;
+      }
+
       .post-meta {
         display: flex;
         flex-direction: row;
         align-items: center;
         justify-content: space-between;
         color: var(--color-font-second-color);
+
         .post-tags {
           display: flex;
           flex-wrap: wrap;
-          opacity: 0.8;
-          margin-right: 20px;
+          margin-inline-end: 20px;
           overflow: hidden;
-          mask: linear-gradient(90deg, #fff 0, #fff 90%, hsla(0, 0%, 100%, 0.6) 95%, hsla(0, 0%, 100%, 0) 100%);
+          opacity: 80%;
+          mask: linear-gradient(90deg, #fff 0, #fff 90%, hsl(0deg 0% 100% / 60%) 95%, hsl(0deg 0% 100% / 0%) 100%);
+
           .tags-name {
             display: flex;
             flex-direction: row;
             align-items: center;
-            margin-right: 12px;
+            margin-inline-end: 12px;
             white-space: nowrap;
             transition: color 0.3s;
+
             svg {
-              opacity: 0.6;
-              margin-right: 4px;
+              margin-inline-end: 4px;
+              opacity: 60%;
             }
+
             &:hover {
               color: var(--color-theme);
             }
           }
+
           @media (max-width: 768px) {
             flex-wrap: nowrap;
           }
         }
+
         .post-time {
-          opacity: 0.6;
           font-size: 13px;
           white-space: nowrap;
+          opacity: 60%;
         }
       }
     }
+
     &.simple {
-      animation: none;
+      block-size: auto;
       padding: 0.5rem 1.4rem;
       background-color: var(--color-card-second-background);
-      height: auto;
-    }
-    &:last-child {
-      margin-bottom: 0;
-    }
-    &:hover {
-      .post-cover img {
-        filter: brightness(0.8);
-        transform: scale(1.05);
-      }
-      .post-content {
-        .post-title {
-          color: var(--color-theme);
-        }
-      }
-    }
-    &:active {
-      transform: scale(0.98);
-    }
-    @media (max-width: 768px) {
-      flex-direction: column;
-      height: auto;
-
-      .post-cover {
-        flex: none;
-        width: 100%;
-        height: 200px;
-      }
+      animation: none;
     }
 
     /* 封面靠左 */
@@ -295,8 +281,41 @@ function toPost(path: string) {
       &:nth-child(odd) {
         flex-direction: row;
       }
+
       &:nth-child(even) {
         flex-direction: row-reverse;
+      }
+    }
+
+    &:last-child {
+      margin-block-end: 0;
+    }
+
+    &:hover {
+      .post-cover img {
+        filter: brightness(0.8);
+        transform: scale(1.05);
+      }
+
+      .post-content {
+        .post-title {
+          color: var(--color-theme);
+        }
+      }
+    }
+
+    &:active {
+      transform: scale(0.98);
+    }
+
+    @media (max-width: 768px) {
+      flex-direction: column;
+      block-size: auto;
+
+      .post-cover {
+        flex: none;
+        inline-size: 100%;
+        block-size: 200px;
       }
     }
 
@@ -317,14 +336,14 @@ function toPost(path: string) {
     gap: var(--grid-gap, 1rem);
 
     .post-item {
-      margin: 0;
       flex-direction: column;
-      height: auto;
+      block-size: auto;
+      margin: 0;
 
       .post-cover {
         flex: none;
-        width: 100%;
-        height: 225px;
+        inline-size: 100%;
+        block-size: 225px;
       }
 
       .post-content {

@@ -74,107 +74,125 @@ onBeforeUnmount(() => {
   display: flex;
   flex-direction: row;
   align-items: center;
+
   .count-left {
     position: relative;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: space-evenly;
-    margin-right: 0.8rem;
+    margin-inline-end: 0.8rem;
+
     .text {
       font-size: 14px;
       color: var(--color-font-second-color);
     }
+
     .name {
-      font-weight: bold;
+      margin-block-start: 2px;
       font-size: 18px;
-      margin-top: 2px;
+      font-weight: bold;
     }
+
     .time {
+      margin: 4px 0;
       font-size: 30px;
       font-weight: bold;
-      margin: 4px 0;
       color: var(--color-theme);
     }
+
     .date {
       font-size: 12px;
-      opacity: 0.6;
+      opacity: 60%;
     }
+
     &::after {
-      content: '';
       position: absolute;
-      right: -0.8rem;
-      width: 2px;
-      height: 80%;
+      inset-inline-end: -0.8rem;
+      inline-size: 2px;
+      block-size: 80%;
+      content: '';
       background-color: var(--color-card-border);
     }
   }
+
   .count-right {
     flex: 1;
-    width: 100%;
-    margin-left: 0.8rem;
+    inline-size: 100%;
+    margin-inline-start: 0.8rem;
+
     .count-item {
       display: flex;
       flex-direction: row;
       align-items: center;
-      height: 24px;
+      block-size: 24px;
       margin: 6px 0;
+
       .item-name {
+        margin-inline-end: 0.8rem;
         font-size: 14px;
-        margin-right: 0.8rem;
-        white-space: nowrap;
         color: var(--color-font-second-color);
+        white-space: nowrap;
       }
+
       .item-progress {
         position: relative;
         display: flex;
         flex-direction: row;
         align-items: center;
         justify-content: space-between;
-        height: 100%;
-        width: 100%;
-        border-radius: 8px;
-        background-color: var(--color-theme-op);
+        inline-size: 100%;
+        block-size: 100%;
         overflow: hidden;
+        background-color: var(--color-theme-op);
+        border-radius: 8px;
+
         .progress-bar {
-          height: 100%;
-          border-radius: 8px;
+          block-size: 100%;
           background-color: var(--color-theme);
+          border-radius: 8px;
         }
+
         .percentage,
         .remaining {
           position: absolute;
-          font-size: 12px;
           margin: 0 6px;
+          font-size: 12px;
           transition:
             opacity 0.3s,
             transform 0.3s;
+
           &.many {
             color: #fff;
+
             .tip {
-              opacity: 0.8;
+              opacity: 80%;
             }
           }
         }
+
         .remaining {
-          opacity: 0;
+          opacity: 0%;
           transform: translateX(10px);
+
           .tip {
-            opacity: 0.6;
+            opacity: 60%;
           }
         }
       }
     }
   }
+
   &:hover {
     .count-right {
       .remaining {
+        opacity: 100% !important;
         transform: translateX(0) !important;
-        opacity: 1 !important;
       }
+
       .percentage {
+        opacity: 0% !important;
         transform: translateX(-10px) !important;
-        opacity: 0 !important;
       }
     }
   }

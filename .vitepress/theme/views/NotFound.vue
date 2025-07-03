@@ -18,36 +18,36 @@ const router = useRouter()
 
 <style scoped>
 .not-found-content {
-  animation: fade-up 0.6s 0.1s backwards;
   display: flex;
   flex-direction: column;
   align-items: center;
   margin: 4rem 0;
+  animation: fade-up 0.6s 0.1s backwards;
 
   .title {
-    font-size: 8rem;
     margin: 2rem 0;
+    font-size: 8rem;
     line-height: 1;
   }
 
   .title-tip {
     font-size: 2rem;
-    opacity: 0.6;
+    opacity: 60%;
   }
 
   .to-home {
-    margin-top: 2rem;
     padding: 12px 26px;
+    margin-block-start: 2rem;
     font-size: 20px;
     color: var(--color-font-color);
+    cursor: pointer;
     background-color: var(--color-card-border);
+    border: none;
     border-radius: 12px;
     outline: none;
-    border: none;
     transition:
       color 0.3s,
       background-color 0.3s;
-    cursor: pointer;
 
     &:hover {
       color: var(--color-card-background);

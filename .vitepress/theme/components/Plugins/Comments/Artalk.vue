@@ -112,6 +112,7 @@ onUnmounted(() => {
   --at-color-bg-transl: var(--color-card-second-background) !important;
   --at-color-gradient: linear-gradient(180deg, transparent, var(--color-card-background)) !important;
 }
+
 .atk-layer-wrap {
   .atk-layer-mask {
     background: var(--color-mask-background-deep) !important;
@@ -123,16 +124,19 @@ onUnmounted(() => {
 #comment-dom {
   :deep(.atk-main-editor) {
     .atk-bottom {
+      block-size: 40px;
       padding: 0 0 0 8px;
-      height: 40px;
+
       .atk-send-btn {
-        height: 40px;
+        block-size: 40px;
       }
     }
+
     .atk-user-btn,
     .atk-plug-btn {
       transition: background 0.3s;
     }
+
     .atk-plug-panel-wrap {
       .atk-grp {
         &[data-grp-name='小黄脸'] {
@@ -142,6 +146,7 @@ onUnmounted(() => {
           }
         }
       }
+
       .atk-grp-switcher {
         span {
           transition: background 0.3s;
@@ -149,116 +154,136 @@ onUnmounted(() => {
       }
     }
   }
+
   :deep(.atk-list) {
     .atk-list-header {
       .atk-dropdown {
         .atk-dropdown-item {
-          margin: 0;
           padding: 0;
-          margin-top: 8px;
+          margin: 0;
+          margin-block-start: 8px;
           line-height: normal;
           text-align: center;
           letter-spacing: normal;
-          &:first-child {
-            margin-top: 0;
-          }
-          &::before {
-            display: none;
-          }
+
           span {
             transition: color 0.3s;
+          }
+
+          &:first-child {
+            margin-block-start: 0;
+          }
+
+          &::before {
+            display: none;
           }
         }
       }
     }
+
     .atk-list-comments-wrap {
       > .atk-comment-wrap {
-        border-bottom: 1px dashed var(--color-card-border);
+        border-block-end: 1px dashed var(--color-card-border);
+
         .atk-header {
           .atk-badge {
             color: var(--at-color-bg);
             background-color: var(--at-color-main) !important;
           }
         }
+
         .atk-content {
           user-select: text;
+
           img {
-            width: auto;
-            max-width: 240px;
+            inline-size: auto;
+            max-inline-size: 240px;
           }
+
           code {
             margin: 4px;
+            font-family: 'Fira Code', var(--font-custom), monospace;
             vertical-align: inherit;
             border-radius: 6px;
-            font-family: 'Fira Code', var(--font-custom), monospace;
           }
+
           pre {
             code {
               border-radius: 8px;
             }
           }
+
           blockquote {
-            border-left: 8px solid var(--color-card-border);
             background-color: var(--color-card-second-background);
+            border-inline-start: 8px solid var(--color-card-border);
             border-radius: 4px 8px 8px 4px;
           }
         }
+
         &:last-child {
-          border-bottom: none;
+          border-block-end: none;
         }
       }
     }
+
     .atk-height-limit {
       .atk-height-limit-btn {
-        height: 46px;
-        width: calc(100% - 20px);
         display: flex;
         align-items: center;
         justify-content: center;
+        inline-size: calc(100% - 20px);
+        block-size: 46px;
         padding: 12px 0;
         border-radius: 16px;
         transition:
           color 0.3s,
           background-color 0.3s;
+
         &:hover {
           color: var(--color-card-background);
           background-color: var(--color-theme);
         }
       }
+
       &::after {
-        height: 100px;
+        block-size: 100px;
       }
     }
   }
+
   :deep(.atk-list-body) {
     .atk-pagination {
       .atk-input,
       .atk-btn {
-        width: 40px;
-        height: 40px;
-        border-radius: 8px;
+        inline-size: 40px;
+        block-size: 40px;
         overflow: hidden;
+        cursor: pointer;
         background-color: var(--color-card-background);
         border: 1px solid var(--color-card-border);
+        border-radius: 8px;
         box-shadow: 0 8px 16px -4px var(--color-border-shadow);
         transition:
-          width 0.3s,
+          inline-size 0.3s,
           border-color 0.3s,
           box-shadow 0.3s;
-        cursor: pointer;
+
         &:hover {
           border-color: var(--color-theme);
           box-shadow: 0 8px 16px -4px var(--color-theme-op);
+
           svg {
             color: var(--color-theme);
           }
         }
       }
+
       .atk-input {
         font-size: 1rem;
+
         &:hover,
         &:focus {
-          width: 200px;
+          inline-size: 200px;
           border-color: var(--color-theme);
           box-shadow: 0 8px 16px -4px var(--color-theme-op);
         }

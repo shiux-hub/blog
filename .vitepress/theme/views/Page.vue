@@ -37,22 +37,22 @@ const { frontmatter } = useData()
 
 <style scoped>
 :deep(#main-comment) {
-  width: 100%;
+  inline-size: 100%;
 
   .comment-content {
     .atk-list {
       .atk-list-header {
-        margin-bottom: 8px;
+        margin-block-end: 8px;
       }
 
       .atk-list-comments-wrap {
         > .atk-comment-wrap {
           padding: 0.8rem;
-          margin-bottom: 1rem;
-          border-bottom: none;
-          border-radius: 16px;
+          margin-block-end: 1rem;
           background-color: var(--color-card-background);
           border: 1px solid var(--color-card-border);
+          border-block-end: none;
+          border-radius: 16px;
           box-shadow: 0 8px 16px -4px var(--color-border-shadow);
         }
       }

@@ -1,61 +1,62 @@
 @import 'tailwindcss';
+
 @source "../**/*.{ts,tsx,vue,css}";
 
 @custom-variant dark (&:where(.dark, .dark *));
 
 /** 全局颜色变量 */
 :root {
-  --theme: hsl(232, 84%, 60%);
-  --theme-op: hsla(232, 84%, 60%, 0.137);
-  --theme-op-deep: hsla(232, 84%, 60%, 0.867);
-  --theme-op-light: hsla(232, 84%, 60%, 0.051);
-  --theme-none: hsla(232, 84%, 60%, 0.004);
-  --site-background: hsl(225, 80%, 98%);
-  --card-background: hsl(0, 0%, 100%);
-  --card-second-background: hsl(240, 14%, 97%);
-  --font-color: hsl(0, 0%, 21%);
-  --font-second-color: hsla(240, 6%, 25%, 0.8);
-  --card-border: hsl(225, 56%, 93%);
-  --border-shadow: hsla(225, 4%, 18%, 0.047);
-  --scrollbar-bar: hsla(240, 6%, 25%, 0.4);
-  --mask-background: hsla(0, 0%, 100%, 0.6);
-  --mask-background-deep: hsla(0, 0%, 100%, 0.85);
-  --mask-inverse-background: hsla(0, 0%, 0%, 0.08);
-  --mask-second-background: hsla(0, 0%, 100%, 0.45);
-  --opacity: hsla(0, 0%, 100%, 0.15);
-  --dark-opacity: hsla(0, 0%, 100%, 0.15);
-  --dark-shadow: hsla(0, 0%, 0%, 0.431);
-  --info: hsl(202, 100%, 66%);
-  --info-gray: hsla(202, 100%, 66%, 0.376);
-  --warning: hsl(39, 100%, 50%);
-  --warning-gray: hsla(42, 93%, 57%, 0.376);
-  --success: hsl(147, 83%, 44%);
-  --success-gray: hsla(147, 83%, 44%, 0.376);
-  --error: hsl(357, 100%, 61%);
-  --error-gray: hsla(357, 100%, 61%, 0.231);
-  --blue: hsl(209, 100%, 50%);
-  --gray: hsl(0, 0%, 60%);
-  --red: hsl(357, 100%, 61%);
+  --theme: hsl(232deg 84% 60%);
+  --theme-op: hsl(232deg 84% 60% / 13.7%);
+  --theme-op-deep: hsl(232deg 84% 60% / 86.7%);
+  --theme-op-light: hsl(232deg 84% 60% / 5.1%);
+  --theme-none: hsl(232deg 84% 60% / 0.4%);
+  --site-background: hsl(225deg 80% 98%);
+  --card-background: hsl(0deg 0% 100%);
+  --card-second-background: hsl(240deg 14% 97%);
+  --font-color: hsl(0deg 0% 21%);
+  --font-second-color: hsl(240deg 6% 25% / 80%);
+  --card-border: hsl(225deg 56% 93%);
+  --border-shadow: hsl(225deg 4% 18% / 4.7%);
+  --scrollbar-bar: hsl(240deg 6% 25% / 40%);
+  --mask-background: hsl(0deg 0% 100% / 60%);
+  --mask-background-deep: hsl(0deg 0% 100% / 85%);
+  --mask-inverse-background: hsl(0deg 0% 0% / 8%);
+  --mask-second-background: hsl(0deg 0% 100% / 45%);
+  --opacity: hsl(0deg 0% 100% / 15%);
+  --dark-opacity: hsl(0deg 0% 100% / 15%);
+  --dark-shadow: hsl(0deg 0% 0% / 43.1%);
+  --info: hsl(202deg 100% 66%);
+  --info-gray: hsl(202deg 100% 66% / 37.6%);
+  --warning: hsl(39deg 100% 50%);
+  --warning-gray: hsl(42deg 93% 57% / 37.6%);
+  --success: hsl(147deg 83% 44%);
+  --success-gray: hsl(147deg 83% 44% / 37.6%);
+  --error: hsl(357deg 100% 61%);
+  --error-gray: hsl(357deg 100% 61% / 23.1%);
+  --blue: hsl(209deg 100% 50%);
+  --gray: hsl(0deg 0% 60%);
+  --red: hsl(357deg 100% 61%);
 }
 
 .dark {
-  --theme: hsl(42, 100%, 64%);
-  --theme-op: hsla(40, 87%, 62%, 0.137);
-  --theme-op-deep: hsla(40, 87%, 62%, 0.867);
-  --theme-none: hsla(40, 87%, 62%, 0);
-  --site-background: hsl(250, 12%, 10%);
-  --card-background: hsl(228, 8%, 12%);
-  --card-second-background: hsl(227, 12%, 15%);
-  --font-color: hsl(240, 23%, 97%);
-  --font-second-color: hsl(237, 14%, 68%);
-  --card-border: hsl(240, 2%, 24%);
-  --border-shadow: hsla(0, 0%, 0%, 0.314);
-  --scrollbar-bar: hsla(240, 26%, 83%, 0.4);
-  --mask-background: hsla(0, 0%, 0%, 0.6);
-  --mask-background-deep: hsla(0, 0%, 0%, 0.85);
-  --mask-inverse-background: hsla(0, 0%, 100%, 0.08);
-  --mask-second-background: hsla(0, 0%, 0%, 0.45);
-  --color-opacity: hsla(0, 0%, 0%, 0.15);
+  --theme: hsl(42deg 100% 64%);
+  --theme-op: hsl(40deg 87% 62% / 13.7%);
+  --theme-op-deep: hsl(40deg 87% 62% / 86.7%);
+  --theme-none: hsl(40deg 87% 62% / 0%);
+  --site-background: hsl(250deg 12% 10%);
+  --card-background: hsl(228deg 8% 12%);
+  --card-second-background: hsl(227deg 12% 15%);
+  --font-color: hsl(240deg 23% 97%);
+  --font-second-color: hsl(237deg 14% 68%);
+  --card-border: hsl(240deg 2% 24%);
+  --border-shadow: hsl(0deg 0% 0% / 31.4%);
+  --scrollbar-bar: hsl(240deg 26% 83% / 40%);
+  --mask-background: hsl(0deg 0% 0% / 60%);
+  --mask-background-deep: hsl(0deg 0% 0% / 85%);
+  --mask-inverse-background: hsl(0deg 0% 100% / 8%);
+  --mask-second-background: hsl(0deg 0% 0% / 45%);
+  --color-opacity: hsl(0deg 0% 0% / 15%);
 }
 
 @theme inline {
@@ -90,10 +91,10 @@
   --color-blue: var(--blue);
   --color-gray: var(--gray);
   --color-red: var(--red);
-  --shadow-xm: 0 8px 16px -4px rgb(0 0 0 / 0.08);
+  --shadow-xm: 0 8px 16px -4px rgb(0 0 0 / 8%);
 
   --font-custom:
-    -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen-Sans, Ubuntu, Cantarell, 'Helvetica Neue', sans-serif;
+    -apple-system, blinkmacsystemfont, 'Segoe UI', roboto, oxygen-sans, ubuntu, cantarell, 'Helvetica Neue', sans-serif;
 
   --animate-show: show 0.3s backwards;
   --animate-fade-up: fade-up 0.3s backwards;
@@ -102,43 +103,43 @@
   --animate-fade-left: fade-left 0.3s backwards;
   --animate-loading: loading 0.8s infinite;
   --animate-loading-width: loading-width 0.8s infinite;
-  --animate-gradient-flow: gradientFlow 2s ease infinite;
+  --animate-gradient-flow: gradientflow 2s ease infinite;
   --animate-skeleton-loading: skeleton-loading 1.5s linear infinite;
   --animate-rotate: rotate 1s linear infinite;
-  --animate-move-down: moveDown 1.5s ease-in-out infinite;
+  --animate-move-down: movedown 1.5s ease-in-out infinite;
 
   /* 渐入 */
   @keyframes show {
     from {
-      opacity: 0;
+      opacity: 0%;
     }
 
     to {
-      opacity: 1;
+      opacity: 100%;
     }
   }
 
   /* 上浮 */
   @keyframes fade-up {
     from {
-      opacity: 0;
+      opacity: 0%;
       transform: translateY(20px);
     }
 
     to {
-      opacity: 1;
+      opacity: 100%;
       transform: translateY(0);
     }
   }
 
   @keyframes fade-up-opacity {
     from {
-      opacity: 0;
+      opacity: 0%;
       transform: translateY(20px);
     }
 
     to {
-      opacity: 0.8;
+      opacity: 80%;
       transform: translateY(0);
     }
   }
@@ -146,12 +147,12 @@
   /* 下沉 */
   @keyframes fade-down {
     from {
-      opacity: 0;
+      opacity: 0%;
       transform: translateY(-50px);
     }
 
     to {
-      opacity: 1;
+      opacity: 100%;
       transform: translateY(0);
     }
   }
@@ -159,12 +160,12 @@
   /* 左移 */
   @keyframes fade-left {
     from {
-      opacity: 0;
+      opacity: 0%;
       transform: translateX(10px);
     }
 
     to {
-      opacity: 1;
+      opacity: 100%;
       transform: translateX(0);
     }
   }
@@ -172,26 +173,26 @@
   /* 加载 */
   @keyframes loading {
     0% {
-      opacity: 1;
+      opacity: 100%;
     }
 
     50% {
-      opacity: 0.4;
+      opacity: 40%;
     }
 
     100% {
-      opacity: 1;
+      opacity: 100%;
     }
   }
 
   /* 进度 */
   @keyframes loading-width {
     0% {
-      width: 0%;
+      inline-size: 0%;
     }
 
     100% {
-      width: 100%;
+      inline-size: 100%;
     }
   }
 
@@ -233,11 +234,11 @@
   @keyframes moveDown {
     0%,
     100% {
-      bottom: 30px;
+      inset-block-end: 30px;
     }
 
     50% {
-      bottom: 60px;
+      inset-block-end: 60px;
     }
   }
 }

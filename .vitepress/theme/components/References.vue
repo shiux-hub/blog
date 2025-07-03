@@ -28,76 +28,52 @@ const { frontmatter } = useData()
 
 <style scoped>
 .references {
-  margin: 1rem 0;
   padding: 18px;
-  margin-top: 2rem;
+  margin: 1rem 0;
+  margin-block-start: 2rem;
   background-color: var(--color-card-second-background);
 
   .title {
     display: flex;
     flex-direction: row;
     align-items: center;
-    color: var(--color-font-second-color);
+    margin-block-end: 0.8rem;
     font-size: 15px;
-    margin-bottom: 0.8rem;
+    color: var(--color-font-second-color);
 
     svg {
-      margin-right: 4px;
-      width: 18px;
-      height: 18px;
+      inline-size: 18px;
+      block-size: 18px;
+      margin-inline-end: 4px;
       color: var(--color-font-second-color);
-      opacity: 0.6;
+      opacity: 60%;
     }
   }
 
   .list {
     display: flex;
     flex-direction: column;
+    padding-inline-start: 0.4rem;
     margin: 0;
     list-style-type: none;
-    padding-left: 0.4rem;
 
     .list-item {
+      position: relative;
       display: inline-flex;
       flex-direction: row;
       align-items: center;
-      position: relative;
-      width: max-content;
-      padding-left: 1rem;
-      margin-bottom: 0.4rem;
+      inline-size: max-content;
+      padding-inline-start: 1rem;
+      margin-block-end: 0.4rem;
       overflow: auto;
       transition: color 0.3s;
 
       .item-title {
-        padding-bottom: 2px;
+        padding-block-end: 2px;
       }
 
       &:last-child {
-        margin-bottom: 0;
-      }
-
-      &::before {
-        content: '';
-        position: absolute;
-        left: 0;
-        width: 8px;
-        height: 8px;
-        opacity: 0.6;
-        background-color: var(--color-font-color);
-        border-radius: 50%;
-        transition: background-color 0.3s;
-      }
-
-      &::after {
-        content: '';
-        position: absolute;
-        left: 0;
-        bottom: 0;
-        height: 2px;
-        width: 0;
-        margin-left: 1rem;
-        background-color: var(--color-theme);
-        transition: width 0.3s;
+        margin-block-end: 0;
       }
 
       &:hover {
@@ -108,8 +84,32 @@ const { frontmatter } = useData()
         }
 
         &::after {
-          width: calc(100% - 1rem);
+          inline-size: calc(100% - 1rem);
         }
+      }
+
+      &::before {
+        position: absolute;
+        inset-inline-start: 0;
+        inline-size: 8px;
+        block-size: 8px;
+        content: '';
+        background-color: var(--color-font-color);
+        border-radius: 50%;
+        opacity: 60%;
+        transition: background-color 0.3s;
+      }
+
+      &::after {
+        position: absolute;
+        inset-block-end: 0;
+        inset-inline-start: 0;
+        inline-size: 0;
+        block-size: 2px;
+        margin-inline-start: 1rem;
+        content: '';
+        background-color: var(--color-theme);
+        transition: inline-size 0.3s;
       }
     }
   }

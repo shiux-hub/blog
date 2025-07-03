@@ -95,25 +95,25 @@ function toRewardList() {
   position: relative;
   display: flex;
   justify-content: center;
-  width: max-content;
+  inline-size: max-content;
   margin: 1rem auto;
-  user-select: none;
   cursor: pointer;
+  user-select: none;
 
   .reward-btn {
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: center;
-    height: 40px;
-    width: 120px;
-    border-radius: 8px;
+    inline-size: 120px;
+    block-size: 40px;
     color: #fff;
     background-color: var(--color-red);
+    border-radius: 8px;
     transition: box-shadow 0.5s;
 
     svg {
-      margin-right: 6px;
+      margin-inline-end: 6px;
     }
 
     &:hover {
@@ -126,16 +126,16 @@ function toRewardList() {
   .thank {
     display: inline-flex;
     justify-content: center;
-    margin-bottom: 1rem;
-    width: 100%;
-    color: var(--color-theme);
+    inline-size: 100%;
+    margin-block-end: 1rem;
     font-weight: bold;
+    color: var(--color-theme);
   }
 
   .qr {
     display: grid;
-    gap: 1rem;
     grid-template-columns: 1fr 1fr;
+    gap: 1rem;
 
     .qr-img {
       display: flex;
@@ -143,22 +143,22 @@ function toRewardList() {
       align-items: center;
 
       img {
-        width: 100%;
-        height: auto;
-        border-radius: 16px;
+        inline-size: 100%;
+        block-size: auto;
         overflow: hidden;
+        border-radius: 16px;
       }
 
       .tip {
         display: flex;
         flex-direction: row;
         align-items: center;
-        margin-top: 0.8rem;
+        margin-block-start: 0.8rem;
 
         svg {
-          margin-right: 6px;
-          width: 18px;
-          height: 18px;
+          inline-size: 18px;
+          block-size: 18px;
+          margin-inline-end: 6px;
         }
       }
 
@@ -171,23 +171,23 @@ function toRewardList() {
   }
 
   .all-list {
-    margin-top: 20px;
     display: flex;
-    align-items: center;
     flex-direction: column;
+    align-items: center;
+    margin-block-start: 20px;
     background-color: var(--color-card-second-background);
 
     .title {
+      margin-block-end: 8px;
       font-size: 18px;
       font-weight: bold;
-      margin-bottom: 8px;
       transition: color 0.3s;
     }
 
     .tip {
-      text-align: center;
       font-size: 12px;
-      opacity: 0.6;
+      text-align: center;
+      opacity: 60%;
     }
 
     &:hover {

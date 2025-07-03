@@ -66,33 +66,39 @@ onMounted(() => {
       align-items: center;
       justify-content: space-between;
       padding: 0.5rem 0.2rem;
+
       .name {
         display: flex;
         flex-direction: row;
         align-items: center;
+
         svg {
-          margin-right: 8px;
-          opacity: 0.6;
-          width: 18px;
-          height: 18px;
+          inline-size: 18px;
+          block-size: 18px;
+          margin-inline-end: 8px;
+          opacity: 60%;
         }
       }
+
       .num {
-        opacity: 0.8;
         font-size: 15px;
+        opacity: 80%;
       }
+
       #busuanzi_value_site_pv {
         &::after {
           content: ' 次';
         }
       }
+
       #busuanzi_value_site_uv {
         &::after {
           content: ' 人';
         }
       }
+
       &:last-child {
-        padding-bottom: 0;
+        padding-block-end: 0;
       }
     }
   }
