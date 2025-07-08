@@ -104,7 +104,7 @@ onMounted(() => {
           title="热度"
         >
           <Icon icon="mingcute:fire-fill" class="size-4" />
-          <span id="twikoo_visitors" class="artalk-pv-count">0</span>
+          <span id="twikoo_visitors" class="artalk-pv-count font-bold">0</span>
         </span>
         <!-- 评论数 -->
         <span

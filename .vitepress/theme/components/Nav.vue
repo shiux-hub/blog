@@ -67,7 +67,7 @@ const { site, theme, frontmatter, page } = useData()
         </div>
         <!-- 导航栏菜单 -->
         <div
-          class="nav-center max-md:bg-card-background max-md:border-card-border max-md:absolute max-md:inset-0 max-md:z-100 max-md:border-b"
+          class="nav-center max-md:bg-card-background max-md:border-card-border max-md:absolute max-md:-top-20 max-md:inset-0 max-md:z-100 max-md:border-b"
         >
           <div class="site-menu">
             <div
@@ -514,12 +514,6 @@ const { site, theme, frontmatter, page } = useData()
         opacity: 0%;
         transform: translateY(50px);
         scale: 1.1;
-      }
-
-      @media (max-width: 768px) {
-        .nav-center {
-          inset-block-start: -80px;
-        }
       }
     }
 
